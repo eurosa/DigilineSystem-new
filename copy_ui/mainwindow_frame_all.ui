@@ -1,0 +1,1751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1413</width>
+    <height>775</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{background-color:black;}</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QLabel" name="elapsedTimeLabel">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>0</y>
+      <width>101</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Elapsed Time</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="setTimeSetting">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#setTimeSetting{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#setTimeSetting:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Set Time</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_9">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>670</y>
+      <width>27</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#toolButton_9{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#toolButton_9:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_10">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>670</y>
+      <width>27</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#toolButton_10{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#toolButton_10:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="powerButton">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>670</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#powerButton{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#powerButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>STANDBY/CLEAN</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/power_white.png</normaloff>../icon/power_white.png</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="downTemperatureButton">
+    <property name="geometry">
+     <rect>
+      <x>965</x>
+      <y>380</y>
+      <width>41</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#downTemperatureButton {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QToolButton#downTemperatureButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Down</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/down-white.png</normaloff>../icon/down-white.png</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="upTemperatureButton">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>380</y>
+      <width>41</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#upTemperatureButton {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QToolButton#upTemperatureButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Up</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/up-white.png</normaloff>../icon/up-white.png</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="downHumidityButton">
+    <property name="geometry">
+     <rect>
+      <x>1178</x>
+      <y>380</y>
+      <width>41</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#downHumidityButton {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QToolButton#downHumidityButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Down</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/down-white.png</normaloff>../icon/down-white.png</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="upHumidityButton">
+    <property name="geometry">
+     <rect>
+      <x>1239</x>
+      <y>380</y>
+      <width>41</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#upHumidityButton {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QToolButton#upHumidityButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Up</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/up-white.png</normaloff>../icon/up-white.png</iconset>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1195</x>
+      <y>210</y>
+      <width>67</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Humidity</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>905</x>
+      <y>250</y>
+      <width>61</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../icon/thermometer_white.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>1135</x>
+      <y>250</y>
+      <width>51</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../icon/humidity_60_60.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>975</x>
+      <y>210</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Temperature</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>100</y>
+      <width>371</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_10">
+     <item>
+      <widget class="QPushButton" name="reset">
+       <property name="styleSheet">
+        <string notr="true">QPushButton#reset {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+     
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton#reset:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="start">
+       <property name="styleSheet">
+        <string notr="true">QPushButton#start {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+     
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton#start:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addAdditonalChronoButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton#addAdditonalChronoButton {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+     
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton#addAdditonalChronoButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Additional Chrono</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="day_date_show">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>140</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Date Show</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="centralwidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>190</y>
+      <width>671</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="time_label">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>-1</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Time</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="elapsedTimeLabel_2">
+    <property name="geometry">
+     <rect>
+      <x>1185</x>
+      <y>0</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Anaesthesia  Time</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="temeratureGraph">
+    <property name="geometry">
+     <rect>
+      <x>965</x>
+      <y>430</y>
+      <width>106</width>
+      <height>39</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#temeratureGraph {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 5em;
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#temeratureGraph:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>GRAPH</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/temp_graph.png</normaloff>../icon/temp_graph.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="humidityGraph">
+    <property name="geometry">
+     <rect>
+      <x>1175</x>
+      <y>430</y>
+      <width>106</width>
+      <height>39</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#humidityGraph {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 5em;
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#humidityGraph:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>GRAPH</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/humidity_graph.png</normaloff>../icon/humidity_graph.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="elapsedTimeShow_3">
+    <property name="geometry">
+     <rect>
+      <x>975</x>
+      <y>240</y>
+      <width>91</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;15.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="elapsedTimeShow_4">
+    <property name="geometry">
+     <rect>
+      <x>1195</x>
+      <y>240</y>
+      <width>101</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;64.0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>995</x>
+      <y>320</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Set</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>1215</x>
+      <y>320</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Set</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="elapsedTimeShow_5">
+    <property name="geometry">
+     <rect>
+      <x>995</x>
+      <y>340</y>
+      <width>51</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;00&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="elapsedTimeShow_6">
+    <property name="geometry">
+     <rect>
+      <x>1205</x>
+      <y>340</y>
+      <width>51</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;00&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>905</x>
+      <y>560</y>
+      <width>61</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../.designer/backup/icon/compressor.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>1125</x>
+      <y>560</y>
+      <width>51</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../.designer/backup/icon/air-filter-white.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>955</x>
+      <y>520</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Diffrential Pressure</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>1165</x>
+      <y>520</y>
+      <width>131</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Hepa Filter Status</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="elapsedTimeShow_7">
+    <property name="geometry">
+     <rect>
+      <x>1195</x>
+      <y>560</y>
+      <width>101</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;95%&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="elapsedTimeShow_8">
+    <property name="geometry">
+     <rect>
+      <x>1005</x>
+      <y>550</y>
+      <width>91</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;90&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lcd2">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>60</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lcd1">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>20</y>
+      <width>311</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;00:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcd">
+    <property name="geometry">
+     <rect>
+      <x>1310</x>
+      <y>340</y>
+      <width>109</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="digitCount">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_7">
+    <property name="geometry">
+     <rect>
+      <x>975</x>
+      <y>100</y>
+      <width>291</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QPushButton" name="timerSet">
+       <property name="styleSheet">
+        <string notr="true">QPushButton#timerSet {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+     
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton#timerSet:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Set</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="startButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton#startButton {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+     
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton#startButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="resetButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton#resetButton {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+     
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton#resetButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="displayArea">
+    <property name="geometry">
+     <rect>
+      <x>975</x>
+      <y>20</y>
+      <width>281</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel { color: #FFFF00; }</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:48pt; color:#ffa400;&quot;&gt;00:00:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>630</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>Medical Gas</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="nitrousOxide">
+    <property name="geometry">
+     <rect>
+      <x>332</x>
+      <y>668</y>
+      <width>53</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#nitrousOxide{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#nitrousOxide:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>N2O</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="air">
+    <property name="geometry">
+     <rect>
+      <x>402</x>
+      <y>668</y>
+      <width>48</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#air{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#air:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>AIR</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="air7">
+    <property name="geometry">
+     <rect>
+      <x>467</x>
+      <y>668</y>
+      <width>55</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#air7{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#air7:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>AIR7</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="cabonDiOxide">
+    <property name="geometry">
+     <rect>
+      <x>539</x>
+      <y>668</y>
+      <width>51</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#cabonDiOxide{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#cabonDiOxide:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>CO2</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="oxygen">
+    <property name="geometry">
+     <rect>
+      <x>607</x>
+      <y>668</y>
+      <width>42</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#oxygen{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#oxygen:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>O2</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="vacuum">
+    <property name="geometry">
+     <rect>
+      <x>666</x>
+      <y>668</y>
+      <width>51</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#vacuum{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#vacuum:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>VAC</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="ips">
+    <property name="geometry">
+     <rect>
+      <x>734</x>
+      <y>668</y>
+      <width>45</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#ips{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#ips:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>IPS</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnOn">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>583</y>
+      <width>35</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnOn{
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#btnOn:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>On</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnOff">
+    <property name="geometry">
+     <rect>
+      <x>114</x>
+      <y>583</y>
+      <width>38</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btnOff{
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#btnOff:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Off</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="otLighteningDetails">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>301</y>
+      <width>196</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#otLighteningDetails {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton#otLighteningDetails:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>    Lightening</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/lighting_white.png</normaloff>../icon/lighting_white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>19</width>
+      <height>19</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ventiLationDetails">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>352</y>
+      <width>196</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#ventiLationDetails {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#ventiLationDetails:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>     Ventilation</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/fan_white.png</normaloff>../icon/fan_white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>19</width>
+      <height>19</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gasIndicator">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>403</y>
+      <width>196</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#gasIndicator{
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#gasIndicator:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>                  Gas</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/pressure_white.png</normaloff>../icon/pressure_white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>19</width>
+      <height>19</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="historyDetails">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>454</y>
+      <width>196</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#historyDetails{
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#historyDetails:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>           History</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/report_white.png</normaloff>../icon/report_white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>19</width>
+      <height>19</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="multiMediaDetails">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>505</y>
+      <width>196</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#multiMediaDetails{
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#multiMediaDetails:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>   Multimedia</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/multimedia_white.png</normaloff>../icon/multimedia_white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>19</width>
+      <height>19</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="time_show">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>21</y>
+      <width>269</width>
+      <height>116</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>64</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:72pt;&quot;&gt;00:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tick_show">
+    <property name="geometry">
+     <rect>
+      <x>277</x>
+      <y>71</y>
+      <width>66</width>
+      <height>53</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>32</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color:#FFFFFF;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;:00&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="settingsButton">
+    <property name="geometry">
+     <rect>
+      <x>1197</x>
+      <y>665</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#settingsButton{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#settingsButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Settings</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/settings_white.png</normaloff>../icon/settings_white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="homeButton">
+    <property name="geometry">
+     <rect>
+      <x>1250</x>
+      <y>665</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#homeButton{
+    border-style: outset;
+    border-width:1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#homeButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../icon/home_white.png</normaloff>../icon/home_white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+   </widget>
+   <zorder>elapsedTimeLabel</zorder>
+   <zorder>setTimeSetting</zorder>
+   <zorder>toolButton_9</zorder>
+   <zorder>toolButton_10</zorder>
+   <zorder>powerButton</zorder>
+   <zorder>downHumidityButton</zorder>
+   <zorder>upHumidityButton</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>horizontalLayoutWidget_2</zorder>
+   <zorder>horizontalLayoutWidget_4</zorder>
+   <zorder>horizontalLayoutWidget_5</zorder>
+   <zorder>day_date_show</zorder>
+   <zorder>centralwidget</zorder>
+   <zorder>time_label</zorder>
+   <zorder>elapsedTimeLabel_2</zorder>
+   <zorder>temeratureGraph</zorder>
+   <zorder>humidityGraph</zorder>
+   <zorder>elapsedTimeShow_3</zorder>
+   <zorder>elapsedTimeShow_4</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>elapsedTimeShow_5</zorder>
+   <zorder>elapsedTimeShow_6</zorder>
+   <zorder>label_8</zorder>
+   <zorder>label_9</zorder>
+   <zorder>label_10</zorder>
+   <zorder>label_11</zorder>
+   <zorder>elapsedTimeShow_7</zorder>
+   <zorder>elapsedTimeShow_8</zorder>
+   <zorder>lcd2</zorder>
+   <zorder>lcd1</zorder>
+   <zorder>lcd</zorder>
+   <zorder>horizontalLayoutWidget_6</zorder>
+   <zorder>horizontalLayoutWidget_7</zorder>
+   <zorder>displayArea</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>downTemperatureButton</zorder>
+   <zorder>upTemperatureButton</zorder>
+   <zorder>label</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,2100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>638</width>
+    <height>402</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_11">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout_10">
+     <item row="0" column="0">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="2" column="0">
+        <widget class="QPushButton" name="light1Decrement">
+         <property name="minimumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/round_minus_white.png</normaloff>icon/round_minus_white.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="6" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_6">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>38</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>38</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+   border-style: outset;
+   padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 30px;
+ 
+ max-height:30px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="9" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_9">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>53</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>53</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+  border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+    
+   border-width: 2px;
+  min-height: 45px;
+ 
+ max-height:45px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4" colspan="7">
+        <widget class="QLabel" name="lightLabel1">
+         <property name="minimumSize">
+          <size>
+           <width>91</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>91</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Gen Light - 1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="7" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_7">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>43</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>43</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 35px;
+ 
+ max-height:35px;
+   
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="11">
+        <widget class="QPushButton" name="light1Increment">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/plus_white.png</normaloff>icon/plus_white.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_4">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>28</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>28</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 20px;
+ 
+ max-height:20px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_5">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>33</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>33</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+   border-style: outset;
+    padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 25px;
+ 
+ max-height:25px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_1">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>13</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>13</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+ border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+ 
+  min-height:5px;
+ 
+ max-height: 5px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_2">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>18</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>18</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+   border-style: outset;
+    padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 10px;
+ 
+ max-height: 10px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_3">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 15px;
+ 
+ max-height: 15px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4" colspan="8">
+        <widget class="QWidget" name="toggleContainerGasL1" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="lightBulb1">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>41</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel { 
+color: #000000; 
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>icon/light-bulb.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="8" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_8">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>48</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>48</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+  border-style: outset;
+   padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 40px;
+ 
+  max-height:40px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="10" alignment="Qt::AlignBottom">
+        <widget class="QLabel" name="light1_10">
+         <property name="minimumSize">
+          <size>
+           <width>8</width>
+           <height>58</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>58</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+  border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+    
+   border-width: 2px;
+  min-height: 50px;
+ 
+ max-height:50px;
+ 
+  background-color:black;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="1">
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="1">
+        <widget class="QLabel" name="lightLabel2">
+         <property name="minimumSize">
+          <size>
+           <width>91</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>91</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Gen Light - 2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lightBulb2">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>41</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel { 
+color: #000000; 
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>icon/light-bulb.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QWidget" name="toggleContainerGasL2" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="light2Decrement">
+           <property name="minimumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>icon/round_minus_white.png</normaloff>icon/round_minus_white.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_1">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>13</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>13</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+ border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+ 
+  min-height: 5px;
+ 
+ max-height: 5px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_2">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>18</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>18</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+    padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 10px;
+ 
+ max-height: 10px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_3">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 15px;
+ 
+ max-height: 15px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_4">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 20px;
+ 
+ max-height:20px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_5">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+    padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 25px;
+ 
+ max-height:25px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_6">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>38</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>38</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+   padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 30px;
+ 
+ max-height:30px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_7">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>43</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>43</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 35px;
+ 
+ max-height:35px;
+   
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="8" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_8">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>48</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>48</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+   padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 40px;
+ 
+  max-height:40px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="9" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_9">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>53</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>53</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+    
+   border-width: 2px;
+  min-height: 45px;
+ 
+ max-height:45px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="10" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light2_10">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+    
+   border-width: 2px;
+  min-height: 50px;
+ 
+ max-height:50px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="11">
+          <widget class="QPushButton" name="light2Increment">
+           <property name="minimumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>icon/plus_white.png</normaloff>icon/plus_white.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="2">
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="1">
+        <widget class="QLabel" name="lightLabel3">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>41</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>OT 1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="otLightBulb1">
+         <property name="minimumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel { 
+color: #000000; 
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>icon/lights.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QWidget" name="toggleContainerOT1" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0" colspan="3">
+      <widget class="Line" name="line">
+       <property name="minimumSize">
+        <size>
+         <width>581</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="1">
+        <widget class="QLabel" name="lightLabel4">
+         <property name="minimumSize">
+          <size>
+           <width>81</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>81</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Peripheral</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lightBulb3">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>41</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel { 
+color: #000000; 
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>icon/light-bulb.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QWidget" name="toggleContainer" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="light3Decrement">
+           <property name="minimumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>icon/round_minus_white.png</normaloff>icon/round_minus_white.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_1">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>13</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>13</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+ border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+ 
+  min-height: 5px;
+ 
+ max-height: 5px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_2">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>18</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>18</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+    padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 10px;
+ 
+ max-height: 10px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_3">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 15px;
+ 
+ max-height: 15px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_4">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 20px;
+ 
+ max-height:20px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_5">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+    padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 25px;
+ 
+ max-height:25px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_6">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>38</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>38</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+   padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 30px;
+ 
+ max-height:30px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_7">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>43</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>43</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 35px;
+ 
+ max-height:35px;
+   
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="8" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_8">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>48</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>48</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+   padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 40px;
+ 
+  max-height:40px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="9" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_9">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>53</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>53</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+    
+   border-width: 2px;
+  min-height: 45px;
+ 
+ max-height:45px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="10" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light3_10">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+    
+   border-width: 2px;
+  min-height: 50px;
+ 
+ max-height:50px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="11">
+          <widget class="QPushButton" name="light3Increment">
+           <property name="minimumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>icon/plus_white.png</normaloff>icon/plus_white.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="1">
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="1">
+        <widget class="QLabel" name="lightLabel5">
+         <property name="minimumSize">
+          <size>
+           <width>81</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>81</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Laminar</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lightBulb4">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>41</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel { 
+color: #000000; 
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>icon/light-bulb.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QWidget" name="toggleContainerLaminar" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="light4Decrement">
+           <property name="minimumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>icon/round_minus_white.png</normaloff>icon/round_minus_white.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_1">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>13</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>13</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+ border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+ 
+  min-height:5px;
+ 
+ max-height: 5px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_2">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>18</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>18</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+    padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 10px;
+ 
+ max-height: 10px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_3">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>23</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 15px;
+ 
+ max-height: 15px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_4">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 20px;
+ 
+ max-height:20px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_5">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+    padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 25px;
+ 
+ max-height:25px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_6">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>38</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>38</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+   padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height:30px;
+ 
+ max-height:30px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_7">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>43</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>43</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+   border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 35px;
+ 
+ max-height:35px;
+   
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="8" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_8">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>48</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>48</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+   padding:2px;  
+    border-radius:4px;
+  border-width: 2px;
+  min-height: 40px;
+ 
+  max-height:40px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="9" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_9">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>53</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>53</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+    
+   border-width: 2px;
+  min-height: 45px;
+ 
+ max-height:45px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="10" alignment="Qt::AlignBottom">
+          <widget class="QLabel" name="light4_10">
+           <property name="minimumSize">
+            <size>
+             <width>8</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>8</width>
+             <height>58</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
+  border-style: outset;
+  padding:2px;  
+    border-radius:4px;
+    
+   border-width: 2px;
+  min-height: 50px;
+ 
+ max-height:50px;
+ 
+  background-color:black;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="11">
+          <widget class="QPushButton" name="light4Increment">
+           <property name="minimumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>31</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px; 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+   
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}
+</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>icon/plus_white.png</normaloff>icon/plus_white.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="2">
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="1">
+        <widget class="QLabel" name="lightLabel6">
+         <property name="minimumSize">
+          <size>
+           <width>67</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>67</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>OT 2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="otLightBulb2">
+         <property name="minimumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel { 
+color: #000000; 
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>icon/lights.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QWidget" name="toggleContainerOT2" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>111</width>
+           <height>51</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="3" column="0" colspan="3">
+      <widget class="Line" name="line_2">
+       <property name="minimumSize">
+        <size>
+         <width>581</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
