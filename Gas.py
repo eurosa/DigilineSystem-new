@@ -14,121 +14,24 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(578, 254)
-        self.gridLayout_3 = QtWidgets.QGridLayout(Form)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.gridLayout_2 = QtWidgets.QGridLayout()
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.verticalLayout_12 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_12.setObjectName("verticalLayout_12")
-        self.gasLabel_1_high = QtWidgets.QLabel(Form)
-        self.gasLabel_1_high.setMaximumSize(QtCore.QSize(111, 32))
-        self.gasLabel_1_high.setSizeIncrement(QtCore.QSize(51, 0))
-        self.gasLabel_1_high.setStyleSheet("QLabel { \n"
-"    text-align: center;\n"
-"    border-style: outset;\n"
-"    border-width: 1px;\n"
-"    border-radius: 10px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    min-width: 4em;\n"
-"    padding: 6px;\n"
-"    color:#FFFFFF;\n"
-"   background-color:#000000;\n"
-"}")
-        self.gasLabel_1_high.setObjectName("gasLabel_1_high")
-        self.verticalLayout_12.addWidget(self.gasLabel_1_high)
-        self.gasLabel_1_normal = QtWidgets.QLabel(Form)
-        self.gasLabel_1_normal.setMaximumSize(QtCore.QSize(111, 32))
-        self.gasLabel_1_normal.setSizeIncrement(QtCore.QSize(51, 0))
-        self.gasLabel_1_normal.setStyleSheet("QLabel { \n"
-"    text-align: center;\n"
-"    border-style: outset;\n"
-"    border-width: 1px;\n"
-"    border-radius: 10px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    min-width: 4em;\n"
-"    padding: 6px;\n"
-"    color:#FFFFFF;\n"
-"   background-color:#000000;\n"
-"}")
-        self.gasLabel_1_normal.setObjectName("gasLabel_1_normal")
-        self.verticalLayout_12.addWidget(self.gasLabel_1_normal)
-        self.gasLabel_1_low = QtWidgets.QLabel(Form)
-        self.gasLabel_1_low.setMaximumSize(QtCore.QSize(111, 32))
-        self.gasLabel_1_low.setSizeIncrement(QtCore.QSize(51, 0))
-        self.gasLabel_1_low.setStyleSheet("QLabel { \n"
-"    text-align: center;\n"
-"    border-style: outset;\n"
-"    border-width: 1px;\n"
-"    border-radius: 10px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    min-width: 4em;\n"
-"    padding: 6px;\n"
-"    color:#FFFFFF;\n"
-"   background-color:#000000;\n"
-"}")
-        self.gasLabel_1_low.setObjectName("gasLabel_1_low")
-        self.verticalLayout_12.addWidget(self.gasLabel_1_low)
-        self.gridLayout_2.addLayout(self.verticalLayout_12, 0, 0, 1, 1)
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.gasLabel_5_high = QtWidgets.QLabel(Form)
-        self.gasLabel_5_high.setMaximumSize(QtCore.QSize(110, 32))
-        self.gasLabel_5_high.setStyleSheet("QLabel { \n"
-"    text-align: center;\n"
-"    border-style: outset;\n"
-"    border-width: 1px;\n"
-"    border-radius: 10px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    min-width: 4em;\n"
-"    padding: 6px;\n"
-"    color:#FFFFFF;\n"
-"   background-color:#000000;\n"
-"}")
-        self.gasLabel_5_high.setObjectName("gasLabel_5_high")
-        self.verticalLayout_3.addWidget(self.gasLabel_5_high)
-        self.gasLabel_5_normal = QtWidgets.QLabel(Form)
-        self.gasLabel_5_normal.setMaximumSize(QtCore.QSize(110, 32))
-        self.gasLabel_5_normal.setStyleSheet("QLabel { \n"
-"    text-align: center;\n"
-"    border-style: outset;\n"
-"    border-width: 1px;\n"
-"    border-radius: 10px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    min-width: 4em;\n"
-"    padding: 6px;\n"
-"    color:#FFFFFF;\n"
-"   background-color:#000000;\n"
-"}")
-        self.gasLabel_5_normal.setObjectName("gasLabel_5_normal")
-        self.verticalLayout_3.addWidget(self.gasLabel_5_normal)
-        self.gasLabel_5_low = QtWidgets.QLabel(Form)
-        self.gasLabel_5_low.setMaximumSize(QtCore.QSize(110, 32))
-        self.gasLabel_5_low.setStyleSheet("QLabel { \n"
-"    text-align: center;\n"
-"    border-style: outset;\n"
-"    border-width: 1px;\n"
-"    border-radius: 10px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    min-width: 4em;\n"
-"    padding: 6px;\n"
-"    color:#FFFFFF;\n"
-"   background-color:#000000;\n"
-"}")
-        self.gasLabel_5_low.setObjectName("gasLabel_5_low")
-        self.verticalLayout_3.addWidget(self.gasLabel_5_low)
-        self.gridLayout_2.addLayout(self.verticalLayout_3, 0, 4, 1, 1)
+        Form.resize(1460, 571)
+        self.gridLayout_8 = QtWidgets.QGridLayout(Form)
+        self.gridLayout_8.setObjectName("gridLayout_8")
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_8.addItem(spacerItem, 0, 1, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(204, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_8.addItem(spacerItem1, 1, 0, 1, 1)
+        self.gridLayout_7 = QtWidgets.QGridLayout()
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        spacerItem2 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem2, 0, 3, 1, 1)
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setObjectName("gridLayout")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout()
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.gasLabel_2_high = QtWidgets.QLabel(Form)
-        self.gasLabel_2_high.setMaximumSize(QtCore.QSize(110, 32))
-        self.gasLabel_2_high.setSizeIncrement(QtCore.QSize(51, 0))
+        self.gasLabel_2_high.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_2_high.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_2_high.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -143,9 +46,11 @@ class Ui_Form(object):
 "}")
         self.gasLabel_2_high.setObjectName("gasLabel_2_high")
         self.verticalLayout_6.addWidget(self.gasLabel_2_high)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_6.addItem(spacerItem3)
         self.gasLabel_2_normal = QtWidgets.QLabel(Form)
-        self.gasLabel_2_normal.setMaximumSize(QtCore.QSize(110, 32))
-        self.gasLabel_2_normal.setSizeIncrement(QtCore.QSize(51, 0))
+        self.gasLabel_2_normal.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_2_normal.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_2_normal.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -160,9 +65,11 @@ class Ui_Form(object):
 "}")
         self.gasLabel_2_normal.setObjectName("gasLabel_2_normal")
         self.verticalLayout_6.addWidget(self.gasLabel_2_normal)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_6.addItem(spacerItem4)
         self.gasLabel_2_low = QtWidgets.QLabel(Form)
-        self.gasLabel_2_low.setMaximumSize(QtCore.QSize(110, 32))
-        self.gasLabel_2_low.setSizeIncrement(QtCore.QSize(51, 0))
+        self.gasLabel_2_low.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_2_low.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_2_low.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -177,12 +84,28 @@ class Ui_Form(object):
 "}")
         self.gasLabel_2_low.setObjectName("gasLabel_2_low")
         self.verticalLayout_6.addWidget(self.gasLabel_2_low)
-        self.gridLayout_2.addLayout(self.verticalLayout_6, 0, 1, 1, 1)
+        self.gridLayout.addLayout(self.verticalLayout_6, 2, 0, 1, 1)
+        self.gasLabel_2 = QtWidgets.QLabel(Form)
+        self.gasLabel_2.setMinimumSize(QtCore.QSize(150, 50))
+        self.gasLabel_2.setMaximumSize(QtCore.QSize(150, 50))
+        self.gasLabel_2.setStyleSheet("QLabel{\n"
+"color:#FFFFFF;\n"
+"}")
+        self.gasLabel_2.setWordWrap(False)
+        self.gasLabel_2.setObjectName("gasLabel_2")
+        self.gridLayout.addWidget(self.gasLabel_2, 0, 0, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout.addItem(spacerItem5, 1, 0, 1, 1)
+        self.gridLayout_7.addLayout(self.gridLayout, 0, 2, 1, 1)
+        self.gridLayout_3 = QtWidgets.QGridLayout()
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        spacerItem6 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_3.addItem(spacerItem6, 1, 0, 1, 1)
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.gasLabel_3_high = QtWidgets.QLabel(Form)
-        self.gasLabel_3_high.setMaximumSize(QtCore.QSize(111, 32))
-        self.gasLabel_3_high.setSizeIncrement(QtCore.QSize(51, 0))
+        self.gasLabel_3_high.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_3_high.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_3_high.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -197,9 +120,11 @@ class Ui_Form(object):
 "}")
         self.gasLabel_3_high.setObjectName("gasLabel_3_high")
         self.verticalLayout.addWidget(self.gasLabel_3_high)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem7)
         self.gasLabel_3_normal = QtWidgets.QLabel(Form)
-        self.gasLabel_3_normal.setMaximumSize(QtCore.QSize(111, 32))
-        self.gasLabel_3_normal.setSizeIncrement(QtCore.QSize(51, 0))
+        self.gasLabel_3_normal.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_3_normal.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_3_normal.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -214,8 +139,11 @@ class Ui_Form(object):
 "}")
         self.gasLabel_3_normal.setObjectName("gasLabel_3_normal")
         self.verticalLayout.addWidget(self.gasLabel_3_normal)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem8)
         self.gasLabel_3_low = QtWidgets.QLabel(Form)
-        self.gasLabel_3_low.setMaximumSize(QtCore.QSize(111, 32))
+        self.gasLabel_3_low.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_3_low.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_3_low.setSizeIncrement(QtCore.QSize(51, 0))
         self.gasLabel_3_low.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
@@ -231,11 +159,35 @@ class Ui_Form(object):
 "}")
         self.gasLabel_3_low.setObjectName("gasLabel_3_low")
         self.verticalLayout.addWidget(self.gasLabel_3_low)
-        self.gridLayout_2.addLayout(self.verticalLayout, 0, 2, 1, 1)
+        self.gridLayout_3.addLayout(self.verticalLayout, 2, 0, 1, 1)
+        self.gasLabel_3 = QtWidgets.QLabel(Form)
+        self.gasLabel_3.setMinimumSize(QtCore.QSize(150, 50))
+        self.gasLabel_3.setMaximumSize(QtCore.QSize(150, 50))
+        self.gasLabel_3.setStyleSheet("QLabel{\n"
+"color:#FFFFFF;\n"
+"}")
+        self.gasLabel_3.setWordWrap(True)
+        self.gasLabel_3.setObjectName("gasLabel_3")
+        self.gridLayout_3.addWidget(self.gasLabel_3, 0, 0, 1, 1)
+        self.gridLayout_7.addLayout(self.gridLayout_3, 0, 4, 1, 1)
+        self.gridLayout_4 = QtWidgets.QGridLayout()
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.gasLabel_4 = QtWidgets.QLabel(Form)
+        self.gasLabel_4.setMinimumSize(QtCore.QSize(150, 50))
+        self.gasLabel_4.setMaximumSize(QtCore.QSize(150, 50))
+        self.gasLabel_4.setStyleSheet("QLabel{\n"
+"color:#FFFFFF;\n"
+"}")
+        self.gasLabel_4.setWordWrap(True)
+        self.gasLabel_4.setObjectName("gasLabel_4")
+        self.gridLayout_4.addWidget(self.gasLabel_4, 0, 0, 1, 1)
+        spacerItem9 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_4.addItem(spacerItem9, 1, 0, 1, 1)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.gasLabel_4_high = QtWidgets.QLabel(Form)
-        self.gasLabel_4_high.setMaximumSize(QtCore.QSize(111, 32))
+        self.gasLabel_4_high.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_4_high.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_4_high.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -250,8 +202,11 @@ class Ui_Form(object):
 "}")
         self.gasLabel_4_high.setObjectName("gasLabel_4_high")
         self.verticalLayout_2.addWidget(self.gasLabel_4_high)
+        spacerItem10 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_2.addItem(spacerItem10)
         self.gasLabel_4_normal = QtWidgets.QLabel(Form)
-        self.gasLabel_4_normal.setMaximumSize(QtCore.QSize(111, 32))
+        self.gasLabel_4_normal.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_4_normal.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_4_normal.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -266,8 +221,11 @@ class Ui_Form(object):
 "}")
         self.gasLabel_4_normal.setObjectName("gasLabel_4_normal")
         self.verticalLayout_2.addWidget(self.gasLabel_4_normal)
+        spacerItem11 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_2.addItem(spacerItem11)
         self.gasLabel_4_low = QtWidgets.QLabel(Form)
-        self.gasLabel_4_low.setMaximumSize(QtCore.QSize(111, 32))
+        self.gasLabel_4_low.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_4_low.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_4_low.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -282,11 +240,103 @@ class Ui_Form(object):
 "}")
         self.gasLabel_4_low.setObjectName("gasLabel_4_low")
         self.verticalLayout_2.addWidget(self.gasLabel_4_low)
-        self.gridLayout_2.addLayout(self.verticalLayout_2, 0, 3, 1, 1)
+        self.gridLayout_4.addLayout(self.verticalLayout_2, 2, 0, 1, 1)
+        self.gridLayout_7.addLayout(self.gridLayout_4, 0, 6, 1, 1)
+        spacerItem12 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem12, 0, 5, 1, 1)
+        self.gridLayout_2 = QtWidgets.QGridLayout()
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.gasLabel_1_high = QtWidgets.QLabel(Form)
+        self.gasLabel_1_high.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_1_high.setMaximumSize(QtCore.QSize(150, 42))
+        self.gasLabel_1_high.setSizeIncrement(QtCore.QSize(51, 0))
+        self.gasLabel_1_high.setStyleSheet("QLabel { \n"
+"    text-align: center;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    min-width: 4em;\n"
+"    padding: 6px;\n"
+"    color:#FFFFFF;\n"
+"   background-color:#000000;\n"
+"}")
+        self.gasLabel_1_high.setObjectName("gasLabel_1_high")
+        self.verticalLayout_12.addWidget(self.gasLabel_1_high)
+        spacerItem13 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_12.addItem(spacerItem13)
+        self.gasLabel_1_normal = QtWidgets.QLabel(Form)
+        self.gasLabel_1_normal.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_1_normal.setMaximumSize(QtCore.QSize(150, 42))
+        self.gasLabel_1_normal.setSizeIncrement(QtCore.QSize(51, 0))
+        self.gasLabel_1_normal.setStyleSheet("QLabel { \n"
+"    text-align: center;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    min-width: 4em;\n"
+"    padding: 6px;\n"
+"    color:#FFFFFF;\n"
+"   background-color:#000000;\n"
+"}")
+        self.gasLabel_1_normal.setObjectName("gasLabel_1_normal")
+        self.verticalLayout_12.addWidget(self.gasLabel_1_normal)
+        spacerItem14 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_12.addItem(spacerItem14)
+        self.gasLabel_1_low = QtWidgets.QLabel(Form)
+        self.gasLabel_1_low.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_1_low.setMaximumSize(QtCore.QSize(150, 42))
+        self.gasLabel_1_low.setSizeIncrement(QtCore.QSize(51, 0))
+        self.gasLabel_1_low.setStyleSheet("QLabel { \n"
+"    text-align: center;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    min-width: 4em;\n"
+"    padding: 6px;\n"
+"    color:#FFFFFF;\n"
+"   background-color:#000000;\n"
+"}")
+        self.gasLabel_1_low.setObjectName("gasLabel_1_low")
+        self.verticalLayout_12.addWidget(self.gasLabel_1_low)
+        self.gridLayout_2.addLayout(self.verticalLayout_12, 2, 0, 1, 1)
+        self.gasLabel_1 = QtWidgets.QLabel(Form)
+        self.gasLabel_1.setMinimumSize(QtCore.QSize(150, 50))
+        self.gasLabel_1.setMaximumSize(QtCore.QSize(150, 50))
+        self.gasLabel_1.setStyleSheet("QLabel{\n"
+"color:#FFFFFF;\n"
+"}")
+        self.gasLabel_1.setWordWrap(True)
+        self.gasLabel_1.setObjectName("gasLabel_1")
+        self.gridLayout_2.addWidget(self.gasLabel_1, 0, 0, 1, 1)
+        spacerItem15 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_2.addItem(spacerItem15, 1, 0, 1, 1)
+        self.gridLayout_7.addLayout(self.gridLayout_2, 0, 0, 1, 1)
+        self.gridLayout_6 = QtWidgets.QGridLayout()
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.gasLabel_6 = QtWidgets.QLabel(Form)
+        self.gasLabel_6.setMinimumSize(QtCore.QSize(150, 50))
+        self.gasLabel_6.setMaximumSize(QtCore.QSize(150, 50))
+        self.gasLabel_6.setStyleSheet("QLabel{\n"
+"color:#FFFFFF;\n"
+"}")
+        self.gasLabel_6.setWordWrap(True)
+        self.gasLabel_6.setObjectName("gasLabel_6")
+        self.gridLayout_6.addWidget(self.gasLabel_6, 0, 0, 1, 1)
+        spacerItem16 = QtWidgets.QSpacerItem(26, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_6.addItem(spacerItem16, 1, 0, 1, 1)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.gasLabel_6_normal = QtWidgets.QLabel(Form)
-        self.gasLabel_6_normal.setMaximumSize(QtCore.QSize(111, 51))
+        self.gasLabel_6_normal.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_6_normal.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_6_normal.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -301,8 +351,11 @@ class Ui_Form(object):
 "}")
         self.gasLabel_6_normal.setObjectName("gasLabel_6_normal")
         self.verticalLayout_4.addWidget(self.gasLabel_6_normal)
+        spacerItem17 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_4.addItem(spacerItem17)
         self.gasLabel_6_low = QtWidgets.QLabel(Form)
-        self.gasLabel_6_low.setMaximumSize(QtCore.QSize(111, 51))
+        self.gasLabel_6_low.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_6_low.setMaximumSize(QtCore.QSize(150, 42))
         self.gasLabel_6_low.setStyleSheet("QLabel { \n"
 "    text-align: center;\n"
 "    border-style: outset;\n"
@@ -317,57 +370,93 @@ class Ui_Form(object):
 "}")
         self.gasLabel_6_low.setObjectName("gasLabel_6_low")
         self.verticalLayout_4.addWidget(self.gasLabel_6_low)
-        self.gridLayout_2.addLayout(self.verticalLayout_4, 0, 5, 1, 1)
-        self.gridLayout_3.addLayout(self.gridLayout_2, 2, 0, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem, 3, 0, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem1, 0, 0, 1, 1)
-        self.gridLayout_4 = QtWidgets.QGridLayout()
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.gasLabel_6 = QtWidgets.QLabel(Form)
-        self.gasLabel_6.setMaximumSize(QtCore.QSize(113, 50))
-        self.gasLabel_6.setStyleSheet("QLabel{\n"
-"color:#FFFFFF;\n"
-"}")
-        self.gasLabel_6.setObjectName("gasLabel_6")
-        self.gridLayout_4.addWidget(self.gasLabel_6, 1, 5, 1, 1, QtCore.Qt.AlignTop)
+        spacerItem18 = QtWidgets.QSpacerItem(20, 55, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_4.addItem(spacerItem18)
+        self.gridLayout_6.addLayout(self.verticalLayout_4, 2, 0, 1, 1)
+        self.gridLayout_7.addLayout(self.gridLayout_6, 0, 10, 1, 1)
+        self.gridLayout_5 = QtWidgets.QGridLayout()
+        self.gridLayout_5.setObjectName("gridLayout_5")
         self.gasLabel_5 = QtWidgets.QLabel(Form)
-        self.gasLabel_5.setMaximumSize(QtCore.QSize(112, 50))
+        self.gasLabel_5.setMinimumSize(QtCore.QSize(150, 50))
+        self.gasLabel_5.setMaximumSize(QtCore.QSize(150, 50))
         self.gasLabel_5.setStyleSheet("QLabel{\n"
 "color:#FFFFFF;\n"
 "}")
+        self.gasLabel_5.setWordWrap(True)
         self.gasLabel_5.setObjectName("gasLabel_5")
-        self.gridLayout_4.addWidget(self.gasLabel_5, 1, 4, 1, 1, QtCore.Qt.AlignTop)
-        self.gasLabel_3 = QtWidgets.QLabel(Form)
-        self.gasLabel_3.setMaximumSize(QtCore.QSize(113, 50))
-        self.gasLabel_3.setStyleSheet("QLabel{\n"
-"color:#FFFFFF;\n"
+        self.gridLayout_5.addWidget(self.gasLabel_5, 0, 0, 1, 1)
+        spacerItem19 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_5.addItem(spacerItem19, 1, 0, 1, 1)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.gasLabel_5_high = QtWidgets.QLabel(Form)
+        self.gasLabel_5_high.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_5_high.setMaximumSize(QtCore.QSize(150, 42))
+        self.gasLabel_5_high.setStyleSheet("QLabel { \n"
+"    text-align: center;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    min-width: 4em;\n"
+"    padding: 6px;\n"
+"    color:#FFFFFF;\n"
+"   background-color:#000000;\n"
 "}")
-        self.gasLabel_3.setObjectName("gasLabel_3")
-        self.gridLayout_4.addWidget(self.gasLabel_3, 1, 2, 1, 1, QtCore.Qt.AlignTop)
-        self.gasLabel_4 = QtWidgets.QLabel(Form)
-        self.gasLabel_4.setMaximumSize(QtCore.QSize(113, 50))
-        self.gasLabel_4.setStyleSheet("QLabel{\n"
-"color:#FFFFFF;\n"
+        self.gasLabel_5_high.setObjectName("gasLabel_5_high")
+        self.verticalLayout_3.addWidget(self.gasLabel_5_high)
+        spacerItem20 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_3.addItem(spacerItem20)
+        self.gasLabel_5_normal = QtWidgets.QLabel(Form)
+        self.gasLabel_5_normal.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_5_normal.setMaximumSize(QtCore.QSize(150, 42))
+        self.gasLabel_5_normal.setStyleSheet("QLabel { \n"
+"    text-align: center;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    min-width: 4em;\n"
+"    padding: 6px;\n"
+"    color:#FFFFFF;\n"
+"   background-color:#000000;\n"
 "}")
-        self.gasLabel_4.setObjectName("gasLabel_4")
-        self.gridLayout_4.addWidget(self.gasLabel_4, 1, 3, 1, 1, QtCore.Qt.AlignTop)
-        self.gasLabel_2 = QtWidgets.QLabel(Form)
-        self.gasLabel_2.setMaximumSize(QtCore.QSize(112, 50))
-        self.gasLabel_2.setStyleSheet("QLabel{\n"
-"color:#FFFFFF;\n"
+        self.gasLabel_5_normal.setObjectName("gasLabel_5_normal")
+        self.verticalLayout_3.addWidget(self.gasLabel_5_normal)
+        spacerItem21 = QtWidgets.QSpacerItem(20, 6, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_3.addItem(spacerItem21)
+        self.gasLabel_5_low = QtWidgets.QLabel(Form)
+        self.gasLabel_5_low.setMinimumSize(QtCore.QSize(150, 42))
+        self.gasLabel_5_low.setMaximumSize(QtCore.QSize(150, 42))
+        self.gasLabel_5_low.setStyleSheet("QLabel { \n"
+"    text-align: center;\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    min-width: 4em;\n"
+"    padding: 6px;\n"
+"    color:#FFFFFF;\n"
+"   background-color:#000000;\n"
 "}")
-        self.gasLabel_2.setObjectName("gasLabel_2")
-        self.gridLayout_4.addWidget(self.gasLabel_2, 1, 1, 1, 1, QtCore.Qt.AlignTop)
-        self.gasLabel_1 = QtWidgets.QLabel(Form)
-        self.gasLabel_1.setMaximumSize(QtCore.QSize(113, 50))
-        self.gasLabel_1.setStyleSheet("QLabel{\n"
-"color:#FFFFFF;\n"
-"}")
-        self.gasLabel_1.setObjectName("gasLabel_1")
-        self.gridLayout_4.addWidget(self.gasLabel_1, 1, 0, 1, 1, QtCore.Qt.AlignTop)
-        self.gridLayout_3.addLayout(self.gridLayout_4, 1, 0, 1, 1)
+        self.gasLabel_5_low.setObjectName("gasLabel_5_low")
+        self.verticalLayout_3.addWidget(self.gasLabel_5_low)
+        self.gridLayout_5.addLayout(self.verticalLayout_3, 2, 0, 1, 1)
+        self.gridLayout_7.addLayout(self.gridLayout_5, 0, 8, 1, 1)
+        spacerItem22 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem22, 0, 7, 1, 1)
+        spacerItem23 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem23, 0, 9, 1, 1)
+        spacerItem24 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem24, 0, 1, 1, 1)
+        self.gridLayout_8.addLayout(self.gridLayout_7, 1, 1, 2, 2)
+        spacerItem25 = QtWidgets.QSpacerItem(204, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_8.addItem(spacerItem25, 2, 3, 1, 1)
+        spacerItem26 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_8.addItem(spacerItem26, 3, 2, 1, 1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -375,29 +464,29 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.gasLabel_1_high.setText(_translate("Form", "High"))
-        self.gasLabel_1_normal.setText(_translate("Form", "Normal"))
-        self.gasLabel_1_low.setText(_translate("Form", "Low"))
-        self.gasLabel_5_high.setText(_translate("Form", "High"))
-        self.gasLabel_5_normal.setText(_translate("Form", "Normal"))
-        self.gasLabel_5_low.setText(_translate("Form", "Low"))
         self.gasLabel_2_high.setText(_translate("Form", "High"))
         self.gasLabel_2_normal.setText(_translate("Form", "Normal"))
         self.gasLabel_2_low.setText(_translate("Form", "Low"))
+        self.gasLabel_2.setText(_translate("Form", "<html><head/><body><p align=\"center\">Nitrous </p><p align=\"center\">Oxide</p></body></html>"))
         self.gasLabel_3_high.setText(_translate("Form", "High"))
         self.gasLabel_3_normal.setText(_translate("Form", "Normal"))
         self.gasLabel_3_low.setText(_translate("Form", "Low"))
+        self.gasLabel_3.setText(_translate("Form", "<html><head/><body><p align=\"center\">Medical </p><p align=\"center\">Air</p></body></html>"))
+        self.gasLabel_4.setText(_translate("Form", "<html><head/><body><p align=\"center\">Instrument </p><p align=\"center\">Air</p></body></html>"))
         self.gasLabel_4_high.setText(_translate("Form", "High"))
         self.gasLabel_4_normal.setText(_translate("Form", "Normal"))
         self.gasLabel_4_low.setText(_translate("Form", "Low"))
+        self.gasLabel_1_high.setText(_translate("Form", "High"))
+        self.gasLabel_1_normal.setText(_translate("Form", "Normal"))
+        self.gasLabel_1_low.setText(_translate("Form", "Low"))
+        self.gasLabel_1.setText(_translate("Form", "<html><head/><body><p align=\"center\">Oxygen</p></body></html>"))
+        self.gasLabel_6.setText(_translate("Form", "<html><head/><body><p align=\"center\">Vacuum</p></body></html>"))
         self.gasLabel_6_normal.setText(_translate("Form", "Normal"))
         self.gasLabel_6_low.setText(_translate("Form", "Low"))
-        self.gasLabel_6.setText(_translate("Form", "<html><head/><body><p align=\"center\">Vacuum</p></body></html>"))
         self.gasLabel_5.setText(_translate("Form", "<html><head/><body><p align=\"center\">Carbon </p><p align=\"center\">Dioxide</p></body></html>"))
-        self.gasLabel_3.setText(_translate("Form", "<html><head/><body><p align=\"center\">Medical </p><p align=\"center\">Air</p></body></html>"))
-        self.gasLabel_4.setText(_translate("Form", "<html><head/><body><p align=\"center\">Instrument </p><p align=\"center\">Air</p></body></html>"))
-        self.gasLabel_2.setText(_translate("Form", "<html><head/><body><p align=\"center\">Nitrous </p><p align=\"center\">Oxide</p></body></html>"))
-        self.gasLabel_1.setText(_translate("Form", "<html><head/><body><p align=\"center\">Oxygen</p></body></html>"))
+        self.gasLabel_5_high.setText(_translate("Form", "High"))
+        self.gasLabel_5_normal.setText(_translate("Form", "Normal"))
+        self.gasLabel_5_low.setText(_translate("Form", "Low"))
 
 
 if __name__ == "__main__":

@@ -8,10 +8,10 @@ class Signals(QObject):
 class MultiMediaThread(QRunnable):
     signal = pyqtSignal(str)
 
-    def __init__(self, layout, player):
+    def __init__(self, player):
         super(MultiMediaThread, self).__init__()
         self.signal = Signals()
-        self.layout = layout
+        # self.layout = layout
         self.player = player
 
 

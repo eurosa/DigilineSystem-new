@@ -19,7 +19,15 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>200</y>
+     <width>784</width>
+     <height>157</height>
+    </rect>
+   </property>
    <layout class="QGridLayout" name="gridLayout_12">
     <item row="0" column="2">
      <spacer name="verticalSpacer_3">
@@ -1224,7 +1232,15 @@ color: #000000;
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>784</width>
+     <height>155</height>
+    </rect>
+   </property>
    <layout class="QGridLayout" name="gridLayout_13">
     <item row="0" column="2">
      <spacer name="verticalSpacer_4">
@@ -2485,7 +2501,10 @@ color: #000000;
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <zorder></zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>line</zorder>
+  <zorder>line_2</zorder>
+  <zorder>layoutWidget</zorder>
  </widget>
  <resources/>
  <connections/>

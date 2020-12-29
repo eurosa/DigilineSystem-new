@@ -18,6 +18,16 @@ class Ui_ventilationDetails(object):
         self.toolButton = QtWidgets.QToolButton(ventilationDetails)
         self.toolButton.setGeometry(QtCore.QRect(180, 140, 151, 71))
         self.toolButton.setObjectName("toolButton")
+        self.line = QtWidgets.QFrame(ventilationDetails)
+        self.line.setGeometry(QtCore.QRect(270, 310, 118, 3))
+        self.line.setStyleSheet("Line{border-radius: 25px;\n"
+"  background: #73AD21;\n"
+"  padding: 20px; \n"
+"  width: 200px;\n"
+"  height: 150px;  }")
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
 
         self.retranslateUi(ventilationDetails)
         QtCore.QMetaObject.connectSlotsByName(ventilationDetails)

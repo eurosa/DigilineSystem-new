@@ -104,6 +104,15 @@ class Thread(QRunnable):
     def run(self):
         # time.sleep(5)
         result = "Some String"
+        # ------------------------------------------------------
+        # self.ui.settings_dialog_set_ui.labelDisplayTheme.setPixmap(QtGui.QPixmap(self.ui.dataModel.get_theme_color_preview()))
+        # self.ui.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.ui.SettingsQDialog)
+        self.ui.alldisplayColorChangeObj.changeShutDownDialogAttributeColor(self.ui.shutDialog)
+        self.ui.alldisplayColorChangeObj.changeLoginDialogAttributeColor(self.ui.loginDialogQtWidget)
+        self.ui.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.ui.setTimerWidget)
+        # ++++++++++++++++++++++++++++++ Settings Dialog UI Color Changes ++++++++++++++++++++++++++++++++++
+        # self.ui.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.ui.settings_dialog_set_ui.tabWidget)
+        # -------------------------------------------------------------------------------------
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.oxygen, "QToolButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.ips, "QToolButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.vacuum, "QToolButton")
@@ -118,6 +127,9 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.gasIndicator, "QToolButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.historyDetails, "QToolButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.multiMediaDetails, "QToolButton")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.ui.menuTitleName, "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelBackgroundColor(self.ui.ui.leftMenuTitleLine, "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelBackgroundColor(self.ui.ui.rightMenuTitleLine, "QLabel")
         # --------------------------------Timer Control Color-------------------------------------------
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.start, "QToolButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.reset, "QToolButton")
@@ -212,7 +224,7 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.gasIndicator)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.historyDetails)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.multiMediaDetails)
-        # ----------------------Additional Chronos Label and Tool Button--------------------------------------------------
+        # ---------------------- Additional Chronos Label and Tool Button --------------------------------------------------
         self.ui.alldisplayColorChangeObj.changeTimeAttributeColor(self.ui.additionChronos_ui.chronos2, "QLabel")
         self.ui.alldisplayColorChangeObj.changeTimeAttributeColor(self.ui.additionChronos_ui.chronos3, "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayAttributeColor(self.ui.additionChronos_ui.chronosLabel2, "QLabel")
@@ -225,7 +237,7 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.additionChronos_ui.resetChrono2)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.additionChronos_ui.startChrono3)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.additionChronos_ui.resetChrono3)
-        # -------------------------------------- OT Lightening --------------------------------------------
+        # -------------------------------------- OT Lightening -----------------------------------------------------------
         self.ui.alldisplayColorChangeObj.changeDisplayAttributeColor(self.ui.ot_ui.lightLabel1, "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayAttributeColor(self.ui.ot_ui.lightLabel2, "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayAttributeColor(self.ui.ot_ui.lightLabel3, "QLabel")
@@ -321,6 +333,114 @@ class Thread(QRunnable):
                                                               "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.chooseBackGroundImage,
                                                               "QPushButton")
+
+        # =============================== Settings Dialog ==================================================
+        '''self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.light1,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.light2,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.light3,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.light4,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.light5,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.light6,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.gasNameEdit1,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.gasNameEdit2,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.gasNameEdit3,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.gasNameEdit4,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.gasNameEdit5,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.gasNameEdit6,
+                                                                      "QTextEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.settings_dialog_set_ui.gasNameEdit7,
+                                                                      "QTextEdit")'''
+
+        # ====================== Login UI ==========================================================================
+        '''self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.login_ui.user_name,
+                                                                      "QLineEdit")
+        self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.login_ui.user_pass,
+                                                                      "QLineEdit")'''
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight1,
+                                                                        "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight2,
+                                                                        "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight3,
+                                                                        "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight4,
+                                                                        "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight5,
+                                                                        "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight6,
+                                                                        "QLabel")
+
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight1,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight2,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight3,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight4,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight5,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight6,
+                                                                        "QCheckBox")
+
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDim1,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDim2,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDim3,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDim4,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas1,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas2,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas3,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas4,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas5,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas6,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas7,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDifferentialPressure,
+                                                                        "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelBorderColor,
+                                                                        "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelBackGroundColor,
+                                                                        "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelTextColor,
+                                                                        "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelIconColor,
+                                                                        "QLabel")
+
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelTheme,
+                                                                  "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelBackGroundImage,
+                                                                  "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLogo,
+                                                                  "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelPowerOnImage,
+                                                                  "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLightTitle,
+                                                                  "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelGasAlarmTitle,
+                                                                  "QLabel")
+
+        # ======================= Login UI ==========================================================================
+
         self.signal.return_signal.emit(result)
 
 
@@ -358,6 +478,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def ventilationOpen(self):
         self.clear()
+        self.ui.menuTitleName.setText("Ventilation")
         self.layout.addWidget(self.ventilationWidget)
         self.hisForm.hide()
         self.ventilationWidget.show()
@@ -368,6 +489,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def AddOtLighteningWidget(self):
         self.clear()
+        self.ui.menuTitleName.setText("Lightening")
         self.layout.addWidget(self.otForm)
         self.hisForm.hide()
         self.otForm.show()
@@ -378,6 +500,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def additionalChronosWidget(self):
         self.clear()
+        self.ui.menuTitleName.setText("Chronos")
         self.layout.addWidget(self.additionChronos)
         self.additionChronos.show()
         self.hisForm.hide()
@@ -390,15 +513,17 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def multimediaPlayer(self):
         self.clear()
+        self.ui.menuTitleName.setText("Multimedia")
         self.layout.addWidget(self.player)
         '''
         self.multiMedia_ui.setupUi(self.mulForm)
         self.layout.addWidget(self.mulForm)'''
+        '''
         self.multiMediaThread = MultiMediaThread(self.player)
 
-        self.threadpool.start(self.multiMediaThread)
+        self.threadpool.start(self.multiMediaThread)'''
 
-        # self.player.show()
+        self.player.show()
         self.hisForm.hide()
         self.otForm.hide()
         self.mulFormWindo.hide()
@@ -408,6 +533,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def AddHistoryWidget(self):
         self.clear()
+        self.ui.menuTitleName.setText("Alarm History")
         self.createTable()
         # self.layout = QVBoxLayout()
 
@@ -455,6 +581,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def AddGasWidget(self):
         self.clear()
+        self.ui.menuTitleName.setText("Gas Alarm")
         # self.gas_ui.setupUi(self.gasForm)
         self.layout.addWidget(self.gasForm)
         self.gasForm.show()
@@ -465,6 +592,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def showTemperatureGraph(self):
         self.clear()
+        self.ui.menuTitleName.setText("Temperature Graph")
         self.temp_ui.setupUi(self.tempForm)
         self.layout.addWidget(self.tempForm)
         self.tempForm.plot(self.hour, self.temperature)
@@ -476,6 +604,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def showHumidityGraph(self):
         self.clear()
+        self.ui.menuTitleName.setText("Humidity Graph")
         self.hum_ui.setupUi(self.humidityForm)
         self.layout.addWidget(self.humidityForm)
         self.humidityForm.plot(self.hour, self.humidity)
@@ -633,11 +762,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.SettingsQDialog = QtWidgets.QDialog()
         self.settings_dialog_set_ui.setupUi(self.SettingsQDialog)
 
-        self.settings_dialog_set_ui.tab_7.setEnabled(False)
+        # self.settings_dialog_set_ui.tab_7.setEnabled(False)
         # ----------------------___Start Login Dialog -----------------------------------------
         self.login_ui = Ui_loginDialog()
         self.loginDialogQtWidget = QtWidgets.QDialog()
         self.login_ui.setupUi(self.loginDialogQtWidget)
+        self.loginDialogQtWidget.setWindowFlags(Qt.Dialog)
         # ==============================Start of Power Button====================================================
         self.shutDown_ui = Ui_shutDownDialog()
         self.shutDialog = QtWidgets.QDialog()
@@ -706,7 +836,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.num = 3
 
         self.layout = QtWidgets.QVBoxLayout(self.ui.centralwidget)
-
         # =======================Toggle Button ==================================================
         self.ot_ui.setupUi(self.otForm)
         # =========================Toggle Switch ===========================
@@ -885,7 +1014,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ot_ui.light4Increment.clicked.connect(self.lightBrightnessObject.otLightBrightIncrementControl4)
         self.ot_ui.light4Decrement.clicked.connect(self.lightBrightnessObject.otLightBrightDecrementControl4)
 
-
         # ========================END Light Dimming=====================================================================
 
         self.mousePressSignal = pyqtSignal()
@@ -893,10 +1021,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # ==============================End Pop Up Keyboard======================================================
         # ===================================== Start of Login with keyboard =========================================================
 
-        self.loginDataModel = DataModel()
-        self.userNameLineEdit = login_virtual_keyboard.cQLineEdit(self.login_ui.user_name, '', self.loginDataModel,
+        # self.loginDataModel = DataModel()
+        self.userNameLineEdit = login_virtual_keyboard.cQLineEdit(self.login_ui.user_name, '', self.dataModel,
                                                                   "user_name")
-        self.userPassLineEdit = login_virtual_keyboard.cQLineEdit(self.login_ui.user_pass, '', self.loginDataModel,
+        self.userPassLineEdit = login_virtual_keyboard.cQLineEdit(self.login_ui.user_pass, '', self.dataModel,
                                                                   "user_pass")
         # self.userPassLineEdit.setEchoMode(True)
         self.ui.settingsButton.clicked.connect(self.loginDialogOpen)
@@ -941,7 +1069,50 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeAttributeColor(self.settings_dialog_set_ui.comboBoxTheme,
                                                            "QComboBox")  # 2 timer
 
-        self.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.SettingsQDialog)  # 8 timer problem
+        self.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.SettingsQDialog)
+        # self.alldisplayColorChangeObj.changeShutDownDialogAttributeColor(self.shutDialog)
+        # self.alldisplayColorChangeObj.changeLoginDialogAttributeColor(self.loginDialogQtWidget)
+        # self.ui.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.ui.setTimerWidget)
+        # self.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.SettingsQDialog)  # 8 timer problem
+        self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabWidget)
+        # ---------------------New---------------------------------------------------------------------------
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabColor)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)
+        # ---------------------New---------------------------------------------------------------------------
+
+        # =============================== Settings Dialog ==================================================
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light1,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light2,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light3,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light4,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light5,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light6,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit1,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit2,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit3,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit4,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit5,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit6,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit7,
+                                                                   "QTextEdit")
+        # =============================== Settings End =============================================================
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_name,
+                                                                   "QLineEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_pass,
+                                                                   "QLineEdit")
         # ----------------culprit Up------------------------------------------------------------------------
 
     def function_thread(self, signal):
@@ -1086,6 +1257,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeIconColor(self.ui.gasIndicator)
         self.alldisplayColorChangeObj.changeIconColor(self.ui.historyDetails)
         self.alldisplayColorChangeObj.changeIconColor(self.ui.multiMediaDetails)
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.menuTitleName, "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelBackgroundColor(self.ui.leftMenuTitleLine, "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelBackgroundColor(self.ui.rightMenuTitleLine, "QLabel")
         # ----------------------Additional Chronos Label and Tool Button--------------------------------------------------
         self.alldisplayColorChangeObj.changeTimeAttributeColor(self.additionChronos_ui.chronos2, "QLabel")
         self.alldisplayColorChangeObj.changeTimeAttributeColor(self.additionChronos_ui.chronos3, "QLabel")
@@ -1183,7 +1357,129 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeAttributeColor(self.login_ui.loginButton, "QPushButton")
         self.alldisplayColorChangeObj.changeLoginDialogAttributeColor(self.loginDialogQtWidget)
         self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.setTimerWidget)
-        #  self.shutDialog.setStyleSheet("background-color: " + self.dataModel.get_theme_color() + ";")
+        # self.settings_dialog_set_ui.tabGeneral.setStyleSheet("color: " + self.dataModel.get_text_col() + ";")
+        # self.settings_dialog_set_ui.tabColor.setStyleSheet("color: " + self.dataModel.get_text_col() + ";")
+        # ++++++++++++++++++++++++++++++ Settings Dialog UI Color Changes ++++++++++++++++++++++++++++++++++
+        # =============================== Settings Dialog ==================================================
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light1,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light2,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light3,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light4,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light5,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.light6,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit1,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit2,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit3,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit4,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit5,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit6,
+                                                                   "QTextEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.settings_dialog_set_ui.gasNameEdit7,
+                                                                   "QTextEdit")
+
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelLight1,
+                                                                   "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelLight2,
+                                                                        "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelLight3,
+                                                                        "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelLight4,
+                                                                        "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelLight5,
+                                                                        "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelLight6,
+                                                                        "QLabel")
+
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxLight1,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxLight2,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxLight3,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxLight4,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxLight5,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxLight6,
+                                                                        "QCheckBox")
+
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxDim1,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxDim2,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxDim3,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxDim4,
+                                                                        "QCheckBox")
+
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxGas1,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxGas2,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxGas3,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxGas4,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxGas5,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxGas6,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxGas7,
+                                                                        "QCheckBox")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.checkBoxDifferentialPressure,
+                                                                        "QCheckBox")
+
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelBorderColor,
+                                                                        "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelBackGroundColor,
+                                                                        "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelTextColor,
+                                                                        "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelIconColor,
+                                                                        "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelTheme,
+                                                                  "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelBackGroundImage,
+                                                                  "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelLogo,
+                                                                  "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelPowerOnImage,
+                                                                  "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelLightTitle,
+                                                                  "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.settings_dialog_set_ui.labelGasAlarmTitle,
+                                                                  "QLabel")
+
+
+        # =============================== Settings End ==========================================================================================
+        # =============================== Login UI ==============================================================================================
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_name,
+                                                                   "QLineEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_pass,
+                                                                   "QLineEdit")
+        # ======================= Login UI ==========================================================================
+        self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabWidget)
+        # ---------------------New---------------------------------------------------------------------------
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabColor)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)
+        # ---------------------New---------------------------------------------------------------------------
+        # self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)
+        # self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabColor)
+        # self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
+        # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     def flashSplash(self):
         self.splash = QSplashScreen(QPixmap('/home/rnjn/RasberryProject/DigilineSystem/icon/medical-logo-plus.png'))
@@ -1257,10 +1553,26 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.shutDialog.setStyleSheet("background-color: " + self.dataModel.get_theme_color() + ";")
         print("Color Name: " + self.dataModel.get_appearance_theme_color_name())
         self.settings_dialog_set_ui.labelDisplayTheme.setPixmap(QtGui.QPixmap(self.dataModel.get_theme_color_preview()))
-        self.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.SettingsQDialog)
+        # self.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.SettingsQDialog)
         self.alldisplayColorChangeObj.changeShutDownDialogAttributeColor(self.shutDialog)
         self.alldisplayColorChangeObj.changeLoginDialogAttributeColor(self.loginDialogQtWidget)
         self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.setTimerWidget)
+        # ++++++++++++++++++++++++++++++ Settings Dialog UI Color Changes ++++++++++++++++++++++++++++++++++
+        # self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabWidget)
+        # self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabTheme)
+        # self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabColor)
+        # self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabGeneral)
+        # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        # self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabWidget)
+        self.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.SettingsQDialog)
+        # self.alldisplayColorChangeObj.changeShutDownDialogAttributeColor(self.shutDialog)
+        # self.alldisplayColorChangeObj.changeLoginDialogAttributeColor(self.loginDialogQtWidget)
+        # self.ui.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.ui.setTimerWidget)
+        # self.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.SettingsQDialog)  # 8 timer problem
+        self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabWidget)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabColor)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)
         # self.fontColorChanges()
 
     def fontColorChangesName(self):
@@ -2094,8 +2406,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.loginDialogQtWidget.exec_()
 
     def check_password(self):
-        print('Lovb: ' + self.loginDataModel.get_user_name() + ' ' + self.loginDataModel.get_user_pass())
-        if self.loginDataModel.get_user_name() == '' and self.loginDataModel.get_user_pass() == '':
+        # print('Lovb: ' + self.loginDataModel.get_user_name() + ' ' + self.loginDataModel.get_user_pass())
+        if self.dataModel.get_user_name() == '' and self.dataModel.get_user_pass() == '':
             AutoCloseMessageBox.showWithTimeout(1, "Successfully Login", "Login Form",
                                                 QMessageBox.Warning)
             self.userNameLineEdit.setText('')
@@ -2165,6 +2477,55 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.mulFormWindo.hide()
         # self.mulForm.hide()
         # self.gasForm.hide()
+
+    '''def paintEvent(self, e):
+        qp = QPainter()
+        qp.begin(self)
+        qp.setRenderHint(QPainter.Antialiasing)
+        self.drawBezierCurve(qp)
+        qp.end()
+
+    def drawBezierCurve(self, qp):
+        path = QPainterPath()
+        path.moveTo(15, 30)
+        path.cubicTo(30, 30, 200, 350, 350, 30)
+
+        qp.drawPath(path)'''
+
+    '''def paintEvent(self, event):
+        rgb = self.hex_to_rgb(self.dataModel.get_text_col())
+
+        print("My Color:"+self.dataModel.get_text_col()+" "+str(rgb[0])+" "+str(rgb[1])+" "+str(rgb[2]))
+        self.myLineColor = QColor(rgb[0], rgb[1], rgb[2])
+        self.painter = QPainter()
+        self.painter.begin(self)
+        self.painter.setRenderHint(QPainter.Antialiasing)
+        self.painter.setPen(QPen(self.myLineColor, 1, Qt.SolidLine))
+        self.painter.setBrush(QBrush(self.myLineColor, Qt.SolidPattern))
+        # self.painter.drawEllipse(40, 40, 400, 400)
+        self.painter.drawLine(750, 280, 250, 280)
+        self.painter.drawLine(1350, 280, 900, 280)
+        # self.painter.drawArc(300, 70, 300, 300, 0 * 16, 90 * 16)
+        self.painter.end()'''
+
+    def hex_to_rgb(self, hx, hsl=False):
+        """Converts a HEX code into RGB or HSL.
+        Args:
+            hx (str): Takes both short as well as long HEX codes.
+            hsl (bool): Converts the given HEX code into HSL value if True.
+        Return:
+            Tuple of length 3 consisting of either int or float values."""
+        if re.compile(r'#[a-fA-F0-9]{3}(?:[a-fA-F0-9]{3})?$').match(hx):
+            div = 255.0 if hsl else 0
+            if len(hx) <= 4:
+                return tuple(int(hx[i] * 2, 16) / div if div else
+                             int(hx[i] * 2, 16) for i in (1, 2, 3))
+            else:
+                return tuple(int(hx[i:i + 2], 16) / div if div else
+                             int(hx[i:i + 2], 16) for i in (1, 3, 5))
+        else:
+            raise ValueError(f'"{hx}" is not a valid HEX code.')
+
     # ===================== End of Settings Dialog ===========================================
 
 

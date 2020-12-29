@@ -4,12 +4,15 @@ from PyQt5.QtGui import *
 from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import *
 
+from allDisplayAttributeColor import AllDisplayAttributeColor
+
 
 class KeyboardWidget(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self,dataModel, parent=None):
         super(KeyboardWidget, self).__init__(parent)
         self.currentTextBox = None
-        self.dataModel = None
+        self.dataModel = dataModel
+        self.obj = AllDisplayAttributeColor(self.dataModel)
         self.text_box_name = None
         self.signalMapper = QSignalMapper(self)
         self.signalMapper.mapped[int].connect(self.buttonClicked)
@@ -42,7 +45,9 @@ class KeyboardWidget(QDialog):
         # self.setPalette(p)
         self.setAutoFillBackground(True)
         self.text_box = QTextEdit()
-        self.text_box.setFont(QFont('Arial', 12))
+        self.text_box.setFont(QFont('Arial', 24))
+        self.text_box.setMinimumHeight(100)
+        self.text_box.setMaximumHeight(100)
         # text_box.setFixedHeight(50)
         # self.text_box.setFixedWidth(300)
         self.layout.addWidget(self.text_box, 0, 0, 1, 10)
@@ -68,7 +73,9 @@ class KeyboardWidget(QDialog):
         clear_button = QPushButton('Clear')
         # clear_button.setFixedHeight(25)
         clear_button.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        clear_button.setFont(QFont('Arial', 12))
+        clear_button.setFont(QFont('Arial', 24))
+        clear_button.setMaximumHeight(42)
+        self.obj.changeAttributeColor(clear_button, "QPushButton")
         clear_button.KEY_CHAR = Qt.Key_Clear
         self.layout.addWidget(clear_button, 5, 6, 1, 2)
         # self.layout.addWidget(clear_button, 8, 2, 1, 2)
@@ -80,7 +87,10 @@ class KeyboardWidget(QDialog):
         space_button = QPushButton('Space')
         # space_button.setFixedHeight(25)
         space_button.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        space_button.setFont(QFont('Arial', 12))
+        self.obj.changeAttributeColor(space_button, "QPushButton")
+        space_button.setFont(QFont('Arial', 24))
+        space_button.setMinimumHeight(42)
+        space_button.setMaximumHeight(42)
         space_button.KEY_CHAR = Qt.Key_Space
         self.layout.addWidget(space_button, 5, 2, 1, 4)
         # self.layout.addWidget(space_button, 5, 4, 1, 3)
@@ -92,7 +102,10 @@ class KeyboardWidget(QDialog):
         back_button = QPushButton('')
         # back_button.setFixedHeight(25)
         back_button.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        back_button.setFont(QFont('Arial', 12))
+        back_button.setFont(QFont('Arial', 24))
+        back_button.setMinimumHeight(42)
+        back_button.setMaximumHeight(42)
+        self.obj.changeAttributeColor(back_button, "QPushButton")
         icon11 = QIcon()
         icon11.addPixmap(QPixmap("icon/backspace-arrow.png"), QIcon.Normal, QIcon.On)
         back_button.setIcon(icon11)
@@ -107,7 +120,10 @@ class KeyboardWidget(QDialog):
         enter_button = QPushButton('Enter')
         # enter_button.setFixedHeight(25)
         enter_button.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        enter_button.setFont(QFont('Arial', 12))
+        enter_button.setFont(QFont('Arial', 24))
+        enter_button.setMinimumHeight(42)
+        enter_button.setMaximumHeight(42)
+        self.obj.changeAttributeColor(enter_button, "QPushButton")
         enter_button.KEY_CHAR = Qt.Key_Enter
         self.layout.addWidget(enter_button, 5, 0, 1, 2)
         # self.layout.addWidget(enter_button, 5, 9, 1, 2)
@@ -119,7 +135,10 @@ class KeyboardWidget(QDialog):
         done_button = QPushButton('Done')
         # done_button.setFixedHeight(25)
         done_button.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        done_button.setFont(QFont('Arial', 12))
+        done_button.setFont(QFont('Arial', 24))
+        done_button.setMinimumHeight(42)
+        done_button.setMaximumHeight(42)
+        self.obj.changeAttributeColor(done_button, "QPushButton")
         done_button.KEY_CHAR = Qt.Key_Home
         self.layout.addWidget(done_button, 4, 8, 1, 2)
         # self.layout.addWidget(done_button, 5, 11, 1, 2)
@@ -131,7 +150,10 @@ class KeyboardWidget(QDialog):
         self.cap_button = QPushButton('Caps')
         # self.cap_button.setFixedHeight(25)
         self.cap_button.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        self.cap_button.setFont(QFont('Arial', 12))
+        self.cap_button.setFont(QFont('Arial', 24))
+        self.cap_button.setMinimumHeight(42)
+        self.cap_button.setMaximumHeight(42)
+        self.obj.changeAttributeColor(self.cap_button, "QPushButton")
         self.cap_button.KEY_CHAR = Qt.Key_Up
         self.layout.addWidget(self.cap_button, 5, 8, 1, 1)
         # self.layout.addWidget(self.cap_button, 5, 13, 1, 2)
@@ -145,7 +167,10 @@ class KeyboardWidget(QDialog):
         # sym_button.setFixedHeight(25)
         # sym_button.setFixedWidth(60)
         sym_button.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sym_button.setFont(QFont('Arial', 12))
+        sym_button.setMaximumHeight(42)
+        sym_button.setMinimumHeight(42)
+        sym_button.setFont(QFont('Arial', 24))
+        self.obj.changeAttributeColor(sym_button, "QPushButton")
         sym_button.KEY_CHAR = Qt.Key_Down
         self.layout.addWidget(sym_button, 5, 9, 1, 1)
         # self.layout.addWidget(sym_button, 5, 15, 1, 2)
@@ -158,15 +183,16 @@ class KeyboardWidget(QDialog):
 
     def buttonAdd(self):
         # self.names = self.names_small
-        print("loe")
+        print("loe keyboard")
         positions = [(i + 1, j) for i in range(6) for j in range(10)]
-
         for position, name in zip(positions, self.names):
 
             if name == '':
                 continue
             button = QPushButton(name)
-            button.setFont(QFont('Arial', 12))
+            button.setFont(QFont('Arial', 24))
+            button.setMinimumSize(100, 42)
+            self.obj.changeAttributeColor(button, "QPushButton")
             button.KEY_CHAR = ord(name[-1])
             button.clicked.connect(self.signalMapper.map)
             self.signalMapper.setMapping(button, button.KEY_CHAR)
@@ -247,8 +273,9 @@ class cQLineEdit(QTextEdit):
     def __init__(self, widget, name, dataModel, text_box_name):
         super().__init__(widget)
         # self.name = name
-        self.ex = KeyboardWidget(self)
+        self.ex = KeyboardWidget(dataModel, self)
         self.ex.setWindowTitle('Keyboard')
+        self.ex.setMaximumHeight(375)
         self.ex.dataModel = dataModel
         self.ex.text_box_name = text_box_name
         self.ex.currentTextBox = self

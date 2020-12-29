@@ -14,11 +14,41 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_additionalChronos(object):
     def setupUi(self, additionalChronos):
         additionalChronos.setObjectName("additionalChronos")
-        additionalChronos.resize(489, 284)
+        additionalChronos.resize(568, 504)
         self.gridLayout_5 = QtWidgets.QGridLayout(additionalChronos)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.gridLayout_3 = QtWidgets.QGridLayout()
         self.gridLayout_3.setObjectName("gridLayout_3")
+        self.resetChrono2 = QtWidgets.QToolButton(additionalChronos)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.resetChrono2.sizePolicy().hasHeightForWidth())
+        self.resetChrono2.setSizePolicy(sizePolicy)
+        self.resetChrono2.setMinimumSize(QtCore.QSize(42, 42))
+        self.resetChrono2.setStyleSheet("QToolButton {\n"
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"     \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#FFFFFF;\n"
+"   \n"
+"}\n"
+"QToolButton:pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}\n"
+"")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icon/reset.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.resetChrono2.setIcon(icon)
+        self.resetChrono2.setIconSize(QtCore.QSize(21, 21))
+        self.resetChrono2.setObjectName("resetChrono2")
+        self.gridLayout_3.addWidget(self.resetChrono2, 0, 3, 1, 1)
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         self.chronos2 = QtWidgets.QLabel(additionalChronos)
@@ -32,7 +62,9 @@ class Ui_additionalChronos(object):
 "                  font-size:72pt;\n"
 "                  font-weight:600;}")
         self.chronos2.setObjectName("chronos2")
-        self.gridLayout.addWidget(self.chronos2, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.chronos2, 0, 1, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 0, 0, 1, 1)
         self.chronosLabel2 = QtWidgets.QLabel(additionalChronos)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
@@ -44,7 +76,9 @@ class Ui_additionalChronos(object):
 "color:#FFFFFF;\n"
 "}")
         self.chronosLabel2.setObjectName("chronosLabel2")
-        self.gridLayout.addWidget(self.chronosLabel2, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.chronosLabel2, 1, 1, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem1, 0, 2, 1, 1)
         self.gridLayout_3.addLayout(self.gridLayout, 0, 0, 1, 1)
         self.startChrono2 = QtWidgets.QToolButton(additionalChronos)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -70,76 +104,16 @@ class Ui_additionalChronos(object):
 "    border-style: inset;\n"
 "}\n"
 "")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icon/play_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.startChrono2.setIcon(icon)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("icon/play_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.startChrono2.setIcon(icon1)
         self.startChrono2.setObjectName("startChrono2")
         self.gridLayout_3.addWidget(self.startChrono2, 0, 1, 1, 1)
-        self.resetChrono2 = QtWidgets.QToolButton(additionalChronos)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.resetChrono2.sizePolicy().hasHeightForWidth())
-        self.resetChrono2.setSizePolicy(sizePolicy)
-        self.resetChrono2.setMinimumSize(QtCore.QSize(42, 42))
-        self.resetChrono2.setStyleSheet("QToolButton {\n"
-"    border-style: outset;\n"
-"    border-width: 2px;\n"
-"    border-radius: 10px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"     \n"
-"    padding: 6px;\n"
-"    background-color: #000000;\n"
-"    color:#FFFFFF;\n"
-"   \n"
-"}\n"
-"QToolButton:pressed {\n"
-"    background-color: gray;\n"
-"    border-style: inset;\n"
-"}\n"
-"")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icon/reset.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.resetChrono2.setIcon(icon1)
-        self.resetChrono2.setIconSize(QtCore.QSize(21, 21))
-        self.resetChrono2.setObjectName("resetChrono2")
-        self.gridLayout_3.addWidget(self.resetChrono2, 0, 2, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem2, 0, 2, 1, 1)
         self.gridLayout_5.addLayout(self.gridLayout_3, 0, 0, 1, 1)
         self.gridLayout_4 = QtWidgets.QGridLayout()
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.gridLayout_2 = QtWidgets.QGridLayout()
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.chronos3 = QtWidgets.QLabel(additionalChronos)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.chronos3.sizePolicy().hasHeightForWidth())
-        self.chronos3.setSizePolicy(sizePolicy)
-        self.chronos3.setMinimumSize(QtCore.QSize(371, 101))
-        font = QtGui.QFont()
-        font.setPointSize(72)
-        font.setBold(True)
-        font.setWeight(75)
-        self.chronos3.setFont(font)
-        self.chronos3.setStyleSheet("QLabel { color: #FFFFFF; \n"
-"                  font-size:72pt;\n"
-"                  font-weight:600;}")
-        self.chronos3.setObjectName("chronos3")
-        self.gridLayout_2.addWidget(self.chronos3, 0, 0, 1, 1)
-        self.chronosLabel3 = QtWidgets.QLabel(additionalChronos)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.chronosLabel3.sizePolicy().hasHeightForWidth())
-        self.chronosLabel3.setSizePolicy(sizePolicy)
-        self.chronosLabel3.setMinimumSize(QtCore.QSize(69, 19))
-        self.chronosLabel3.setStyleSheet("QLabel{\n"
-"color:#FFFFFF;\n"
-"}")
-        self.chronosLabel3.setObjectName("chronosLabel3")
-        self.gridLayout_2.addWidget(self.chronosLabel3, 1, 0, 1, 1)
-        self.gridLayout_4.addLayout(self.gridLayout_2, 0, 0, 1, 1)
         self.startChrono3 = QtWidgets.QToolButton(additionalChronos)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -164,7 +138,7 @@ class Ui_additionalChronos(object):
 "    border-style: inset;\n"
 "}\n"
 "")
-        self.startChrono3.setIcon(icon)
+        self.startChrono3.setIcon(icon1)
         self.startChrono3.setObjectName("startChrono3")
         self.gridLayout_4.addWidget(self.startChrono3, 0, 1, 1, 1)
         self.resetChrono3 = QtWidgets.QToolButton(additionalChronos)
@@ -191,10 +165,48 @@ class Ui_additionalChronos(object):
 "    border-style: inset;\n"
 "}\n"
 "")
-        self.resetChrono3.setIcon(icon1)
+        self.resetChrono3.setIcon(icon)
         self.resetChrono3.setIconSize(QtCore.QSize(21, 21))
         self.resetChrono3.setObjectName("resetChrono3")
-        self.gridLayout_4.addWidget(self.resetChrono3, 0, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.resetChrono3, 0, 3, 1, 1)
+        self.gridLayout_2 = QtWidgets.QGridLayout()
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.chronosLabel3 = QtWidgets.QLabel(additionalChronos)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.chronosLabel3.sizePolicy().hasHeightForWidth())
+        self.chronosLabel3.setSizePolicy(sizePolicy)
+        self.chronosLabel3.setMinimumSize(QtCore.QSize(69, 19))
+        self.chronosLabel3.setStyleSheet("QLabel{\n"
+"color:#FFFFFF;\n"
+"}")
+        self.chronosLabel3.setObjectName("chronosLabel3")
+        self.gridLayout_2.addWidget(self.chronosLabel3, 1, 1, 1, 1)
+        self.chronos3 = QtWidgets.QLabel(additionalChronos)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.chronos3.sizePolicy().hasHeightForWidth())
+        self.chronos3.setSizePolicy(sizePolicy)
+        self.chronos3.setMinimumSize(QtCore.QSize(371, 101))
+        font = QtGui.QFont()
+        font.setPointSize(72)
+        font.setBold(True)
+        font.setWeight(75)
+        self.chronos3.setFont(font)
+        self.chronos3.setStyleSheet("QLabel { color: #FFFFFF; \n"
+"                  font-size:72pt;\n"
+"                  font-weight:600;}")
+        self.chronos3.setObjectName("chronos3")
+        self.gridLayout_2.addWidget(self.chronos3, 0, 1, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem3, 0, 0, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem4, 0, 2, 1, 1)
+        self.gridLayout_4.addLayout(self.gridLayout_2, 0, 0, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(6, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_4.addItem(spacerItem5, 0, 2, 1, 1)
         self.gridLayout_5.addLayout(self.gridLayout_4, 1, 0, 1, 1)
 
         self.retranslateUi(additionalChronos)
@@ -203,14 +215,14 @@ class Ui_additionalChronos(object):
     def retranslateUi(self, additionalChronos):
         _translate = QtCore.QCoreApplication.translate
         additionalChronos.setWindowTitle(_translate("additionalChronos", "Form"))
+        self.resetChrono2.setText(_translate("additionalChronos", "Reset"))
         self.chronos2.setText(_translate("additionalChronos", "<html><head/><body><p align=\"justify\"><span style=\" font-size:72pt; font-weight:600;\">00:00</span></p></body></html>"))
         self.chronosLabel2.setText(_translate("additionalChronos", "Chronos 2"))
         self.startChrono2.setText(_translate("additionalChronos", "Play and Pause"))
-        self.resetChrono2.setText(_translate("additionalChronos", "Reset"))
-        self.chronos3.setText(_translate("additionalChronos", "<html><head/><body><p align=\"justify\"><span style=\" font-size:72pt;\">00:00</span></p></body></html>"))
-        self.chronosLabel3.setText(_translate("additionalChronos", "Chronos 3"))
         self.startChrono3.setText(_translate("additionalChronos", "Play and Pause"))
         self.resetChrono3.setText(_translate("additionalChronos", "Reset"))
+        self.chronosLabel3.setText(_translate("additionalChronos", "Chronos 3"))
+        self.chronos3.setText(_translate("additionalChronos", "<html><head/><body><p align=\"justify\"><span style=\" font-size:72pt;\">00:00</span></p></body></html>"))
 
 
 if __name__ == "__main__":

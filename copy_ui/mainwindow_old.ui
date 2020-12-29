@@ -924,7 +924,7 @@ QPushButton#start:pressed {
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="addAdditonalChronoButton">
+      <widget class="QPushButton" name="addAdditonalChronosButton">
        <property name="styleSheet">
         <string notr="true">QPushButton#addAdditonalChronoButton {
     border-style: outset;
@@ -973,7 +973,7 @@ QPushButton#addAdditonalChronoButton:pressed {
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>210</y>
+      <y>230</y>
       <width>641</width>
       <height>451</height>
      </rect>
@@ -1398,26 +1398,6 @@ color:#FFFFFF;
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:72pt; font-weight:600;&quot;&gt;00:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcd">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>210</y>
-      <width>109</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="digitCount">
-     <number>10</number>
-    </property>
-   </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_7">
     <property name="geometry">
      <rect>
@@ -1654,6 +1634,20 @@ color:#FFFFFF;
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:72pt; font-weight:600;&quot;&gt;00:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+   <widget class="QLabel" name="menuTitleName">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>200</y>
+      <width>67</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <zorder>time_show</zorder>
    <zorder>elapsedTimeLabel</zorder>
    <zorder>setTimeSetting</zorder>
    <zorder>toolButton_9</zorder>
@@ -1688,8 +1682,6 @@ color:#FFFFFF;
    <zorder>hepaFilterStatus</zorder>
    <zorder>differentialPressureShow</zorder>
    <zorder>lcd1</zorder>
-   <zorder>lcd</zorder>
-   <zorder>horizontalLayoutWidget_6</zorder>
    <zorder>horizontalLayoutWidget_7</zorder>
    <zorder>displayArea</zorder>
    <zorder>layoutWidget</zorder>
@@ -1697,6 +1689,7 @@ color:#FFFFFF;
    <zorder>upTemperatureButton</zorder>
    <zorder>medicalGasLabelTitle</zorder>
    <zorder>logoDisplay</zorder>
+   <zorder>menuTitleName</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

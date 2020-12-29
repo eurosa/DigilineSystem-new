@@ -10,77 +10,142 @@ class AllDisplayAttributeColor:
         self.color_name = str()
 
     def changeAttributeColor(self, attribute_name, Attribute):
-        attribute_name.setStyleSheet(""+Attribute+" {\n"
-                                                                  "    border-style: outset;\n"
-                                                                  "    border-width: 1px;\n"
-                                                                  "    border-radius: 10px;\n"
-                                                                  "    border-color: " + self.datamodel.get_border_col() + ";\n"
-                                                                  "    font: bold 14px;\n"
-                                                                  "     \n"
-                                                                  "    padding: 6px;\n"
-                                                                  "    background-color: " + self.datamodel.get_background_col() + ";\n"
-                                                                                                                            "    color:" + self.datamodel.get_text_col() + ";\n"
-                                                                                                                            "   \n"
-                                                                                                                            "}\n"
-                                                                                                                            ""+Attribute+":pressed {\n"
-                                                                                                                            "    background-color: gray;\n"
-                                                                                                                            "    border-style: inset;\n"
-                                                                                                                            "}\n"
-                                                                                                                            "")
+        print("Login background color: "+self.datamodel.get_background_col())
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-style: outset;\n"
+                                                      "    border-width: 1px;\n"
+                                                      "    border-radius: 10px;\n"
+                                                      "    border-color: " + self.datamodel.get_border_col() + ";\n"
+                                                                                                               "    font: bold 14px;\n"
+                                                                                                               "     \n"
+                                                                                                               "    padding: 6px;\n"
+                                                                                                               "    background-color: " + self.datamodel.get_background_col() + ";\n"
+                                                                                                                                                                                "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                                                                                                                                               "   \n"
+                                                                                                                                                                                                                               "}\n"
+                                                                                                                                                                                                                               "" + Attribute + ":pressed {\n"
+                                                                                                                                                                                                                                                "    background-color: gray;\n"
+                                                                                                                                                                                                                                                "    border-style: inset;\n"
+                                                                                                                                                                                                                                                "}\n"
+                                                                                                                                                                                                                                                "")
 
     def changeDisplayAttributeColor(self, attribute_name, Attribute):
-        attribute_name.setStyleSheet(""+Attribute+" {\n" 
-                                                                  "    border-color: " + self.datamodel.get_border_col() + ";\n"
-                                                                 
-                                                                  "     \n"
-                                                                  "    padding: 0px;\n"
-                                                                  "    background-color: " ";\n"
-                                                                                                                            "    color:" + self.datamodel.get_text_col() + ";\n"
-                                                                                                                            "   \n"
-                                                                                                                            "}\n"
-                                                                                                                            "")
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-color: " + self.datamodel.get_border_col() + ";\n"
+
+                                                                                                               "     \n"
+                                                                                                               "    padding: 0px;\n"
+                                                                                                               "    background-color: " ";\n"
+                                                                                                               "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                                                                              "   \n"
+                                                                                                                                                              "}\n"
+                                                                                                                                                              "")
+
+    def changeDisplayLabelTextColor(self, attribute_name, Attribute):
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-color: " ";\n"
+
+                                                      "     \n"
+                                                      "    padding: 0px;\n"
+                                                      "    background-color: " ";\n"
+                                                      "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                     "   \n"
+                                                                                                     "}\n"
+                                                                                                     "")
+
+    def changeDisplayLabelBackgroundColor(self, attribute_name, Attribute):
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-color: " ";\n"
+
+                                                      "     \n"
+                                                      "    padding: 0px;\n"
+                                                      "    background-color: " + self.datamodel.get_text_col() + ";\n"
+                                                                                                                 "    color:" ";\n"
+                                                                                                                 "   \n"
+                                                                                                                 "}\n"
+                                                                                                                 "")
 
     def changeDateTimeAttributeColor(self, attribute_name, Attribute):
-        attribute_name.setStyleSheet(""+Attribute+" {\n" 
-                                                                  "    border-color: " + self.datamodel.get_border_col() + ";\n"
-                                                                  "    font: bold 33px;\n"
-                                                                  "     \n"
-                                                                  "    padding: 0px;\n"
-                                                                  "    background-color: " ";\n"
-                                                                                                                            "    color:" + self.datamodel.get_text_col() + ";\n"
-                                                                                                                            "   \n"
-                                                                                                                            "}\n"
-                                                                                                                            "")
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-color: " + self.datamodel.get_border_col() + ";\n"
+                                                                                                               "    font: bold 33px;\n"
+                                                                                                               "     \n"
+                                                                                                               "    padding: 0px;\n"
+                                                                                                               "    background-color: " ";\n"
+                                                                                                               "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                                                                              "   \n"
+                                                                                                                                                              "}\n"
+                                                                                                                                                              "")
 
     def changeTimeAttributeColor(self, attribute_name, Attribute):
-        attribute_name.setStyleSheet(""+Attribute+" {\n" 
-                                                                  "    border-color: " + self.datamodel.get_border_col() + ";\n"
-                                                                  "    font: bold 160px;\n"
-                                                                  "     \n"
-                                                                  "    padding: 0px;\n"
-                                                                  "    background-color: " ";\n"
-                                                                                                                            "    color:" + self.datamodel.get_text_col() + ";\n"
-                                                                                                                            "   \n"
-                                                                                                                            "}\n"
-                                                                                                                            "")
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-color: " + self.datamodel.get_border_col() + ";\n"
+                                                                                                               "    font: bold 160px;\n"
+                                                                                                               "     \n"
+                                                                                                               "    padding: 0px;\n"
+                                                                                                               "    background-color: " ";\n"
+                                                                                                               "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                                                                              "   \n"
+                                                                                                                                                              "}\n"
+                                                                                                                                                              "")
 
     def changeTableViewAttributeColor(self, attribute_name, attribute):
-        attribute_name.setStyleSheet("color:" + self.datamodel.get_text_col() + "; background-color:"+self.datamodel.get_background_col()+";")
+        attribute_name.setStyleSheet(
+            "color:" + self.datamodel.get_text_col() + "; background-color:" + self.datamodel.get_background_col() + ";")
 
     def changePlayerAttributeColor(self, attribute_name):
-        attribute_name.setStyleSheet("color:" + self.datamodel.get_text_col() + "; background-color:"+self.datamodel.get_background_col()+";")
+        attribute_name.setStyleSheet(
+            "color:" + self.datamodel.get_text_col() + "; background-color:" + self.datamodel.get_background_col() + ";")
 
     def changeSettingsDialogAttributeColor(self, attribute_name):
-        attribute_name.setStyleSheet("color:" + self.datamodel.get_text_col()+";background-color:"+self.datamodel.get_theme_color()+";")
+        attribute_name.setStyleSheet(
+            "color:" + self.datamodel.get_text_col() + ";background-color:" + self.datamodel.get_theme_color() + ";")
+
+    def changeEditTextAttributeColor(self, attribute_name, Attribute):
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-style: outset;\n"
+                                                      "    border-width: 1px;\n"
+                                                      "    border-radius: 10px;\n"
+                                                      "    border-color: " + self.datamodel.get_border_col() + ";\n"
+                                                                                                               "    font: bold 14px;\n" 
+                                                                                                               "    background-color: " + self.datamodel.get_background_col() + ";\n"
+                                                                                                                                                                                "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                                                                                                                                               "}\n"
+                                                                                                                                                                                                                               "")
+
+    def changeSettingsDialogTabColor(self, attribute_name):
+        attribute_name.setStyleSheet(
+            "QTabBar::tab{"
+            "    border-style: outset;"
+            "    border-width: 1px;"
+            "    border-radius: 10px;" 
+            "    padding: 6px;"
+            "    background-color: " + self.datamodel.get_theme_color() + ";"
+            "    color:" + self.datamodel.get_text_col() + ";"
+                                                    "}"
+            "    QTabBar::tab:hover {"
+                                    "background-color: " + self.datamodel.get_border_col() + ";"
+                                    "border-style: outset;"
+                                    "padding: 6px;"
+                                    "}"
+        )
+
+    '''def changeSettingsDialogTabColor(self, attribute_name):
+        attribute_name.setStyleSheet("QTabBar::tabWidget:selected {background: " + self.datamodel.get_theme_color() + ";}"
+        " QTabWidget>QWidget>QWidget{background: " + self.datamodel.get_theme_color() + ";""}")'''
 
     def changeLoginDialogAttributeColor(self, attribute_name):
-        attribute_name.setStyleSheet("color:" + self.datamodel.get_text_col()+";background-color:"+self.datamodel.get_theme_color()+";")
+        attribute_name.setStyleSheet(
+            "color:" + self.datamodel.get_text_col() + ";background-color:" + self.datamodel.get_theme_color() + ";")
 
     def changeShutDownDialogAttributeColor(self, attribute_name):
-        attribute_name.setStyleSheet("color:" + self.datamodel.get_text_col()+";background-color:"+self.datamodel.get_theme_color()+";")
+        attribute_name.setStyleSheet(
+            "color:" + self.datamodel.get_text_col() + ";background-color:" + self.datamodel.get_theme_color() + ";")
 
     def changeTimerDialogAttributeColor(self, attribute_name):
-        attribute_name.setStyleSheet("color:" + self.datamodel.get_text_col()+";background-color:"+self.datamodel.get_theme_color()+";")
+        attribute_name.setStyleSheet(
+            "color:" + self.datamodel.get_text_col() + ";background-color:" + self.datamodel.get_theme_color() + ";")
+
 
     def changeIconColor(self, attribute_name):
         self.image = QImage(attribute_name.icon().pixmap(attribute_name.iconSize()))
@@ -136,7 +201,7 @@ class AllDisplayAttributeColor:
                 pcolor = self.image.pixelColor(x, y)
                 if pcolor.alpha() > 0:
                     n_color = QColor(self.color_variant(self.datamodel.get_icon_col(), 87))
-                    print("Converted Hex: "+self.color_variant(self.datamodel.get_icon_col(), 87))
+                    print("Converted Hex: " + self.color_variant(self.datamodel.get_icon_col(), 87))
                     n_color.setAlpha(pcolor.alpha())
                     self.image.setPixelColor(x, y, n_color)
         return QPixmap.fromImage(self.image)
@@ -159,7 +224,7 @@ class AllDisplayAttributeColor:
         else:
             print("White")'''
         print("Red" + str(R) + " Green" + str(G) + " Blue" + str(B))
-        #https://stackoverflow.com/questions/9780632/how-do-i-determine-if-a-color-is-closer-to-white-or-black
+        # https://stackoverflow.com/questions/9780632/how-do-i-determine-if-a-color-is-closer-to-white-or-black
         #
         """ takes a color like #87c95f and produces a lighter or darker variant """
         if len(hex_color) != 7:
