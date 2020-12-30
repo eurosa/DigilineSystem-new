@@ -1,5 +1,7 @@
 from PyQt5.QtCore import QThread, QTimer, QEventLoop
 from PyQt5.QtGui import QImage, QPixmap
+import modifyGlobalVariables
+import configVariables
 
 TICK_TIME = 2 ** 6
 
@@ -19,7 +21,6 @@ class CounterThread(QThread):
 
     def display(self):
         # self.ui.lcd.display("%d:%05.2f" % (self.time // 60, self.time % 60))
-
         hour = "%0d:" % (self.time // 60)
         minSecond = "%05.2f" % (self.time % 60)
         self.convert(self.time)
@@ -29,10 +30,9 @@ class CounterThread(QThread):
         '''self.ui.lcd1.setText(hour + "" + listMinSec[
             0] + "" + "<b><font color='#ffffff' font size=12pt font weight:40>" + ":" + "</font></b></br>" + "<b><i><font color='#ff0000' font size=12pt font weight:40>" +
                              listMinSec[1] + "</font></i></b></br>")'''
-        # self.ui.lcd1.setText(hour + "" + listMinSec[0] + "" + "<b><font color='#ffffff' font size=12pt font weight:40>" + ":" + "</font></b></br>" + "<b><font color='#ff0000' font size=12pt font weight:40>" +
-        #                     listMinSec[1] + "</font></b></br>")
-        # self.ui.lcd1.setText('My normal text, font = 10pt')
-        # self.ui.lcd2.hide()
+        # self.ui.lcd1.setText(hour + "" + listMinSec[0] + "" + "<b><font color='#ffffff' font size=12pt font
+        # weight:40>" + ":" + "</font></b></br>" + "<b><font color='#ff0000' font size=12pt font weight:40>" +
+        # listMinSec[1] + "</font></b></br>") self.ui.lcd1.setText('My normal text, font = 10pt') self.ui.lcd2.hide()
         # self.ui.lcd2.setText(":" + listMinSec[1])
 
     def convert(self, seconds):
@@ -66,7 +66,7 @@ class CounterThread(QThread):
         # path_image = os.path.join(dir_path, "icon/pause_white.png").replace("\\", "/")
         # self.image_pause = QtGui.QImage(QPixmap("icon/pause_white.png"))
         # self.alldisplayColorChangeObj.changeIconColorOfTimer(self.ui.start, self.image_pause)
-        self.ui.start.setIcon(self.changed_pause_image)
+        self.ui.start.setIcon(configVariables.pause_changed_image)
         self.ui.start.clicked.disconnect()
         self.ui.start.clicked.connect(self.do_pause)
 
@@ -75,7 +75,7 @@ class CounterThread(QThread):
         self.ui.start.setText("Start")
         # icon9 = QtGui.QIcon()
         # icon9.addPixmap(QtGui.QPixmap("icon/play_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.ui.start.setIcon(self.changed_play_image)
+        self.ui.start.setIcon(configVariables.play_changed_image)
         # self.image_play = QtGui.QImage(QPixmap("icon/play_white.png"))
         # self.alldisplayColorChangeObj.changeIconColorOfTimer(self.ui.start, self.image_play)
         self.ui.start.clicked.disconnect()
@@ -86,10 +86,7 @@ class CounterThread(QThread):
         # self.dataCollectionTimer = QTimer()
         # self.dataCollectionTimer.moveToThread(self)
         # self.dataCollectionTimer.timeout.connect(self.collectProcessData)
-        self.play_wh = QImage(QPixmap("icon/play_white.png"))
-        self.pause_wh = QImage(QPixmap("icon/pause_white.png"))
-        self.changed_play_image = allDisplay.changedIconColorImage(self.play_wh)
-        self.changed_pause_image = allDisplay.changedIconColorImage(self.pause_wh)
+
         self.ui = ui
         # ==================Stop Watch =====================================
         self.ui.reset.clicked.connect(self.do_reset)

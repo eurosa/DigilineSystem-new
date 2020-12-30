@@ -72,6 +72,8 @@ import toggleButton
 import lightBrightness
 import chronos3, chronos2
 from MessageBox import AutoCloseMessageBox
+import modifyGlobalVariables
+import configVariables
 import Database.database
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -252,6 +254,8 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ot_ui.light3Increment, "QToolButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ot_ui.light4Decrement, "QToolButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ot_ui.light4Increment, "QToolButton")
+
+        '''
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ot_ui.light1Decrement)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ot_ui.light1Increment)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ot_ui.light2Decrement)
@@ -266,7 +270,7 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changePixmapColor(self.ui.ot_ui.otLightBulb1)
         self.ui.alldisplayColorChangeObj.changePixmapColor(self.ui.ot_ui.lightBulb3)
         self.ui.alldisplayColorChangeObj.changePixmapColor(self.ui.ot_ui.lightBulb4)
-        self.ui.alldisplayColorChangeObj.changePixmapColor(self.ui.ot_ui.otLightBulb2)
+        self.ui.alldisplayColorChangeObj.changePixmapColor(self.ui.ot_ui.otLightBulb2)'''
         # -------------------------- history menu data text color change ---------------------------
 
         self.ui.alldisplayColorChangeObj.changeShutDownDialogAttributeColor(self.ui.shutDialog)
@@ -440,6 +444,17 @@ class Thread(QRunnable):
                                                                   "QLabel")
 
         # ======================= Login UI ==========================================================================
+        self.ui.modifyGlobalVariablesObj.setChangedImage()
+        self.ui.modifyGlobalVariablesObj.setChangedLightColor()
+        # self.ui.lightBrightnessObject.allLightBarInitialSetup(self.ui.ot_ui)
+        '''self.ui.lightBrightnessObject.otLightBrightIncrementControl()
+        self.ui.lightBrightnessObject.otLightBrightDecrementControl()
+        self.ui.lightBrightnessObject.otLightBrightIncrementControl2()
+        self.ui.lightBrightnessObject.otLightBrightDecrementControl2()
+        self.ui.lightBrightnessObject.otLightBrightIncrementControl3()
+        self.ui.lightBrightnessObject.otLightBrightDecrementControl3()
+        self.ui.lightBrightnessObject.otLightBrightIncrementControl4()
+        self.ui.lightBrightnessObject.otLightBrightDecrementControl4()'''
 
         self.signal.return_signal.emit(result)
 
@@ -949,6 +964,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.settings_dialog_set_ui.iconColor.icon().pixmap(self.settings_dialog_set_ui.iconColor.iconSize()))))
         self.queryIconColorSettingsMain(self.dataModel, self.database_manage)
         self.alldisplayColorChangeObj = AllDisplayAttributeColor(self.dataModel)
+        self.modifyGlobalVariablesObj = modifyGlobalVariables.ModifyGlobalVariables(self.alldisplayColorChangeObj, self.ot_ui, self.dataModel)
+
         # --------------------------- Start Multimedia Player ------------------------------------------------------
         # ------------------------------Start Stop Watch ------------------------------------
         self.dataCaptureThread = CounterThread(self.ui, self.alldisplayColorChangeObj)
@@ -965,18 +982,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ui.multiMediaDetails.clicked.connect(self.multimediaPlayer)
         # ---------------------------End Multimedia ----------------------------------------------------------------
         self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj)
-        self.play_wh = QtGui.QImage(QPixmap("icon/play_white.png"))
-        self.pause_wh = QtGui.QImage(QPixmap("icon/pause_white.png"))
-        self.changed_play_image = self.alldisplayColorChangeObj.changedIconColorImage(self.play_wh)
-        self.changed_pause_image = self.alldisplayColorChangeObj.changedIconColorImage(self.pause_wh)
-        self.light_bulb = QtGui.QImage(QPixmap("icon/light-bulb.png"))
-        self.ot_light = QtGui.QImage(QPixmap("icon/lights.png"))
-        self.changed_light_bulb = self.alldisplayColorChangeObj.returnPixmapColorImage(self.light_bulb)
-        self.changed_ot_light = self.alldisplayColorChangeObj.returnPixmapColorImage(self.ot_light)
-
-        self.low_light_bulb = self.alldisplayColorChangeObj.returnPixmapColorImageLowLight(self.light_bulb)
-        self.low_ot_light = self.alldisplayColorChangeObj.returnPixmapColorImageLowLight(self.ot_light)
-
         self.git_thread = CloneThread()  # This is the thread object
         # self.settings_dialog_set_ui.applyColor.clicked.connect(self.colorPushButton)  #
         # self.settings_dialog_set_ui.applyColor.clicked.connect(self.git_clone)
@@ -989,10 +994,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # ---------------------------------- Additional Chronos ------------------------------------------------
         # self.chronosObject2 = chronos23.Chronos(self.additionChronos_ui.startChrono2,
         #                                     self.additionChronos_ui.resetChrono2, self.additionChronos_ui.chronos3)
-        self.chronosObject2 = chronos2.Chronos2(self.additionChronos_ui, self.changed_play_image,
-                                                self.changed_pause_image)
-        self.chronosObject3 = chronos3.Chronos3(self.additionChronos_ui, self.changed_play_image,
-                                                self.changed_pause_image)
+        self.chronosObject2 = chronos2.Chronos2(self.additionChronos_ui, configVariables.play_changed_image,
+                                                configVariables.pause_changed_image)
+        self.chronosObject3 = chronos3.Chronos3(self.additionChronos_ui, configVariables.play_changed_image,
+                                                configVariables.pause_changed_image)
 
         # --------------------------------------------------------------------------------------------------------------
         self.settings_dialog_set_ui.comboBoxTheme.activated.connect(self.handleActivated)
@@ -1288,21 +1293,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light3Increment, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light4Decrement, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light4Increment, "QToolButton")
-        self.alldisplayColorChangeObj.changeIconColor(self.ot_ui.light1Decrement)
-        self.alldisplayColorChangeObj.changeIconColor(self.ot_ui.light1Increment)
-        self.alldisplayColorChangeObj.changeIconColor(self.ot_ui.light2Decrement)
-        self.alldisplayColorChangeObj.changeIconColor(self.ot_ui.light2Increment)
-        self.alldisplayColorChangeObj.changeIconColor(self.ot_ui.light3Decrement)
-        self.alldisplayColorChangeObj.changeIconColor(self.ot_ui.light3Increment)
-        self.alldisplayColorChangeObj.changeIconColor(self.ot_ui.light4Decrement)
-        self.alldisplayColorChangeObj.changeIconColor(self.ot_ui.light4Increment)
 
-        self.alldisplayColorChangeObj.changePixmapColor(self.ot_ui.lightBulb1)
-        self.alldisplayColorChangeObj.changePixmapColor(self.ot_ui.lightBulb2)
-        self.alldisplayColorChangeObj.changePixmapColor(self.ot_ui.otLightBulb1)
-        self.alldisplayColorChangeObj.changePixmapColor(self.ot_ui.lightBulb3)
-        self.alldisplayColorChangeObj.changePixmapColor(self.ot_ui.lightBulb4)
-        self.alldisplayColorChangeObj.changePixmapColor(self.ot_ui.otLightBulb2)
+        self.modifyGlobalVariablesObj.setChangedImage()
+        self.modifyGlobalVariablesObj.setChangedLightColor()
         # -------------------------- history menu data text color change ---------------------------
         self.alldisplayColorChangeObj.changeTableViewAttributeColor(self.tableWidget, "QTableView")
         # -------------------------- Multimedia Menu Color & Font Settings -------------------------
@@ -2220,7 +2213,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # setting background color to light-blue
 
             self.toggleSwitch.setStyleSheet("background-color : #FFFFFF")
-            self.ot_ui.lightBulb3.setPixmap(self.changed_light_bulb)
+            self.ot_ui.lightBulb3.setPixmap(configVariables.changed_light_bulb)
 
             # if it is unchecked
         else:
@@ -2228,7 +2221,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # set background color back to light-grey
             print("Uncheck: " + str(self.toggleSwitch.isChecked()))
             self.toggleSwitch.setStyleSheet("background-color : #4c4c4c")
-            self.ot_ui.lightBulb3.setPixmap(self.low_light_bulb)
+            self.ot_ui.lightBulb3.setPixmap(configVariables.low_light_bulb)
 
             # if button is checked
         if self.toggleSwitchLaminar.isChecked():
@@ -2236,26 +2229,26 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # setting background color to light-blue
 
             self.toggleSwitchLaminar.setStyleSheet("background-color : #FFFFFF")
-            self.ot_ui.lightBulb4.setPixmap(self.changed_light_bulb)
+            self.ot_ui.lightBulb4.setPixmap(configVariables.changed_light_bulb)
             # if it is unchecked
         else:
 
             # set background color back to light-grey
             self.toggleSwitchLaminar.setStyleSheet("background-color : #4c4c4c")
-            self.ot_ui.lightBulb4.setPixmap(self.low_light_bulb)
+            self.ot_ui.lightBulb4.setPixmap(configVariables.low_light_bulb)
             # if button is checked
         if self.toggleSwitchGasL1.isChecked():
 
             # setting background color to light-blue
             self.ot_ui.light1Increment.setEnabled(True)
             self.toggleSwitchGasL1.setStyleSheet("background-color : #FFFFFF")
-            self.ot_ui.lightBulb1.setPixmap(self.changed_light_bulb)
+            self.ot_ui.lightBulb1.setPixmap(configVariables.changed_light_bulb)
             # if it is unchecked
         else:
             self.ot_ui.light1Increment.setEnabled(False)
             # set background color back to light-grey
             self.toggleSwitchGasL1.setStyleSheet("background-color : #4c4c4c")
-            self.ot_ui.lightBulb1.setPixmap(self.low_light_bulb)
+            self.ot_ui.lightBulb1.setPixmap(configVariables.low_light_bulb)
 
             # if button is checked
         if self.toggleSwitchGasL2.isChecked():
@@ -2263,36 +2256,36 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # setting background color to light-blue
 
             self.toggleSwitchGasL2.setStyleSheet("background-color : #FFFFFF")
-            self.ot_ui.lightBulb2.setPixmap(self.changed_light_bulb)
+            self.ot_ui.lightBulb2.setPixmap(configVariables.changed_light_bulb)
             # if it is unchecked
         else:
 
             # set background color back to light-grey
             self.toggleSwitchGasL2.setStyleSheet("background-color : #4c4c4c")
-            self.ot_ui.lightBulb2.setPixmap(self.low_light_bulb)
+            self.ot_ui.lightBulb2.setPixmap(configVariables.low_light_bulb)
 
             # if button is checked
         if self.toggleSwitchOT1.isChecked():
             # setting background color to light-blue
             self.toggleSwitchOT1.setStyleSheet("background-color : #FFFFFF")
-            self.ot_ui.otLightBulb1.setPixmap(self.changed_ot_light)
+            self.ot_ui.otLightBulb1.setPixmap(configVariables.changed_ot_light)
 
             # if it is unchecked
         else:
             # set background color back to light-grey
             self.toggleSwitchOT1.setStyleSheet("background-color : #4c4c4c")
-            self.ot_ui.otLightBulb1.setPixmap(self.low_ot_light)
+            self.ot_ui.otLightBulb1.setPixmap(configVariables.low_ot_light)
 
             # if button is checked
         if self.toggleSwitchOT2.isChecked():
             # setting background color to light-blue
             self.toggleSwitchOT2.setStyleSheet("background-color : #FFFFFF")
-            self.ot_ui.otLightBulb2.setPixmap(self.changed_ot_light)
+            self.ot_ui.otLightBulb2.setPixmap(configVariables.changed_ot_light)
             # if it is unchecked
         else:
             # set background color back to light-grey
             self.toggleSwitchOT2.setStyleSheet("background-color : #4c4c4c")
-            self.ot_ui.otLightBulb2.setPixmap(self.low_ot_light)
+            self.ot_ui.otLightBulb2.setPixmap(configVariables.low_ot_light)
 
     # ================= Start Media Player ================================
     def dragEnterEvent(self, e):

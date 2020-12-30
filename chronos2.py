@@ -1,5 +1,7 @@
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt, pyqtSlot, QTimer
+import modifyGlobalVariables
+import configVariables
 
 
 class Chronos2:
@@ -38,7 +40,7 @@ class Chronos2:
         # icon9 = QtGui.QIcon()
         # icon9.addPixmap(QtGui.QPixmap("icon/pause_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         # self.start.setIcon(icon9)
-        self.start.setIcon(self.changed_pause_image)
+        self.start.setIcon(configVariables.pause_changed_image)
         self.start.clicked.disconnect()
         self.start.clicked.connect(self.do_pause)
 
@@ -48,7 +50,7 @@ class Chronos2:
         # icon9 = QtGui.QIcon()
         # icon9.addPixmap(QtGui.QPixmap("icon/play_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         # self.start.setIcon(icon9)
-        self.start.setIcon(self.changed_play_image)
+        self.start.setIcon(configVariables.play_changed_image)
         self.start.clicked.disconnect()
         self.start.clicked.connect(self.do_start)
 

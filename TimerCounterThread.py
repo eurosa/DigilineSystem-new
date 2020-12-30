@@ -1,6 +1,7 @@
 import datetime
 import enum
-
+import modifyGlobalVariables
+import configVariables
 
 from PyQt5.QtCore import QThread, QTimer, QEventLoop, QTime, QEvent, QDate, Qt
 from PyQt5.QtGui import QImage, QPixmap
@@ -49,7 +50,7 @@ class TimerCounterThread(QThread):
             self.ui.startButton.setText(ButtonText.start)
             # icon9 = QtGui.QIcon()
             # icon9.addPixmap(QtGui.QPixmap("icon/play_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-            self.ui.startButton.setIcon(self.changed_play_image)
+            self.ui.startButton.setIcon(configVariables.play_changed_image)
             self._status = TimerStatus.init
             self._left_seconds = self.my_timer_seconds
             # self._left_seconds = self.ui.minutesSpinBox.value() * 60
@@ -63,14 +64,14 @@ class TimerCounterThread(QThread):
             self.ui.startButton.setText(ButtonText.pause)
             # icon9 = QtGui.QIcon()
             # icon9.addPixmap(QtGui.QPixmap("icon/pause_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-            self.ui.startButton.setIcon(self.changed_pause_image)
+            self.ui.startButton.setIcon(configVariables.pause_changed_image)
         elif self._status == TimerStatus.counting:
             self.timer_count_down.stop()
             self._status = TimerStatus.paused
             self.ui.startButton.setText(ButtonText.start)
             # icon9 = QtGui.QIcon()
             # icon9.addPixmap(QtGui.QPixmap("icon/play_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-            self.ui.startButton.setIcon(self.changed_play_image)
+            self.ui.startButton.setIcon(configVariables.play_changed_image)
 
     def _reset_event(self):
         self._status = TimerStatus.init
@@ -79,7 +80,7 @@ class TimerCounterThread(QThread):
         # self.ui.startButton.setText(ButtonText.start)
         # icon9 = QtGui.QIcon()
         # icon9.addPixmap(QtGui.QPixmap("icon/play_white.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.ui.startButton.setIcon(self.changed_play_image)
+        self.ui.startButton.setIcon(configVariables.play_changed_image)
         self.timer_count_down.stop()
         self.showTimerCounter()
 
@@ -223,11 +224,6 @@ class TimerCounterThread(QThread):
         self.setTimerWidget = setTimerWidget
         self.setClockWidget = setClockWidget
         # ================Start Count Down Timer Layout =========================================
-        self.play_wh = QImage(QPixmap("icon/play_white.png"))
-        self.pause_wh = QImage(QPixmap("icon/pause_white.png"))
-        self.changed_play_image = alldisplayobj.changedIconColorImage(self.play_wh)
-        self.changed_pause_image = alldisplayobj.changedIconColorImage(self.pause_wh)
-
         self.ui.startButton.clicked.connect(self._start_event)
         self.ui.resetButton.clicked.connect(self._reset_event)
         self.ui.timerSet.clicked.connect(self.setTimerDialog)

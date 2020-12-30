@@ -274,7 +274,7 @@ class cQLineEdit(QTextEdit):
         super().__init__(widget)
         # self.name = name
         self.ex = KeyboardWidget(dataModel, self)
-        self.ex.setWindowTitle('Keyboard')
+        self.ex.setWindowTitle("<b><font color="+dataModel.get_text_col()+" font size=12pt font weight:40>" + "Keyboard"+ "</font></b></br>")
         self.ex.setMaximumHeight(375)
         self.ex.dataModel = dataModel
         self.ex.text_box_name = text_box_name
