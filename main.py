@@ -19,6 +19,7 @@ from PyQt5.QtSql import QSqlQueryModel
 from DataCaptureThread import CounterThread
 from MovieSplashScreen import MovieSplashScreen
 from ShowTimeDateThread import ShowTimeDateThread
+from ThreadClass import ThreadParallel
 from TimerCounterThread import TimerCounterThread
 from allDisplayAttributeColor import *
 from multiMediaPlayerThread import MultiMediaThread
@@ -982,6 +983,14 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ui.multiMediaDetails.clicked.connect(self.multimediaPlayer)
         # ---------------------------End Multimedia ----------------------------------------------------------------
         self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj)
+
+        # --------------------------------- Parallel ThreadClas Run UI Initial Setup -----------------------------------
+        self.threadpool1 = QThreadPool()
+        threadParallel = ThreadParallel(self)
+        threadParallel.signal.return_signal.connect(threadParallel.function_thread)
+        self.threadpool1.start(threadParallel)
+        # --------------------------------- Parallel ThreadClass Run ---------------------------------------------------
+
         self.git_thread = CloneThread()  # This is the thread object
         # self.settings_dialog_set_ui.applyColor.clicked.connect(self.colorPushButton)  #
         # self.settings_dialog_set_ui.applyColor.clicked.connect(self.git_clone)
@@ -1154,15 +1163,15 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     # ===============End Color and Font =========================================================
     def allChangeToolButtonAttributeColor(self, alldisplayColorChangeObj):
-        self.alldisplayColorChangeObj = alldisplayColorChangeObj
+        ''' self.alldisplayColorChangeObj = alldisplayColorChangeObj
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.oxygen, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.ips, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.vacuum, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.cabonDiOxide, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.air7, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.air, "QToolButton")
-        self.alldisplayColorChangeObj.changeAttributeColor(self.ui.nitrousOxide, "QToolButton")
-        # -----------------------Menu Tool Button ----------------------------------------------
+        self.alldisplayColorChangeObj.changeAttributeColor(self.ui.nitrousOxide, "QToolButton") '''
+        ''' # -----------------------Menu Tool Button ----------------------------------------------
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.otLighteningDetails, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.ventiLationDetails, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ui.gasIndicator, "QToolButton")
@@ -1234,9 +1243,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeTimeAttributeColor(self.ui.lcd1, "QLabel")
         self.alldisplayColorChangeObj.changeTimeAttributeColor(self.ui.time_show, "QLabel")
         self.alldisplayColorChangeObj.changePixmapColor(self.ui.tempIcon)
-        self.alldisplayColorChangeObj.changePixmapColor(self.ui.humidityIcon)
+        self.alldisplayColorChangeObj.changePixmapColor(self.ui.humidityIcon)'''
         # -------------------------------Icon color changes ----------------------------------------------
-        self.alldisplayColorChangeObj.changeIconColor(self.ui.humidityGraph)
+        '''self.alldisplayColorChangeObj.changeIconColor(self.ui.humidityGraph)
         self.alldisplayColorChangeObj.changeIconColor(self.ui.powerButton)
         self.alldisplayColorChangeObj.changeIconColor(self.ui.settingsButton)
         self.alldisplayColorChangeObj.changeIconColor(self.ui.homeButton)
@@ -1262,11 +1271,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeIconColor(self.ui.gasIndicator)
         self.alldisplayColorChangeObj.changeIconColor(self.ui.historyDetails)
         self.alldisplayColorChangeObj.changeIconColor(self.ui.multiMediaDetails)
+        
         self.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.menuTitleName, "QLabel")
         self.alldisplayColorChangeObj.changeDisplayLabelBackgroundColor(self.ui.leftMenuTitleLine, "QLabel")
-        self.alldisplayColorChangeObj.changeDisplayLabelBackgroundColor(self.ui.rightMenuTitleLine, "QLabel")
+        self.alldisplayColorChangeObj.changeDisplayLabelBackgroundColor(self.ui.rightMenuTitleLine, "QLabel")'''
         # ----------------------Additional Chronos Label and Tool Button--------------------------------------------------
-        self.alldisplayColorChangeObj.changeTimeAttributeColor(self.additionChronos_ui.chronos2, "QLabel")
+        '''self.alldisplayColorChangeObj.changeTimeAttributeColor(self.additionChronos_ui.chronos2, "QLabel")
         self.alldisplayColorChangeObj.changeTimeAttributeColor(self.additionChronos_ui.chronos3, "QLabel")
         self.alldisplayColorChangeObj.changeDisplayAttributeColor(self.additionChronos_ui.chronosLabel2, "QLabel")
         self.alldisplayColorChangeObj.changeDisplayAttributeColor(self.additionChronos_ui.chronosLabel3, "QLabel")
@@ -1292,14 +1302,39 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light3Decrement, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light3Increment, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light4Decrement, "QToolButton")
-        self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light4Increment, "QToolButton")
+        self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light4Increment, "QToolButton")'''
 
         self.modifyGlobalVariablesObj.setChangedImage()
         self.modifyGlobalVariablesObj.setChangedLightColor()
+        # -------------- Start Change color of Icon -----------------------------------------------------------
+        self.alldisplayColorChangeObj.changePlayerAttributeColor(self.player)
+        self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.previousButton, "QToolButton")
+        self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.muteButton, "QToolButton")
+        self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.rateBox, "QComboBox")
+        self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.volumeSlider, "QSlider")
         # -------------------------- history menu data text color change ---------------------------
         self.alldisplayColorChangeObj.changeTableViewAttributeColor(self.tableWidget, "QTableView")
+        self.alldisplayColorChangeObj.changeAttributeColor(self.settings_dialog_set_ui.iconColor,
+                                                           "QPushButton")
+        self.alldisplayColorChangeObj.changeAttributeColor(self.settings_dialog_set_ui.comboBoxTheme,
+                                                           "QComboBox")
+        self.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.SettingsQDialog)
+        # ======================= Login UI ==========================================================================
+        self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabWidget)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabColor)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
+        # =============================== Login UI ==============================================================================================
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_name,
+                                                                   "QLineEdit")
+        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_pass,
+                                                                   "QLineEdit")
+        '''self.modifyGlobalVariablesObj.setChangedImage()
+        self.modifyGlobalVariablesObj.setChangedLightColor()
+        # -------------- End Change Color of Icon -------------------------------------------------------
+        
         # -------------------------- Multimedia Menu Color & Font Settings -------------------------
-        self.alldisplayColorChangeObj.changePlayerAttributeColor(self.player)
+        
         self.alldisplayColorChangeObj.changeAttributeColor(self.player.fullScreenButton, "QPushButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.player.colorButton, "QPushButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.player.openButton, "QPushButton")
@@ -1308,10 +1343,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.playButton, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.stopButton, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.nextButton, "QToolButton")
-        self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.previousButton, "QToolButton")
-        self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.muteButton, "QToolButton")
-        self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.rateBox, "QComboBox")
-        self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.volumeSlider, "QSlider")
+        
         self.alldisplayColorChangeObj.changeIconColor(self.player.controls.stopButton)
         self.alldisplayColorChangeObj.changeIconColor(self.player.controls.playButton)
         self.alldisplayColorChangeObj.changeIconColor(self.player.controls.nextButton)
@@ -1456,17 +1488,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
 
         # =============================== Settings End ==========================================================================================
-        # =============================== Login UI ==============================================================================================
-        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_name,
-                                                                   "QLineEdit")
-        self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_pass,
-                                                                   "QLineEdit")
-        # ======================= Login UI ==========================================================================
-        self.alldisplayColorChangeObj.changeSettingsDialogTabColor(self.settings_dialog_set_ui.tabWidget)
+        
+        
         # ---------------------New---------------------------------------------------------------------------
         self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabColor)
         self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
-        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)
+        self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)'''
         # ---------------------New---------------------------------------------------------------------------
         # self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)
         # self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabColor)
@@ -1681,7 +1708,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
                                                             "Image PNG (*.png);Image JPG (*.jpg);All files (*.*)")
         if self.logoImagePath:
             self.dataModel.set_logo_image_path(self.logoImagePath)
-            self.settings_dialog_set_ui.displayLogoPath.setText(self.self.logoImagePath)
+            self.settings_dialog_set_ui.displayLogoPath.setText(self.logoImagePath)
         else:
             self.queryAppearanceSettingsDataAndSet(self.dataModel)
 
