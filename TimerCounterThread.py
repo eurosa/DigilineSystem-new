@@ -18,20 +18,6 @@ class ButtonText:
 
 class TimerCounterThread(QThread):
     # ==================Start Countdown Timer ==============================
-    def setClockDialog(self):
-        self.setClockWidget.setStyleSheet(
-            "color:" + self.dataModel.get_text_col() + ";background-color:" + self.dataModel.get_theme_color() + ";")
-        current_time = QTime.currentTime()
-        self.clock_set_ui.timeEdit.setTime(current_time)
-        self.clock_set_ui.timeEdit.setDisplayFormat("H:mm:ss")
-        # self.clock_set_ui.dateEdit.setDate(current_time)
-        date = QDate.currentDate()
-        # now = datetime.datetime.now()
-        # today = datetime.datetime.today().strftime('%d/%m/%Y')
-        # setting only date
-        self.clock_set_ui.dateEdit.setDate(date)
-        self.setClockWidget.show()
-        self.setClockWidget.exec_()
 
     def eventFilter(self, obj, event):
         if obj is self.ui.displayArea.viewport() and event.type() == QEvent.MouseButtonPress:
@@ -183,55 +169,20 @@ class TimerCounterThread(QThread):
         self.timer_set_ui.spinMinuteBox.setValue(self.ok_minutes)
         self.timer_set_ui.spinSecondBox.setValue(self.ok_seconds)
 
-    def setClockOk(self):
-        self.int_count = True
-
-    def rejectClock(self):
-        self.int_count = True
-
-    def timeChange(self):
-        self.current_time = self.clock_set_ui.timeEdit.time()
-        # os.system('sudo date -u --set="%s"' % self.current_time.toString('hh:mm'))
-        print(str(self.clock_set_ui.timeEdit.time()))
-        # converting QTime object to string
-        self.label_time = self.current_time.toString('hh:mm')
-        self.tickPart = self.current_time.toString('ss')
-
-        # showing it to the label
-        # self.ui.time_show.setText(self.label_time)
-        self.ui.time_show.setText(
-            self.label_time + ":" + self.tickPart)
-        '''
-        self.ui.time_show.setText(
-            self.label_time + "" + "<b><font color='#FFFF00' font size=12pt font weight:40>" +
-            ":" + "</font></b></br>" + "<b><font color='#FFFF00' font size=12pt font weight:40>" +
-            self.tickPart + "</font></b></br>")
-        '''
-        # self.ui.tick_show.setText(self.tickPart)
-        # self.clock_set_ui.timeEdit.setTime(self.clock_set_ui.timeEdit.time())
-
-    def dateChange(self):
-        self.int_count = True
-
     # ==================End Countdown Timer ===============================
 
-    def __init__(self, ui, timer_set_ui, alldisplayobj, clock_set_ui, datamodel, setTimerWidget, setClockWidget,  *args, **kwargs):
+    def __init__(self, ui, timer_set_ui, alldisplayobj, datamodel, setTimerWidget,  *args, **kwargs):
         QThread.__init__(self, *args, **kwargs)
         self.ui = ui
         self.timer_set_ui = timer_set_ui
-        self.clock_set_ui = clock_set_ui
         self.dataModel = datamodel
         self.setTimerWidget = setTimerWidget
-        self.setClockWidget = setClockWidget
+
         # ================Start Count Down Timer Layout =========================================
         self.ui.startButton.clicked.connect(self._start_event)
         self.ui.resetButton.clicked.connect(self._reset_event)
         self.ui.timerSet.clicked.connect(self.setTimerDialog)
-        self.ui.setTimeSetting.clicked.connect(self.setClockDialog)
-        self.clock_set_ui.buttonClockBox.accepted.connect(self.setClockOk)
-        self.clock_set_ui.buttonClockBox.rejected.connect(self.rejectClock)
-        self.clock_set_ui.timeEdit.timeChanged.connect(self.timeChange)
-        self.clock_set_ui.dateEdit.dateChanged.connect(self.dateChange)
+
         self.total_seconds = 0
         self.hours = 0
         self.minutes = 0

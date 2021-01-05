@@ -6,6 +6,7 @@
 # always seem to need this
 import enum
 import os
+import shlex
 import signal
 import subprocess
 import threading
@@ -18,6 +19,7 @@ from PyQt5.QtSql import QSqlQueryModel
 
 from DataCaptureThread import CounterThread
 from MovieSplashScreen import MovieSplashScreen
+from RTCmodule import *
 from ShowTimeDateThread import ShowTimeDateThread
 from ThreadClass import ThreadParallel
 from TimerCounterThread import TimerCounterThread
@@ -373,76 +375,79 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeEditTextAttributeColor(self.ui.login_ui.user_pass,
                                                                       "QLineEdit")'''
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight1,
-                                                                        "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight2,
-                                                                        "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight3,
-                                                                        "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight4,
-                                                                        "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight5,
-                                                                        "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLight6,
-                                                                        "QLabel")
+                                                                     "QLabel")
 
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight1,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight2,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight3,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight4,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight5,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxLight6,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
 
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDim1,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDim2,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDim3,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDim4,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas1,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas2,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas3,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas4,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas5,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas6,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxGas7,
-                                                                        "QCheckBox")
-        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.checkBoxDifferentialPressure,
-                                                                        "QCheckBox")
+                                                                     "QCheckBox")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(
+            self.ui.settings_dialog_set_ui.checkBoxDifferentialPressure,
+            "QCheckBox")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelBorderColor,
-                                                                        "QLabel")
-        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelBackGroundColor,
-                                                                        "QLabel")
+                                                                     "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(
+            self.ui.settings_dialog_set_ui.labelBackGroundColor,
+            "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelTextColor,
-                                                                        "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelIconColor,
-                                                                        "QLabel")
+                                                                     "QLabel")
 
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelTheme,
-                                                                  "QLabel")
-        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelBackGroundImage,
-                                                                  "QLabel")
+                                                                     "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(
+            self.ui.settings_dialog_set_ui.labelBackGroundImage,
+            "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLogo,
-                                                                  "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelPowerOnImage,
-                                                                  "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLightTitle,
-                                                                  "QLabel")
+                                                                     "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelGasAlarmTitle,
-                                                                  "QLabel")
+                                                                     "QLabel")
 
         # ======================= Login UI ==========================================================================
         self.ui.modifyGlobalVariablesObj.setChangedImage()
@@ -965,17 +970,17 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.settings_dialog_set_ui.iconColor.icon().pixmap(self.settings_dialog_set_ui.iconColor.iconSize()))))
         self.queryIconColorSettingsMain(self.dataModel, self.database_manage)
         self.alldisplayColorChangeObj = AllDisplayAttributeColor(self.dataModel)
-        self.modifyGlobalVariablesObj = modifyGlobalVariables.ModifyGlobalVariables(self.alldisplayColorChangeObj, self.ot_ui, self.dataModel)
+        self.modifyGlobalVariablesObj = modifyGlobalVariables.ModifyGlobalVariables(self.alldisplayColorChangeObj,
+                                                                                    self.ot_ui, self.dataModel)
 
         # --------------------------- Start Multimedia Player ------------------------------------------------------
         # ------------------------------Start Stop Watch ------------------------------------
         self.dataCaptureThread = CounterThread(self.ui, self.alldisplayColorChangeObj)
         self.dataCaptureThread.start()
-        self.dateTimeShowThread = ShowTimeDateThread(self.ui)
+        self.dateTimeShowThread = ShowTimeDateThread(self.ui, self.setClockWidget, self.dataModel, self.clock_set_ui)
         self.dateTimeShowThread.start()
         self.timerCounterThread = TimerCounterThread(self.ui, self.timer_set_ui, self.alldisplayColorChangeObj,
-                                                     self.clock_set_ui, self.dataModel, self.setTimerWidget,
-                                                     self.setClockWidget)
+                                                     self.dataModel, self.setTimerWidget)
         self.timerCounterThread.start()
         # -----------------------------End Stop Watch ---------------------------------------
         import sys
@@ -989,6 +994,15 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         threadParallel = ThreadParallel(self)
         threadParallel.signal.return_signal.connect(threadParallel.function_thread)
         self.threadpool1.start(threadParallel)
+
+        # self.threadpool2 = QThreadPool()
+        # self.rtcThread = RTCThread(self)
+        # self.rtcThread.signal.return_signal.connect(self.rtcThread.function_thread)
+        # self.threadpool2.start(self.rtcThread)
+        # self.result = subprocess.call(
+        #   'echo pass | sudo hwclock -r',
+        #    shell=True)
+        # self.ui.day_date_show.setText(os.system('hwclock -r'))
         # --------------------------------- Parallel ThreadClass Run ---------------------------------------------------
 
         self.git_thread = CloneThread()  # This is the thread object
@@ -1043,8 +1057,31 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.userPassLineEdit.setEchoMode(True)
         self.ui.settingsButton.clicked.connect(self.loginDialogOpen)
         self.login_ui.loginButton.clicked.connect(self.check_password)
-
+        self.startThread1()
         # ===================================== End of Login ===========================================================
+
+    def startThread1(self):
+        self.t1 = threading.Thread(target=self.loop1)
+        self.t1.daemon = True
+        self.t1.start()
+
+    def loop1(self):
+        while True:
+            #self.result = subprocess.call(
+            #   'echo vishnu | sudo hwclock -r',
+            #   shell=True)
+            # proc = subprocess.call('sudo hwclock -r', shell=True, stdout=subprocess.PIPE)
+            proc = subprocess.getoutput('echo vishnu | sudo hwclock -r')
+            # subprocess.call(shlex.split("sudo hwclock -r"))
+            list_result = self.insert_dash(proc, 10)
+            # list_result = re.split(list_result, )
+            self.ui.day_date_show.setText(list_result)
+
+            # print(proc)
+            # time.sleep(1)
+
+    def insert_dash(self, string, index):
+        return string[:index] + '-' + string[index:]
 
     def CloseEvent(self, event):
         print("X is clicked")
