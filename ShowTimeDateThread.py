@@ -16,8 +16,8 @@ class ShowTimeDateThread(QThread):
         # now = datetime.datetime.now()
         # today = datetime.datetime.today().strftime('%d/%m/%Y')
         # setting only date
-        self.clock_set_ui.dateEdit.setDate(date)
         if self.ui.setTimeSetting.isChecked():
+            # self.clock_set_ui.dateEdit.setDate(date)
             self.setClockWidget.show()
         else:
             self.setClockWidget.hide()
@@ -30,17 +30,17 @@ class ShowTimeDateThread(QThread):
         self.int_count = True
 
     def timeChange(self):
-        self.current_time = self.clock_set_ui.timeEdit.time()
+        # self.current_time = self.clock_set_ui.timeEdit.time()
         # os.system('sudo date -u --set="%s"' % self.current_time.toString('hh:mm'))
         print(str(self.clock_set_ui.timeEdit.time()))
         # converting QTime object to string
-        self.label_time = self.current_time.toString('hh:mm')
-        self.tickPart = self.current_time.toString('ss')
+        # self.label_time = self.current_time.toString('hh:mm')
+        # self.tickPart = self.current_time.toString('ss')
 
         # showing it to the label
         # self.ui.time_show.setText(self.label_time)
-        self.ui.time_show.setText(
-            self.label_time + ":" + self.tickPart)
+        # self.ui.time_show.setText(
+        #   self.label_time + ":" + self.tickPart)
         '''
         self.ui.time_show.setText(
             self.label_time + "" + "<b><font color='#FFFF00' font size=12pt font weight:40>" +
@@ -85,7 +85,7 @@ class ShowTimeDateThread(QThread):
     def showDate(self):
         now = datetime.datetime.now()
         today = datetime.datetime.today().strftime('%d/%m/%Y')
-        # self.ui.day_date_show.setText(now.strftime("%A") + "  " + today)
+        self.ui.day_date_show.setText(now.strftime("%A") + "  " + today)
 
     def RunTimer(self):
         timer = QTimer(self)
@@ -106,14 +106,14 @@ class ShowTimeDateThread(QThread):
         self.label_time = 0
         self.tickPart = 0
         self.current_time = 0
-        self.showDate()
+        # self.showDate()
         self.clock_set_ui.buttonClockBox.accepted.connect(self.setClockOk)
         self.clock_set_ui.buttonClockBox.rejected.connect(self.rejectClock)
         self.clock_set_ui.timeEdit.timeChanged.connect(self.timeChange)
         self.clock_set_ui.dateEdit.dateChanged.connect(self.dateChange)
         self.ui.setTimeSetting.clicked.connect(self.setClockDialog)
         # ==================Stop Watch =====================================
-        self.RunTimer()
+        # self.RunTimer()
 
         # ------------------------------Data Capture Thread ------------------------------------
 

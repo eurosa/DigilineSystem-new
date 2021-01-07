@@ -14,6 +14,9 @@ import time
 from functools import partial
 from multiprocessing import Pool, cpu_count
 import sys
+
+import dateutil
+
 import multithreading as mt
 from PyQt5.QtSql import QSqlQueryModel
 
@@ -974,11 +977,27 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
                                                                                     self.ot_ui, self.dataModel)
 
         # --------------------------- Start Multimedia Player ------------------------------------------------------
+        self.lastTime = ''
+        self.lastDate = ''
+        self.lastTimeHwclock = ''
+        self.lastDateHwclock = ''
+        self.changeTime = ''
+        self.changeDate = ''
+        self.int_count = False
+        self.startThread1()
+        self.setClockWidget.closeEvent = self.CloseEvent
+        self.ui.setTimeSetting.clicked.connect(self.setClockDialog)
+        self.clock_set_ui.timeEdit.timeChanged.connect(self.timeChange)
+        self.clock_set_ui.dateEdit.dateChanged.connect(self.dateChange)
+        self.clock_set_ui.buttonClockBox.accepted.connect(self.setClockOk)
+        self.clock_set_ui.buttonClockBox.rejected.connect(self.rejectClock)
         # ------------------------------Start Stop Watch ------------------------------------
         self.dataCaptureThread = CounterThread(self.ui, self.alldisplayColorChangeObj)
         self.dataCaptureThread.start()
-        self.dateTimeShowThread = ShowTimeDateThread(self.ui, self.setClockWidget, self.dataModel, self.clock_set_ui)
-        self.dateTimeShowThread.start()
+
+        # self.dateTimeShowThread = ShowTimeDateThread(self.ui, self.setClockWidget, self.dataModel, self.clock_set_ui)
+        # self.dateTimeShowThread.start()
+
         self.timerCounterThread = TimerCounterThread(self.ui, self.timer_set_ui, self.alldisplayColorChangeObj,
                                                      self.dataModel, self.setTimerWidget)
         self.timerCounterThread.start()
@@ -989,7 +1008,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # ---------------------------End Multimedia ----------------------------------------------------------------
         self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj)
 
-        # --------------------------------- Parallel ThreadClas Run UI Initial Setup -----------------------------------
+        # --------------------------------- Parallel ThreadClass Run UI Initial Setup -----------------------------------
+
         self.threadpool1 = QThreadPool()
         threadParallel = ThreadParallel(self)
         threadParallel.signal.return_signal.connect(threadParallel.function_thread)
@@ -1057,8 +1077,43 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.userPassLineEdit.setEchoMode(True)
         self.ui.settingsButton.clicked.connect(self.loginDialogOpen)
         self.login_ui.loginButton.clicked.connect(self.check_password)
-        self.startThread1()
+
         # ===================================== End of Login ===========================================================
+
+    def setClockOk(self):
+        subprocess.call(
+            "sudo hwclock --set --date '" + str(self.changeDate) + " " + str(self.changeTime) + "'",
+            shell=True)
+        self.int_count = False
+
+    def rejectClock(self):
+        self.int_count = False
+
+    def timeChange(self):
+        print("Change Time: "+self.clock_set_ui.timeEdit.time().toString())
+        self.changeTime = self.clock_set_ui.timeEdit.time().toString()
+
+    def dateChange(self):
+        print("Change Date: "+self.clock_set_ui.dateEdit.date().toString('MM/dd/yyyy'))
+        self.changeDate = self.clock_set_ui.dateEdit.date().toString()
+
+    def setClockDialog(self):
+        self.int_count = True
+        self.setClockWidget.setStyleSheet(
+            "color:" + self.dataModel.get_text_col() + ";background-color:" + self.dataModel.get_theme_color() + ";")
+        # current_time = QTime.currentTime()
+        # self.clock_set_ui.timeEdit.setTime(current_time)
+        self.clock_set_ui.timeEdit.setDisplayFormat("H:mm:ss")
+        self.clock_set_ui.dateEdit.setDisplayFormat("dd/MM/yyyy")
+
+        self.clock_set_ui.dateEdit.setDate(self.lastDate)
+        self.clock_set_ui.timeEdit.setTime(self.lastTime)
+        if self.ui.setTimeSetting.isChecked():
+            # self.clock_set_ui.dateEdit.setDate(date)
+            self.setClockWidget.show()
+        else:
+            self.setClockWidget.hide()
+        self.setClockWidget.exec_()
 
     def startThread1(self):
         self.t1 = threading.Thread(target=self.loop1)
@@ -1067,16 +1122,52 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def loop1(self):
         while True:
-            #self.result = subprocess.call(
-            #   'echo vishnu | sudo hwclock -r',
-            #   shell=True)
-            # proc = subprocess.call('sudo hwclock -r', shell=True, stdout=subprocess.PIPE)
-            proc = subprocess.getoutput('echo vishnu | sudo hwclock -r')
-            # subprocess.call(shlex.split("sudo hwclock -r"))
-            list_result = self.insert_dash(proc, 10)
-            # list_result = re.split(list_result, )
-            self.ui.day_date_show.setText(list_result)
+            if self.int_count:
+                pass
+            else:
+                # self.result = subprocess.call(
+                # 'echo vishnu | sudo hwclock -r',
+                # shell=True)
+                print("INT_COUNT:" + str(self.int_count))
+                # proc = subprocess.call('sudo hwclock -r', shell=True, stdout=subprocess.PIPE)
 
+                proc = subprocess.getoutput('echo vishnu | sudo hwclock -r')
+                # subprocess.call(shlex.split("sudo hwclock -r"))
+                # list_result = self.insert_dash(proc, 10)
+                # list_result = re.split(list_result, )
+
+                try:
+                    date_time_str = proc
+                    # date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+                    date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f%z')
+                    '''print('Date:', date_time_obj.date())
+                    print('Time:', date_time_obj.time())
+                    print('Date-time:', date_time_obj)'''
+                    self.lastTime = date_time_obj.time()
+                    self.lastDate = date_time_obj.date()
+                    '''if self.ui.setTimeSetting.isChecked():
+                        self.clock_set_ui.timeEdit.setTime(date_time_obj.time())'''
+                    time_split = re.split(':', str(date_time_obj.time()))
+                    self.ui.day_date_show.setText(str(date_time_obj.date().strftime('%d/%m/%Y')))
+                    second = time_split[2].split('.', 1)[0]
+                    self.ui.time_show.setText(
+                        time_split[0] + ":" + time_split[1] + "" + "<b><font font size=12pt font weight:40>" +
+                        ":" + "</font>" + "<b>< font size=12pt font weight:40>" +
+                        second + "</font>")
+                    self.lastTimeHwclock = time_split[0] + ":" + time_split[1] + ":" + second
+                    '''splitted_string = re.split('\s+', proc)
+                    time_split = re.split(':', splitted_string[1])
+                    second = time_split[2].split('.', 1)[0]
+                    self.ui.day_date_show.setText(splitted_string[0])
+                    self.clock_set_ui.timeEdit.setTime(time_split[0] + ":" + time_split[1]+":"+second)
+                    self.ui.time_show.setText(
+                        time_split[0] + ":" + time_split[1] + "" + "<b><font font size=12pt font weight:40>" +
+                        ":" + "</font>" + "<b>< font size=12pt font weight:40>" +
+                        second + "</font>")'''
+                except IndexError:
+                    second = 'Please Connect rtc.'
+                    print(second)
+            # self.int_count = False
             # print(proc)
             # time.sleep(1)
 
@@ -1084,6 +1175,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         return string[:index] + '-' + string[index:]
 
     def CloseEvent(self, event):
+        self.int_count = False
         print("X is clicked")
 
     # ===============Start Color and Font =======================================================
