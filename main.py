@@ -2306,9 +2306,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.ui.humiditySetShow.setStyleSheet("QLabel { color: yellow ;}")
         self.ui.humiditySetShow.setText(str("%02d" % self.h_i_d_count) + " " + "%")
 
-    # ========================++++++End Database++++=====================================================================
-    # method called by button
-    # ====================================Make All QWidget transparent ==================
+    # ========================+++++++++++++End Database++++++++++++++++==================
+    #                        method called by button
+    # ========================+++++++++++++Make All QWidget transparent =================
     def makeBackTransparent(self):
         self.ui.centralWidget.setStyleSheet("background:transparent;")
         '''self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
