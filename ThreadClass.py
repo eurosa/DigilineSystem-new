@@ -340,7 +340,8 @@ class ThreadParallel(QRunnable):
         # self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
         # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+        # while True:
+        #     print("All Color Changes")
         # self.ui.modifyGlobalVariablesObj.setChangedImage()
         # self.ui.modifyGlobalVariablesObj.setChangedLightColor()
         # self.ui.lightBrightnessObject.allLightBarInitialSetup(self.ui.ot_ui)

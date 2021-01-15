@@ -16,6 +16,7 @@ from multiprocessing import Pool, cpu_count
 import sys
 
 import dateutil
+import pytz
 
 import multithreading as mt
 from PyQt5.QtSql import QSqlQueryModel
@@ -30,6 +31,8 @@ from allDisplayAttributeColor import *
 from multiMediaPlayerThread import MultiMediaThread
 from player import Player
 from pushButtonColorControl import PushButtonColorControl
+from serialDataTXRX import SerialWrapper
+from switchDataSendThread import ThreadDataSwitchData
 from telephoneScript import TelephoneDialog
 from toolButtonColorControl import ToolButtonColorControl
 from ventilationDetails import Ui_ventilationDetails
@@ -863,42 +866,46 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # =======================Toggle Button ==================================================
         self.ot_ui.setupUi(self.otForm)
         # =========================Toggle Switch ===========================
+        self.threadPoolSwitch = QThreadPool()
+        self.serialWrapper = SerialWrapper('/dev/ttyUSB0')
+        self.totalHex = '0b'
+        self.add_sub_hex = 0
         self.switchContainer = QtWidgets.QVBoxLayout(self.ot_ui.toggleContainer)
         self.toggleSwitch = toggleButton.Switch(self.toggleButtonForm)
         self.toggleSwitch.setStyleSheet("background-color : #4c4c4c")
         self.switchContainer.addWidget(self.toggleSwitch)
 
-        self.toggleSwitch.clicked.connect(self.changeColor)
+        self.toggleSwitch.clicked.connect(self.startThreadSwitch4)
 
         self.switchContainerLaminar = QtWidgets.QVBoxLayout(self.ot_ui.toggleContainerLaminar)
         self.toggleSwitchLaminar = toggleButton.Switch(self.toggleButtonForm)
         self.toggleSwitchLaminar.setStyleSheet("background-color : #4c4c4c")
         self.switchContainerLaminar.addWidget(self.toggleSwitchLaminar)
-        self.toggleSwitchLaminar.clicked.connect(self.changeColor)
+        self.toggleSwitchLaminar.clicked.connect(self.startThreadSwitch5)
 
         self.switchContainerGasL1 = QtWidgets.QVBoxLayout(self.ot_ui.toggleContainerGasL1)
         self.toggleSwitchGasL1 = toggleButton.Switch(self.toggleButtonForm)
         self.toggleSwitchGasL1.setStyleSheet("background-color : #4c4c4c")
         self.switchContainerGasL1.addWidget(self.toggleSwitchGasL1)
-        self.toggleSwitchGasL1.clicked.connect(self.changeColor)
+        self.toggleSwitchGasL1.clicked.connect(self.startThreadSwitch1)
 
         self.switchContainerGasL2 = QtWidgets.QVBoxLayout(self.ot_ui.toggleContainerGasL2)
         self.toggleSwitchGasL2 = toggleButton.Switch(self.toggleButtonForm)
         self.toggleSwitchGasL2.setStyleSheet("background-color : #4c4c4c")
         self.switchContainerGasL2.addWidget(self.toggleSwitchGasL2)
-        self.toggleSwitchGasL2.clicked.connect(self.changeColor)
+        self.toggleSwitchGasL2.clicked.connect(self.startThreadSwitch2)
 
         self.switchContainerOT1 = QtWidgets.QVBoxLayout(self.ot_ui.toggleContainerOT1)
         self.toggleSwitchOT1 = toggleButton.Switch(self.toggleButtonForm)
         self.toggleSwitchOT1.setStyleSheet("background-color : #4c4c4c")
         self.switchContainerOT1.addWidget(self.toggleSwitchOT1)
-        self.toggleSwitchOT1.clicked.connect(self.changeColor)
+        self.toggleSwitchOT1.clicked.connect(self.startThreadSwitch3)
 
         self.switchContainerOT2 = QtWidgets.QVBoxLayout(self.ot_ui.toggleContainerOT2)
         self.toggleSwitchOT2 = toggleButton.Switch(self.toggleButtonForm)
         self.toggleSwitchOT2.setStyleSheet("background-color : #4c4c4c")
         self.switchContainerOT2.addWidget(self.toggleSwitchOT2)
-        self.toggleSwitchOT2.clicked.connect(self.changeColor)
+        self.toggleSwitchOT2.clicked.connect(self.startThreadSwitch6)
 
         # =========================End Toggle Switch ============================================
 
@@ -991,6 +998,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.clock_set_ui.dateEdit.dateChanged.connect(self.dateChange)
         self.clock_set_ui.buttonClockBox.accepted.connect(self.setClockOk)
         self.clock_set_ui.buttonClockBox.rejected.connect(self.rejectClock)
+        #  print(pytz.all_timezones_set)
         # ------------------------------Start Stop Watch ------------------------------------
         self.dataCaptureThread = CounterThread(self.ui, self.alldisplayColorChangeObj)
         self.dataCaptureThread.start()
@@ -1008,7 +1016,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # ---------------------------End Multimedia ----------------------------------------------------------------
         self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj)
 
-        # --------------------------------- Parallel ThreadClass Run UI Initial Setup -----------------------------------
+        #  ---------------------------------  Parallel ThreadClass Run UI Initial Setup  ---------------------------
 
         self.threadpool1 = QThreadPool()
         threadParallel = ThreadParallel(self)
@@ -1049,7 +1057,14 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.applyLogoImage()
         self.makeBackTransparent()
         self.fontColorChangesName()
-        self.changeColor()
+        self.toggleSwitchColor()
+        self.toggleSwitchLaminarColor()
+        self.toggleSwitchGasL1Color()
+        self.toggleSwitchGasL2Color()
+        self.toggleSwitchOT1Color()
+        self.toggleSwitchOT2Color()
+
+
 
         # ========================Start light Dimming===============================================================
         self.lightBrightnessObject = lightBrightness.Brightness(self.ot_ui, self.dataModel)
@@ -1090,11 +1105,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.int_count = False
 
     def timeChange(self):
-        print("Change Time: "+self.clock_set_ui.timeEdit.time().toString())
+        print("Change Time: " + self.clock_set_ui.timeEdit.time().toString())
         self.changeTime = self.clock_set_ui.timeEdit.time().toString()
 
     def dateChange(self):
-        print("Change Date: "+self.clock_set_ui.dateEdit.date().toString('MM/dd/yyyy'))
+        print("Change Date: " + self.clock_set_ui.dateEdit.date().toString('MM/dd/yyyy'))
         self.changeDate = self.clock_set_ui.dateEdit.date().toString()
 
     def setClockDialog(self):
@@ -2362,39 +2377,114 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             text = text[:2] + ' ' + text[3:]
         self.lbl1.setText(text)'''
 
-    def changeColor(self):
+    def hexAdd(self, hex_code):
+        print("hexAdd: "+str(hex_code))
+        self.add_sub_hex += int(hex_code, 16)
+        configVariables.totalHex = hex(self.add_sub_hex)
+        # return configVariables.totalHex
+
+    def hexSub(self, hex_code):
+        if self.add_sub_hex >= int(hex_code, 16):
+            self.add_sub_hex -= int(hex_code, 16)
+            configVariables.totalHex = hex(self.add_sub_hex)
+        # return configVariables.totalHex
+
+    def startThreadSwitch1(self):
+        self.swt1 = threading.Thread(target=self.switch1)
+        self.swt1.daemon = True
+        self.swt1.start()
+
+    def switch1(self):
+        self.toggleSwitchGasL1Color()
+
+    def startThreadSwitch2(self):
+        self.swt2 = threading.Thread(target=self.switch2)
+        self.swt2.daemon = True
+        self.swt2.start()
+
+    def switch2(self):
+        self.toggleSwitchGasL2Color()
+
+    def startThreadSwitch3(self):
+        self.swt3 = threading.Thread(target=self.switch3)
+        self.swt3.daemon = True
+        self.swt3.start()
+
+    def switch3(self):
+        self.toggleSwitchOT1Color()
+
+    def startThreadSwitch4(self):
+        self.swt4 = threading.Thread(target=self.switch4)
+        self.swt4.daemon = True
+        self.swt4.start()
+
+    def switch4(self):
+        self.toggleSwitchColor()
+
+    def startThreadSwitch5(self):
+        self.swt5 = threading.Thread(target=self.switch5)
+        self.swt5.daemon = True
+        self.swt5.start()
+
+    def switch5(self):
+        self.toggleSwitchLaminarColor()
+
+    def startThreadSwitch6(self):
+        self.swt6= threading.Thread(target=self.switch6)
+        self.swt6.daemon = True
+        self.swt6.start()
+
+    def switch6(self):
+        self.toggleSwitchOT2Color()
+
+
+    def toggleSwitchColor(self):
         # if button is checked
         if self.toggleSwitch.isChecked():
             print("Check: " + str(self.toggleSwitch.isChecked()))
+            self.hexAdd("0x8")
             # setting background color to light-blue
-
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             self.toggleSwitch.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.lightBulb3.setPixmap(configVariables.changed_light_bulb)
 
+            '''self.threadDataSwitchData = ThreadDataSwitchData(self)
+            self.threadDataSwitchData.signal.return_signal.connect(self.threadDataSwitchData.function_thread)
+            self.threadPoolSwitch.start(self.threadDataSwitchData)'''
+
             # if it is unchecked
         else:
-
             # set background color back to light-grey
             print("Uncheck: " + str(self.toggleSwitch.isChecked()))
+            self.hexSub("0x8")
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             self.toggleSwitch.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.lightBulb3.setPixmap(configVariables.low_light_bulb)
 
+    def toggleSwitchLaminarColor(self):
             # if button is checked
         if self.toggleSwitchLaminar.isChecked():
 
             # setting background color to light-blue
-
+            self.hexAdd("0x10")
+            # setting background color to light-blue
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             self.toggleSwitchLaminar.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.lightBulb4.setPixmap(configVariables.changed_light_bulb)
             # if it is unchecked
         else:
-
+            self.hexSub("0x10")
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchLaminar.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.lightBulb4.setPixmap(configVariables.low_light_bulb)
+
+    def toggleSwitchGasL1Color(self):
             # if button is checked
         if self.toggleSwitchGasL1.isChecked():
-
+            self.hexAdd("0x1")
+            # setting background color to light-blue
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
             self.ot_ui.light1Increment.setEnabled(True)
             self.toggleSwitchGasL1.setStyleSheet("background-color : #FFFFFF")
@@ -2402,43 +2492,61 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # if it is unchecked
         else:
             self.ot_ui.light1Increment.setEnabled(False)
+            self.hexSub("0x1")
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchGasL1.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.lightBulb1.setPixmap(configVariables.low_light_bulb)
 
+    def toggleSwitchGasL2Color(self):
             # if button is checked
         if self.toggleSwitchGasL2.isChecked():
-
+            self.hexAdd("0x2")
+            # setting background color to light-blue
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
 
             self.toggleSwitchGasL2.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.lightBulb2.setPixmap(configVariables.changed_light_bulb)
             # if it is unchecked
         else:
-
+            self.hexSub("0x2")
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchGasL2.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.lightBulb2.setPixmap(configVariables.low_light_bulb)
 
+    def toggleSwitchOT1Color(self):
             # if button is checked
         if self.toggleSwitchOT1.isChecked():
+            self.hexAdd("0x4")
+            # setting background color to light-blue
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
             self.toggleSwitchOT1.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.otLightBulb1.setPixmap(configVariables.changed_ot_light)
 
             # if it is unchecked
         else:
+            self.hexSub("0x4")
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchOT1.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.otLightBulb1.setPixmap(configVariables.low_ot_light)
 
+    def toggleSwitchOT2Color(self):
             # if button is checked
         if self.toggleSwitchOT2.isChecked():
+            self.hexAdd("0x20")
+            # setting background color to light-blue
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
             self.toggleSwitchOT2.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.otLightBulb2.setPixmap(configVariables.changed_ot_light)
             # if it is unchecked
         else:
+            self.hexSub("0x20")
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchOT2.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.otLightBulb2.setPixmap(configVariables.low_ot_light)

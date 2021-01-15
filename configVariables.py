@@ -28,5 +28,7 @@ light1Brightness_4 = 0
 light1Brightness_3 = 0
 light1Brightness_2 = 0
 light1Brightness = 0
+totalHex = "0x0"
+
 
 
