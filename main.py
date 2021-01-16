@@ -2539,12 +2539,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # setting background color to light-blue
             self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
-            self.ot_ui.light1Increment.setEnabled(True)
+            # self.ot_ui.light1Increment.setEnabled(True)
             self.toggleSwitchGasL1.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.lightBulb1.setPixmap(configVariables.changed_light_bulb)
             # if it is unchecked
         else:
-            self.ot_ui.light1Increment.setEnabled(False)
+            # self.ot_ui.light1Increment.setEnabled(False)
             self.hexSub("0x1")
             self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
