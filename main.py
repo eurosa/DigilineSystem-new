@@ -813,6 +813,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # ======================================Temperature and Humidity increment and decrement =======================
         self.t_i_d_count = 0
+        self.hex_add_temp = 0
+        self.hex_minus_temp = 0
+        self.hex_add_humidity = 0
+        self.hex_minus_humidity = 0
         self.ui.downTemperatureButton.pressed.connect(self.decrementTemperature)
         self.ui.upTemperatureButton.pressed.connect(self.incrementTemperature)
         self.ui.downTemperatureButton.setAutoRepeat(True)
@@ -1063,8 +1067,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.toggleSwitchGasL2Color()
         self.toggleSwitchOT1Color()
         self.toggleSwitchOT2Color()
-
-
 
         # ========================Start light Dimming===============================================================
         self.lightBrightnessObject = lightBrightness.Brightness(self.ot_ui, self.dataModel)
@@ -2291,6 +2293,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         print(str(self.t_i_d_count))
         self.tempDisplayLabel()
         # while self.ui.downTemperatureButton.isDown():
+        self.startThreadSwitch7()
         #  i = i + 1
         # print(str(i))
 
@@ -2298,12 +2301,14 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.t_i_d_count = self.t_i_d_count + 1
         print(str(self.t_i_d_count))
         self.tempDisplayLabel()
+        self.startThreadSwitch7()
 
     def decrementHumidity(self):
         if self.h_i_d_count > 0:
             self.h_i_d_count = self.h_i_d_count - 1
         print(str(self.h_i_d_count))
         self.humidityDisplayLabel()
+        self.startThreadSwitch8()
         # while self.ui.downTemperatureButton.isDown():
         #  i = i + 1
         # print(str(i))
@@ -2312,6 +2317,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.h_i_d_count = self.h_i_d_count + 1
         print(str(self.h_i_d_count))
         self.humidityDisplayLabel()
+        self.startThreadSwitch8()
 
     def tempDisplayLabel(self):
         # self.ui.tempSetShow.setStyleSheet("QLabel { color: yellow ;}")
@@ -2378,7 +2384,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.lbl1.setText(text)'''
 
     def hexAdd(self, hex_code):
-        print("hexAdd: "+str(hex_code))
+        print("hexAdd: " + str(hex_code))
         self.add_sub_hex += int(hex_code, 16)
         configVariables.totalHex = hex(self.add_sub_hex)
         # return configVariables.totalHex
@@ -2430,13 +2436,60 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.toggleSwitchLaminarColor()
 
     def startThreadSwitch6(self):
-        self.swt6= threading.Thread(target=self.switch6)
+        self.swt6 = threading.Thread(target=self.switch6)
         self.swt6.daemon = True
         self.swt6.start()
 
     def switch6(self):
         self.toggleSwitchOT2Color()
 
+    def startThreadSwitch7(self):
+        self.swt7 = threading.Thread(target=self.switch7)
+        self.swt7.daemon = True
+        self.swt7.start()
+
+    def switch7(self):
+        self.tempSwitch()
+
+    def startThreadSwitch8(self):
+        self.swt8 = threading.Thread(target=self.switch8)
+        self.swt8.daemon = True
+        self.swt8.start()
+
+    def switch8(self):
+        self.humidSwitch()
+
+    def tempSwitch(self):
+        # if button is checked
+        if self.t_i_d_count > 15.1 and self.hex_add_temp == 0:
+            self.hexAdd("0x40")
+            self.hex_add_temp = 1
+            self.hex_minus_temp = 0
+            # setting background color to light-blue
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            # if it is unchecked
+        elif self.t_i_d_count < 15.1 and self.hex_minus_temp == 0:
+            # set background color back to light-grey
+            self.hexSub("0x40")
+            self.hex_minus_temp = 1
+            self.hex_add_temp = 0
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+
+    def humidSwitch(self):
+        # if button is checked
+        if self.h_i_d_count > 64.0 and self.hex_add_humidity == 0:
+            self.hexAdd("0x80")
+            self.hex_add_humidity = 1
+            self.hex_minus_humidity = 0
+            # setting background color to light-blue
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            # if it is unchecked
+        elif self.h_i_d_count < 64.0 and self.hex_minus_humidity == 0:
+            # set background color back to light-grey
+            self.hexSub("0x80")
+            self.hex_add_humidity = 0
+            self.hex_minus_humidity = 1
+            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
 
     def toggleSwitchColor(self):
         # if button is checked
@@ -2462,7 +2515,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.ot_ui.lightBulb3.setPixmap(configVariables.low_light_bulb)
 
     def toggleSwitchLaminarColor(self):
-            # if button is checked
+        # if button is checked
         if self.toggleSwitchLaminar.isChecked():
 
             # setting background color to light-blue
@@ -2480,7 +2533,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.ot_ui.lightBulb4.setPixmap(configVariables.low_light_bulb)
 
     def toggleSwitchGasL1Color(self):
-            # if button is checked
+        # if button is checked
         if self.toggleSwitchGasL1.isChecked():
             self.hexAdd("0x1")
             # setting background color to light-blue
@@ -2499,7 +2552,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.ot_ui.lightBulb1.setPixmap(configVariables.low_light_bulb)
 
     def toggleSwitchGasL2Color(self):
-            # if button is checked
+        # if button is checked
         if self.toggleSwitchGasL2.isChecked():
             self.hexAdd("0x2")
             # setting background color to light-blue
@@ -2517,7 +2570,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.ot_ui.lightBulb2.setPixmap(configVariables.low_light_bulb)
 
     def toggleSwitchOT1Color(self):
-            # if button is checked
+        # if button is checked
         if self.toggleSwitchOT1.isChecked():
             self.hexAdd("0x4")
             # setting background color to light-blue
@@ -2535,7 +2588,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.ot_ui.otLightBulb1.setPixmap(configVariables.low_ot_light)
 
     def toggleSwitchOT2Color(self):
-            # if button is checked
+        # if button is checked
         if self.toggleSwitchOT2.isChecked():
             self.hexAdd("0x20")
             # setting background color to light-blue

@@ -6,6 +6,14 @@ class SerialWrapper:
     def __init__(self, device):
         self.ser = serial.Serial(device, 115200)
         self.ser1 = serial.Serial(device, 9600)
+
+        '''self.ser1 = serial.Serial(
+            port=device,
+            baudrate=9600,
+            parity=serial.PARITY_NONE,
+            stopbits=serial.STOPBITS_ONE,
+            bytesize=serial.EIGHTBITS,
+            timeout=0)'''
         self.sendDataToSerialPort()
 
     def sendData(self, data):
@@ -13,17 +21,43 @@ class SerialWrapper:
         self.ser.write(data.encode())
 
     def sendDataToSerialPort(self, hex_code=0x46):
-        print("Converted Hex: "+str(hex_code))
+        print("Converted Hex: " + str(hex_code))
         # misc code here
         thestring = "\x02\x31\x43\x46\xFF\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20"
-        # command = b'\x02\x31\x43\x02\x0F\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20'
+        command = b'\x02\x31\x43\x02\x0F\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20\n'
         cw = [0x02, 0x31, 0x43, 0x46, hex_code, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46,
               0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x20]
 
         self.ser1.write(serial.to_bytes(cw))
+        '''while True:
+            cc = str(self.ser1.read_all())
+            print(cc[0:])'''
         s = self.ser1.read(22)
-        print(s)
-        time.sleep(1)  # Sleep for 1 seconds
+        # print(s)
+        print("01: "+str(s[0]))
+        print("02: "+str(s[1]))
+        print("03: "+str(s[2]))
+        print("04: "+str(s[3]))
+        print("05: "+str(s[4]))
+        print("06: "+str(s[5]))
+        print("07: "+str(s[6]))
+        print("08: "+str(s[7]))
+        print("09: "+str(s[8]))
+        print("10: "+str(s[9]))
+        print("11: "+str(s[10]))
+        print("12: "+str(s[11]))
+        print("13: "+str(s[12]))
+        print("14: "+str(s[13]))
+        print("15: "+str(s[14]))
+        print("16: "+str(s[15]))
+        print("17: "+str(s[16]))
+        print("18: "+str(s[17]))
+        print("19: "+str(s[18]))
+        print("20: "+str(s[19]))
+        print("21: "+str(s[20]))
+        print("22: "+str(s[21]))
+
+        # time.sleep(1)  # Sleep for 1 seconds
 
 
 def main():
@@ -72,10 +106,9 @@ crw-rw---T 1 root dialout 188, 0 Feb 12 12:01 /dev/ttyUSB0
         print(s)
         time.sleep(1)  # Sleep for 3 seconds'''
 
-
 # 02314346464646464646464646464646464646464620 #--------Relay Control---------
 # 023143464046464646464646464646464646464620   #--------Relay Control---------
 # 02314346FF4646464646464646464646464646464620 #--------Relay Control---------
 # https://www.ascii-code.com/
-#if __name__ == '__main__':
+# if __name__ == '__main__':
 #    main()
