@@ -31,6 +31,7 @@ from allDisplayAttributeColor import *
 from multiMediaPlayerThread import MultiMediaThread
 from player import Player
 from pushButtonColorControl import PushButtonColorControl
+from repeatedTimer import RepeatedTimer
 from serialDataTXRX import SerialWrapper
 from switchDataSendThread import ThreadDataSwitchData
 from telephoneScript import TelephoneDialog
@@ -872,6 +873,13 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # =========================Toggle Switch ===========================
         self.threadPoolSwitch = QThreadPool()
         self.serialWrapper = SerialWrapper('/dev/ttyUSB0')
+        print("starting...")
+        self.rt = RepeatedTimer(1, self.serialWrapper.sendDataToSerialPort)  # it auto-starts, no need of rt.start()
+        '''try:
+            time.sleep(1)  # your long-running job goes here...
+        finally:
+            rt.stop()  # better in a try/finally block to make sure the program ends!'''
+
         self.totalHex = '0b'
         self.add_sub_hex = 0
         self.switchContainer = QtWidgets.QVBoxLayout(self.ot_ui.toggleContainer)
@@ -2396,68 +2404,84 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # return configVariables.totalHex
 
     def startThreadSwitch1(self):
+        self.rt.stop()
         self.swt1 = threading.Thread(target=self.switch1)
         self.swt1.daemon = True
         self.swt1.start()
 
     def switch1(self):
         self.toggleSwitchGasL1Color()
+        self.rt.start()
 
     def startThreadSwitch2(self):
+        self.rt.stop()
         self.swt2 = threading.Thread(target=self.switch2)
         self.swt2.daemon = True
         self.swt2.start()
 
     def switch2(self):
         self.toggleSwitchGasL2Color()
+        self.rt.start()
 
     def startThreadSwitch3(self):
+        self.rt.stop()
         self.swt3 = threading.Thread(target=self.switch3)
         self.swt3.daemon = True
         self.swt3.start()
 
     def switch3(self):
         self.toggleSwitchOT1Color()
+        self.rt.start()
 
     def startThreadSwitch4(self):
+        self.rt.stop()
         self.swt4 = threading.Thread(target=self.switch4)
         self.swt4.daemon = True
         self.swt4.start()
 
     def switch4(self):
         self.toggleSwitchColor()
+        self.rt.start()
 
     def startThreadSwitch5(self):
+        self.rt.stop()
         self.swt5 = threading.Thread(target=self.switch5)
         self.swt5.daemon = True
         self.swt5.start()
 
     def switch5(self):
         self.toggleSwitchLaminarColor()
+        self.rt.start()
 
     def startThreadSwitch6(self):
+        self.rt.stop()
         self.swt6 = threading.Thread(target=self.switch6)
         self.swt6.daemon = True
         self.swt6.start()
 
     def switch6(self):
         self.toggleSwitchOT2Color()
+        self.rt.start()
 
     def startThreadSwitch7(self):
+        self.rt.stop()
         self.swt7 = threading.Thread(target=self.switch7)
         self.swt7.daemon = True
         self.swt7.start()
 
     def switch7(self):
         self.tempSwitch()
+        self.rt.start()
 
     def startThreadSwitch8(self):
+        self.rt.stop()
         self.swt8 = threading.Thread(target=self.switch8)
         self.swt8.daemon = True
         self.swt8.start()
 
     def switch8(self):
         self.humidSwitch()
+        self.rt.start()
 
     def tempSwitch(self):
         # if button is checked
@@ -2466,14 +2490,16 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.hex_add_temp = 1
             self.hex_minus_temp = 0
             # setting background color to light-blue
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # if it is unchecked
         elif self.t_i_d_count < 15.1 and self.hex_minus_temp == 0:
             # set background color back to light-grey
             self.hexSub("0x40")
             self.hex_minus_temp = 1
             self.hex_add_temp = 0
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
 
     def humidSwitch(self):
         # if button is checked
@@ -2482,14 +2508,16 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.hex_add_humidity = 1
             self.hex_minus_humidity = 0
             # setting background color to light-blue
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # if it is unchecked
         elif self.h_i_d_count < 64.0 and self.hex_minus_humidity == 0:
             # set background color back to light-grey
             self.hexSub("0x80")
             self.hex_add_humidity = 0
             self.hex_minus_humidity = 1
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
 
     def toggleSwitchColor(self):
         # if button is checked
@@ -2497,7 +2525,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             print("Check: " + str(self.toggleSwitch.isChecked()))
             self.hexAdd("0x8")
             # setting background color to light-blue
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             self.toggleSwitch.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.lightBulb3.setPixmap(configVariables.changed_light_bulb)
 
@@ -2510,7 +2539,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # set background color back to light-grey
             print("Uncheck: " + str(self.toggleSwitch.isChecked()))
             self.hexSub("0x8")
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             self.toggleSwitch.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.lightBulb3.setPixmap(configVariables.low_light_bulb)
 
@@ -2521,13 +2551,15 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # setting background color to light-blue
             self.hexAdd("0x10")
             # setting background color to light-blue
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             self.toggleSwitchLaminar.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.lightBulb4.setPixmap(configVariables.changed_light_bulb)
             # if it is unchecked
         else:
             self.hexSub("0x10")
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchLaminar.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.lightBulb4.setPixmap(configVariables.low_light_bulb)
@@ -2537,7 +2569,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         if self.toggleSwitchGasL1.isChecked():
             self.hexAdd("0x1")
             # setting background color to light-blue
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
             # self.ot_ui.light1Increment.setEnabled(True)
             self.toggleSwitchGasL1.setStyleSheet("background-color : #FFFFFF")
@@ -2546,7 +2579,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         else:
             # self.ot_ui.light1Increment.setEnabled(False)
             self.hexSub("0x1")
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchGasL1.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.lightBulb1.setPixmap(configVariables.low_light_bulb)
@@ -2556,7 +2590,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         if self.toggleSwitchGasL2.isChecked():
             self.hexAdd("0x2")
             # setting background color to light-blue
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
 
             self.toggleSwitchGasL2.setStyleSheet("background-color : #FFFFFF")
@@ -2564,7 +2599,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # if it is unchecked
         else:
             self.hexSub("0x2")
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchGasL2.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.lightBulb2.setPixmap(configVariables.low_light_bulb)
@@ -2574,7 +2610,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         if self.toggleSwitchOT1.isChecked():
             self.hexAdd("0x4")
             # setting background color to light-blue
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
             self.toggleSwitchOT1.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.otLightBulb1.setPixmap(configVariables.changed_ot_light)
@@ -2582,7 +2619,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # if it is unchecked
         else:
             self.hexSub("0x4")
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchOT1.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.otLightBulb1.setPixmap(configVariables.low_ot_light)
@@ -2592,14 +2630,16 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         if self.toggleSwitchOT2.isChecked():
             self.hexAdd("0x20")
             # setting background color to light-blue
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
             self.toggleSwitchOT2.setStyleSheet("background-color : #FFFFFF")
             self.ot_ui.otLightBulb2.setPixmap(configVariables.changed_ot_light)
             # if it is unchecked
         else:
             self.hexSub("0x20")
-            self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.serialWrapper.sendDataToSerialPort()
+            # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
             self.toggleSwitchOT2.setStyleSheet("background-color : #4c4c4c")
             self.ot_ui.otLightBulb2.setPixmap(configVariables.low_ot_light)
