@@ -8,9 +8,8 @@ from repeatedTimer import RepeatedTimer
 
 
 class SerialWrapper:
-    def __init__(self, device, threadrxtx, threadpoolRXTX):
+    def __init__(self, device, threadrxtx):
         self.threadrxtx = threadrxtx
-        self.threadpoolRXTX = threadpoolRXTX
         self.s = None
         self.ser = serial.Serial(device, 115200)
         self.ser1 = serial.Serial(device, 9600)
@@ -77,8 +76,12 @@ class SerialWrapper:
             if self.s[4] == 4 or self.s[4] == 8:
                 configVariables.vacuum_hex = self.s[3]
             # =================================== Thread to color changes ====================
-            self.threadrxtx.signal.return_signal.connect(self.threadrxtx.function_thread)
-            self.threadpoolRXTX.start(self.threadrxtx)
+            #self.threadrxtx.signal.return_signal.connect(self.threadrxtx.function_thread)
+            #self.threadpoolRXTX.start(self.threadrxtx)
+
+            self.threadrxtx .start()
+
+
             # =================================== Thread to color changes ====================
             print(str(self.s[0]) + " " + str(self.s[1]) + " " + str(self.s[2]) + " "
                                                                                  "" + str(self.s[3]) + " " + str(
