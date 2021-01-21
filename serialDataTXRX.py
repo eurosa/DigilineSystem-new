@@ -8,7 +8,10 @@ from repeatedTimer import RepeatedTimer
 
 
 class SerialWrapper:
-    def __init__(self, device):
+    def __init__(self, device, threadrxtx, threadpoolRXTX):
+        self.threadrxtx = threadrxtx
+        self.threadpoolRXTX = threadpoolRXTX
+        self.s = None
         self.ser = serial.Serial(device, 115200)
         self.ser1 = serial.Serial(device, 9600)
         self.cw = [0x02, 0x31, 0x43, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46,
@@ -31,6 +34,12 @@ class SerialWrapper:
         self.ser.write(data.encode())
 
     # def sendDataToSerialPort(self, hex_code):
+    def setRepeater(self, repeater):
+        self.repeater = repeater
+
+    def getRepeater(self):
+        return self.repeater
+
     def sendDataToSerialPort(self):
         # print("Converted Hex: " + str(hex_code))
         new_hex = int(configVariables.totalHex, 16)
@@ -44,43 +53,72 @@ class SerialWrapper:
         '''while True:
             cc = str(self.ser1.read_all())
             print(cc[0:])'''
-        self.ser1.read(22)
-        ''' print(str(s[0]) + "" + str(s[1]) + " " + str(s[2]) + " "
-                                                                     "" + str(s[3]) + " " + str(s[4]) + " " + str(
-                    s[5]) + "" + str(s[6]) + "" + str(s[7]) + " " + str(s[8]) + " "
-                                                                                "" + str(s[9]) + " " + str(s[10]) + " " + str(
-                    s[11]) + " " + str(
-                    s[12]) + " " + str(s[13]) + " "
-                                                "" + str(s[14]) + " " + str(s[15]) + " " + str(s[16]) + " " + str(
-                    s[17]) + " " + str(s[18]) + " "
-                                                "" + str(s[19]) + " " + str(s[20]) + " " + str(s[21]))
+        try:
+            # self.getRepeater().stop()
+            self.s = self.ser1.read(22)
+            # self.getRepeater().start()
+            # print("Read RX")
+        except IOError as exc:
+            print("HELLO IO")
 
-                print("01: "+str(s[0]))
-                print("02: "+str(s[1]))
-                print("03: "+str(s[2]))
-                print("04: "+str(s[3]))
-                print("05: "+str(s[4]))
-                print("06: "+str(s[5]))
-                print("07: "+str(s[6]))
-                print("08: "+str(s[7]))
-                print("09: "+str(s[8]))
-                print("10: "+str(s[9]))
-                print("11: "+str(s[10]))
-                print("12: "+str(s[11]))
-                print("13: "+str(s[12]))
-                print("14: "+str(s[13]))
-                print("15: "+str(s[14]))
-                print("16: "+str(s[15]))
-                print("17: "+str(s[16]))
-                print("18: "+str(s[17]))
-                print("19: "+str(s[18]))
-                print("20: "+str(s[19]))
-                print("21: "+str(s[20]))
-                print("22: "+str(s[21]))'''
+        if self.s:
+            if self.s[4] == 1 or self.s[4] == 2:
+                configVariables.oxygen_hex = self.s[4]
+            if self.s[4] == 4 or self.s[4] == 8:
+                configVariables.nitrous_hex = self.s[4]
+            if self.s[4] == 16 or self.s[4] == 32:
+                configVariables.carbondioxide_hex = self.s[4]
+            if self.s[4] == 54 or self.s[4] == 128:
+                configVariables.air4_hex = self.s[4]
+            if self.s[4] == 1 or self.s[4] == 2:
+                configVariables.air7_hex = self.s[3]
+            if self.s[4] == 1 or self.s[4] == 2:
+                configVariables.air7_hex = self.s[3]
+            if self.s[4] == 4 or self.s[4] == 8:
+                configVariables.vacuum_hex = self.s[3]
+            # =================================== Thread to color changes ====================
+            self.threadrxtx.signal.return_signal.connect(self.threadrxtx.function_thread)
+            self.threadpoolRXTX.start(self.threadrxtx)
+            # =================================== Thread to color changes ====================
+            print(str(self.s[0]) + " " + str(self.s[1]) + " " + str(self.s[2]) + " "
+                                                                                 "" + str(self.s[3]) + " " + str(
+                self.s[4]) + " " + str(
+                self.s[5]) + " " + str(self.s[6]) + " " + str(self.s[7]) + " " + str(self.s[8]) + " "
+                                                                                                  " " + str(
+                self.s[9]) + " " + str(
+                self.s[10]) + " " + str(
+                self.s[11]) + " " + str(
+                self.s[12]) + " " + str(self.s[13]) + " "
+                                                      "" + str(self.s[14]) + " " + str(self.s[15]) + " " + str(
+                self.s[16]) + " " + str(
+                self.s[17]) + " " + str(self.s[18]) + " "
+                                                      "" + str(self.s[19]) + " " + str(self.s[20]) + " " + str(
+                self.s[21]))
+
+        '''print("01: "+str(s[0]))
+                        print("02: "+str(s[1]))
+                        print("03: "+str(s[2]))
+                        print("04: "+str(s[3]))
+                        print("05: "+str(s[4]))
+                        print("06: "+str(s[5]))
+                        print("07: "+str(s[6]))
+                        print("08: "+str(s[7]))
+                        print("09: "+str(s[8]))
+                        print("10: "+str(s[9]))
+                        print("11: "+str(s[10]))
+                        print("12: "+str(s[11]))
+                        print("13: "+str(s[12]))
+                        print("14: "+str(s[13]))
+                        print("15: "+str(s[14]))
+                        print("16: "+str(s[15]))
+                        print("17: "+str(s[16]))
+                        print("18: "+str(s[17]))
+                        print("19: "+str(s[18]))
+                        print("20: "+str(s[19]))
+                        print("21: "+str(s[20]))
+                        print("22: "+str(s[21]))'''
 
         # time.sleep(1)  # Sleep for 1 seconds
-
-
 
 
 def main():

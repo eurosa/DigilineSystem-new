@@ -1,7 +1,6 @@
-
 x = 0
 y = 0
-z ="none"
+z = "none"
 play_changed_image = ""
 pause_changed_image = ""
 changed_light1Decrement = ""
@@ -29,6 +28,14 @@ light1Brightness_3 = 0
 light1Brightness_2 = 0
 light1Brightness = 0
 totalHex = "0x0"
+
+# ---------------------- Gas Value -----------------------------------
+oxygen_hex = ""
+nitrous_hex = ""
+carbondioxide_hex = ""
+air4_hex = ""
+air7_hex = ""
+vacuum_hex = ""
 
 
 

@@ -21,6 +21,7 @@ class ThreadDataSwitchData(QRunnable):
         # ======================= Login UI ==========================================================================
         self.ui.hexAdd("0x8")
         # setting background color to light-blue
+        configVariables.totalHex = "0x46"
         self.ui.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
         self.ui.toggleSwitch.setStyleSheet("background-color : #FFFFFF")
         self.ui.ot_ui.lightBulb3.setPixmap(configVariables.changed_light_bulb)

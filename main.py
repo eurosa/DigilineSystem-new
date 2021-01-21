@@ -28,6 +28,7 @@ from ShowTimeDateThread import ShowTimeDateThread
 from ThreadClass import ThreadParallel
 from TimerCounterThread import TimerCounterThread
 from allDisplayAttributeColor import *
+from gasColorAlterRXTX import ThreadGasColorRXTX
 from multiMediaPlayerThread import MultiMediaThread
 from player import Player
 from pushButtonColorControl import PushButtonColorControl
@@ -871,16 +872,24 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # =======================Toggle Button ==================================================
         self.ot_ui.setupUi(self.otForm)
         # =========================Toggle Switch ===========================
+        # ====================== Gas Color Changes using RX TX =========================================================
+        # self.threadpoolRXTX = QThreadPool()
+        threadRXTX = ThreadGasColorRXTX(self)
+        #threadRXTX.signal.return_signal.connect(threadRXTX.function_thread)
+        #self.threadpoolRXTX.start(threadRXTX)
+
+        # ======================
+
         self.threadPoolSwitch = QThreadPool()
-        self.serialWrapper = SerialWrapper('/dev/ttyUSB0')
+        self.serialWrapper = SerialWrapper('/dev/ttyUSB0', threadRXTX, self.threadpoolRXTX)
         print("starting...")
         self.rt = RepeatedTimer(1, self.serialWrapper.sendDataToSerialPort)  # it auto-starts, no need of rt.start()
+        self.serialWrapper.setRepeater(self.rt)
         '''try:
             time.sleep(1)  # your long-running job goes here...
         finally:
             rt.stop()  # better in a try/finally block to make sure the program ends!'''
 
-        self.totalHex = '0b'
         self.add_sub_hex = 0
         self.switchContainer = QtWidgets.QVBoxLayout(self.ot_ui.toggleContainer)
         self.toggleSwitch = toggleButton.Switch(self.toggleButtonForm)
@@ -1069,12 +1078,36 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.applyLogoImage()
         self.makeBackTransparent()
         self.fontColorChangesName()
-        self.toggleSwitchColor()
-        self.toggleSwitchLaminarColor()
-        self.toggleSwitchGasL1Color()
-        self.toggleSwitchGasL2Color()
-        self.toggleSwitchOT1Color()
-        self.toggleSwitchOT2Color()
+        self.s1 = threading.Thread(target=self.toggleSwitchColor)
+        self.s1.daemon = True
+        self.s1.start()
+        self.s1.join()
+        # self.toggleSwitchColor()
+        self.s2 = threading.Thread(target=self.toggleSwitchLaminarColor)
+        self.s2.daemon = True
+        self.s2.start()
+        self.s2.join()
+        # self.toggleSwitchLaminarColor()
+        self.s3 = threading.Thread(target=self.toggleSwitchGasL1Color)
+        self.s3.daemon = True
+        self.s3.start()
+        self.s3.join()
+        # self.toggleSwitchGasL1Color()
+        self.s4 = threading.Thread(target=self.toggleSwitchGasL2Color)
+        self.s4.daemon = True
+        self.s4.start()
+        self.s4.join()
+        # self.toggleSwitchGasL2Color()
+        self.s5 = threading.Thread(target=self.toggleSwitchOT1Color)
+        self.s5.daemon = True
+        self.s5.start()
+        self.s5.join()
+        # self.toggleSwitchOT1Color()
+        self.s6 = threading.Thread(target=self.toggleSwitchOT2Color)
+        self.s6.daemon = True
+        self.s6.start()
+        self.s6.join()
+        # self.toggleSwitchOT2Color()
 
         # ========================Start light Dimming===============================================================
         self.lightBrightnessObject = lightBrightness.Brightness(self.ot_ui, self.dataModel)
@@ -2404,84 +2437,92 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # return configVariables.totalHex
 
     def startThreadSwitch1(self):
-        self.rt.stop()
+        # self.rt.stop()
         self.swt1 = threading.Thread(target=self.switch1)
         self.swt1.daemon = True
         self.swt1.start()
+        # self.swt1.join()
 
     def switch1(self):
         self.toggleSwitchGasL1Color()
-        self.rt.start()
+        # self.rt.start()
 
     def startThreadSwitch2(self):
-        self.rt.stop()
+        # self.rt.stop()
         self.swt2 = threading.Thread(target=self.switch2)
         self.swt2.daemon = True
         self.swt2.start()
+        # self.swt2.join()
 
     def switch2(self):
         self.toggleSwitchGasL2Color()
-        self.rt.start()
+        # self.rt.start()
 
     def startThreadSwitch3(self):
-        self.rt.stop()
+        # self.rt.stop()
         self.swt3 = threading.Thread(target=self.switch3)
         self.swt3.daemon = True
         self.swt3.start()
+        # self.swt3.join()
 
     def switch3(self):
         self.toggleSwitchOT1Color()
-        self.rt.start()
+        # self.rt.start()
 
     def startThreadSwitch4(self):
-        self.rt.stop()
+        # self.rt.stop()
         self.swt4 = threading.Thread(target=self.switch4)
         self.swt4.daemon = True
         self.swt4.start()
+        # self.swt4.join()
 
     def switch4(self):
         self.toggleSwitchColor()
-        self.rt.start()
+        # self.rt.start()
 
     def startThreadSwitch5(self):
-        self.rt.stop()
+        # self.rt.stop()
         self.swt5 = threading.Thread(target=self.switch5)
         self.swt5.daemon = True
         self.swt5.start()
+        # self.swt5.join()
 
     def switch5(self):
         self.toggleSwitchLaminarColor()
-        self.rt.start()
+        # self.rt.start()
 
     def startThreadSwitch6(self):
-        self.rt.stop()
+        # self.rt.stop()
         self.swt6 = threading.Thread(target=self.switch6)
         self.swt6.daemon = True
         self.swt6.start()
+        # self.swt6.join()
 
     def switch6(self):
         self.toggleSwitchOT2Color()
-        self.rt.start()
+        # self.rt.start()
 
     def startThreadSwitch7(self):
-        self.rt.stop()
+        # self.rt.stop()
         self.swt7 = threading.Thread(target=self.switch7)
         self.swt7.daemon = True
         self.swt7.start()
+        # self.swt7.join()
 
     def switch7(self):
         self.tempSwitch()
-        self.rt.start()
+        # self.rt.start()
 
     def startThreadSwitch8(self):
-        self.rt.stop()
+        # self.rt.stop()
         self.swt8 = threading.Thread(target=self.switch8)
         self.swt8.daemon = True
         self.swt8.start()
+        # self.swt8.join()
 
     def switch8(self):
         self.humidSwitch()
-        self.rt.start()
+        # self.rt.start()
 
     def tempSwitch(self):
         # if button is checked
@@ -2490,7 +2531,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.hex_add_temp = 1
             self.hex_minus_temp = 0
             # setting background color to light-blue
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
+            self.rt.start()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # if it is unchecked
         elif self.t_i_d_count < 15.1 and self.hex_minus_temp == 0:
@@ -2498,7 +2541,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.hexSub("0x40")
             self.hex_minus_temp = 1
             self.hex_add_temp = 0
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
+            self.rt.start()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
 
     def humidSwitch(self):
@@ -2508,7 +2553,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.hex_add_humidity = 1
             self.hex_minus_humidity = 0
             # setting background color to light-blue
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
+            self.rt.start()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # if it is unchecked
         elif self.h_i_d_count < 64.0 and self.hex_minus_humidity == 0:
@@ -2516,8 +2563,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.hexSub("0x80")
             self.hex_add_humidity = 0
             self.hex_minus_humidity = 1
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
+            self.rt.start()
 
     def toggleSwitchColor(self):
         # if button is checked
@@ -2525,11 +2574,15 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             print("Check: " + str(self.toggleSwitch.isChecked()))
             self.hexAdd("0x8")
             # setting background color to light-blue
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
-            self.toggleSwitch.setStyleSheet("background-color : #FFFFFF")
+            try:
+                self.toggleSwitch.setStyleSheet("background-color : #FFFFFF")
+            except IndexError:
+                print("Color")
             self.ot_ui.lightBulb3.setPixmap(configVariables.changed_light_bulb)
-
+            self.rt.start()
             '''self.threadDataSwitchData = ThreadDataSwitchData(self)
             self.threadDataSwitchData.signal.return_signal.connect(self.threadDataSwitchData.function_thread)
             self.threadPoolSwitch.start(self.threadDataSwitchData)'''
@@ -2539,10 +2592,15 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             # set background color back to light-grey
             print("Uncheck: " + str(self.toggleSwitch.isChecked()))
             self.hexSub("0x8")
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
-            self.toggleSwitch.setStyleSheet("background-color : #4c4c4c")
+            try:
+                self.toggleSwitch.setStyleSheet("background-color : #4c4c4c")
+            except IndexError:
+                print("Color")
             self.ot_ui.lightBulb3.setPixmap(configVariables.low_light_bulb)
+            self.rt.start()
 
     def toggleSwitchLaminarColor(self):
         # if button is checked
@@ -2550,99 +2608,147 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
             # setting background color to light-blue
             self.hexAdd("0x10")
+            self.rt.stop()
             # setting background color to light-blue
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
-            self.toggleSwitchLaminar.setStyleSheet("background-color : #FFFFFF")
+            try:
+                self.toggleSwitchLaminar.setStyleSheet("background-color : #FFFFFF")
+            except IndexError:
+                print("Color")
             self.ot_ui.lightBulb4.setPixmap(configVariables.changed_light_bulb)
+            self.rt.start()
             # if it is unchecked
         else:
             self.hexSub("0x10")
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
-            self.toggleSwitchLaminar.setStyleSheet("background-color : #4c4c4c")
+            try:
+                self.toggleSwitchLaminar.setStyleSheet("background-color : #4c4c4c")
+            except IndexError:
+                print("Color")
             self.ot_ui.lightBulb4.setPixmap(configVariables.low_light_bulb)
+            self.rt.start()
 
     def toggleSwitchGasL1Color(self):
         # if button is checked
         if self.toggleSwitchGasL1.isChecked():
             self.hexAdd("0x1")
             # setting background color to light-blue
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
             # self.ot_ui.light1Increment.setEnabled(True)
-            self.toggleSwitchGasL1.setStyleSheet("background-color : #FFFFFF")
+            try:
+                self.toggleSwitchGasL1.setStyleSheet("background-color : #FFFFFF")
+            except IndexError:
+                print("Color")
             self.ot_ui.lightBulb1.setPixmap(configVariables.changed_light_bulb)
+            self.rt.start()
             # if it is unchecked
         else:
             # self.ot_ui.light1Increment.setEnabled(False)
             self.hexSub("0x1")
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
-            self.toggleSwitchGasL1.setStyleSheet("background-color : #4c4c4c")
+            try:
+                self.toggleSwitchGasL1.setStyleSheet("background-color : #4c4c4c")
+            except IndexError:
+                print("Color")
             self.ot_ui.lightBulb1.setPixmap(configVariables.low_light_bulb)
+            self.rt.start()
 
     def toggleSwitchGasL2Color(self):
         # if button is checked
         if self.toggleSwitchGasL2.isChecked():
             self.hexAdd("0x2")
             # setting background color to light-blue
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
-
-            self.toggleSwitchGasL2.setStyleSheet("background-color : #FFFFFF")
+            try:
+                self.toggleSwitchGasL2.setStyleSheet("background-color : #FFFFFF")
+            except IndexError:
+                print("Color")
             self.ot_ui.lightBulb2.setPixmap(configVariables.changed_light_bulb)
             # if it is unchecked
+            self.rt.start()
         else:
             self.hexSub("0x2")
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
-            self.toggleSwitchGasL2.setStyleSheet("background-color : #4c4c4c")
+            try:
+                self.toggleSwitchGasL2.setStyleSheet("background-color : #4c4c4c")
+            except IndexError:
+                print("Color")
             self.ot_ui.lightBulb2.setPixmap(configVariables.low_light_bulb)
+            self.rt.start()
 
     def toggleSwitchOT1Color(self):
         # if button is checked
         if self.toggleSwitchOT1.isChecked():
             self.hexAdd("0x4")
             # setting background color to light-blue
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
-            self.toggleSwitchOT1.setStyleSheet("background-color : #FFFFFF")
+            try:
+                self.toggleSwitchOT1.setStyleSheet("background-color : #FFFFFF")
+            except IndexError:
+                print("Color")
             self.ot_ui.otLightBulb1.setPixmap(configVariables.changed_ot_light)
-
+            self.rt.start()
             # if it is unchecked
         else:
             self.hexSub("0x4")
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
-            self.toggleSwitchOT1.setStyleSheet("background-color : #4c4c4c")
+            try:
+                self.toggleSwitchOT1.setStyleSheet("background-color : #4c4c4c")
+            except IndexError:
+                print("Color")
             self.ot_ui.otLightBulb1.setPixmap(configVariables.low_ot_light)
+            self.rt.start()
 
     def toggleSwitchOT2Color(self):
         # if button is checked
         if self.toggleSwitchOT2.isChecked():
             self.hexAdd("0x20")
             # setting background color to light-blue
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # setting background color to light-blue
-            self.toggleSwitchOT2.setStyleSheet("background-color : #FFFFFF")
+            try:
+                self.toggleSwitchOT2.setStyleSheet("background-color : #FFFFFF")
+            except IndexError:
+                print("Color")
             self.ot_ui.otLightBulb2.setPixmap(configVariables.changed_ot_light)
+            self.rt.start()
             # if it is unchecked
         else:
             self.hexSub("0x20")
+            self.rt.stop()
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # set background color back to light-grey
-            self.toggleSwitchOT2.setStyleSheet("background-color : #4c4c4c")
+            try:
+                self.toggleSwitchOT2.setStyleSheet("background-color : #4c4c4c")
+            except IndexError:
+                print("Color")
             self.ot_ui.otLightBulb2.setPixmap(configVariables.low_ot_light)
+            self.rt.start()
 
     # ================= Start Media Player ================================
     def dragEnterEvent(self, e):
