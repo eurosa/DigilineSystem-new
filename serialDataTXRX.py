@@ -30,9 +30,9 @@ class SerialWrapper:
             bytesize=serial.EIGHTBITS,
             timeout=0)'''
 
-    def sendData(self, data):
+    '''def sendData(self, data):
         data += "\r\n"
-        self.ser.write(data.encode())
+        self.ser.write(data.encode())'''
 
     # def sendDataToSerialPort(self, hex_code):
     def setRepeater(self, repeater):
