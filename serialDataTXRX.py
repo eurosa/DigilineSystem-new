@@ -30,9 +30,9 @@ class SerialWrapper:
             bytesize=serial.EIGHTBITS,
             timeout=0)'''
 
-    def sendData(self, data):
+    '''def sendData(self, data):
         data += "\r\n"
-        self.ser.write(data.encode())
+        self.ser.write(data.encode())'''
 
     # def sendDataToSerialPort(self, hex_code):
     def setRepeater(self, repeater):
@@ -62,7 +62,7 @@ class SerialWrapper:
         except IOError as exc:
             print("HELLO IO")
         configVariables.hex_string = self.s
-
+        time.sleep(1)
         # =================================== Thread to color changes ====================
         if self.s:
             print(str(hex(self.s[0])) + " " +
