@@ -28,10 +28,11 @@ from ShowTimeDateThread import ShowTimeDateThread
 from ThreadClass import ThreadParallel
 from TimerCounterThread import TimerCounterThread
 from allDisplayAttributeColor import *
-from gasColorAlterRXTX import ThreadGasColorRXTX, MyThread
+from gasColorAlterRXTX import ThreadGasColorRXTX
 from multiMediaPlayerThread import MultiMediaThread
 from player import Player
 from pushButtonColorControl import PushButtonColorControl
+from repeatedThreadTimer import RepeatedTimerThread
 from repeatedTimer import RepeatedTimer
 from serialDataTXRX import SerialWrapper
 from switchDataSendThread import ThreadDataSwitchData
@@ -996,18 +997,53 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # ========================================Gas COLOR RX TX =====================================
         # ====================== Gas Color Changes using RX TX =========================================================
-        #self.threadpoolRXTX = QThreadPool()
-        # threadRXTX = ThreadGasColorRXTX(self)
-        # threadRXTX.signal.return_signal.connect(threadRXTX.function_thread)
-        # self.threadpoolRXTX.start(threadRXTX)
-        threadRXTX = MyThread(self, self.alldisplayColorChangeObj)
+
+
+        '''threadRXTX2 = ThreadGasColorRXTX(self)
+        threadRXTX2.signal.return_signal.connect(threadRXTX2.function_thread)
+        self.threadpoolRXTX.start(threadRXTX2)
+
+        threadRXTX3 = ThreadGasColorRXTX(self)
+        threadRXTX3.signal.return_signal.connect(threadRXTX3.function_thread)
+        self.threadpoolRXTX.start(threadRXTX3)
+
+        threadRXTX4 = ThreadGasColorRXTX(self)
+        threadRXTX4.signal.return_signal.connect(threadRXTX4.function_thread)
+        self.threadpoolRXTX.start(threadRXTX4)
+
+        threadRXTX5= ThreadGasColorRXTX(self)
+        threadRXTX5.signal.return_signal.connect(threadRXTX5.function_thread)
+        self.threadpoolRXTX.start(threadRXTX5)
+
+        threadRXTX6 = ThreadGasColorRXTX(self)
+        threadRXTX6.signal.return_signal.connect(threadRXTX6.function_thread)
+        self.threadpoolRXTX.start(threadRXTX6)'''
+
+
         # ======================
 
         self.threadPoolSwitch = QThreadPool()
-        self.serialWrapper = SerialWrapper('/dev/ttyUSB0', threadRXTX)
+        self.serialWrapper = SerialWrapper('/dev/ttyUSB0', self)
         print("starting...")
         self.rt = RepeatedTimer(1, self.serialWrapper.sendDataToSerialPort)  # it auto-starts, no need of rt.start()
-        self.serialWrapper.setRepeater(self.rt)
+        self.threadpoolRXTX = QThreadPool()
+        threadRXTX1 = ThreadGasColorRXTX(self)
+        threadRXTX1.signal.return_signal.connect(threadRXTX1.function_thread)
+        self.threadpoolRXTX.start(threadRXTX1)
+
+        #self.rtThread1 = RepeatedTimerThread(1, self.serialWrapper.colorChned1,
+         #                                    self)  # it auto-starts, no need of rt.start()
+        ''' self.rtThread2 = RepeatedTimerThread(1, self.serialWrapper.colorChned2,
+                                             self)  # it auto-starts, no need of rt.start()
+        self.rtThread3 = RepeatedTimerThread(1, self.serialWrapper.colorChned3,
+                                             self)  # it auto-starts, no need of rt.start()
+        self.rtThread4 = RepeatedTimerThread(1, self.serialWrapper.colorChned4,
+                                             self)  # it auto-starts, no need of rt.start()
+        self.rtThread5 = RepeatedTimerThread(1, self.serialWrapper.colorChned5,
+                                             self)  # it auto-starts, no need of rt.start()
+        self.rtThread6 = RepeatedTimerThread(1, self.serialWrapper.colorChned6,
+                                             self)  # it auto-starts, no need of rt.start()'''
+        # self.serialWrapper.setRepeater(self.rt)
         # =============================================================================================
 
         self.lastTime = ''

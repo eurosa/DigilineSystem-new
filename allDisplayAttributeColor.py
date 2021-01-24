@@ -130,6 +130,25 @@ class AllDisplayAttributeColor:
                                                                                                                                                                                   "}"
         )
 
+    def changeGasColorRXTX(self, attribute_name, Attribute, backcolor_hex):
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-style: outset;\n"
+                                                      "    border-width: 1px;\n"
+                                                      "    border-radius: 10px;\n"
+                                                      "    border-color: " + self.datamodel.get_border_col() + ";\n"
+                                                                                                               "font: "
+                                                                                                               "bold "
+                                                                                                               "14px;\n "
+                                                                                                               "     \n"
+                                                                                                               "padding: 6px;\n "
+                                                                                                               "background-color: " + backcolor_hex + ";\n "
+                                                                                                                                                      "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                                                                                                                     "   \n"
+                                                                                                                                                                                                     "}\n"
+                                                                                                                                                                                                     "")
+
+
+
     '''def changeSettingsDialogTabColor(self, attribute_name):
         attribute_name.setStyleSheet("QTabBar::tabWidget:selected {background: " + self.datamodel.get_theme_color() + ";}"
         " QTabWidget>QWidget>QWidget{background: " + self.datamodel.get_theme_color() + ";""}")'''

@@ -66,7 +66,7 @@
           <widget class="QLabel" name="gasLabel_2_high">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -115,7 +115,7 @@
           <widget class="QLabel" name="gasLabel_2_normal">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -164,7 +164,7 @@
           <widget class="QLabel" name="gasLabel_2_low">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -264,7 +264,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_3_high">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -313,7 +313,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_3_normal">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -362,7 +362,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_3_low">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -479,7 +479,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_4_high">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -528,7 +528,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_4_normal">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -577,7 +577,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_4_low">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -634,7 +634,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_1_high">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -689,7 +689,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_1_normal">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -744,7 +744,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_1_low">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -877,7 +877,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_6_normal">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -926,7 +926,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_6_low">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -1026,7 +1026,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_5_high">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -1075,7 +1075,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_5_normal">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>
@@ -1124,7 +1124,7 @@ color:#FFFFFF;
           <widget class="QLabel" name="gasLabel_5_low">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>86</width>
              <height>42</height>
             </size>
            </property>

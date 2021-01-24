@@ -30,12 +30,29 @@ light1Brightness = 0
 totalHex = "0x0"
 
 # ---------------------- Gas Value -----------------------------------
+hex_string = None
 oxygen_hex = ""
 nitrous_hex = ""
 carbondioxide_hex = ""
 air4_hex = ""
 air7_hex = ""
 vacuum_hex = ""
+oxygen_hex_low = ""
+carbondioxide_hex_low = ""
+nitrous_hex_low = ""
+air4_hex_low = ""
+air7_hex_low = ""
+vacuum_hex_low = ""
+
+oxygen_hex_normal = ""
+carbondioxide_hex_normal = ""
+nitrous_hex_normal = ""
+air4_hex_normal = ""
+air7_hex_normal = ""
+vacuum_hex_normal = ""
 
 
-
+white_color_hex = "#FFFFFF"
+green_color_hex = "#00FF00"
+red_color_hex = "#FF0000"
+blue_color_hex = "#0000FF"

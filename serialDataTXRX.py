@@ -1,6 +1,8 @@
 import threading
 import time
 import serial
+from PyQt5 import Qt
+from PyQt5.QtGui import QPalette, QColor
 
 import configVariables
 from Database import switchdatabase
@@ -8,10 +10,10 @@ from repeatedTimer import RepeatedTimer
 
 
 class SerialWrapper:
-    def __init__(self, device, threadrxtx):
-        self.threadrxtx = threadrxtx
+    def __init__(self, device, ui):
         self.s = None
-        self.ser = serial.Serial(device, 115200)
+        self.ui = ui
+        # self.ser = serial.Serial(device, 115200)
         self.ser1 = serial.Serial(device, 9600)
         self.cw = [0x02, 0x31, 0x43, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46,
                    0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x20]
@@ -59,69 +61,179 @@ class SerialWrapper:
             # print("Read RX")
         except IOError as exc:
             print("HELLO IO")
+        configVariables.hex_string = self.s
 
+        # =================================== Thread to color changes ====================
         if self.s:
-            if self.s[4] == 1 or self.s[4] == 2:
-                configVariables.oxygen_hex = self.s[4]
-            if self.s[4] == 4 or self.s[4] == 8:
-                configVariables.nitrous_hex = self.s[4]
-            if self.s[4] == 16 or self.s[4] == 32:
-                configVariables.carbondioxide_hex = self.s[4]
-            if self.s[4] == 54 or self.s[4] == 128:
-                configVariables.air4_hex = self.s[4]
-            if self.s[4] == 1 or self.s[4] == 2:
-                configVariables.air7_hex = self.s[3]
-            if self.s[4] == 1 or self.s[4] == 2:
-                configVariables.air7_hex = self.s[3]
-            if self.s[4] == 4 or self.s[4] == 8:
-                configVariables.vacuum_hex = self.s[3]
-            # =================================== Thread to color changes ====================
-            #self.threadrxtx.signal.return_signal.connect(self.threadrxtx.function_thread)
-            #self.threadpoolRXTX.start(self.threadrxtx)
-
-            self.threadrxtx .start()
-
-
-            # =================================== Thread to color changes ====================
-            print(str(self.s[0]) + " " + str(self.s[1]) + " " + str(self.s[2]) + " "
-                                                                                 "" + str(self.s[3]) + " " + str(
-                self.s[4]) + " " + str(
-                self.s[5]) + " " + str(self.s[6]) + " " + str(self.s[7]) + " " + str(self.s[8]) + " "
-                                                                                                  " " + str(
-                self.s[9]) + " " + str(
-                self.s[10]) + " " + str(
-                self.s[11]) + " " + str(
-                self.s[12]) + " " + str(self.s[13]) + " "
-                                                      "" + str(self.s[14]) + " " + str(self.s[15]) + " " + str(
-                self.s[16]) + " " + str(
-                self.s[17]) + " " + str(self.s[18]) + " "
-                                                      "" + str(self.s[19]) + " " + str(self.s[20]) + " " + str(
-                self.s[21]))
-
-        '''print("01: "+str(s[0]))
-                        print("02: "+str(s[1]))
-                        print("03: "+str(s[2]))
-                        print("04: "+str(s[3]))
-                        print("05: "+str(s[4]))
-                        print("06: "+str(s[5]))
-                        print("07: "+str(s[6]))
-                        print("08: "+str(s[7]))
-                        print("09: "+str(s[8]))
-                        print("10: "+str(s[9]))
-                        print("11: "+str(s[10]))
-                        print("12: "+str(s[11]))
-                        print("13: "+str(s[12]))
-                        print("14: "+str(s[13]))
-                        print("15: "+str(s[14]))
-                        print("16: "+str(s[15]))
-                        print("17: "+str(s[16]))
-                        print("18: "+str(s[17]))
-                        print("19: "+str(s[18]))
-                        print("20: "+str(s[19]))
-                        print("21: "+str(s[20]))
-                        print("22: "+str(s[21]))'''
+            print(str(hex(self.s[0])) + " " +
+                  str(hex(self.s[1])) + " " +
+                  str(hex(self.s[2])) + " " +
+                  str(hex(self.s[3])) + " " +
+                  str(hex(self.s[4])) + " " +
+                  str(hex(self.s[5])) + " " +
+                  str(hex(self.s[6])) + " " +
+                  str(hex(self.s[7])) + " " +
+                  str(hex(self.s[8])) + " " +
+                  str(hex(self.s[9])) + " " +
+                  str(hex(self.s[10])) + " " +
+                  str(hex(self.s[11])) + " " +
+                  str(hex(self.s[12])) + " " +
+                  str(hex(self.s[13])) + " " +
+                  str(hex(self.s[14])) + " " +
+                  str(hex(self.s[15])) + " " +
+                  str(hex(self.s[16])) + " " +
+                  str(hex(self.s[17])) + " " +
+                  str(hex(self.s[18])) + " " +
+                  str(hex(self.s[19])) + " " +
+                  str(hex(self.s[20])) + " " +
+                  str(hex(self.s[21])))
+        '''if self.s:
+            print("01: " + self.s[0])
+            print("02: " + str(self.s[1]))
+            print("03: " + str(self.s[2]))
+            print("04: " + str(self.s[3]))
+            print("05: " + str(self.s[4]))
+            print("06: " + str(self.s[5]))
+            print("07: " + str(self.s[6]))
+            print("08: " + str(self.s[7]))
+            print("09: " + str(self.s[8]))
+            print("10: " + str(self.s[9]))
+            print("11: " + str(self.s[10]))
+            print("12: " + str(self.s[11]))
+            print("13: " + str(self.s[12]))
+            print("14: " + str(self.s[13]))
+            print("15: " + str(self.s[14]))
+            print("16: " + str(self.s[15]))
+            print("17: " + str(self.s[16]))
+            print("18: " + str(self.s[17]))
+            print("19: " + str(self.s[18]))
+            print("20: " + str(self.s[19]))
+            print("21: " + str(self.s[20]))
+            print("22: " + str(self.s[21]))'''
 
         # time.sleep(1)  # Sleep for 1 seconds
+
+    def colorChned1(self, ui):
+        if self.s:
+            if self.s[4] == 2:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
+                                                                    configVariables.oxygen_hex)
+            elif self.s[4] == 1:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
+                                                                    configVariables.oxygen_hex)
+            elif self.s[4] == 0:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
+                                                                    configVariables.oxygen_hex)
+
+        '''pal = QPalette()
+        pal.setColor(QPalette.Background, QColor(255, 0, 0))
+        ui.ui.oxygen.setPalette(pal)
+        ui.ui.oxygen.setAutoFillBackground(True)'''
+        # ui.alldisplayColorChangeObj.changeGasColorRXTX(ui.ui.oxygen, "QToolButton")
+        # ui.ui.oxygen.setStyleSheet("background-color : #FF4c4c")
+        # ui.ui.oxygen.setStyleSheet("QToolButton { background-color : #FF0000}")
+        time.sleep(1)
+
+    def colorChned2(self, ui):
+        if self.s:
+            if self.s[4] == 8:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
+                                                                    configVariables.nitrous_hex)
+            elif self.s[4] == 4:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
+                                                                    configVariables.nitrous_hex)
+            elif self.s[4] == 0:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
+                                                                    configVariables.nitrous_hex)
+
+        '''pal = QPalette()
+        pal.setColor(QPalette.Background, QColor(255, 0, 0))
+        ui.ui.oxygen.setPalette(pal)
+        ui.ui.oxygen.setAutoFillBackground(True)'''
+        # ui.alldisplayColorChangeObj.changeGasColorRXTX(ui.ui.oxygen, "QToolButton")
+        # ui.ui.oxygen.setStyleSheet("background-color : #FF4c4c")
+        # ui.ui.oxygen.setStyleSheet("QToolButton { background-color : #FF0000}")
+        time.sleep(1)
+
+    def colorChned3(self, ui):
+        if self.s:
+            if self.s[4] == 32:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
+                                                                    configVariables.carbondioxide_hex)
+            elif self.s[4] == 16:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
+                                                                    configVariables.carbondioxide_hex)
+            elif self.s[4] == 0:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
+                                                                    configVariables.carbondioxide_hex)
+        '''pal = QPalette()
+        pal.setColor(QPalette.Background, QColor(255, 0, 0))
+        ui.ui.oxygen.setPalette(pal)
+        ui.ui.oxygen.setAutoFillBackground(True)'''
+        # ui.alldisplayColorChangeObj.changeGasColorRXTX(ui.ui.oxygen, "QToolButton")
+        # ui.ui.oxygen.setStyleSheet("background-color : #FF4c4c")
+        # ui.ui.oxygen.setStyleSheet("QToolButton { background-color : #FF0000}")
+        time.sleep(1)
+
+    def colorChned4(self, ui):
+        if self.s:
+            if self.s[4] == 128:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
+                                                                    configVariables.air4_hex)
+            elif self.s[4] == 64:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
+                                                                    configVariables.air4_hex)
+            elif self.s[4] == 0:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
+                                                                    configVariables.air4_hex)
+        '''pal = QPalette()
+        pal.setColor(QPalette.Background, QColor(255, 0, 0))
+        ui.ui.oxygen.setPalette(pal)
+        ui.ui.oxygen.setAutoFillBackground(True)'''
+        # ui.alldisplayColorChangeObj.changeGasColorRXTX(ui.ui.oxygen, "QToolButton")
+        # ui.ui.oxygen.setStyleSheet("background-color : #FF4c4c")
+        # ui.ui.oxygen.setStyleSheet("QToolButton { background-color : #FF0000}")
+        time.sleep(1)
+
+    def colorChned5(self, ui):
+        if self.s:
+            if self.s[3] == 2:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
+                                                                    configVariables.air7_hex)
+            elif self.s[3] == 1:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
+                                                                    configVariables.air7_hex)
+            elif self.s[3] == 0:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
+                                                                    configVariables.air7_hex)
+        '''pal = QPalette()
+        pal.setColor(QPalette.Background, QColor(255, 0, 0))
+        ui.ui.oxygen.setPalette(pal)
+        ui.ui.oxygen.setAutoFillBackground(True)'''
+        # ui.alldisplayColorChangeObj.changeGasColorRXTX(ui.ui.oxygen, "QToolButton")
+        # ui.ui.oxygen.setStyleSheet("background-color : #FF4c4c")
+        # ui.ui.oxygen.setStyleSheet("QToolButton { background-color : #FF0000}")
+        time.sleep(1)
+
+    def colorChned6(self, ui):
+        if self.s:
+            if self.s[3] == 8:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
+                                                                    configVariables.vacuum_hex)
+            elif self.s[3] == 4:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
+                                                                    configVariables.vacuum_hex)
+            elif self.s[3] == 0:
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
+                                                                    configVariables.vacuum_hex)
+        '''pal = QPalette()
+        pal.setColor(QPalette.Background, QColor(255, 0, 0))
+        ui.ui.oxygen.setPalette(pal)
+        ui.ui.oxygen.setAutoFillBackground(True)'''
+        # ui.alldisplayColorChangeObj.changeGasColorRXTX(ui.ui.oxygen, "QToolButton")
+        # ui.ui.oxygen.setStyleSheet("background-color : #FF4c4c")
+        # ui.ui.oxygen.setStyleSheet("QToolButton { background-color : #FF0000}")
+        time.sleep(1)
 
 
 def main():
