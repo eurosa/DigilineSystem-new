@@ -29,6 +29,7 @@ from ThreadClass import ThreadParallel
 from TimerCounterThread import TimerCounterThread
 from allDisplayAttributeColor import *
 from gasColorAlterRXTX import ThreadGasColorRXTX
+from lightintensitycontrol import LightIntensityControlThread
 from multiMediaPlayerThread import MultiMediaThread
 from player import Player
 from pushButtonColorControl import PushButtonColorControl
@@ -1024,7 +1025,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         self.threadPoolSwitch = QThreadPool()
         self.serialWrapper = SerialWrapper('/dev/ttyUSB0', self)
-        print("starting...")
+        print("starting... Repeater Timer to send data in terminal")
         self.rt = RepeatedTimer(1, self.serialWrapper.sendDataToSerialPort)  # it auto-starts, no need of rt.start()
         self.threadpoolRXTX = QThreadPool()
         threadRXTX1 = ThreadGasColorRXTX(self)
@@ -1151,7 +1152,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.toggleSwitchOT2Color()
 
         # ========================Start light Dimming===============================================================
-        self.lightBrightnessObject = lightBrightness.Brightness(self.ot_ui, self.dataModel)
+        self.lightIntensityControl = LightIntensityControlThread(self.serialWrapper)
+        self.lightBrightnessObject = lightBrightness.Brightness(self.ot_ui, self.dataModel, self.lightIntensityControl)
         self.ot_ui.light1Increment.clicked.connect(self.lightBrightnessObject.otLightBrightIncrementControl)
         self.ot_ui.light1Decrement.clicked.connect(self.lightBrightnessObject.otLightBrightDecrementControl)
         self.ot_ui.light2Increment.clicked.connect(self.lightBrightnessObject.otLightBrightIncrementControl2)

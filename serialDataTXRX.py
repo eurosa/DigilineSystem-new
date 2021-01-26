@@ -43,11 +43,168 @@ class SerialWrapper:
 
     def sendDataToSerialPort(self):
         # print("Converted Hex: " + str(hex_code))
+        light_hex = int(configVariables.totalHex, 16)
+        # ================================== Intensity Control Start 1==========================================
+        # print("Light Intensity:" + str(configVariables.intensity_hex_1))
+        # print("Converted Hex: " + hex(configVariables.intensity_hex_1))
+        low_1, high_1 = self.bytes1(int(hex(configVariables.intensity_hex_1), 16))
+
+        # int_low = bin(int(low, 16)).replace("0b", "")
+        # int_high = bin(int(high, 16)).replace("0b", "")
+        # binary_low = "{0:b}".format(int_low)
+        # binary_high = "{0:b}".format(int_high)
+        # print("Low Hex: " + low + " Int Low: " + int_low)
+        # print("High Hex: " + high + " Int High: " + int_high)
+        hex_low_int_1 = int(low_1, 16)
+        hex_high_int_1 = int(high_1, 16)
+        # print("Low Hex: " + str(hex_low) + " Int Low: " + str(int_low))
+        # print("High Hex: " + str(hex_high) + " Int High: " + str(int_high))
+        # ================================== Intensity Control Start 2==========================================
+        # print("Light Intensity:" + str(configVariables.intensity_hex_1))
+        # print("Converted Hex: " + hex(configVariables.intensity_hex_1))
+        low_2, high_2 = self.bytes1(int(hex(configVariables.intensity_hex_2), 16))
+
+        # int_low = bin(int(low, 16)).replace("0b", "")
+        # int_high = bin(int(high, 16)).replace("0b", "")
+        # binary_low = "{0:b}".format(int_low)
+        # binary_high = "{0:b}".format(int_high)
+        # print("Low Hex: " + low + " Int Low: " + int_low)
+        # print("High Hex: " + high + " Int High: " + int_high)
+        hex_low_int_2 = int(low_2, 16)
+        hex_high_int_2 = int(high_2, 16)
+        # print("Low Hex: " + str(hex_low) + " Int Low: " + str(int_low))
+        # print("High Hex: " + str(hex_high) + " Int High: " + str(int_high))
+        # ================================== Intensity Control End ==================================================
+        # ================================== Intensity Control Start 3==========================================
+        # print("Light Intensity:" + str(configVariables.intensity_hex_1))
+        # print("Converted Hex: " + hex(configVariables.intensity_hex_1))
+        low_3, high_3 = self.bytes1(int(hex(configVariables.intensity_hex_3), 16))
+
+        # int_low = bin(int(low, 16)).replace("0b", "")
+        # int_high = bin(int(high, 16)).replace("0b", "")
+        # binary_low = "{0:b}".format(int_low)
+        # binary_high = "{0:b}".format(int_high)
+        # print("Low Hex: " + low + " Int Low: " + int_low)
+        # print("High Hex: " + high + " Int High: " + int_high)
+        hex_low_int_3 = int(low_3, 16)
+        hex_high_int_3 = int(high_3, 16)
+        # print("Low Hex: " + str(hex_low) + " Int Low: " + str(int_low))
+        # print("High Hex: " + str(hex_high) + " Int High: " + str(int_high))
+        # ================================== Intensity Control End ==================================================
+        # ================================== Intensity Control Start 4==========================================
+        # print("Light Intensity:" + str(configVariables.intensity_hex_1))
+        # print("Converted Hex: " + hex(configVariables.intensity_hex_1))
+        low_4, high_4 = self.bytes1(int(hex(configVariables.intensity_hex_4), 16))
+
+        # int_low = bin(int(low, 16)).replace("0b", "")
+        # int_high = bin(int(high, 16)).replace("0b", "")
+        # binary_low = "{0:b}".format(int_low)
+        # binary_high = "{0:b}".format(int_high)
+        # print("Low Hex: " + low + " Int Low: " + int_low)
+        # print("High Hex: " + high + " Int High: " + int_high)
+        hex_low_int_4 = int(low_4, 16)
+        hex_high_int_4 = int(high_4, 16)
+        # print("Low Hex: " + str(hex_low) + " Int Low: " + str(int_low))
+        # print("High Hex: " + str(hex_high) + " Int High: " + str(int_high))
+        # ================================== Intensity Control End ==================================================
+
+        # misc code here
+        # thestring = "\x02\x31\x43\x46\xFF\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20"
+        # command = b'\x02\x31\x43\x02\x0F\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20\n'
+        cw = [0x02, 0x31, 0x43, 0x46, light_hex,
+              hex_low_int_1, hex_high_int_1,
+              hex_low_int_2, hex_high_int_2,
+              hex_low_int_3, hex_high_int_3,
+              0x0, 0x0, 0x0, 0x0,
+              hex_low_int_4, hex_high_int_4,
+              0x46, 0x46, 0x46, 0x46, 0x20]
+
+        '''while True:
+            cc = str(self.ser1.read_all())
+            print(cc[0:])'''
+        try:
+            # self.getRepeater().stop()
+            self.ser1.write(serial.to_bytes(cw))
+            self.s = self.ser1.read(22)
+            # self.getRepeater().start()
+            # print("Read RX")
+        except IOError as exc:
+            print("HELLO IO " +exc)
+        configVariables.hex_string = self.s
+        # time.sleep(1)
+        # =================================== Thread to color changes ====================
+        if self.s:
+            print(str(hex(self.s[0])) + " " +
+                  str(hex(self.s[1])) + " " +
+                  str(hex(self.s[2])) + " " +
+                  str(hex(self.s[3])) + " " +
+                  str(hex(self.s[4])) + " " +
+                  str(hex(self.s[5])) + " " +
+                  str(hex(self.s[6])) + " " +
+                  str(hex(self.s[7])) + " " +
+                  str(hex(self.s[8])) + " " +
+                  str(hex(self.s[9])) + " " +
+                  str(hex(self.s[10])) + " " +
+                  str(hex(self.s[11])) + " " +
+                  str(hex(self.s[12])) + " " +
+                  str(hex(self.s[13])) + " " +
+                  str(hex(self.s[14])) + " " +
+                  str(hex(self.s[15])) + " " +
+                  str(hex(self.s[16])) + " " +
+                  str(hex(self.s[17])) + " " +
+                  str(hex(self.s[18])) + " " +
+                  str(hex(self.s[19])) + " " +
+                  str(hex(self.s[20])) + " " +
+                  str(hex(self.s[21])))
+        '''if self.s:
+            print("01: " + self.s[0])
+            print("02: " + str(self.s[1]))
+            print("03: " + str(self.s[2]))
+            print("04: " + str(self.s[3]))
+            print("05: " + str(self.s[4]))
+            print("06: " + str(self.s[5]))
+            print("07: " + str(self.s[6]))
+            print("08: " + str(self.s[7]))
+            print("09: " + str(self.s[8]))
+            print("10: " + str(self.s[9]))
+            print("11: " + str(self.s[10]))
+            print("12: " + str(self.s[11]))
+            print("13: " + str(self.s[12]))
+            print("14: " + str(self.s[13]))
+            print("15: " + str(self.s[14]))
+            print("16: " + str(self.s[15]))
+            print("17: " + str(self.s[16]))
+            print("18: " + str(self.s[17]))
+            print("19: " + str(self.s[18]))
+            print("20: " + str(self.s[19]))
+            print("21: " + str(self.s[20]))
+            print("22: " + str(self.s[21]))'''
+
+        # time.sleep(1)  # Sleep for 1 seconds
+
+    def bytes1(self, num):
+        return hex(num >> 8), hex(num & 0xFF)
+
+    def sendDataToSerialPortIntensity(self, lightintensity):
+        print("Light Intensity:" + str(lightintensity))
+        print("Converted Hex: " + hex(lightintensity))
+        low, high = self.bytes1(int(hex(lightintensity), 16))
+
         new_hex = int(configVariables.totalHex, 16)
+        int_low = bin(int(low, 16)).replace("0b", "")
+        int_high = bin(int(high, 16)).replace("0b", "")
+        # binary_low = "{0:b}".format(int_low)
+        # binary_high = "{0:b}".format(int_high)
+        # print("Low Hex: " + low + " Int Low: " + int_low)
+        # print("High Hex: " + high + " Int High: " + int_high)
+        hex_low = int(low, 16)
+        hex_high = int(high, 16)
+        print("Low Hex: " + low + " Int Low: " + str(hex_low))
+        print("High Hex: " + high + " Int High: " + str(int_high))
         # misc code here
         thestring = "\x02\x31\x43\x46\xFF\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20"
         command = b'\x02\x31\x43\x02\x0F\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20\n'
-        cw = [0x02, 0x31, 0x43, 0x46, new_hex, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46,
+        cw = [0x02, 0x31, 0x43, 0x46, new_hex, hex(hex_low), hex(hex_high), 0x46, 0x46, 0x46, 0x46,
               0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x20]
 
         self.ser1.write(serial.to_bytes(cw))

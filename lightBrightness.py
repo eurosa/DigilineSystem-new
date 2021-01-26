@@ -4,9 +4,10 @@ import configVariables
 
 
 class Brightness:
-    def __init__(self, ot_ui, datamodel):
+    def __init__(self, ot_ui, datamodel, lightintensitythread):
         self.ot_ui = ot_ui
         self.datamodel = datamodel
+        self.lightintensitythread = lightintensitythread
         self.light1Brightness = 0
         self.light1Brightness_2 = 0
         self.light1Brightness_3 = 0
@@ -14,13 +15,16 @@ class Brightness:
         self.allLightBarInitialSetup(ot_ui)
 
     def otLightBrightIncrementControl(self):
-        if 0 <= self.light1Brightness < 10:
-            self.light1Brightness = self.light1Brightness + 1
+        if 0 <= self.light1Brightness < 1000:
+            self.light1Brightness = self.light1Brightness + 100
         print(str(self.light1Brightness))
 
-        if self.light1Brightness == 1:
+        if self.light1Brightness == 100:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
             '''self.ot_ui.light1_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;min-height: 20px;max-height: "
                                               "20px;background-color:#000000;border-color:#000000")
@@ -48,39 +52,57 @@ class Brightness:
             self.ot_ui.light1_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;min-height: 60px;max-height: "
                                                "60px;background-color:#000000;border-color:#000000")'''
-        if self.light1Brightness == 2:
+        if self.light1Brightness == 200:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness == 3:
+        if self.light1Brightness == 300:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness == 4:
+        if self.light1Brightness == 400:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness == 5:
+        if self.light1Brightness == 500:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness == 6:
+        if self.light1Brightness == 600:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness == 7:
+        if self.light1Brightness == 700:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness == 8:
+        if self.light1Brightness == 800:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness == 9:
+        if self.light1Brightness == 900:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness == 10:
+        if self.light1Brightness == 1000:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
@@ -100,92 +122,133 @@ class Brightness:
          self.count = self.count - 1'''
 
     def otLightBrightDecrementControl(self):
-        if 0 < self.light1Brightness <= 10:
-            self.light1Brightness = self.light1Brightness - 1
+        if 0 < self.light1Brightness <= 1000:
+            self.light1Brightness = self.light1Brightness - 100
         print("Decrement: " + str(self.light1Brightness))
 
         if self.light1Brightness == 0:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 1:
+        if self.light1Brightness == 100:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 2:
+        if self.light1Brightness == 200:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 3:
+        if self.light1Brightness == 300:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 4:
+        if self.light1Brightness == 400:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 5:
+        if self.light1Brightness == 500:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 6:
+        if self.light1Brightness == 600:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 7:
+        if self.light1Brightness == 700:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 8:
+        if self.light1Brightness == 800:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness == 9:
+        if self.light1Brightness == 900:
+            configVariables.intensity_hex_1 = self.light1Brightness
+            self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
         configVariables.light1Brightness = self.light1Brightness
 
     def otLightBrightIncrementControl2(self):
-        if 0 <= self.light1Brightness_2 < 10:
-            self.light1Brightness_2 = self.light1Brightness_2 + 1
+        if 0 <= self.light1Brightness_2 < 1000:
+            self.light1Brightness_2 = self.light1Brightness_2 + 100
+            print(str(self.light1Brightness_2))
 
-        if self.light1Brightness_2 == 1:
+        if self.light1Brightness_2 == 100:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 2:
+        if self.light1Brightness_2 == 200:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 3:
+        if self.light1Brightness_2 == 300:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 4:
+        if self.light1Brightness_2 == 400:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 5:
+        if self.light1Brightness_2 == 500:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 6:
+        if self.light1Brightness_2 == 600:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 7:
+        if self.light1Brightness_2 == 700:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 8:
+        if self.light1Brightness_2 == 800:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 9:
+        if self.light1Brightness_2 == 900:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_2 == 10:
+        if self.light1Brightness_2 == 1000:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
@@ -205,92 +268,131 @@ class Brightness:
          self.count = self.count - 1'''
 
     def otLightBrightDecrementControl2(self):
-        if 0 < self.light1Brightness_2 <= 10:
-            self.light1Brightness_2 = self.light1Brightness_2 - 1
+        if 0 < self.light1Brightness_2 <= 1000:
+            self.light1Brightness_2 = self.light1Brightness_2 - 100
+        print(str(self.light1Brightness_2))
 
         if self.light1Brightness_2 == 0:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 1:
+        if self.light1Brightness_2 == 100:
             self.ot_ui.light2_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 2:
+        if self.light1Brightness_2 == 200:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 3:
+        if self.light1Brightness_2 == 300:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 4:
+        if self.light1Brightness_2 == 400:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 5:
+        if self.light1Brightness_2 == 500:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 6:
+        if self.light1Brightness_2 == 600:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 7:
+        if self.light1Brightness_2 == 700:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 8:
+        if self.light1Brightness_2 == 800:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_2 == 9:
+        if self.light1Brightness_2 == 900:
+            configVariables.intensity_hex_2 = self.light1Brightness_2
+            self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
         configVariables.light1Brightness_2 = self.light1Brightness_2
 
     def otLightBrightIncrementControl3(self):
-        if 0 <= self.light1Brightness_3 < 10:
-            self.light1Brightness_3 = self.light1Brightness_3 + 1
-
-        if self.light1Brightness_3 == 1:
+        if 0 <= self.light1Brightness_3 < 1000:
+            self.light1Brightness_3 = self.light1Brightness_3 + 100
+        print(str(self.light1Brightness_3))
+        if self.light1Brightness_3 == 100:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 2:
+        if self.light1Brightness_3 == 200:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 3:
+        if self.light1Brightness_3 == 300:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 4:
+        if self.light1Brightness_3 == 400:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 5:
+        if self.light1Brightness_3 == 500:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 6:
+        if self.light1Brightness_3 == 600:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 7:
+        if self.light1Brightness_3 == 700:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 8:
+        if self.light1Brightness_3 == 800:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 9:
+        if self.light1Brightness_3 == 900:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_3 == 10:
+        if self.light1Brightness_3 == 1000:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
@@ -311,92 +413,130 @@ class Brightness:
          self.count = self.count - 1'''
 
     def otLightBrightDecrementControl3(self):
-        if 0 < self.light1Brightness_3 <= 10:
-            self.light1Brightness_3 = self.light1Brightness_3 - 1
-
+        if 0 < self.light1Brightness_3 <= 1000:
+            self.light1Brightness_3 = self.light1Brightness_3 - 100
+        print(str(self.light1Brightness_3))
         if self.light1Brightness_3 == 0:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 1:
+        if self.light1Brightness_3 == 100:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 2:
+        if self.light1Brightness_3 == 200:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 3:
+        if self.light1Brightness_3 == 300:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 4:
+        if self.light1Brightness_3 == 400:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 5:
+        if self.light1Brightness_3 == 500:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 6:
+        if self.light1Brightness_3 == 600:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 7:
+        if self.light1Brightness_3 == 700:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 8:
+        if self.light1Brightness_3 == 800:
             self.ot_ui.light3_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_3 == 9:
+        if self.light1Brightness_3 == 900:
+            configVariables.intensity_hex_3 = self.light1Brightness_3
+            self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
         configVariables.light1Brightness_3 = self.light1Brightness_3
 
     def otLightBrightIncrementControl4(self):
-        if 0 <= self.light1Brightness_4 < 10:
-            self.light1Brightness_4 = self.light1Brightness_4 + 1
-
-        if self.light1Brightness_4 == 1:
+        if 0 <= self.light1Brightness_4 < 1000:
+            self.light1Brightness_4 = self.light1Brightness_4 + 100
+        print(str(self.light1Brightness_4))
+        if self.light1Brightness_4 == 100:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 2:
+        if self.light1Brightness_4 == 200:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 3:
+        if self.light1Brightness_4 == 300:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 4:
+        if self.light1Brightness_4 == 400:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 5:
+        if self.light1Brightness_4 == 500:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 6:
+        if self.light1Brightness_4 == 600:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 7:
+        if self.light1Brightness_4 == 700:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 8:
+        if self.light1Brightness_4 == 800:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 9:
+        if self.light1Brightness_4 == 900:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
-        if self.light1Brightness_4 == 10:
+        if self.light1Brightness_4 == 1000:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
@@ -417,46 +557,68 @@ class Brightness:
          self.count = self.count - 1'''
 
     def otLightBrightDecrementControl4(self):
-        if 0 < self.light1Brightness_4 <= 10:
-            self.light1Brightness_4 = self.light1Brightness_4 - 1
+        if 0 < self.light1Brightness_4 <= 1000:
+            self.light1Brightness_4 = self.light1Brightness_4 - 100
+
+        print(str(self.light1Brightness_4))
 
         if self.light1Brightness_4 == 0:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 1:
+        if self.light1Brightness_4 == 100:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 2:
+        if self.light1Brightness_4 == 200:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 3:
+        if self.light1Brightness_4 == 300:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 4:
+        if self.light1Brightness_4 == 400:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 5:
+        if self.light1Brightness_4 == 500:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 6:
+        if self.light1Brightness_4 == 600:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 7:
+        if self.light1Brightness_4 == 700:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 8:
+        if self.light1Brightness_4 == 800:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
-        if self.light1Brightness_4 == 9:
+        if self.light1Brightness_4 == 900:
+            configVariables.intensity_hex_4 = self.light1Brightness_4
+            self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 

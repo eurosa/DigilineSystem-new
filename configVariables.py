@@ -31,6 +31,10 @@ totalHex = "0x0"
 
 # ---------------------- Gas Value -----------------------------------
 hex_string = None
+intensity_hex_1 = 0
+intensity_hex_2 = 0
+intensity_hex_3 = 0
+intensity_hex_4 = 0
 oxygen_hex = ""
 nitrous_hex = ""
 carbondioxide_hex = ""
