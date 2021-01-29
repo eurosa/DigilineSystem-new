@@ -196,24 +196,16 @@ class SerialWrapper:
                   str(hex(self.s[19])) + " " +
                   str(hex(self.s[20])) + " " +
                   str(hex(self.s[21])))
-            a = 0x7B
-            b = 0x80000
+
             temp_data_read_hex = self.joinHex(self.s[5], self.s[6])
             hum_data_read_hex = self.joinHex(self.s[7], self.s[8])
             air_pressure_data_read_hex = self.joinHex(self.s[9], self.s[10])
+            # shifts decimal place left
             temp_data_read = int(hex(temp_data_read_hex), 16)/10
+            # shifts decimal place left
             hum_data_read = int(hex(hum_data_read_hex), 16)/10
             air_pressure_data_read = int(hex(air_pressure_data_read_hex), 16)
-            # temp_data_read = int(hex((hex(self.s[5]) << 20) | hex(self.s[6])), 16)
-            # hum_data_read = int(hex((hex(self.s[7]) << 20) | hex(self.s[8])), 16)
-            # air_pressure_data_read = int(hex((hex(self.s[9]) << 20) | hex(self.s[10])), 16)
-            # temp_data_read = int(hex(self.s[5]), 16) + int(hex(self.s[6]), 16)
-            # hum_data_read = int(hex(self.s[7]), 16) + int(hex(self.s[8]), 16)
-            # hum_data_read = int(hex(self.s[7]), 16) + int(hex(self.s[8]), 16)
-            # air_pressure_data_read = int(hex(self.s[9]), 16) + int(hex(self.s[10]), 16)
-            # temp_data_read = self.s[5]+self.s[6]
-            # hum_data_read = self.s[7] + self.s[8]
-            # air_pressure_data_read = self.s[9] + self.s[10]
+
             self.ui.ui.tempShow.setText(str(temp_data_read))
             self.ui.ui.humidityShow.setText(str(hum_data_read))
             self.ui.ui.differentialPressureShow.setText(str(air_pressure_data_read))
