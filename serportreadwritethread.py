@@ -5,7 +5,18 @@ STRGLO = ""  # read data
 BOOL = True  # read flag
 
 
-class SerialReadWriteThread:
+class SerialWrapper1:
+    def __init__(self, device, ui):
+        self.s = None
+        self.ui = ui
+        # self.ser = serial.Serial(device, 115200)
+        ser, ret = self.DOpenPort(device, 9600, None)
+        if ret:  # determine if the serial port is successfully opened.
+            count = self.DWritePort(ser, " i am dong xiaodong, haha. ")
+            print(" number of bytes written ：", count)
+            # DReadPort() # read serial data
+            # DColsePort(ser)  # close the serial port'''
+
     # reading code ontology implementation
     def ReadData(self, ser):
         global STRGLO, BOOL
@@ -51,10 +62,10 @@ class SerialReadWriteThread:
         return str
 
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     ser, ret = self.DOpenPort("COM6", 115200, None)
     if ret == True:  # determine if the serial port is successfully opened.
         count = self.DWritePort(ser, " i am dong xiaodong, haha. ")
         print(" number of bytes written ：", count)
         # DReadPort() # read serial data
-        # DColsePort(ser)  # close the serial port
+        # DColsePort(ser)  # close the serial port'''

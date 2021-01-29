@@ -1,5 +1,8 @@
+import math
 import threading
 import time
+from multiprocessing.pool import ThreadPool
+
 import serial
 from PyQt5 import Qt
 from PyQt5.QtGui import QPalette, QColor
@@ -12,9 +15,10 @@ from repeatedTimer import RepeatedTimer
 class SerialWrapper:
     def __init__(self, device, ui):
         self.s = None
+        self.port = device
         self.ui = ui
         # self.ser = serial.Serial(device, 115200)
-        self.ser1 = serial.Serial(device, 9600)
+        # self.ser1 = serial.Serial(device, 9600)
         self.cw = [0x02, 0x31, 0x43, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46,
                    0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x46, 0x20]
 
@@ -42,6 +46,9 @@ class SerialWrapper:
         return self.repeater
 
     def sendDataToSerialPort(self):
+
+        self.ser1 = serial.Serial(self.port, 9600)
+
         # print("Converted Hex: " + str(hex_code))
         light_hex = int(configVariables.totalHex, 16)
         # ================================== Intensity Control Start 1==========================================
@@ -126,14 +133,47 @@ class SerialWrapper:
             # self.getRepeater().stop()
             self.ser1.write(serial.to_bytes(cw))
             self.s = self.ser1.read(22)
+            '''
+            pool = ThreadPool(processes=1)
+
+            async_result = pool.apply_async(self.ser1.read, (22,))  # tuple of args for foo
+
+            # do some other stuff in the main process
+
+            self.s = async_result.get()  # get the return value from your function.
+            '''
             # self.getRepeater().start()
             # print("Read RX")
-        except IOError as exc:
-            print("HELLO IO " +exc)
+        except Exception as e:
+            print("--- abnormal ---：", e)
+        time.sleep(0.5)  # Sleep for 3 seconds
+        self.ser1.close()
         configVariables.hex_string = self.s
         # time.sleep(1)
         # =================================== Thread to color changes ====================
         if self.s:
+            print(str(self.s[0]) + " " +
+                  str(self.s[1]) + " " +
+                  str(self.s[2]) + " " +
+                  str(self.s[3]) + " " +
+                  str(self.s[4]) + " " +
+                  str(self.s[5]) + " " +
+                  str(self.s[6]) + " " +
+                  str(self.s[7]) + " " +
+                  str(self.s[8]) + " " +
+                  str(self.s[9]) + " " +
+                  str(self.s[10]) + " " +
+                  str(self.s[11]) + " " +
+                  str(self.s[12]) + " " +
+                  str(self.s[13]) + " " +
+                  str(self.s[14]) + " " +
+                  str(self.s[15]) + " " +
+                  str(self.s[16]) + " " +
+                  str(self.s[17]) + " " +
+                  str(self.s[18]) + " " +
+                  str(self.s[19]) + " " +
+                  str(self.s[20]) + " " +
+                  str(self.s[21]))
             print(str(hex(self.s[0])) + " " +
                   str(hex(self.s[1])) + " " +
                   str(hex(self.s[2])) + " " +
@@ -156,6 +196,27 @@ class SerialWrapper:
                   str(hex(self.s[19])) + " " +
                   str(hex(self.s[20])) + " " +
                   str(hex(self.s[21])))
+            a = 0x7B
+            b = 0x80000
+            temp_data_read_hex = self.joinHex(self.s[5], self.s[6])
+            hum_data_read_hex = self.joinHex(self.s[7], self.s[8])
+            air_pressure_data_read_hex = self.joinHex(self.s[9], self.s[10])
+            temp_data_read = int(hex(temp_data_read_hex), 16)/10
+            hum_data_read = int(hex(hum_data_read_hex), 16)/10
+            air_pressure_data_read = int(hex(air_pressure_data_read_hex), 16)
+            # temp_data_read = int(hex((hex(self.s[5]) << 20) | hex(self.s[6])), 16)
+            # hum_data_read = int(hex((hex(self.s[7]) << 20) | hex(self.s[8])), 16)
+            # air_pressure_data_read = int(hex((hex(self.s[9]) << 20) | hex(self.s[10])), 16)
+            # temp_data_read = int(hex(self.s[5]), 16) + int(hex(self.s[6]), 16)
+            # hum_data_read = int(hex(self.s[7]), 16) + int(hex(self.s[8]), 16)
+            # hum_data_read = int(hex(self.s[7]), 16) + int(hex(self.s[8]), 16)
+            # air_pressure_data_read = int(hex(self.s[9]), 16) + int(hex(self.s[10]), 16)
+            # temp_data_read = self.s[5]+self.s[6]
+            # hum_data_read = self.s[7] + self.s[8]
+            # air_pressure_data_read = self.s[9] + self.s[10]
+            self.ui.ui.tempShow.setText(str(temp_data_read))
+            self.ui.ui.humidityShow.setText(str(hum_data_read))
+            self.ui.ui.differentialPressureShow.setText(str(air_pressure_data_read))
         '''if self.s:
             print("01: " + self.s[0])
             print("02: " + str(self.s[1]))
@@ -181,6 +242,20 @@ class SerialWrapper:
             print("22: " + str(self.s[21]))'''
 
         # time.sleep(1)  # Sleep for 1 seconds
+
+    def joinHex(self, low, high):
+        sizeof_high = 0
+        # get size of b in bits
+        while int(hex(high), 16) >> sizeof_high > 0:
+            sizeof_high += 1
+
+        # every position in hex in represented by 4 bits
+        sizeof_high_hex = math.ceil(sizeof_high / 4) * 4
+        low_data = int(hex(low), 16)
+        high_data = int(hex(high), 16)
+        hex_data = hex((low_data << sizeof_high_hex) | high_data)
+        print(str(hex_data))
+        return int(hex_data, 16)
 
     def bytes1(self, num):
         return hex(num >> 8), hex(num & 0xFF)

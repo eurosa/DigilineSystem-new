@@ -999,7 +999,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # ========================================Gas COLOR RX TX =====================================
         # ====================== Gas Color Changes using RX TX =========================================================
 
-
         '''threadRXTX2 = ThreadGasColorRXTX(self)
         threadRXTX2.signal.return_signal.connect(threadRXTX2.function_thread)
         self.threadpoolRXTX.start(threadRXTX2)
@@ -1020,8 +1019,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         threadRXTX6.signal.return_signal.connect(threadRXTX6.function_thread)
         self.threadpoolRXTX.start(threadRXTX6)'''
 
-
-        # ======================
+        # =========================================================================================
 
         self.threadPoolSwitch = QThreadPool()
         self.serialWrapper = SerialWrapper('/dev/ttyUSB0', self)
@@ -1032,8 +1030,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         threadRXTX1.signal.return_signal.connect(threadRXTX1.function_thread)
         self.threadpoolRXTX.start(threadRXTX1)
 
-        #self.rtThread1 = RepeatedTimerThread(1, self.serialWrapper.colorChned1,
-         #                                    self)  # it auto-starts, no need of rt.start()
+        # self.rtThread1 = RepeatedTimerThread(1, self.serialWrapper.colorChned1,
+        #                                    self)  # it auto-starts, no need of rt.start()
         ''' self.rtThread2 = RepeatedTimerThread(1, self.serialWrapper.colorChned2,
                                              self)  # it auto-starts, no need of rt.start()
         self.rtThread3 = RepeatedTimerThread(1, self.serialWrapper.colorChned3,
