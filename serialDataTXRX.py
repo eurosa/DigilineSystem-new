@@ -123,11 +123,19 @@ class SerialWrapper:
         hex_low_hum_6 = int(low_6, 16)
         hex_high_hum_6 = int(high_6, 16)
         # ================================== Temperature and Humidity Control End ===================================
+        # ================================== Buzzer Control ========================================================
+        buzzer_hex = (configVariables.buzzer_hex_gas_1 | configVariables.buzzer_hex_gas_2 |
+                      configVariables.buzzer_hex_gas_3 | configVariables.buzzer_hex_gas_4 |
+                      configVariables.buzzer_hex_gas_5 | configVariables.buzzer_hex_gas_6)
+
+        print("Buzzer Hex: "+" "+str(configVariables.buzzer_hex_gas_1 | configVariables.buzzer_hex_gas_2 |
+                                     configVariables.buzzer_hex_gas_3 | configVariables.buzzer_hex_gas_4 |
+                                     configVariables.buzzer_hex_gas_5 | configVariables.buzzer_hex_gas_6))
 
         # misc code here
         # thestring = "\x02\x31\x43\x46\xFF\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20"
         # command = b'\x02\x31\x43\x02\x0F\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20\n'
-        cw = [0x02, 0x31, 0x43, 0x46, light_hex,
+        cw = [0x02, 0x31, 0x43, buzzer_hex, light_hex,
               hex_low_int_1, hex_high_int_1,
               hex_low_int_2, hex_high_int_2,
               hex_low_int_3, hex_high_int_3,

@@ -70,10 +70,12 @@ class ThreadGasColorRXTX(QRunnable):
             # bit8 = bool(binary_value >> 8)
             # print("Bit: " + str(bit7))
 
-        if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 and \
-                configVariables.hex_string[2] == 0x43 and configVariables.hex_string[21] == 0x20:
+            '''if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 and \
+                configVariables.hex_string[2] == 0x43 and configVariables.hex_string[21] == 0x20:'''
+
             if bit1:
                 # High
+                configVariables.buzzer_hex_gas_1 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -86,6 +88,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif bit0:
                 # Low
+                configVariables.buzzer_hex_gas_1 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -98,6 +101,7 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.white_color_hex)
 
             elif not bit1 and not bit0:
+                configVariables.buzzer_hex_gas_1 = 0x00
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
                                                                     configVariables.green_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -111,6 +115,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             if bit3:
                 # High
+                configVariables.buzzer_hex_gas_2 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -122,6 +127,7 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.white_color_hex)
             elif bit2:
                 # Low
+                configVariables.buzzer_hex_gas_2 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -134,6 +140,7 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.white_color_hex)
 
             elif not bit3 and not bit2:
+                configVariables.buzzer_hex_gas_2 = 0x00
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
                                                                     configVariables.green_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -147,6 +154,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             if bit5:
                 # High
+                configVariables.buzzer_hex_gas_3 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -159,6 +167,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif bit4:
                 # Low
+                configVariables.buzzer_hex_gas_3 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -170,7 +179,7 @@ class ThreadGasColorRXTX(QRunnable):
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_high, "QLabel",
                                                                     configVariables.white_color_hex)
             elif not bit5 and not bit4:
-
+                configVariables.buzzer_hex_gas_3 = 0x00
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
                                                                     configVariables.green_color_hex)
 
@@ -183,6 +192,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             if bit7:
                 # High
+                configVariables.buzzer_hex_gas_4 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
                                                                     configVariables.red_color_hex)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_high, "QLabel",
@@ -194,6 +204,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif bit6:
                 # Low
+                configVariables.buzzer_hex_gas_4 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -206,7 +217,7 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.white_color_hex)
 
             elif not bit7 and not bit6:
-
+                configVariables.buzzer_hex_gas_4 = 0x00
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
                                                                     configVariables.green_color_hex)
 
@@ -219,6 +230,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             if bit9:
                 # High
+                configVariables.buzzer_hex_gas_5 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
                                                                     configVariables.red_color_hex)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_high, "QLabel",
@@ -229,6 +241,7 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.white_color_hex)
             elif bit8:
                 # Low
+                configVariables.buzzer_hex_gas_5 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
                                                                     configVariables.red_color_hex)
 
@@ -240,6 +253,7 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.white_color_hex)
 
             elif not bit8 and not bit9:
+                configVariables.buzzer_hex_gas_5 = 0x00
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
                                                                     configVariables.green_color_hex)
 
@@ -252,6 +266,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             if bit11:
                 # High
+                configVariables.buzzer_hex_gas_6 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_6_high, "QLabel",
@@ -260,6 +275,7 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.white_color_hex)
             elif bit10:
                 # Low
+                configVariables.buzzer_hex_gas_6 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
                                                                     configVariables.red_color_hex)
 
@@ -268,7 +284,7 @@ class ThreadGasColorRXTX(QRunnable):
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_6_normal, "QLabel",
                                                                     configVariables.white_color_hex)
             elif not bit11 and not bit10:
-
+                configVariables.buzzer_hex_gas_6 = 0x00
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
                                                                     configVariables.green_color_hex)
 

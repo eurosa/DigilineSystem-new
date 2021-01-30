@@ -65,3 +65,12 @@ temp_read_value = 0
 hum_read_value = 0
 hum_send_data = 0
 temp_send_data = 0
+
+# --------------------------------- Buzzer Sound Start ---------------------------------------------------
+buzzer_hex_gas_1 = 0x0
+buzzer_hex_gas_2 = 0x0
+buzzer_hex_gas_3 = 0x0
+buzzer_hex_gas_4 = 0x0
+buzzer_hex_gas_5 = 0x0
+buzzer_hex_gas_6 = 0x0
+# --------------------------------- Buzzer sound End -----------------------------------------------------
