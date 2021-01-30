@@ -114,6 +114,15 @@ class SerialWrapper:
         # print("Low Hex: " + str(hex_low) + " Int Low: " + str(int_low))
         # print("High Hex: " + str(hex_high) + " Int High: " + str(int_high))
         # ================================== Intensity Control End ==================================================
+        # ================================== Temperature and Humidity Control Start =================================
+        print("Temp: "+str(configVariables.temp_send_data)+" Hum: "+str(configVariables.hum_send_data))
+        low_5, high_5 = self.bytes1(int(hex(configVariables.temp_send_data), 16))
+        low_6, high_6 = self.bytes1(int(hex(configVariables.hum_send_data), 16))
+        hex_low_temp_5 = int(low_5, 16)
+        hex_high_temp_5 = int(high_5, 16)
+        hex_low_hum_6 = int(low_6, 16)
+        hex_high_hum_6 = int(high_6, 16)
+        # ================================== Temperature and Humidity Control End ===================================
 
         # misc code here
         # thestring = "\x02\x31\x43\x46\xFF\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20"
@@ -124,7 +133,8 @@ class SerialWrapper:
               hex_low_int_3, hex_high_int_3,
               0x0, 0x0, 0x0, 0x0,
               hex_low_int_4, hex_high_int_4,
-              0x46, 0x46, 0x46, 0x46, 0x20]
+              hex_low_temp_5, hex_high_temp_5,
+              hex_low_hum_6, hex_high_hum_6, 0x20]
 
         '''while True:
             cc = str(self.ser1.read_all())
@@ -151,6 +161,7 @@ class SerialWrapper:
         configVariables.hex_string = self.s
         # time.sleep(1)
         # =================================== Thread to color changes ====================
+
         if self.s:
             print(str(self.s[0]) + " " +
                   str(self.s[1]) + " " +
@@ -196,19 +207,26 @@ class SerialWrapper:
                   str(hex(self.s[19])) + " " +
                   str(hex(self.s[20])) + " " +
                   str(hex(self.s[21])))
+            if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 and \
+                    configVariables.hex_string[2] == 0x43 and configVariables.hex_string[21] == 0x20:
+                temp_data_read_hex = self.joinHex(self.s[5], self.s[6])
+                hum_data_read_hex = self.joinHex(self.s[7], self.s[8])
+                air_pressure_data_read_hex = self.joinHex(self.s[9], self.s[10])
+                # shifts decimal place left
+                temp_data_read = int(hex(temp_data_read_hex), 16) / 10
+                # shifts decimal place left
+                hum_data_read = int(hex(hum_data_read_hex), 16) / 10
+                air_pressure_data_read = int(hex(air_pressure_data_read_hex), 16)
 
-            temp_data_read_hex = self.joinHex(self.s[5], self.s[6])
-            hum_data_read_hex = self.joinHex(self.s[7], self.s[8])
-            air_pressure_data_read_hex = self.joinHex(self.s[9], self.s[10])
-            # shifts decimal place left
-            temp_data_read = int(hex(temp_data_read_hex), 16)/10
-            # shifts decimal place left
-            hum_data_read = int(hex(hum_data_read_hex), 16)/10
-            air_pressure_data_read = int(hex(air_pressure_data_read_hex), 16)
+                self.ui.ui.tempShow.setText(str(temp_data_read))
+                self.ui.ui.humidityShow.setText(str(hum_data_read))
+                self.ui.ui.differentialPressureShow.setText(str(air_pressure_data_read))
 
-            self.ui.ui.tempShow.setText(str(temp_data_read))
-            self.ui.ui.humidityShow.setText(str(hum_data_read))
-            self.ui.ui.differentialPressureShow.setText(str(air_pressure_data_read))
+                configVariables.temp_read_value = temp_data_read
+                configVariables.hum_read_value = hum_data_read
+
+                self.ui.startThreadSwitch7()
+                self.ui.startThreadSwitch8()
         '''if self.s:
             print("01: " + self.s[0])
             print("02: " + str(self.s[1]))

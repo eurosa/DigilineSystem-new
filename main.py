@@ -2372,6 +2372,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
     def decrementTemperature(self):
         if self.t_i_d_count > 0:
             self.t_i_d_count = self.t_i_d_count - 1
+            configVariables.temp_send_data = self.t_i_d_count * 10
         print(str(self.t_i_d_count))
         self.tempDisplayLabel()
         # while self.ui.downTemperatureButton.isDown():
@@ -2380,7 +2381,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # print(str(i))
 
     def incrementTemperature(self):
-        self.t_i_d_count = self.t_i_d_count + 1
+        if self.t_i_d_count < 100:
+            self.t_i_d_count = self.t_i_d_count + 1
+            configVariables.temp_send_data = self.t_i_d_count * 10
         print(str(self.t_i_d_count))
         self.tempDisplayLabel()
         self.startThreadSwitch7()
@@ -2388,6 +2391,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
     def decrementHumidity(self):
         if self.h_i_d_count > 0:
             self.h_i_d_count = self.h_i_d_count - 1
+            configVariables.hum_send_data = self.h_i_d_count * 10
         print(str(self.h_i_d_count))
         self.humidityDisplayLabel()
         self.startThreadSwitch8()
@@ -2396,7 +2400,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # print(str(i))
 
     def incrementHumidity(self):
-        self.h_i_d_count = self.h_i_d_count + 1
+        if self.h_i_d_count < 100:
+            self.h_i_d_count = self.h_i_d_count + 1
+            configVariables.hum_send_data = self.h_i_d_count * 10
         print(str(self.h_i_d_count))
         self.humidityDisplayLabel()
         self.startThreadSwitch8()
@@ -2567,44 +2573,48 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def tempSwitch(self):
         # if button is checked
-        if self.t_i_d_count > 15.1 and self.hex_add_temp == 0:
+        if self.t_i_d_count > configVariables.temp_read_value and self.hex_add_temp == 0:
             self.hexAdd("0x40")
             self.hex_add_temp = 1
             self.hex_minus_temp = 0
             # setting background color to light-blue
             self.rt.stop()
+
             self.serialWrapper.sendDataToSerialPort()
             self.rt.start()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # if it is unchecked
-        elif self.t_i_d_count < 15.1 and self.hex_minus_temp == 0:
+        elif self.t_i_d_count < configVariables.temp_read_value and self.hex_minus_temp == 0:
             # set background color back to light-grey
             self.hexSub("0x40")
             self.hex_minus_temp = 1
             self.hex_add_temp = 0
             self.rt.stop()
+
             self.serialWrapper.sendDataToSerialPort()
             self.rt.start()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
 
     def humidSwitch(self):
         # if button is checked
-        if self.h_i_d_count > 64.0 and self.hex_add_humidity == 0:
+        if self.h_i_d_count > configVariables.hum_read_value and self.hex_add_humidity == 0:
             self.hexAdd("0x80")
             self.hex_add_humidity = 1
             self.hex_minus_humidity = 0
             # setting background color to light-blue
             self.rt.stop()
+
             self.serialWrapper.sendDataToSerialPort()
             self.rt.start()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             # if it is unchecked
-        elif self.h_i_d_count < 64.0 and self.hex_minus_humidity == 0:
+        elif self.h_i_d_count < configVariables.hum_read_value and self.hex_minus_humidity == 0:
             # set background color back to light-grey
             self.hexSub("0x80")
             self.hex_add_humidity = 0
             self.hex_minus_humidity = 1
             self.rt.stop()
+
             self.serialWrapper.sendDataToSerialPort()
             # self.serialWrapper.sendDataToSerialPort(int(configVariables.totalHex, 16))
             self.rt.start()

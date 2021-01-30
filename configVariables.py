@@ -60,3 +60,8 @@ white_color_hex = "#FFFFFF"
 green_color_hex = "#00FF00"
 red_color_hex = "#FF0000"
 blue_color_hex = "#0000FF"
+
+temp_read_value = 0
+hum_read_value = 0
+hum_send_data = 0
+temp_send_data = 0
