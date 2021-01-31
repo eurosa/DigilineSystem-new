@@ -3,6 +3,7 @@ import time
 from PyQt5.QtCore import pyqtSlot, QRunnable, QObject, pyqtSignal
 
 import configVariables
+from Database import switchdatabase
 
 
 class Signals(QObject):
@@ -16,6 +17,9 @@ class ThreadGasColorRXTX(QRunnable):
         super(ThreadGasColorRXTX, self).__init__()
         self.signal = Signals()
         self.ui = ui
+        # =========+Alarm History Details Database Manage+=============================================
+        self.database_manage = switchdatabase.LightSwitchDataBase()
+        self.database_manage.init('lighthistory', 'QSQLITE', 'history')
 
     @pyqtSlot()
     def run(self):

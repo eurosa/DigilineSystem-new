@@ -3,9 +3,10 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
 
 
-class DataBaseManagement:
+class LightSwitchDataBase:
     def __init__(self):
-        pass
+        self.db = ""
+        self.db_history = ""
 
     def init(self, filename, server, connection):
         import os
@@ -19,14 +20,48 @@ class DataBaseManagement:
     def close(self):
         print("sery")
 
-    def insertarDatos(self, model):
+    def insertHistoryData(self, model):
         ids = int(model.get_label_name_1())
         nombre = str(model.get_label_name_2())
         apellido = str(model.get_label_name_3())
         query = QSqlQuery()
         query.exec_("insert into person values({0}, '{1}', '{2}')".format(ids, nombre, apellido))
 
-    def queryAppearanceSettingsData(self, model):
+    def db_connect(self, filename, server, connection):
+        self.db = QSqlDatabase.addDatabase(server, connection)
+        self.db.setDatabaseName(filename)
+        self.db_history = self.db.database("history", open=True)
+        # self.db_history = self.db.database("history", open=True)
+        if not self.db_history.open():
+            QMessageBox.critical(None, "Cannot open database",
+                                 "Unable to establish a database connection.\n"
+                                 "This example needs SQLite support. Please read the Qt SQL "
+                                 "driver documentation for information how to build it.\n\n"
+                                 "Click Cancel to exit.", QMessageBox.Cancel)
+            return False
+        return True
+
+    def db_create(self):
+        print("DB_create:"+str(self.db_history.open()))
+        query = QSqlQuery(self.db_history)
+        query.exec_("create table history_table(id INTEGER PRIMARY KEY , "
+                    "date_time varchar(20), alarm_details varchar(20))")
+
+        '''query.exec_("create table GeneralSettings(id INTEGER PRIMARY KEY , "
+                    "light_name_1 varchar(20), light_name_2 varchar(20), light_name_3 varchar(20), light_name_4 "
+                    "varchar(20), light_name_5 varchar(20), light_name_6 varchar(20), light_checkbox_1 varchar(20), "
+                    "light_checkbox_2 varchar(20), light_checkbox_3 varchar(20), light_checkbox_4 varchar(20), "
+                    "light_checkbox_5 varchar(20), light_checkbox_6 varchar(20),gas_name_1 "
+                    "varchar(20), gas_name_2 varchar(20), gas_name_3 varchar(20), gas_name_4 varchar(20), gas_name_5 "
+                    "varchar(20), gas_name_6 varchar(20),gas_name_7 varchar(20), gas_checkbox_1 varchar(20), "
+                    "gas_checkbox_2 varchar(20), "
+                    "gas_checkbox_3 varchar(20), gas_checkbox_4 varchar(20), gas_checkbox_5 varchar(20), "
+                    "gas_checkbox_6 varchar(20), gas_checkbox_7 varchar(20),dim_checkbox_1 varchar(20), "
+                    "dim_checkbox_2 varchar(20), "
+                    "dim_checkbox_3 varchar(20), dim_checkbox_4 varchar(20), differential_gas_pressure_checkbox "
+                    "varchar(20))")'''
+        '''
+            def queryAppearanceSettingsData(self, model):
         query = QSqlQuery()
         query.exec_("SELECT * FROM AppearanceSettings where id=1")
         while query.next():
@@ -47,33 +82,7 @@ class DataBaseManagement:
         query = QSqlQuery()
         query.exec_("UPDATE AppearanceSettings SET background_image_path ='" + _background_image_path + "' WHERE id= 1")
 
-    def db_connect(self, filename, server, connection):
-        db = QSqlDatabase.addDatabase(server, connection)
-        db.setDatabaseName(filename)
-        if not db.open():
-            QMessageBox.critical(None, "Cannot open database",
-                                 "Unable to establish a database connection.\n"
-                                 "This example needs SQLite support. Please read the Qt SQL "
-                                 "driver documentation for information how to build it.\n\n"
-                                 "Click Cancel to exit.", QMessageBox.Cancel)
-            return False
-        return True
-
-    def db_create(self):
-        query = QSqlQuery()
-        query.exec_("create table GeneralSettings(id INTEGER PRIMARY KEY , "
-                    "light_name_1 varchar(20), light_name_2 varchar(20), light_name_3 varchar(20), light_name_4 "
-                    "varchar(20), light_name_5 varchar(20), light_name_6 varchar(20), light_checkbox_1 varchar(20), "
-                    "light_checkbox_2 varchar(20), light_checkbox_3 varchar(20), light_checkbox_4 varchar(20), "
-                    "light_checkbox_5 varchar(20), light_checkbox_6 varchar(20),gas_name_1 "
-                    "varchar(20), gas_name_2 varchar(20), gas_name_3 varchar(20), gas_name_4 varchar(20), gas_name_5 "
-                    "varchar(20), gas_name_6 varchar(20),gas_name_7 varchar(20), gas_checkbox_1 varchar(20), "
-                    "gas_checkbox_2 varchar(20), "
-                    "gas_checkbox_3 varchar(20), gas_checkbox_4 varchar(20), gas_checkbox_5 varchar(20), "
-                    "gas_checkbox_6 varchar(20), gas_checkbox_7 varchar(20),dim_checkbox_1 varchar(20), "
-                    "dim_checkbox_2 varchar(20), "
-                    "dim_checkbox_3 varchar(20), dim_checkbox_4 varchar(20), differential_gas_pressure_checkbox "
-                    "varchar(20))")
+        '''
 
         ''' if __name__ == "__main__":
                 app = QCoreApplication(sys.argv)
