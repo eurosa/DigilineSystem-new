@@ -55,7 +55,6 @@ air4_hex_normal = ""
 air7_hex_normal = ""
 vacuum_hex_normal = ""
 
-
 white_color_hex = "#FFFFFF"
 green_color_hex = "#00FF00"
 red_color_hex = "#FF0000"
@@ -74,3 +73,9 @@ buzzer_hex_gas_4 = 0x0
 buzzer_hex_gas_5 = 0x0
 buzzer_hex_gas_6 = 0x0
 # --------------------------------- Buzzer sound End -----------------------------------------------------
+# +++++++++++++++++++++++++++++++++ Alarm History Database +++++++++++++++++++++++++++++++++++++++++++++++
+db = ""
+db_history = ""
+db_light = ""
+light_database = ""
+# +++++++++++++++++++++++++++++++++ End Alarm History Database +++++++++++++++++++++++++++++++++++++++++++

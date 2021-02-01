@@ -18,8 +18,8 @@ class ThreadGasColorRXTX(QRunnable):
         self.signal = Signals()
         self.ui = ui
         # =========+Alarm History Details Database Manage+=============================================
-        self.database_manage = switchdatabase.LightSwitchDataBase()
-        self.database_manage.init('lighthistory', 'QSQLITE', 'history')
+        configVariables.light_database = switchdatabase.LightSwitchDataBase()
+        configVariables.light_database.init('lighthistory', 'QSQLITE', 'history')
 
     @pyqtSlot()
     def run(self):
@@ -82,13 +82,20 @@ class ThreadGasColorRXTX(QRunnable):
                 configVariables.buzzer_hex_gas_1 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
                                                                     configVariables.red_color_hex)
-                # ---------Gas pad menu---------------------------------------------------------
+                # ----------------------------------Gas pad menu--------------------------------------------
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_high, "QLabel",
                                                                     configVariables.red_color_hex)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_normal, "QLabel",
                                                                     configVariables.white_color_hex)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_low, "QLabel",
                                                                     configVariables.white_color_hex)
+                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                self.ui.dataModel.get_gas_name_5()
+                print("Gas Name 1 High: " + self.ui.dataModel.get_gas_name_5() + " Date Time: " + self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_5(), "High")
+                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
 
             elif bit0:
                 # Low
@@ -103,6 +110,13 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.white_color_hex)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_high, "QLabel",
                                                                     configVariables.white_color_hex)
+                # ++++++++++++++++++++++++ Low Alarm Data Save in History Table +++++++++++++++++++++++++++
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                self.ui.dataModel.get_gas_name_5()
+                print("Gas Name 1 Low: " + self.ui.dataModel.get_gas_name_5() + " Date Time: " + self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_5(), "Low")
+                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
 
             elif not bit1 and not bit0:
                 configVariables.buzzer_hex_gas_1 = 0x00

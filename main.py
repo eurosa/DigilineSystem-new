@@ -60,7 +60,7 @@ import pyqtgraph as pg
 import mainwindow_auto
 from pyqtgraph import PlotWidget, plot
 # create class for our Raspberry Pi GUI
-from Database import database
+from Database import database, switchdatabase
 from Database.dataModel import DataModel
 from secondForm import Ui_Form
 from otLightening import Ui_Form as Ot_Ui
@@ -563,9 +563,14 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.gasForm.hide()
 
     def AddHistoryWidget(self):
+
         self.clear()
         self.ui.menuTitleName.setText("Alarm History")
-        self.createTable()
+# ---------------------------------------------------------
+        self.history_thread = threading.Thread(target=self.createTable())
+        self.history_thread.daemon = True
+        self.history_thread.start()
+        # self.createTable()
         # self.layout = QVBoxLayout()
 
         # self.layout.addWidget(self.tableWidget)
@@ -594,8 +599,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.tableWidget.setItem(2, 1, QTableWidgetItem("Bhopal"))
         self.tableWidget.setItem(3, 0, QTableWidgetItem("Arnavi"))
         self.tableWidget.setItem(3, 1, QTableWidgetItem("Mandsaur"))'''
+        # self.history_database = switchdatabase.LightSwitchDataBase()
+        # self.history_database.init('lighthistory', 'QSQLITE', 'history')
         self.projectModel = QSqlQueryModel()
-        self.projectModel.setQuery(self.database_manage.queryofhistorydata())
+        self.projectModel.setQuery(configVariables.light_database.historydata(), configVariables.db_history)
         # projectView = QTableView()
         self.projectModel.setHeaderData(1, Qt.Horizontal, 'Date')
         self.projectModel.setHeaderData(2, Qt.Horizontal, 'Alarm')
@@ -1178,6 +1185,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.login_ui.loginButton.clicked.connect(self.check_password)
 
         # ===================================== End of Login ===========================================================
+        # +++++++++++++++++++++++++++++++++++++HWCLOCK Date Time String ++++++++++++++++++++++++++++++++++++++++++++++++
+        self.proc = ""
 
     def setClockOk(self):
         subprocess.call(
@@ -1230,13 +1239,13 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
                 print("INT_COUNT:" + str(self.int_count))
                 # proc = subprocess.call('sudo hwclock -r', shell=True, stdout=subprocess.PIPE)
 
-                proc = subprocess.getoutput('echo vishnu | sudo hwclock -r')
+                self.proc = subprocess.getoutput('echo vishnu | sudo hwclock -r')
                 # subprocess.call(shlex.split("sudo hwclock -r"))
                 # list_result = self.insert_dash(proc, 10)
                 # list_result = re.split(list_result, )
 
                 try:
-                    date_time_str = proc
+                    date_time_str = self.proc
                     # date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
                     date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f%z')
                     '''print('Date:', date_time_obj.date())

@@ -56,6 +56,12 @@ class DataModel:
         self._user_name = str()
         self._user_pass = str()
 
+        # ++++++++++++++++++++++++ Start Alarm History Data Model Variable +++++++++++++++++++++++++++
+        self.date_time = str()
+        self.alarm_history = str()
+
+    # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
+
     # ================================Icon Color Settings Method =====================================================
     def set_border_col(self, name):
         self._border_color = name
@@ -358,7 +364,7 @@ class DataModel:
     def get_gas_name_7(self):
         return self._gas_name_7
 
-    # ==================================Dimming  ====================================
+    # ==================================  Dimming  ===============================
     def get_light_dim_checkbox_1(self):
         return self._light_dim_1
 
@@ -373,3 +379,18 @@ class DataModel:
 
     def get_differential_gas_pressure_checkbox(self):
         return self._differential_gas_pressure_checkbox
+
+    # ++++++++++++++++++++++++ Start Alarm History Data Model Getter and Setter ++++++++++++++++++
+    def set_alarm_date_time(self, date_time):
+        self.date_time = date_time
+
+    def set_alarm_history(self, alarm_history):
+        self.alarm_history = alarm_history
+
+    def get_alarm_date_time(self):
+        return self.date_time
+
+    def get_alarm_history(self):
+        return self.alarm_history
+
+    # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
