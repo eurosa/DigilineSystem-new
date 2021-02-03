@@ -1,3 +1,5 @@
+import datetime
+
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
@@ -10,6 +12,8 @@ class LightSwitchDataBase:
         configVariables.db = ""
         configVariables.db_history = ""
         configVariables.db_light = ""
+        self.hwclock_time = ""
+        self.hwclock_date = ""
 
     def init(self, filename, server, connection):
         import os
@@ -29,12 +33,29 @@ class LightSwitchDataBase:
 
     def insertHistoryData(self, date_time, gas_name, high_low):
         query = QSqlQuery(configVariables.db_history)
-        query.exec_(f"""insert into history_table(date_time, alarm_history, gas_name) 
-        values('{date_time}', '{high_low}', '{gas_name}')""")
+        if date_time:
+                    date_time_obj = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z')
+                    date_time = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z').strftime('%d/%m/%Y '
+                                                                                                         '%H:%M:%S')
+                    self.hwclock_time = date_time_obj.time().strftime("%H:%M:%S")
+                    self.hwclock_date = date_time_obj.date().strftime('%d/%m/%Y')
+
+        print("Hw Time: "+str(self.hwclock_time)+" Hw Date: "+str(self.hwclock_date))
+
+        query.exec_(f"""insert into history_table(date_time, alarm_history, gas_name, hwclock_date, hwclock_time) 
+        values('{date_time}', '{high_low}', '{gas_name}', '{self.hwclock_date}', '{self.hwclock_time}')""")
+
+        '''query.exec_("DELETE FROM history_table WHERE  id NOT IN ( SELECT TOP ( 2 ) id FROM  "
+                    "history_table ORDER BY date_time)")'''
 
     def historydata(self):
-        query = "SELECT * FROM history_table where 1"
-        return query
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("DELETE FROM history_table WHERE  id NOT IN ( SELECT id FROM history_table ORDER BY id desc limit "
+                    "500)")
+        '''query.exec_("DELETE FROM history_table WHERE  id NOT IN ( SELECT TOP ( 2 ) id FROM  "
+                    "history_table ORDER BY date_time)")'''
+        query_select = "SELECT date_time, alarm_history, gas_name  FROM history_table  ORDER BY date_time DESC"
+        return query_select
 
     def db_connect(self, filename, server, connection):
         configVariables.db = QSqlDatabase.addDatabase(server, connection)
@@ -54,7 +75,8 @@ class LightSwitchDataBase:
         print("DB_create:" + str(configVariables.db_history.open()))
         query = QSqlQuery(configVariables.db_history)
         query.exec_("create table history_table(id INTEGER PRIMARY KEY , "
-                    "date_time varchar(60), alarm_history varchar(20) , gas_name varchar(60))")
+                    "date_time varchar(60), hwclock_date, hwclock_time, "
+                    "alarm_history varchar(20) , gas_name varchar(60))")
 
         query = QSqlQuery(configVariables.db_light)
         query.exec_("create table light_table(id INTEGER PRIMARY KEY , "

@@ -566,7 +566,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         self.clear()
         self.ui.menuTitleName.setText("Alarm History")
-# ---------------------------------------------------------
+        # ---------------------------------------------------------
         self.history_thread = threading.Thread(target=self.createTable())
         self.history_thread.daemon = True
         self.history_thread.start()
@@ -604,11 +604,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.projectModel = QSqlQueryModel()
         self.projectModel.setQuery(configVariables.light_database.historydata(), configVariables.db_history)
         # projectView = QTableView()
-        self.projectModel.setHeaderData(1, Qt.Horizontal, 'Date')
-        self.projectModel.setHeaderData(2, Qt.Horizontal, 'Alarm')
+        self.projectModel.setHeaderData(0, Qt.Horizontal, 'Date/Time')
+        self.projectModel.setHeaderData(1, Qt.Horizontal, 'Alarm')
+        self.projectModel.setHeaderData(2, Qt.Horizontal, 'Gas')
         # self.tableWidget.setStyleSheet("color:red")
         self.tableWidget.setModel(self.projectModel)
-        self.tableWidget.setColumnHidden(0, True)
+        # self.tableWidget.setColumnHidden(0, True)
 
         # projectView.show()
 
@@ -1247,23 +1248,24 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
                 try:
                     date_time_str = self.proc
                     # date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
-                    date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f%z')
-                    '''print('Date:', date_time_obj.date())
+                    if date_time_str:
+                        date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f%z')
+                        '''print('Date:', date_time_obj.date())
                     print('Time:', date_time_obj.time())
                     print('Date-time:', date_time_obj)'''
-                    self.lastTime = date_time_obj.time()
-                    self.lastDate = date_time_obj.date()
-                    '''if self.ui.setTimeSetting.isChecked():
+                        self.lastTime = date_time_obj.time()
+                        self.lastDate = date_time_obj.date()
+                        '''if self.ui.setTimeSetting.isChecked():
                         self.clock_set_ui.timeEdit.setTime(date_time_obj.time())'''
-                    time_split = re.split(':', str(date_time_obj.time()))
-                    self.ui.day_date_show.setText(str(date_time_obj.date().strftime('%d/%m/%Y')))
-                    second = time_split[2].split('.', 1)[0]
-                    self.ui.time_show.setText(
-                        time_split[0] + ":" + time_split[1] + "" + "<b><font font size=12pt font weight:40>" +
-                        ":" + "</font>" + "<b>< font size=12pt font weight:40>" +
-                        second + "</font>")
-                    self.lastTimeHwclock = time_split[0] + ":" + time_split[1] + ":" + second
-                    '''splitted_string = re.split('\s+', proc)
+                        time_split = re.split(':', str(date_time_obj.time()))
+                        self.ui.day_date_show.setText(str(date_time_obj.date().strftime('%d/%m/%Y')))
+                        second = time_split[2].split('.', 1)[0]
+                        self.ui.time_show.setText(
+                            time_split[0] + ":" + time_split[1] + "" + "<b><font font size=12pt font weight:40>" +
+                            ":" + "</font>" + "<b>< font size=12pt font weight:40>" +
+                            second + "</font>")
+                        self.lastTimeHwclock = time_split[0] + ":" + time_split[1] + ":" + second
+                        '''splitted_string = re.split('\s+', proc)
                     time_split = re.split(':', splitted_string[1])
                     second = time_split[2].split('.', 1)[0]
                     self.ui.day_date_show.setText(splitted_string[0])
