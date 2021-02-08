@@ -47,7 +47,7 @@ class SerialWrapper:
 
     def sendDataToSerialPort(self):
 
-        self.ser1 = serial.Serial(self.port, 9600)
+        self.ser1 = serial.Serial('/dev/ttyUSB0', 9600)
 
         # print("Converted Hex: " + str(hex_code))
         light_hex = int(configVariables.totalHex, 16)
@@ -115,7 +115,7 @@ class SerialWrapper:
         # print("High Hex: " + str(hex_high) + " Int High: " + str(int_high))
         # ================================== Intensity Control End ==================================================
         # ================================== Temperature and Humidity Control Start =================================
-        print("Temp: "+str(configVariables.temp_send_data)+" Hum: "+str(configVariables.hum_send_data))
+        print("Temp: " + str(configVariables.temp_send_data) + " Hum: " + str(configVariables.hum_send_data))
         low_5, high_5 = self.bytes1(int(hex(configVariables.temp_send_data), 16))
         low_6, high_6 = self.bytes1(int(hex(configVariables.hum_send_data), 16))
         hex_low_temp_5 = int(low_5, 16)
@@ -128,9 +128,9 @@ class SerialWrapper:
                       configVariables.buzzer_hex_gas_3 | configVariables.buzzer_hex_gas_4 |
                       configVariables.buzzer_hex_gas_5 | configVariables.buzzer_hex_gas_6)
 
-        print("Buzzer Hex: "+" "+str(configVariables.buzzer_hex_gas_1 | configVariables.buzzer_hex_gas_2 |
-                                     configVariables.buzzer_hex_gas_3 | configVariables.buzzer_hex_gas_4 |
-                                     configVariables.buzzer_hex_gas_5 | configVariables.buzzer_hex_gas_6))
+        print("Buzzer Hex: " + " " + str(configVariables.buzzer_hex_gas_1 | configVariables.buzzer_hex_gas_2 |
+                                         configVariables.buzzer_hex_gas_3 | configVariables.buzzer_hex_gas_4 |
+                                         configVariables.buzzer_hex_gas_5 | configVariables.buzzer_hex_gas_6))
 
         # misc code here
         # thestring = "\x02\x31\x43\x46\xFF\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x46\x20"
@@ -362,6 +362,24 @@ class SerialWrapper:
             print("22: " + str(self.s[21]))'''
 
         # time.sleep(1)  # Sleep for 1 seconds
+
+    def graphData(self):
+        # ----------------------- Send to Database Temp and Hum ----------------------------------------
+        '''if date_time:
+                    date_time_obj = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z')
+                    date_time = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z').strftime('%d/%m/%Y '
+                                                                                                         '%H:%M:%S')
+                    self.hwclock_time = date_time_obj.time().strftime("%H:%M:%S")
+                    self.hwclock_date = date_time_obj.date().strftime('%d/%m/%Y')
+
+        print("Hw Time: "+str(self.hwclock_time)+" Hw Date: "+str(self.hwclock_date))'''
+
+        self.ui.dataModel.set_hum_value(configVariables.hum_read_value)
+        self.ui.dataModel.set_temp_value(configVariables.temp_read_value)
+        configVariables.light_database.insertGraphData(self.ui.dataModel.get_temp_value(),
+                                                       self.ui.dataModel.get_hum_value(), '', self.ui.proc)
+
+        configVariables.light_database.graphDataSelect(self.ui.dataModel)
 
     def colorChned1(self, ui):
         if self.s:

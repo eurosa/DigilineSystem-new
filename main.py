@@ -11,23 +11,29 @@ import signal
 import subprocess
 import threading
 import time
+from collections import deque
 from functools import partial
 from multiprocessing import Pool, cpu_count
 import sys
 
 import dateutil
 import pytz
-
+import matplotlib
+from matplotlib.ticker import FixedFormatter, FixedLocator
+import matplotlib.pyplot as plt
 import multithreading as mt
 from PyQt5.QtSql import QSqlQueryModel
 
 from DataCaptureThread import CounterThread
+from navmatplob import MplCanvas
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
 from MovieSplashScreen import MovieSplashScreen
 from RTCmodule import *
 from ShowTimeDateThread import ShowTimeDateThread
 from ThreadClass import ThreadParallel
 from TimerCounterThread import TimerCounterThread
 from allDisplayAttributeColor import *
+from buttonAdd.pyplot import ExampleWidget
 from gasColorAlterRXTX import ThreadGasColorRXTX
 from lightintensitycontrol import LightIntensityControlThread
 from multiMediaPlayerThread import MultiMediaThread
@@ -631,15 +637,96 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def showTemperatureGraph(self):
         self.clear()
+        # self.expl = ExampleWidget()
         self.ui.menuTitleName.setText("Temperature Graph")
         self.temp_ui.setupUi(self.tempForm)
+        # self.tempForm.axes.plot([0, 1, 2, 3, 4], [10, 1, 20, 3, 40])
+
+        # Create toolbar, passing canvas as first parament, parent (self, the MainWindow) as second.
+        navToolbar = NavigationToolbar(self.tempForm, self)
+        # navToolbar.pan()
+        self.layout.addWidget(navToolbar)
         self.layout.addWidget(self.tempForm)
-        self.tempForm.plot(self.hour, self.temperature)
+        self.tempForm.fig.autofmt_xdate()
+
+        '''x_formatter = FixedFormatter(list(configVariables.my_temp_list.values()))
+        y_formatter = FixedFormatter(list(configVariables.my_temp_list.values()))
+        x_locator = FixedLocator(list(configVariables.my_id_list.values()))
+        y_locator = FixedLocator(list(configVariables.my_id_list.values()))
+        self.tempForm.axes.xaxis.set_major_formatter(x_formatter)
+        self.tempForm.axes.yaxis.set_major_formatter(y_formatter)
+        self.tempForm.axes.xaxis.set_major_locator(x_locator)
+        self.tempForm.axes.yaxis.set_major_locator(y_locator)'''
+
+        '''for key in configVariables.my_time_list.keys():
+            print(key, '->', configVariables.my_time_list[key])
+            print(key, '->', configVariables.my_temp_list[key])
+            self.tempForm.axes.plot(configVariables.my_time_list[key],
+                                    configVariables.my_temp_list[key])'''
+        # self.tempForm.axes.set_xticks(list(configVariables.my_id_list.values()))
+        self.tempForm.axes.plot(list(configVariables.my_time_list.values()),
+                                list(configVariables.my_temp_list.values()))
+        self.tempForm.axes.get_xaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+        self.tempForm.axes.get_yaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+        #  self.tempForm.axes.xaxis.zoom(3)
+        self.tempForm.axes.axis(xmin=0, xmax=10)
+        #self.tempForm.axes.grid(b=True, which='major', color='w', linewidth=1.5)
+        #self.tempForm.axes.grid(b=True, which='minor', color='w', linewidth=0.75)
+
+        # self.tempForm.axes.axis(xmin=0, xmax=10, ymin=0, ymax=10)
+        self.fig.tight_layout()
+
+        # self.tempForm.axes.plot()
+        # https://programmersought.com/article/50984561968/
+
+        # self.tempForm.setBackground('w')
+        '''styles = {"color": "#f00", "font-size": "20px"}
+        # self.tempForm.setLabel("right", "Humidity (%)", **styles)
+        self.tempForm.setLabel("left", "Temperature (°C)", **styles)
+        self.tempForm.setLabel("bottom", "Minutes (H)", **styles)'''
+        # Add legend
+        # self.tempForm.addLegend()
+        pen1 = pg.mkPen(color=(255, 0, 0), width=15, style=QtCore.Qt.DashLine)
+        pen2 = pg.mkPen(color=(0, 255, 0), width=15, style=QtCore.Qt.DashLine)
+
+        # ticks = [list(zip(range(len(configVariables.my_time_list)), configVariables.my_time_list))]
+        '''pw = pg.PlotWidget()
+        xax = self.tempForm).getAxis('bottom')
+        xax.setTicks(ticks)
+        x = configVariables.my_time_list
+        y = configVariables.my_temp_list.values()
+        xdict = dict(enumerate(x))'''
+        # self.stringaxis.setTicks(ticks)
+        # plot = win.addPlot(axisItems={'bottom': stringaxis})
+        # curve = plot.plot(list(xdict.keys()), y)
+
+        # self.tempForm.plot(x.values(), y, pen=pen1)
+
+        '''x = np.array([0, 1, 2, 3])
+        y = np.array([20, 21, 22, 23])
+        my_xticks = ['John', 'Arnold', 'Mavis', 'Matt']
+        self.tempForm.xticks(x, my_xticks)
+        self.tempForm.plot(x, y)'''
+
+        '''self.tempForm.plot(list(configVariables.my_time_list.values()),
+                           list(configVariables.my_temp_list.values()))'''
+        '''self.tempForm.plot(list(configVariables.my_time_list.values()),
+                           list(configVariables.my_hum_list.values()), pen=pen2)'''
+        # self.tempForm.plot(self.hour, self.humidity, pen=pen2, symbol='+', symbolSize=30, symbolBrush=('b'))
+        # self.plot(hour, temperature_1, "Sensor1", 'r')
+        # self.plot(hour, temperature_2, "Sensor2", 'b')
         self.gasForm.hide()
         self.otForm.hide()
         self.mulFormWindo.hide()
         # self.mulForm.hide()
         self.hisForm.hide()
+
+    def graphValueInsertinDb(self):
+        pass
+        threading.Timer(10.0, self.graphValueInsertinDb).start()
+        # print("Hello, World!")
+
+    # https://www.learnpyqt.com/tutorials/plotting-pyqtgraph/
 
     def showHumidityGraph(self):
         self.clear()
@@ -761,6 +848,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # =======================Temperature Graph======================================================================
         self.hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         self.temperature = [30, 32, 34, 32, 33, 31, 29, 32, 35, 45]
+        self.proc = ""
+        self.dat = deque()
+        self.maxLen = 50  # max number of data points to show on graph
         '''
         self.graphWidget = pg.PlotWidget()
         self.setCentralWidget(self.graphWidget)
@@ -775,7 +865,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.mulForm = QtWidgets.QWidget()
         self.otForm = QtWidgets.QWidget()
         self.gasForm = QtWidgets.QWidget()
-        self.tempForm = pg.PlotWidget()
+
+        self.stringaxis = pg.AxisItem(orientation='bottom')
+        # self.tempForm = pg.PlotWidget(axisItems={'bottom': self.stringaxis})
+        self.tempForm = MplCanvas(self, width=200, height=200, dpi=100)
+
         self.humidityForm = pg.PlotWidget()
         self.mulFormWindo = QMainWindow()
         self.toggleButtonForm = QtWidgets.QWidget()
@@ -1033,6 +1127,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.serialWrapper = SerialWrapper('/dev/ttyUSB0', self)
         print("starting... Repeater Timer to send data in terminal")
         self.rt = RepeatedTimer(1, self.serialWrapper.sendDataToSerialPort)  # it auto-starts, no need of rt.start()
+        self.rt_graph = RepeatedTimer(10, self.serialWrapper.graphData)
         self.threadpoolRXTX = QThreadPool()
         threadRXTX1 = ThreadGasColorRXTX(self)
         threadRXTX1.signal.return_signal.connect(threadRXTX1.function_thread)
@@ -1187,7 +1282,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # ===================================== End of Login ===========================================================
         # +++++++++++++++++++++++++++++++++++++HWCLOCK Date Time String ++++++++++++++++++++++++++++++++++++++++++++++++
-        self.proc = ""
+
+        # ++++++++++++++++++++++++ Insert Temp and Humidity Value +++++++++++++++++++++++++++++++++++++++++
+        # self.graphValueInsertinDb()
 
     def setClockOk(self):
         subprocess.call(

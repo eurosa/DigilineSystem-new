@@ -59,6 +59,12 @@ class DataModel:
         # ++++++++++++++++++++++++ Start Alarm History Data Model Variable +++++++++++++++++++++++++++
         self.date_time = str()
         self.alarm_history = str()
+        self.temp_date_time = str()
+        self.hum_date_time = str()
+        self.temp_value = str()
+        self.hum_value = str()
+        self._date_time = str()
+
 
     # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
 
@@ -394,3 +400,25 @@ class DataModel:
         return self.alarm_history
 
     # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
+
+    # ++++++++++++++++++++++++ Start Temperature and Humidity Data Model Getter and Setter +++++++
+
+    def set_date_time(self, _date_time):
+        self._date_time = _date_time
+
+    def get_date_time(self):
+        return self._date_time
+
+    def set_temp_value(self, temp_value):
+        self.temp_value = temp_value
+
+    def get_temp_value(self):
+        return self.temp_value
+
+    def set_hum_value(self, hum_value):
+        self.hum_value = hum_value
+
+    def get_hum_value(self):
+        return self.hum_value
+
+    # ++++++++++++++++++++++++ End Temperature and Humidity Data Model Getter and Setter +++++++++

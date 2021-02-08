@@ -34,13 +34,13 @@ class LightSwitchDataBase:
     def insertHistoryData(self, date_time, gas_name, high_low):
         query = QSqlQuery(configVariables.db_history)
         if date_time:
-                    date_time_obj = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z')
-                    date_time = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z').strftime('%d/%m/%Y '
-                                                                                                         '%H:%M:%S')
-                    self.hwclock_time = date_time_obj.time().strftime("%H:%M:%S")
-                    self.hwclock_date = date_time_obj.date().strftime('%d/%m/%Y')
+            date_time_obj = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z')
+            date_time = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z').strftime('%d/%m/%Y '
+                                                                                                 '%H:%M:%S')
+            self.hwclock_time = date_time_obj.time().strftime("%H:%M:%S")
+            self.hwclock_date = date_time_obj.date().strftime('%d/%m/%Y')
 
-        print("Hw Time: "+str(self.hwclock_time)+" Hw Date: "+str(self.hwclock_date))
+        print("Hw Time: " + str(self.hwclock_time) + " Hw Date: " + str(self.hwclock_date))
 
         query.exec_(f"""insert into history_table(date_time, alarm_history, gas_name, hwclock_date, hwclock_time) 
         values('{date_time}', '{high_low}', '{gas_name}', '{self.hwclock_date}', '{self.hwclock_time}')""")
@@ -56,6 +56,48 @@ class LightSwitchDataBase:
                     "history_table ORDER BY date_time)")'''
         query_select = "SELECT date_time, alarm_history, gas_name  FROM history_table  ORDER BY date_time DESC"
         return query_select
+
+    def graphDataSelect(self, model):
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("DELETE FROM graph_table WHERE  id NOT IN ( SELECT id FROM graph_table ORDER BY id desc limit "
+                    "500)")
+        '''query.exec_("DELETE FROM history_table WHERE  id NOT IN ( SELECT TOP ( 2 ) id FROM  "
+                    "history_table ORDER BY date_time)")'''
+        query_select = "SELECT date_time, id, temp_value, hum_value FROM graph_table  ORDER BY " \
+                       "date_time ASC "
+        query.exec_(query_select)
+
+        while query.next():
+            if query.value('date_time'):
+                date_time_obj = datetime.datetime.strptime(query.value('date_time'), '%Y-%m-%d %H:%M:%S.%f%z')
+                # configVariables.my_time_list.append(date_time_obj.time().strftime("%H:%M"))
+                hours, minutes = date_time_obj.time().strftime("%H:%M").split(':')
+                minutes_total = int(hours) * 60 + int(minutes)
+                configVariables.my_time_list[query.value('id')] = date_time_obj.time().strftime("%H:%M")
+                configVariables.my_temp_list[query.value('id')] = float(query.value('temp_value'))
+                configVariables.my_hum_list[query.value('id')] = float(query.value('hum_value'))
+                configVariables.my_id_list[query.value('id')] = float(query.value('id'))
+                # [configVariables.my_time_list.append(graph_time) for graph_time in configVariables.my_time_list if
+                # graph_time not in configVariables.my_time_list]
+
+                # configVariables.my_time_list.append(configVariables.my_time_list)
+                # configVariables.my_temp_list.append(query.value('temp_value'))
+                # configVariables.my_temp_list.append(query.value('hum_value'))
+        print("Hello Time: " + str(configVariables.my_time_list))
+
+    def insertGraphData(self, temp_value, hum_value, running_pass_time, date_time):
+        query = QSqlQuery(configVariables.db_history)
+        '''if date_time:
+                    date_time_obj = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z')
+                    date_time = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z').strftime('%d/%m/%Y '
+                                                                                                         '%H:%M:%S')
+                    self.hwclock_time = date_time_obj.time().strftime("%H:%M:%S")
+                    self.hwclock_date = date_time_obj.date().strftime('%d/%m/%Y')
+
+        print("Hw Time: "+str(self.hwclock_time)+" Hw Date: "+str(self.hwclock_date))'''
+
+        query.exec_(f"""insert into graph_table(date_time, temp_value,
+         hum_value, running_pass_time) values('{date_time}', '{temp_value}', '{hum_value}', '{running_pass_time}')""")
 
     def db_connect(self, filename, server, connection):
         configVariables.db = QSqlDatabase.addDatabase(server, connection)
@@ -77,6 +119,10 @@ class LightSwitchDataBase:
         query.exec_("create table history_table(id INTEGER PRIMARY KEY , "
                     "date_time varchar(60), hwclock_date, hwclock_time, "
                     "alarm_history varchar(20) , gas_name varchar(60))")
+
+        query.exec_("create table graph_table(id INTEGER PRIMARY KEY , "
+                    "temp_value varchar(60), "
+                    "date_time varchar(60) ,running_pass_time varchar(20) , hum_value varchar(60))")
 
         query = QSqlQuery(configVariables.db_light)
         query.exec_("create table light_table(id INTEGER PRIMARY KEY , "
