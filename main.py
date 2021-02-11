@@ -666,15 +666,17 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.tempForm.axes.set_xticks(list(configVariables.my_id_list.values()))
         self.tempForm.axes.plot(list(configVariables.my_time_list.values()),
                                 list(configVariables.my_temp_list.values()))
-        self.tempForm.axes.get_xaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
-        self.tempForm.axes.get_yaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+        # self.tempForm.axes.get_xaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+        # self.tempForm.axes.get_yaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
         #  self.tempForm.axes.xaxis.zoom(3)
-        self.tempForm.axes.axis(xmin=0, xmax=10)
-        #self.tempForm.axes.grid(b=True, which='major', color='w', linewidth=1.5)
-        #self.tempForm.axes.grid(b=True, which='minor', color='w', linewidth=0.75)
+        #   self.tempForm.axes.axis(xmin=0, xmax=10)
+        self.tempForm.axes.set_xlim(xmin=0, xmax=10)
+        self.tempForm.axes.set_ylim(ymin=0, ymax=10)
+        # self.tempForm.axes.grid(b=True, which='major', color='w', linewidth=1.5)
+        # self.tempForm.axes.grid(b=True, which='minor', color='w', linewidth=0.75)
 
         # self.tempForm.axes.axis(xmin=0, xmax=10, ymin=0, ymax=10)
-        self.fig.tight_layout()
+        # self.fig.tight_layout()
 
         # self.tempForm.axes.plot()
         # https://programmersought.com/article/50984561968/
@@ -2710,7 +2712,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.hex_add_humidity = 1
             self.hex_minus_humidity = 0
             # setting background color to light-blue
-            self.rt.stop()
+            # self.rt.stop()
 
             self.serialWrapper.sendDataToSerialPort()
             self.rt.start()

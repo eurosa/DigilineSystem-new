@@ -927,7 +927,7 @@ QToolButton:pressed {
      <rect>
       <x>1496</x>
       <y>337</y>
-      <width>121</width>
+      <width>171</width>
       <height>70</height>
      </rect>
     </property>
@@ -1003,7 +1003,7 @@ color:#FFFFFF;
      <rect>
       <x>1780</x>
       <y>337</y>
-      <width>151</width>
+      <width>171</width>
       <height>70</height>
      </rect>
     </property>
@@ -1846,7 +1846,7 @@ color:#FFFFFF;
      <rect>
       <x>1460</x>
       <y>668</y>
-      <width>80</width>
+      <width>191</width>
       <height>77</height>
      </rect>
     </property>
@@ -1875,7 +1875,7 @@ color:#FFFFFF;
      <rect>
       <x>1710</x>
       <y>668</y>
-      <width>139</width>
+      <width>181</width>
       <height>77</height>
      </rect>
     </property>

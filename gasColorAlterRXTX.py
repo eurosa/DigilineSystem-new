@@ -36,10 +36,11 @@ class ThreadGasColorRXTX(QRunnable):
 
     def function_thread(self, signal):
         # QTimer.singleShot(2000, lambda: self.settings_dialog_set_ui.applyColor.setDisabled(False))
-        # self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj)
-        # self.threadpool.destroyed()
-        if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 and \
-                configVariables.hex_string[2] == 0x43 and configVariables.hex_string[21] == 0x20:
+        # self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj) self.threadpool.destroyed() Index out
+        # of range error if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 \ in
+        # rasberry pi
+        # Aborted in rasberry pi
+        if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 and configVariables.hex_string[2] == 0x43 and configVariables.hex_string[21] == 0x20:
             x7 = bin(0b10000000)
             x6 = bin(0b01000000)
             x5 = bin(0b00100000)

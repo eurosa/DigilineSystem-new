@@ -64,7 +64,7 @@ class LightSwitchDataBase:
         '''query.exec_("DELETE FROM history_table WHERE  id NOT IN ( SELECT TOP ( 2 ) id FROM  "
                     "history_table ORDER BY date_time)")'''
         query_select = "SELECT date_time, id, temp_value, hum_value FROM graph_table  ORDER BY " \
-                       "date_time ASC "
+                       "id  ASC "
         query.exec_(query_select)
 
         while query.next():
@@ -73,8 +73,8 @@ class LightSwitchDataBase:
                 # configVariables.my_time_list.append(date_time_obj.time().strftime("%H:%M"))
                 hours, minutes = date_time_obj.time().strftime("%H:%M").split(':')
                 minutes_total = int(hours) * 60 + int(minutes)
-                configVariables.my_time_list[query.value('id')] = date_time_obj.time().strftime("%H:%M")
-                configVariables.my_temp_list[query.value('id')] = float(query.value('temp_value'))
+                configVariables.my_time_list[query.value('id')] = date_time_obj.time().strftime("%H:%M")+"\n "+date_time_obj.date().strftime('%d/%m/%Y')
+                configVariables.my_temp_list[query.value('id')] = (query.value('temp_value'))
                 configVariables.my_hum_list[query.value('id')] = float(query.value('hum_value'))
                 configVariables.my_id_list[query.value('id')] = float(query.value('id'))
                 # [configVariables.my_time_list.append(graph_time) for graph_time in configVariables.my_time_list if
