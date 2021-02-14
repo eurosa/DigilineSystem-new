@@ -298,6 +298,7 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.shutDown_ui.cancelShutButton, "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.shutDown_ui.logoutButton, "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.login_ui.loginButton, "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.login_ui.cancelPushButton, "QPushButton")
         self.ui.alldisplayColorChangeObj.changeLoginDialogAttributeColor(self.ui.loginDialogQtWidget)
         self.ui.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.ui.setTimerWidget)
         #  self.shutDialog.setStyleSheet("background-color: " + self.dataModel.get_theme_color() + ";")
@@ -355,6 +356,12 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.choosePowerOnScreenImage,
                                                               "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.chooseBackGroundImage,
+                                                              "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.cancelGeneral,
+                                                              "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.cancelTheme,
+                                                              "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.cancelColor,
                                                               "QPushButton")
 
         # =============================== Settings Dialog ==================================================
@@ -897,6 +904,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.SettingsQDialog = QtWidgets.QDialog()
         self.settings_dialog_set_ui.setupUi(self.SettingsQDialog)
 
+
         # self.settings_dialog_set_ui.tab_7.setEnabled(False)
         # ----------------------___Start Login Dialog -----------------------------------------
         self.login_ui = Ui_loginDialog()
@@ -955,6 +963,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         cursor.mergeBlockFormat(textBlockFormat)
         self.telephone_ui.lcdNumber.setTextCursor(cursor)'''
         self.ui.phoneCallingButton.clicked.connect(self.telephoneDialogOpen)
+        self.telephone_ui.closeTelephonePad.clicked.connect(self.closeTelephonePad)
+
         # =============================== Start Ventilation ==================================================================
         self.ventilationWidget = QtWidgets.QWidget()
         self.ventilation_ui = Ui_ventilationDetails()
@@ -1074,6 +1084,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.settings_dialog_set_ui.disableLogo.clicked.connect(self.disableLogo)
         self.settings_dialog_set_ui.enableLogo.clicked.connect(self.enableLogo)
 
+        self.settings_dialog_set_ui.cancelColor.clicked.connect(self.closeSettingDialog)
+        self.settings_dialog_set_ui.cancelTheme.clicked.connect(self.closeSettingDialog)
+        self.settings_dialog_set_ui.cancelGeneral.clicked.connect(self.closeSettingDialog)
+
         # ========================End of Database Management======================================================
         # ========================Icon Color Update =============================================================
         self.SettingsQDialog.closeEvent = self.CloseEvent
@@ -1096,7 +1110,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.queryIconColorSettingsMain(self.dataModel, self.database_manage)
         self.alldisplayColorChangeObj = AllDisplayAttributeColor(self.dataModel)
         self.modifyGlobalVariablesObj = modifyGlobalVariables.ModifyGlobalVariables(self.alldisplayColorChangeObj,
-                                                                                    self.ot_ui, self.dataModel)
+                                                                                    self.ot_ui, self.dataModel, self.database_manage)
 
         # --------------------------- Start Multimedia Player ------------------------------------------------------
 
@@ -1281,6 +1295,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.userPassLineEdit.setEchoMode(True)
         self.ui.settingsButton.clicked.connect(self.loginDialogOpen)
         self.login_ui.loginButton.clicked.connect(self.check_password)
+        self.login_ui.cancelPushButton.clicked.connect(self.closeLoginDialog)
 
         # ===================================== End of Login ===========================================================
         # +++++++++++++++++++++++++++++++++++++HWCLOCK Date Time String ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1644,6 +1659,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         self.modifyGlobalVariablesObj.setChangedImage()
         self.modifyGlobalVariablesObj.setChangedLightColor()
+        # self.rt.stop()
+        '''self.wer = threading.Thread(target=self.colorChangedThread)
+        self.wer.daemon = True
+        self.wer.start()
+        self.wer.join()'''
+
         # -------------- Start Change color of Icon -----------------------------------------------------------
         self.alldisplayColorChangeObj.changePlayerAttributeColor(self.player)
         self.alldisplayColorChangeObj.changeAttributeColor(self.player.controls.previousButton, "QToolButton")
@@ -1667,6 +1688,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
                                                                    "QLineEdit")
         self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_pass,
                                                                    "QLineEdit")
+
         '''self.modifyGlobalVariablesObj.setChangedImage()
         self.modifyGlobalVariablesObj.setChangedLightColor()
         # -------------- End Change Color of Icon -------------------------------------------------------
@@ -1838,6 +1860,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
         # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    def colorChangedThread(self):
+
+        self.modifyGlobalVariablesObj.setChangedLightColor()
+        # self.rt.start()
 
     def flashSplash(self):
         self.splash = QSplashScreen(QPixmap('/home/rnjn/RasberryProject/DigilineSystem/icon/medical-logo-plus.png'))
@@ -2027,6 +2054,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.settings_dialog_set_ui.enableLogo.setChecked(True)
             self.dataModel.set_enable_disable_logo_image("True")
             self.database_manage.updateEnableDisableLogoImage(self.dataModel)
+
+    def closeSettingDialog(self):
+        self.SettingsQDialog.close()
 
     def selectBackgroundImageOpen(self):
         # self.dataModel = DataModel()
@@ -3022,6 +3052,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
                 self.loginDialogQtWidget.hide()
             self.loginDialogQtWidget.exec_()
 
+    def closeLoginDialog(self):
+        self.loginDialogQtWidget.close()
+
     def check_password(self):
         # print('Lovb: ' + self.loginDataModel.get_user_name() + ' ' + self.loginDataModel.get_user_pass())
         if self.dataModel.get_user_name() == '' and self.dataModel.get_user_pass() == '':
@@ -3075,6 +3108,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.IconColorControlObj.default_color_database(self.dataModel)
         # ==========================================================================================
         if self.ui.settingsButton.isChecked():
+            self.SettingsQDialog.setWindowFlags(self.SettingsQDialog.windowFlags() | Qt.WindowCloseButtonHint)
             self.SettingsQDialog.show()
         else:
             self.SettingsQDialog.hide()
@@ -3082,8 +3116,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.SettingsQDialog.exec_()
 
     def telephoneDialogOpen(self):
-        window = TelephoneDialog()
-        # self.telephoneQtWidget.exec_()
+        # window = TelephoneDialog()
+        self.telephoneQtWidget.show()
+
+    def closeTelephonePad(self):
+        print("Close Telephone Pad")
+        self.telephoneQtWidget.close()
 
     def changeNameLabel(self):
         self.clear()

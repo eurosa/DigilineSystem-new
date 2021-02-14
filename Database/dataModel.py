@@ -65,6 +65,13 @@ class DataModel:
         self.hum_value = str()
         self._date_time = str()
 
+        # +++++++++++++++++++++++++++ Image byte array variable ++++++++++++++++++++++++++++++++++++++
+        self._changed_light_bulb = bytearray
+        self._changed_ot_light = bytearray
+        self._low_light_bulb = bytearray
+        self._low_ot_light = bytearray
+        self._changed_low_color = str()
+
 
     # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
 
@@ -422,3 +429,34 @@ class DataModel:
         return self.hum_value
 
     # ++++++++++++++++++++++++ End Temperature and Humidity Data Model Getter and Setter +++++++++
+    # ==============+Store QPixMap Image in Database+=============================================
+    def set_changed_light_bulb(self, _changed_light_bulb):
+        self._changed_light_bulb = _changed_light_bulb
+
+    def get_changed_light_bulb(self):
+        return self._changed_light_bulb
+
+    def set_changed_ot_light(self, _changed_ot_light):
+        self._changed_ot_light = _changed_ot_light
+
+    def get_changed_ot_light(self):
+        return self._changed_ot_light
+
+    def set_low_light_bulb(self, _low_light_bulb):
+        self._low_light_bulb = _low_light_bulb
+
+    def get_low_light_bulb(self):
+        return self._low_light_bulb
+
+    def set_low_ot_light(self, _low_ot_light):
+        self._low_ot_light = _low_ot_light
+
+    def get_low_ot_light(self):
+        return self._low_ot_light
+
+    def set_changed_low_color(self, _changed_low_color):
+        self._changed_low_color = _changed_low_color
+
+    def get_changed_low_color(self):
+        return self._changed_low_color
+

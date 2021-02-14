@@ -14,13 +14,30 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_telephonePad(object):
     def setupUi(self, telephonePad):
         telephonePad.setObjectName("telephonePad")
-        telephonePad.resize(348, 394)
-        self.gridLayout_3 = QtWidgets.QGridLayout(telephonePad)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.gridLayout_2 = QtWidgets.QGridLayout()
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.gridLayout = QtWidgets.QGridLayout()
+        telephonePad.resize(339, 424)
+        self.gridLayout = QtWidgets.QGridLayout(telephonePad)
         self.gridLayout.setObjectName("gridLayout")
+        self.lcdNumber = QtWidgets.QLineEdit(telephonePad)
+        self.lcdNumber.setStyleSheet("QLineEdit {\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 47px;\n"
+"    \n"
+"     \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#1976D2;\n"
+"   \n"
+"}\n"
+"QLineEdit:pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}\n"
+"")
+        self.lcdNumber.setObjectName("lcdNumber")
+        self.gridLayout.addWidget(self.lcdNumber, 0, 0, 1, 3)
         self.button1 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -54,7 +71,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button1.setObjectName("button1")
-        self.gridLayout.addWidget(self.button1, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.button1, 1, 0, 1, 1)
         self.button2 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -86,7 +103,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button2.setObjectName("button2")
-        self.gridLayout.addWidget(self.button2, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.button2, 1, 1, 1, 1)
         self.button3 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -119,7 +136,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button3.setObjectName("button3")
-        self.gridLayout.addWidget(self.button3, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.button3, 1, 2, 1, 1)
         self.button4 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -152,7 +169,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button4.setObjectName("button4")
-        self.gridLayout.addWidget(self.button4, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.button4, 2, 0, 1, 1)
         self.button5 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -185,7 +202,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button5.setObjectName("button5")
-        self.gridLayout.addWidget(self.button5, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.button5, 2, 1, 1, 1)
         self.button6 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -218,7 +235,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button6.setObjectName("button6")
-        self.gridLayout.addWidget(self.button6, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.button6, 2, 2, 1, 1)
         self.button7 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -251,7 +268,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button7.setObjectName("button7")
-        self.gridLayout.addWidget(self.button7, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.button7, 3, 0, 1, 1)
         self.button8 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -284,7 +301,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button8.setObjectName("button8")
-        self.gridLayout.addWidget(self.button8, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.button8, 3, 1, 1, 1)
         self.button9 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -317,7 +334,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button9.setObjectName("button9")
-        self.gridLayout.addWidget(self.button9, 2, 2, 1, 1)
+        self.gridLayout.addWidget(self.button9, 3, 2, 1, 1)
         self.button10 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -350,7 +367,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button10.setObjectName("button10")
-        self.gridLayout.addWidget(self.button10, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.button10, 4, 0, 1, 1)
         self.button0 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -383,7 +400,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button0.setObjectName("button0")
-        self.gridLayout.addWidget(self.button0, 3, 1, 1, 1)
+        self.gridLayout.addWidget(self.button0, 4, 1, 1, 1)
         self.button11 = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -416,7 +433,7 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.button11.setObjectName("button11")
-        self.gridLayout.addWidget(self.button11, 3, 2, 1, 1)
+        self.gridLayout.addWidget(self.button11, 4, 2, 1, 1)
         self.buttonClear = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -453,7 +470,7 @@ class Ui_telephonePad(object):
         self.buttonClear.setIcon(icon)
         self.buttonClear.setIconSize(QtCore.QSize(47, 47))
         self.buttonClear.setObjectName("buttonClear")
-        self.gridLayout.addWidget(self.buttonClear, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.buttonClear, 5, 0, 1, 1)
         self.buttonCall = QtWidgets.QToolButton(telephonePad)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -486,15 +503,20 @@ class Ui_telephonePad(object):
 "}\n"
 "")
         self.buttonCall.setObjectName("buttonCall")
-        self.gridLayout.addWidget(self.buttonCall, 4, 1, 1, 2)
-        self.gridLayout_2.addLayout(self.gridLayout, 1, 0, 1, 1)
-        self.lcdNumber = QtWidgets.QLineEdit(telephonePad)
-        self.lcdNumber.setStyleSheet("QLineEdit {\n"
+        self.gridLayout.addWidget(self.buttonCall, 5, 1, 1, 2)
+        self.closeTelephonePad = QtWidgets.QToolButton(telephonePad)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.closeTelephonePad.sizePolicy().hasHeightForWidth())
+        self.closeTelephonePad.setSizePolicy(sizePolicy)
+        self.closeTelephonePad.setMinimumSize(QtCore.QSize(321, 41))
+        self.closeTelephonePad.setStyleSheet("QToolButton {\n"
 "    border-style: outset;\n"
 "    border-width: 1px;\n"
 "    border-radius: 10px;\n"
 "    border-color: beige;\n"
-"    font: bold 47px;\n"
+"    font: bold 24px;\n"
 "    \n"
 "     \n"
 "    padding: 6px;\n"
@@ -502,14 +524,14 @@ class Ui_telephonePad(object):
 "    color:#1976D2;\n"
 "   \n"
 "}\n"
-"QLineEdit:pressed {\n"
+"QToolButton:pressed {\n"
 "    background-color: gray;\n"
 "    border-style: inset;\n"
 "}\n"
 "")
-        self.lcdNumber.setObjectName("lcdNumber")
-        self.gridLayout_2.addWidget(self.lcdNumber, 0, 0, 1, 1)
-        self.gridLayout_3.addLayout(self.gridLayout_2, 0, 0, 1, 1)
+        self.closeTelephonePad.setObjectName("closeTelephonePad")
+        self.gridLayout.addWidget(self.closeTelephonePad, 6, 0, 1, 3)
+        self.closeTelephonePad.raise_()
 
         self.retranslateUi(telephonePad)
         QtCore.QMetaObject.connectSlotsByName(telephonePad)
@@ -531,6 +553,7 @@ class Ui_telephonePad(object):
         self.button11.setText(_translate("telephonePad", "+"))
         self.buttonClear.setText(_translate("telephonePad", "AC"))
         self.buttonCall.setText(_translate("telephonePad", "Call"))
+        self.closeTelephonePad.setText(_translate("telephonePad", "Close"))
 
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+from PyQt5.QtCore import QByteArray, QBuffer, QIODevice
 from PyQt5.QtGui import QImage, QPixmap
 
 import configVariables
@@ -8,8 +9,9 @@ configVariables.z = "geeksforgeeks"
 
 
 class ModifyGlobalVariables:
-    def __init__(self, alldisplayobj, ot_ui, model):
+    def __init__(self, alldisplayobj, ot_ui, model, _database):
         self.alldisplayobj = alldisplayobj
+        self.database = _database
         self.ot_ui = ot_ui
         self.dataModel = model
         self.play_wh = QImage(QPixmap("icon/play_white.png"))
@@ -43,8 +45,50 @@ class ModifyGlobalVariables:
         configVariables.low_ot_light = self.alldisplayobj.returnPixmapColorImageLowLight(self.ot_light)
         configVariables.changed_low_color = self.alldisplayobj.color_variant_inc_dec(self.dataModel.get_icon_col(), 87)
 
+        changed_light_bulb = self.convertQPixMapToByteArray(configVariables.changed_light_bulb)
+        self.dataModel.set_changed_light_bulb(changed_light_bulb)
+        # self.convertByteToPixMap(self.dataModel.get_changed_light_bulb())
+
+        changed_ot_light = self.convertQPixMapToByteArray(configVariables.changed_ot_light)
+        self.dataModel.set_changed_ot_light(changed_ot_light)
+
+        # self.convertByteToPixMap(self.dataModel.get_changed_ot_light())
+
+        low_light_bulb = self.convertQPixMapToByteArray(configVariables.low_light_bulb)
+        self.dataModel.set_low_light_bulb(low_light_bulb)
+        # self.convertByteToPixMap(self.dataModel.get_low_light_bulb())
+
+        low_ot_light = self.convertQPixMapToByteArray(configVariables.low_ot_light)
+        self.dataModel.set_low_ot_light(low_ot_light)
+        # self.convertByteToPixMap(self.dataModel.get_low_ot_light())
+
+        # changed_low_color = self.convertQPixMapToByteArray(configVariables.changed_low_color)
+        self.dataModel.set_changed_low_color(configVariables.changed_low_color)
+        # self.convertByteToPixMap(self.dataModel.get_changed_low_color())
+        print("Changed Light Bulb: " + str(changed_light_bulb))
+        self.database.insertPixMapByteArray(self.dataModel)
+
     def getChangedPlayImage(self):
         return configVariables.play_changed_image
 
     def getChangedPauseImage(self):
         return configVariables.pause_changed_image
+
+    def convertQPixMapToByteArray(self, pixmap):
+        ba = QByteArray()
+        buff = QBuffer(ba)
+        buff.open(QIODevice.WriteOnly)
+        ok = pixmap.save(buff, "PNG")
+        assert ok
+        pixmap_bytes = ba
+        # pixmap_bytes = ba.data()
+        return pixmap_bytes
+        # print("PIX_MAP_BYTE" + str(pixmap_bytes))
+
+    def convertByteToPixMap(self, pixmap_bytes):
+        # convert bytes to QPixmap
+        ba = QByteArray(pixmap_bytes)
+        pixmap = QPixmap()
+        ok = pixmap.loadFromData(ba, "PNG")
+        assert ok
+        print("PIX_MAP" + str(pixmap))

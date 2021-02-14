@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>814</width>
-    <height>440</height>
+    <height>495</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@ background-color: rgb(0, 166, 166);
  </string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <property name="tabBarAutoHide">
       <bool>false</bool>
@@ -51,60 +51,290 @@ background-color: rgb(0, 166, 166);
        <string>General Settings</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelLightTitle">
-         <property name="minimumSize">
-          <size>
-           <width>67</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>67</width>
-           <height>19</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Lights</string>
-         </property>
-        </widget>
+       <item row="3" column="3">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="checkBoxGas1">
+           <property name="minimumSize">
+            <size>
+             <width>51</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>51</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>G1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QTextEdit" name="gasNameEdit1">
+           <property name="minimumSize">
+            <size>
+             <width>171</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>171</width>
+             <height>31</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="checkBoxGas2">
+           <property name="minimumSize">
+            <size>
+             <width>51</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>51</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>G2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QTextEdit" name="gasNameEdit2">
+           <property name="minimumSize">
+            <size>
+             <width>171</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>171</width>
+             <height>31</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="checkBoxGas3">
+           <property name="minimumSize">
+            <size>
+             <width>51</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>51</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>G3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QTextEdit" name="gasNameEdit3">
+           <property name="minimumSize">
+            <size>
+             <width>171</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>171</width>
+             <height>31</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="checkBoxGas4">
+           <property name="minimumSize">
+            <size>
+             <width>51</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>51</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>G4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QTextEdit" name="gasNameEdit4">
+           <property name="minimumSize">
+            <size>
+             <width>171</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>171</width>
+             <height>31</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QCheckBox" name="checkBoxGas5">
+           <property name="minimumSize">
+            <size>
+             <width>61</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>61</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>G5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QTextEdit" name="gasNameEdit5">
+           <property name="minimumSize">
+            <size>
+             <width>171</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>171</width>
+             <height>31</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QCheckBox" name="checkBoxGas6">
+           <property name="minimumSize">
+            <size>
+             <width>51</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>51</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>G6</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QTextEdit" name="gasNameEdit6">
+           <property name="minimumSize">
+            <size>
+             <width>171</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>171</width>
+             <height>31</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QCheckBox" name="checkBoxGas7">
+           <property name="minimumSize">
+            <size>
+             <width>51</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>51</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>G7</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QTextEdit" name="gasNameEdit7">
+           <property name="minimumSize">
+            <size>
+             <width>171</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>171</width>
+             <height>31</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkBoxDifferentialPressure">
+           <property name="minimumSize">
+            <size>
+             <width>241</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>241</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Differential Pressure</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="labelGasAlarmTitle">
+       <item row="2" column="2" rowspan="2">
+        <widget class="Line" name="line">
          <property name="minimumSize">
           <size>
-           <width>101</width>
+           <width>20</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>101</width>
-           <height>19</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Gas Alarms</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" rowspan="2" colspan="4">
-        <widget class="Line" name="line_2">
-         <property name="minimumSize">
-          <size>
-           <width>851</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>851</width>
-           <height>20</height>
+           <width>20</width>
+           <height>331</height>
           </size>
          </property>
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
@@ -188,22 +418,22 @@ background-color: rgb(0, 166, 166);
          </item>
         </layout>
        </item>
-       <item row="2" column="2" rowspan="2">
-        <widget class="Line" name="line">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelLightTitle">
          <property name="minimumSize">
           <size>
-           <width>20</width>
+           <width>67</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>20</width>
-           <height>331</height>
+           <width>67</width>
+           <height>19</height>
           </size>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="text">
+          <string>Lights</string>
          </property>
         </widget>
        </item>
@@ -535,274 +765,6 @@ background-color: rgb(0, 166, 166);
          </item>
         </layout>
        </item>
-       <item row="3" column="3">
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="checkBoxGas1">
-           <property name="minimumSize">
-            <size>
-             <width>51</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>51</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>G1</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QTextEdit" name="gasNameEdit1">
-           <property name="minimumSize">
-            <size>
-             <width>171</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>171</width>
-             <height>31</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="checkBoxGas2">
-           <property name="minimumSize">
-            <size>
-             <width>51</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>51</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>G2</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QTextEdit" name="gasNameEdit2">
-           <property name="minimumSize">
-            <size>
-             <width>171</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>171</width>
-             <height>31</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QCheckBox" name="checkBoxGas3">
-           <property name="minimumSize">
-            <size>
-             <width>51</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>51</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>G3</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QTextEdit" name="gasNameEdit3">
-           <property name="minimumSize">
-            <size>
-             <width>171</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>171</width>
-             <height>31</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QCheckBox" name="checkBoxGas4">
-           <property name="minimumSize">
-            <size>
-             <width>51</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>51</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>G4</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QTextEdit" name="gasNameEdit4">
-           <property name="minimumSize">
-            <size>
-             <width>171</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>171</width>
-             <height>31</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QCheckBox" name="checkBoxGas5">
-           <property name="minimumSize">
-            <size>
-             <width>61</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>61</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>G5</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QTextEdit" name="gasNameEdit5">
-           <property name="minimumSize">
-            <size>
-             <width>171</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>171</width>
-             <height>31</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QCheckBox" name="checkBoxGas6">
-           <property name="minimumSize">
-            <size>
-             <width>51</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>51</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>G6</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QTextEdit" name="gasNameEdit6">
-           <property name="minimumSize">
-            <size>
-             <width>171</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>171</width>
-             <height>31</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QCheckBox" name="checkBoxGas7">
-           <property name="minimumSize">
-            <size>
-             <width>51</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>51</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>G7</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QTextEdit" name="gasNameEdit7">
-           <property name="minimumSize">
-            <size>
-             <width>171</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>171</width>
-             <height>31</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0" colspan="2">
-          <widget class="QCheckBox" name="checkBoxDifferentialPressure">
-           <property name="minimumSize">
-            <size>
-             <width>241</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>241</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Differential Pressure</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
        <item row="4" column="0" colspan="4">
         <widget class="Line" name="line_3">
          <property name="minimumSize">
@@ -819,6 +781,44 @@ background-color: rgb(0, 166, 166);
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" rowspan="2" colspan="4">
+        <widget class="Line" name="line_2">
+         <property name="minimumSize">
+          <size>
+           <width>851</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>851</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="labelGasAlarmTitle">
+         <property name="minimumSize">
+          <size>
+           <width>101</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>101</width>
+           <height>19</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Gas Alarms</string>
          </property>
         </widget>
        </item>
@@ -841,6 +841,19 @@ background-color: rgb(0, 166, 166);
          </property>
         </widget>
        </item>
+       <item row="5" column="1">
+        <widget class="QPushButton" name="cancelGeneral">
+         <property name="minimumSize">
+          <size>
+           <width>161</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </item>
       </layout>
       <zorder>labelLightTitle</zorder>
       <zorder>buttonApplyGeneral</zorder>
@@ -848,6 +861,7 @@ background-color: rgb(0, 166, 166);
       <zorder>line</zorder>
       <zorder>line_2</zorder>
       <zorder>line_3</zorder>
+      <zorder>cancelGeneral</zorder>
      </widget>
      <widget class="QWidget" name="tabTheme">
       <attribute name="title">
@@ -856,49 +870,10 @@ background-color: rgb(0, 166, 166);
       <layout class="QGridLayout" name="gridLayout_7">
        <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout_6">
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelTheme">
+         <item row="5" column="1">
+          <widget class="QPushButton" name="chooseLogo">
            <property name="text">
-            <string>Theme</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" colspan="2">
-          <widget class="QComboBox" name="comboBoxTheme"/>
-         </item>
-         <item row="0" column="3">
-          <widget class="QPushButton" name="buttonApplyTheme">
-           <property name="text">
-            <string>Apply </string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="labelDisplayTheme">
-           <property name="minimumSize">
-            <size>
-             <width>100</width>
-             <height>100</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>100</width>
-             <height>100</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Theme display</string>
-           </property>
-           <property name="scaledContents">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="5">
-          <widget class="Line" name="line_10">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <string>Choose file</string>
            </property>
           </widget>
          </item>
@@ -909,10 +884,38 @@ background-color: rgb(0, 166, 166);
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QPushButton" name="chooseBackGroundImage">
+         <item row="2" column="3" rowspan="2">
+          <widget class="QPushButton" name="buttonApplyBackGroundImage">
            <property name="text">
-            <string>Choose file</string>
+            <string>Apply </string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QCheckBox" name="disableBackGroundImage">
+           <property name="text">
+            <string>Disable</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="QCheckBox" name="disableLogo">
+           <property name="text">
+            <string>Disable</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="5">
+          <widget class="Line" name="line_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="5">
+          <widget class="Line" name="line_11">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -926,15 +929,64 @@ background-color: rgb(0, 166, 166);
            </property>
           </widget>
          </item>
-         <item row="2" column="3" rowspan="2">
-          <widget class="QPushButton" name="buttonApplyBackGroundImage">
+         <item row="8" column="3">
+          <widget class="QPushButton" name="buttonPowerOnScreenImage">
+           <property name="text">
+            <string>Apply</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="2">
+          <widget class="QLabel" name="labelDisplayPowerOnScreenImage">
+           <property name="text">
+            <string>No file chosen</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3" rowspan="2">
+          <widget class="QPushButton" name="buttonApplyLogo">
            <property name="text">
             <string>Apply </string>
            </property>
           </widget>
          </item>
-         <item row="2" column="4" rowspan="2">
-          <widget class="QLabel" name="labelDisplayBackGroundImage">
+         <item row="7" column="0" colspan="5">
+          <widget class="Line" name="line_12">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPushButton" name="chooseBackGroundImage">
+           <property name="text">
+            <string>Choose file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="labelPowerOnImage">
+           <property name="text">
+            <string>Power On Screen Image</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelTheme">
+           <property name="text">
+            <string>Theme</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QPushButton" name="buttonApplyTheme">
+           <property name="text">
+            <string>Apply </string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="4">
+          <widget class="QLabel" name="labelDisplayPowerOnScreenImage_2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -954,59 +1006,10 @@ background-color: rgb(0, 166, 166);
             </size>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Bacground Image &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Display display&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Power On &lt;/p&gt;&lt;p&gt;Screen Image&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QCheckBox" name="enableBackGroundImage">
-           <property name="text">
-            <string>Enable</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QCheckBox" name="disableBackGroundImage">
-           <property name="text">
-            <string>Disable</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0" colspan="5">
-          <widget class="Line" name="line_11">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="labelLogo">
-           <property name="text">
-            <string>Logo</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QPushButton" name="chooseLogo">
-           <property name="text">
-            <string>Choose file</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="2">
-          <widget class="QLabel" name="displayLogoPath">
-           <property name="text">
-            <string>No file chosen</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="3" rowspan="2">
-          <widget class="QPushButton" name="buttonApplyLogo">
-           <property name="text">
-            <string>Apply </string>
            </property>
           </widget>
          </item>
@@ -1038,57 +1041,8 @@ background-color: rgb(0, 166, 166);
            </property>
           </widget>
          </item>
-         <item row="6" column="1">
-          <widget class="QCheckBox" name="enableLogo">
-           <property name="text">
-            <string>Enable</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="2">
-          <widget class="QCheckBox" name="disableLogo">
-           <property name="text">
-            <string>Disable</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0" colspan="5">
-          <widget class="Line" name="line_12">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="labelPowerOnImage">
-           <property name="text">
-            <string>Power On Screen Image</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1">
-          <widget class="QPushButton" name="choosePowerOnScreenImage">
-           <property name="text">
-            <string>Choose file</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="2">
-          <widget class="QLabel" name="labelDisplayPowerOnScreenImage">
-           <property name="text">
-            <string>No file chosen</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="3">
-          <widget class="QPushButton" name="buttonPowerOnScreenImage">
-           <property name="text">
-            <string>Apply</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="4">
-          <widget class="QLabel" name="labelDisplayPowerOnScreenImage_2">
+         <item row="2" column="4" rowspan="2">
+          <widget class="QLabel" name="labelDisplayBackGroundImage">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1108,10 +1062,77 @@ background-color: rgb(0, 166, 166);
             </size>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Power On &lt;/p&gt;&lt;p&gt;Screen Image&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Bacground Image &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Display display&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="labelLogo">
+           <property name="text">
+            <string>Logo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QCheckBox" name="enableLogo">
+           <property name="text">
+            <string>Enable</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" colspan="2">
+          <widget class="QComboBox" name="comboBoxTheme"/>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="labelDisplayTheme">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Theme display</string>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QPushButton" name="choosePowerOnScreenImage">
+           <property name="text">
+            <string>Choose file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="enableBackGroundImage">
+           <property name="text">
+            <string>Enable</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QLabel" name="displayLogoPath">
+           <property name="text">
+            <string>No file chosen</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="3">
+          <widget class="QPushButton" name="cancelTheme">
+           <property name="text">
+            <string>Cancel</string>
            </property>
           </widget>
          </item>
@@ -1240,7 +1261,7 @@ background-color: rgb(0, 166, 166);
       <widget class="QPushButton" name="applyColor">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>196</x>
          <y>270</y>
          <width>141</width>
          <height>31</height>
@@ -1248,6 +1269,19 @@ background-color: rgb(0, 166, 166);
        </property>
        <property name="text">
         <string>Apply</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="cancelColor">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>270</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
        </property>
       </widget>
      </widget>

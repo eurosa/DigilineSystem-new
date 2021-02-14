@@ -34,7 +34,7 @@ class TelephoneDialog(QDialog, Ui_telephonePad):
         self.lcdNumber.textChanged.connect(self.handleTextChanged)
         self.reset()
 
-        self.show()
+        # self.show()
 
     def display(self):
         self.lcdNumber.setText(str(self.stack))
@@ -77,9 +77,9 @@ class TelephoneDialog(QDialog, Ui_telephonePad):
             self.display()
 
 
-if __name__ == '__main__':
+'''if __name__ == '__main__':
     app = QApplication([])
     app.setApplicationName("Calculon")
 
     window = TelephoneDialog()
-    app.exec_()
+    app.exec_()'''

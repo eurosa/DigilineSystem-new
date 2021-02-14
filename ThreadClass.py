@@ -210,12 +210,21 @@ class ThreadParallel(QRunnable):
                                                            "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.chooseBackGroundImage,
                                                            "QPushButton")
+
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.cancelTheme,
+                                                              "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.cancelGeneral,
+                                                              "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.cancelColor,
+                                                              "QPushButton")
+
         self.ui.alldisplayColorChangeObj.changeShutDownDialogAttributeColor(self.ui.shutDialog)
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.shutDown_ui.shutDownButton, "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.shutDown_ui.rebootButton, "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.shutDown_ui.cancelShutButton, "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.shutDown_ui.logoutButton, "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.login_ui.loginButton, "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.login_ui.cancelPushButton, "QPushButton")
         self.ui.alldisplayColorChangeObj.changeLoginDialogAttributeColor(self.ui.loginDialogQtWidget)
         self.ui.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.ui.setTimerWidget)
         # self.settings_dialog_set_ui.tabGeneral.setStyleSheet("color: " + self.dataModel.get_text_col() + ";")

@@ -98,6 +98,37 @@ class DataBaseManagement:
             dict[query.value('theme_color_hex')+";#@;"+query.value('theme_color_preview')] = query.value('theme_color_name')
         return dict
 
+    def insertPixMapByteArray(self, datamodel):
+        changed_light_bulb = datamodel.get_changed_light_bulb()
+        changed_ot_light = datamodel.get_changed_ot_light()
+        low_light_bulb = datamodel.get_low_light_bulb()
+        low_ot_light = datamodel.get_low_ot_light()
+        changed_low_color = datamodel.get_changed_low_color()
+        # print("Changed Light Bulb: "+str(changed_light_bulb))
+        # print("Changed Low Light Color: " + str(changed_low_color))
+        query = QSqlQuery()
+        # query.exec_(f"""insert into image_table( changed_light_bulb)
+        #       values(  '{ckjk}')""")
+        query.prepare("INSERT INTO image_table (changed_light_bulb, changed_ot_light, "
+                      "low_light_bulb, low_ot_light, changed_low_color) "
+                      "VALUES ( :changed_light_bulb, :changed_ot_light, :low_light_bulb,"
+                      " :low_ot_light, :changed_low_color)")
+        query.bindValue(":changed_light_bulb", changed_light_bulb)
+        query.bindValue(":changed_ot_light", changed_ot_light)
+        query.bindValue(":low_light_bulb", low_light_bulb)
+        query.bindValue(":low_ot_light", low_ot_light)
+        query.bindValue(":changed_low_color", changed_low_color)
+        if not query.exec():
+            qDebug() << "Error inserting image into table:\n" << query.lastError()
+
+        '''
+        query.exec_(f"""insert into image_table(changed_light_bulb, changed_ot_light, low_light_bulb, low_ot_light, changed_low_color) 
+                values('{changed_light_bulb}', '{changed_ot_light}', '{low_light_bulb}', '{low_ot_light}', '{changed_low_color}')""")
+
+        '''
+
+        # qDebug() << "Error inserting image into table:\n" << query.lastError()
+
     def queryGeneralSettingsData(self, model):
         query = QSqlQuery()
         query.exec_("SELECT * FROM GeneralSettings where id=1")
@@ -306,6 +337,11 @@ class DataBaseManagement:
         query.exec_("create table themeColorSettings(id INTEGER PRIMARY KEY , "
                     "theme_color_hex varchar(20), theme_color_name varchar(20), active_inactive varchar(20),"
                     "theme_color_preview varchar(200))")
+
+        query.exec_("create table image_table(id INTEGER PRIMARY KEY , "
+                    "play_wh BLOB, pause_wh BLOB, changed_light_bulb BLOB,"
+                    "changed_ot_light BLOB, low_light_bulb BLOB, low_ot_light BLOB,"
+                    "changed_low_color varchar(80))")
 
         query.exec_("insert into themeColorSettings(theme_color_hex, theme_color_name, "
                     "active_inactive,theme_color_preview) values('#000000','Dark','True',"
