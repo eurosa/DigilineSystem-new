@@ -473,7 +473,7 @@ class Thread(QRunnable):
                                                                      "QLabel")
 
         # ======================= Login UI ==========================================================================
-        self.ui.modifyGlobalVariablesObj.setChangedImage()
+        # self.ui.modifyGlobalVariablesObj.setChangedImage()
         self.ui.modifyGlobalVariablesObj.setChangedLightColor()
         # self.ui.lightBrightnessObject.allLightBarInitialSetup(self.ui.ot_ui)
         '''self.ui.lightBrightnessObject.otLightBrightIncrementControl()
@@ -1663,10 +1663,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light4Increment, "QToolButton")'''
         if configVariables.light_database.tableRowCount("image_table") > 0:
             configVariables.light_database.queryChangedIconColorData(self.dataModel)
-            self.modifyGlobalVariablesObj.getChangedImage()
+            # self.modifyGlobalVariablesObj.getChangedImage()
             self.modifyGlobalVariablesObj.getChangedLightColor()
         else:
-            self.modifyGlobalVariablesObj.setChangedImage()
+            # self.modifyGlobalVariablesObj.setChangedImage()
             self.modifyGlobalVariablesObj.setChangedLightColor()
         # self.rt.stop()
         '''self.wer = threading.Thread(target=self.colorChangedThread)

@@ -107,20 +107,24 @@ class LightSwitchDataBase:
         low_light_bulb = datamodel.get_low_light_bulb()
         low_ot_light = datamodel.get_low_ot_light()
         changed_low_color = datamodel.get_changed_low_color()
+        play_pixmap_byte = datamodel.get_changed_play()
+        pause_pixmap_byte = datamodel.get_changed_pause()
         # print("Changed Light Bulb: "+str(changed_light_bulb))
         # print("Changed Low Light Color: " + str(changed_low_color))
         query = QSqlQuery(configVariables.db_history)
         # query.exec_(f"""insert into image_table( changed_light_bulb)
         #       values(  '{ckjk}')""")
         query.prepare("INSERT INTO image_table (changed_light_bulb, changed_ot_light, "
-                      "low_light_bulb, low_ot_light, changed_low_color) "
+                      "low_light_bulb, low_ot_light, changed_low_color, play_wh, pause_wh) "
                       "VALUES ( :changed_light_bulb, :changed_ot_light, :low_light_bulb,"
-                      " :low_ot_light, :changed_low_color)")
+                      " :low_ot_light, :changed_low_color, :play_wh, :pause_wh)")
         query.bindValue(":changed_light_bulb", changed_light_bulb)
         query.bindValue(":changed_ot_light", changed_ot_light)
         query.bindValue(":low_light_bulb", low_light_bulb)
         query.bindValue(":low_ot_light", low_ot_light)
         query.bindValue(":changed_low_color", changed_low_color)
+        query.bindValue(":play_wh", play_pixmap_byte)
+        query.bindValue(":pause_wh", pause_pixmap_byte)
         if not query.exec():
             qDebug() << "Error inserting image into table:\n" << query.lastError()
 
@@ -130,6 +134,8 @@ class LightSwitchDataBase:
         low_light_bulb = datamodel.get_low_light_bulb()
         low_ot_light = datamodel.get_low_ot_light()
         changed_low_color = datamodel.get_changed_low_color()
+        play_pixmap_byte = datamodel.get_changed_play()
+        pause_pixmap_byte = datamodel.get_changed_pause()
         # print("Changed Light Bulb: "+str(changed_light_bulb))
         # print("Changed Low Light Color: " + str(changed_low_color))
         query = QSqlQuery(configVariables.db_history)
@@ -138,7 +144,8 @@ class LightSwitchDataBase:
         # query.prepare('UPDATE "%s" SET value=:val WHERE property=:var' % tbl)
         query.prepare('UPDATE image_table SET changed_light_bulb=:changed_light_bulb,'
                       ' changed_ot_light=:changed_ot_light, low_light_bulb=:low_light_bulb,'
-                      ' low_ot_light=:low_ot_light, changed_low_color=:changed_low_color'
+                      ' low_ot_light=:low_ot_light, changed_low_color=:changed_low_color, '
+                      'play_wh=:play_wh, pause_wh=:pause_wh'
                       ' WHERE id=:var')
 
         query.bindValue(":changed_light_bulb", changed_light_bulb)
@@ -146,6 +153,8 @@ class LightSwitchDataBase:
         query.bindValue(":low_light_bulb", low_light_bulb)
         query.bindValue(":low_ot_light", low_ot_light)
         query.bindValue(":changed_low_color", changed_low_color)
+        query.bindValue(":play_wh", play_pixmap_byte)
+        query.bindValue(":pause_wh", pause_pixmap_byte)
         query.bindValue(':var', 1)
 
         if not query.exec():
@@ -168,6 +177,8 @@ class LightSwitchDataBase:
             model.set_low_light_bulb(query.value('low_light_bulb'))
             model.set_low_ot_light(query.value('low_ot_light'))
             model.set_changed_low_color(query.value('changed_low_color'))
+            model.set_changed_play(query.value('play_wh'))
+            model.set_changed_pause(query.value('pause_wh'))
 
     def tableRowCount(self, table_name):
         row_count = 0

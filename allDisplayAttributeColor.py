@@ -266,6 +266,19 @@ class AllDisplayAttributeColor:
         # attribute_name.setIconSize(QSize(31, 31))
         # attribute_name.setIcon(QIcon(QPixmap.fromImage(self.image)))
 
+    def changedQPixMapColorImage(self, image):
+        self.image = image
+        for x in range(self.image.width()):
+            for y in range(self.image.height()):
+                pcolor = self.image.pixelColor(x, y)
+                if pcolor.alpha() > 0:
+                    n_color = QColor(self.datamodel.get_icon_col())
+                    n_color.setAlpha(pcolor.alpha())
+                    self.image.setPixelColor(x, y, n_color)
+        return QPixmap.fromImage(self.image)
+        # attribute_name.setIconSize(QSize(31, 31))
+        # attribute_name.setIcon(QIcon(QPixmap.fromImage(self.image)))
+
     '''def get_complementary(self, color):
         color = color[1:]
         color = int(color, 16)

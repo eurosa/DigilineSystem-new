@@ -16,7 +16,7 @@ class ThreadChangedIcon(QRunnable):
     def run(self):
         # time.sleep(5)
         result = "Some String"
-        self.ui.modifyGlobalVariablesObj.setChangedImage()
+        # self.ui.modifyGlobalVariablesObj.setChangedImage()
         self.ui.modifyGlobalVariablesObj.setChangedLightColor()
         # ======================= Login UI ==========================================================================
 

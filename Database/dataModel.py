@@ -71,7 +71,8 @@ class DataModel:
         self._low_light_bulb = bytearray
         self._low_ot_light = bytearray
         self._changed_low_color = str()
-
+        self._changed_play = bytearray
+        self._changed_pause = bytearray
 
     # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
 
@@ -460,3 +461,14 @@ class DataModel:
     def get_changed_low_color(self):
         return self._changed_low_color
 
+    def set_changed_play(self, _changed_play):
+        self._changed_play = _changed_play
+
+    def get_changed_play(self):
+        return self._changed_play
+
+    def set_changed_pause(self, _changed_pause):
+        self._changed_pause = _changed_pause
+
+    def get_changed_pause(self):
+        return self._changed_pause

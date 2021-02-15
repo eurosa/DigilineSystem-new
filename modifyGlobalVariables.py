@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QByteArray, QBuffer, QIODevice
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtGui import QImage, QPixmap, QIcon
 
 import configVariables
 
@@ -20,10 +20,29 @@ class ModifyGlobalVariables:
         self.ot_light = QImage(QPixmap("icon/lights.png"))
 
     def setChangedImage(self):
-        configVariables.play_changed_image = self.alldisplayobj.changedIconColorImage(self.play_wh)
-        configVariables.pause_changed_image = self.alldisplayobj.changedIconColorImage(self.pause_wh)
+        play_qpixmap_image = self.alldisplayobj.changedQPixMapColorImage(self.play_wh)
+        pause_qpixmap_image = self.alldisplayobj.changedQPixMapColorImage(self.pause_wh)
+        play_qpixmap_byte = self.convertQPixMapToByteArray(play_qpixmap_image)
+        pause_qpixmap_byte = self.convertQPixMapToByteArray(pause_qpixmap_image)
+
+        configVariables.play_changed_image = QIcon(play_qpixmap_image)
+        configVariables.pause_changed_image = QIcon(pause_qpixmap_image)
+
+        self.dataModel.set_changed_play(play_qpixmap_byte)
+        self.dataModel.set_changed_pause(pause_qpixmap_byte)
 
     def setChangedLightColor(self):
+        play_qpixmap_image = self.alldisplayobj.changedQPixMapColorImage(self.play_wh)
+        pause_qpixmap_image = self.alldisplayobj.changedQPixMapColorImage(self.pause_wh)
+        play_qpixmap_byte = self.convertQPixMapToByteArray(play_qpixmap_image)
+        pause_qpixmap_byte = self.convertQPixMapToByteArray(pause_qpixmap_image)
+
+        configVariables.play_changed_image = QIcon(play_qpixmap_image)
+        configVariables.pause_changed_image = QIcon(pause_qpixmap_image)
+
+        self.dataModel.set_changed_play(play_qpixmap_byte)
+        self.dataModel.set_changed_pause(pause_qpixmap_byte)
+
         ''' configVariables.changed_light1Decrement = self.alldisplayobj.changeIconColor(self.ot_ui.light1Decrement)
         configVariables.changed_light1Increment = self.alldisplayobj.changeIconColor(self.ot_ui.light1Increment)
         configVariables.changed_light2Decrement = self.alldisplayobj.changeIconColor(self.ot_ui.light2Decrement)
@@ -74,8 +93,10 @@ class ModifyGlobalVariables:
             configVariables.light_database.insertPixMapByteArray(self.dataModel)
 
     def getChangedImage(self):
-        configVariables.play_changed_image = self.alldisplayobj.changedIconColorImage(self.play_wh)
-        configVariables.pause_changed_image = self.alldisplayobj.changedIconColorImage(self.pause_wh)
+        '''configVariables.play_changed_image = self.alldisplayobj.changedIconColorImage(self.play_wh)
+        configVariables.pause_changed_image = self.alldisplayobj.changedIconColorImage(self.pause_wh)'''
+        configVariables.play_changed_image = QIcon(self.convertByteToPixMap(self.dataModel.get_changed_play()))
+        configVariables.pause_changed_image = QIcon(self.convertByteToPixMap(self.dataModel.get_changed_pause()))
 
     def getChangedLightColor(self):
         '''configVariables.changed_light1Decrement = self.alldisplayobj.changeIconColor(self.ot_ui.light1Decrement)
@@ -92,6 +113,9 @@ class ModifyGlobalVariables:
         configVariables.changed_lightBulb3 = self.alldisplayobj.changePixmapColor(self.ot_ui.lightBulb3)
         configVariables.changed_lightBulb4 = self.alldisplayobj.changePixmapColor(self.ot_ui.lightBulb4)
         configVariables.changed_otLightBulb2 = self.alldisplayobj.changePixmapColor(self.ot_ui.otLightBulb2)'''
+
+        configVariables.play_changed_image = QIcon(self.convertByteToPixMap(self.dataModel.get_changed_play()))
+        configVariables.pause_changed_image = QIcon(self.convertByteToPixMap(self.dataModel.get_changed_pause()))
 
         configVariables.changed_light_bulb = self.convertByteToPixMap(self.dataModel.get_changed_light_bulb())
         configVariables.changed_ot_light = self.convertByteToPixMap(self.dataModel.get_changed_ot_light())
