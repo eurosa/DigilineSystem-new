@@ -840,6 +840,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # =======================Temperature Graph======================================================================
         self.hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         self.humidity = [66, 73, 74, 79, 74, 73, 60, 71, 82, 85]
+
+        #  =====================================Gas Color Change Thread =========================
+        self.threadpoolRXTX = QThreadPool()
+        threadRXTX1 = ThreadGasColorRXTX(self)
+        #  =====================================Gas Color Change Thread =========================
+
         '''
         self.graphWidget = pg.PlotWidget()
         self.setCentralWidget(self.graphWidget)
@@ -903,7 +909,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.settings_dialog_set_ui = Ui_SettingsQDialog()
         self.SettingsQDialog = QtWidgets.QDialog()
         self.settings_dialog_set_ui.setupUi(self.SettingsQDialog)
-
 
         # self.settings_dialog_set_ui.tab_7.setEnabled(False)
         # ----------------------___Start Login Dialog -----------------------------------------
@@ -1110,7 +1115,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.queryIconColorSettingsMain(self.dataModel, self.database_manage)
         self.alldisplayColorChangeObj = AllDisplayAttributeColor(self.dataModel)
         self.modifyGlobalVariablesObj = modifyGlobalVariables.ModifyGlobalVariables(self.alldisplayColorChangeObj,
-                                                                                    self.ot_ui, self.dataModel, self.database_manage)
+                                                                                    self.ot_ui, self.dataModel,
+                                                                                    self.database_manage)
 
         # --------------------------- Start Multimedia Player ------------------------------------------------------
 
@@ -1144,8 +1150,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         print("starting... Repeater Timer to send data in terminal")
         self.rt = RepeatedTimer(1, self.serialWrapper.sendDataToSerialPort)  # it auto-starts, no need of rt.start()
         self.rt_graph = RepeatedTimer(10, self.serialWrapper.graphData)
-        self.threadpoolRXTX = QThreadPool()
-        threadRXTX1 = ThreadGasColorRXTX(self)
+
         threadRXTX1.signal.return_signal.connect(threadRXTX1.function_thread)
         self.threadpoolRXTX.start(threadRXTX1)
 
@@ -1656,9 +1661,13 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light3Increment, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light4Decrement, "QToolButton")
         self.alldisplayColorChangeObj.changeAttributeColor(self.ot_ui.light4Increment, "QToolButton")'''
-
-        self.modifyGlobalVariablesObj.setChangedImage()
-        self.modifyGlobalVariablesObj.setChangedLightColor()
+        if configVariables.light_database.tableRowCount("image_table") > 0:
+            configVariables.light_database.queryChangedIconColorData(self.dataModel)
+            self.modifyGlobalVariablesObj.getChangedImage()
+            self.modifyGlobalVariablesObj.getChangedLightColor()
+        else:
+            self.modifyGlobalVariablesObj.setChangedImage()
+            self.modifyGlobalVariablesObj.setChangedLightColor()
         # self.rt.stop()
         '''self.wer = threading.Thread(target=self.colorChangedThread)
         self.wer.daemon = True

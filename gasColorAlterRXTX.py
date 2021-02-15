@@ -20,6 +20,7 @@ class ThreadGasColorRXTX(QRunnable):
         # =========+Alarm History Details Database Manage+=============================================
         configVariables.light_database = switchdatabase.LightSwitchDataBase()
         configVariables.light_database.init('lighthistory', 'QSQLITE', 'history')
+        # configVariables.light_database.init('lighthistory', 'QSQLITE', 'image_con')
 
     @pyqtSlot()
     def run(self):

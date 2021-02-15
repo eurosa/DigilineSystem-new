@@ -12,6 +12,7 @@ class LightSwitchDataBase:
         configVariables.db = ""
         configVariables.db_history = ""
         configVariables.db_light = ""
+        configVariables.db_image = ""
         self.hwclock_time = ""
         self.hwclock_date = ""
 
@@ -73,7 +74,8 @@ class LightSwitchDataBase:
                 # configVariables.my_time_list.append(date_time_obj.time().strftime("%H:%M"))
                 hours, minutes = date_time_obj.time().strftime("%H:%M").split(':')
                 minutes_total = int(hours) * 60 + int(minutes)
-                configVariables.my_time_list[query.value('id')] = date_time_obj.time().strftime("%H:%M")+"\n "+date_time_obj.date().strftime('%d/%m/%Y')
+                configVariables.my_time_list[query.value('id')] = date_time_obj.time().strftime(
+                    "%H:%M") + "\n " + date_time_obj.date().strftime('%d/%m/%Y')
                 configVariables.my_temp_list[query.value('id')] = (query.value('temp_value'))
                 configVariables.my_hum_list[query.value('id')] = float(query.value('hum_value'))
                 configVariables.my_id_list[query.value('id')] = float(query.value('id'))
@@ -99,10 +101,88 @@ class LightSwitchDataBase:
         query.exec_(f"""insert into graph_table(date_time, temp_value,
          hum_value, running_pass_time) values('{date_time}', '{temp_value}', '{hum_value}', '{running_pass_time}')""")
 
+    def insertPixMapByteArray(self, datamodel):
+        changed_light_bulb = datamodel.get_changed_light_bulb()
+        changed_ot_light = datamodel.get_changed_ot_light()
+        low_light_bulb = datamodel.get_low_light_bulb()
+        low_ot_light = datamodel.get_low_ot_light()
+        changed_low_color = datamodel.get_changed_low_color()
+        # print("Changed Light Bulb: "+str(changed_light_bulb))
+        # print("Changed Low Light Color: " + str(changed_low_color))
+        query = QSqlQuery(configVariables.db_history)
+        # query.exec_(f"""insert into image_table( changed_light_bulb)
+        #       values(  '{ckjk}')""")
+        query.prepare("INSERT INTO image_table (changed_light_bulb, changed_ot_light, "
+                      "low_light_bulb, low_ot_light, changed_low_color) "
+                      "VALUES ( :changed_light_bulb, :changed_ot_light, :low_light_bulb,"
+                      " :low_ot_light, :changed_low_color)")
+        query.bindValue(":changed_light_bulb", changed_light_bulb)
+        query.bindValue(":changed_ot_light", changed_ot_light)
+        query.bindValue(":low_light_bulb", low_light_bulb)
+        query.bindValue(":low_ot_light", low_ot_light)
+        query.bindValue(":changed_low_color", changed_low_color)
+        if not query.exec():
+            qDebug() << "Error inserting image into table:\n" << query.lastError()
+
+    def updatePixMapByteArray(self, datamodel):
+        changed_light_bulb = datamodel.get_changed_light_bulb()
+        changed_ot_light = datamodel.get_changed_ot_light()
+        low_light_bulb = datamodel.get_low_light_bulb()
+        low_ot_light = datamodel.get_low_ot_light()
+        changed_low_color = datamodel.get_changed_low_color()
+        # print("Changed Light Bulb: "+str(changed_light_bulb))
+        # print("Changed Low Light Color: " + str(changed_low_color))
+        query = QSqlQuery(configVariables.db_history)
+        # query.exec_(f"""insert into image_table( changed_light_bulb)
+        #       values(  '{ckjk}')""")
+        # query.prepare('UPDATE "%s" SET value=:val WHERE property=:var' % tbl)
+        query.prepare('UPDATE image_table SET changed_light_bulb=:changed_light_bulb,'
+                      ' changed_ot_light=:changed_ot_light, low_light_bulb=:low_light_bulb,'
+                      ' low_ot_light=:low_ot_light, changed_low_color=:changed_low_color'
+                      ' WHERE id=:var')
+
+        query.bindValue(":changed_light_bulb", changed_light_bulb)
+        query.bindValue(":changed_ot_light", changed_ot_light)
+        query.bindValue(":low_light_bulb", low_light_bulb)
+        query.bindValue(":low_ot_light", low_ot_light)
+        query.bindValue(":changed_low_color", changed_low_color)
+        query.bindValue(':var', 1)
+
+        if not query.exec():
+            qDebug() << "Error updating image into table:\n" << query.lastError()
+        '''
+        query.exec_(f"""insert into image_table(changed_light_bulb, changed_ot_light, low_light_bulb, low_ot_light, changed_low_color) 
+                values('{changed_light_bulb}', '{changed_ot_light}', '{low_light_bulb}', '{low_ot_light}', '{changed_low_color}')""")
+
+        '''
+
+        # qDebug() << "Error inserting image into table:\n" << query.lastError()
+
+    def queryChangedIconColorData(self, model):
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("SELECT * FROM image_table where 1")
+        while query.next():
+            # print(query.value('theme_color_preview'))
+            model.set_changed_light_bulb(query.value('changed_light_bulb'))
+            model.set_changed_ot_light(query.value('changed_ot_light'))
+            model.set_low_light_bulb(query.value('low_light_bulb'))
+            model.set_low_ot_light(query.value('low_ot_light'))
+            model.set_changed_low_color(query.value('changed_low_color'))
+
+    def tableRowCount(self, table_name):
+        row_count = 0
+        query = QSqlQuery(configVariables.db_history)
+        query.exec("SELECT COUNT(*) FROM "+table_name+"")
+
+        if query.first():
+            row_count = query.value(0)
+        return row_count
+
     def db_connect(self, filename, server, connection):
         configVariables.db = QSqlDatabase.addDatabase(server, connection)
         configVariables.db.setDatabaseName(filename)
         configVariables.db_history = configVariables.db.database("history", open=True)
+        # configVariables.db_image = configVariables.db.database("image_con", open=True)
         # self.db_history = self.db.database("history", open=True)
         if not configVariables.db_history.open():
             QMessageBox.critical(None, "Cannot open database",
@@ -124,11 +204,17 @@ class LightSwitchDataBase:
                     "temp_value varchar(60), "
                     "date_time varchar(60) ,running_pass_time varchar(20) , hum_value varchar(60))")
 
-        query = QSqlQuery(configVariables.db_light)
+        '''query = QSqlQuery(configVariables.db_light)
         query.exec_("create table light_table(id INTEGER PRIMARY KEY , "
                     " sw_1 varchar(20), sw_2 varchar(20), sw_3 varchar(20), sw_4 varchar(20), sw_5 varchar(20),"
                     " sw_6 varchar(20),  intensity_1 varchar(20), intensity_2 varchar(20), intensity_3 varchar(20), "
-                    " intensity_4 varchar(20))")
+                    " intensity_4 varchar(20))")'''
+
+        query_image = QSqlQuery(configVariables.db_image)
+        query.exec_("create table image_table(id INTEGER PRIMARY KEY , "
+                    "play_wh BLOB, pause_wh BLOB, changed_light_bulb BLOB,"
+                    "changed_ot_light BLOB, low_light_bulb BLOB, low_ot_light BLOB,"
+                    "changed_low_color varchar(80))")
 
         '''query.exec_("create table GeneralSettings(id INTEGER PRIMARY KEY , "
                     "light_name_1 varchar(20), light_name_2 varchar(20), light_name_3 varchar(20), light_name_4 "
