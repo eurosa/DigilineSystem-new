@@ -4,8 +4,9 @@ import configVariables
 
 
 class Brightness:
-    def __init__(self, ot_ui, datamodel, lightintensitythread):
+    def __init__(self, ot_ui, datamodel, lightintensitythread, database_manage):
         self.ot_ui = ot_ui
+        self.database = database_manage
         self.datamodel = datamodel
         self.lightintensitythread = lightintensitythread
         self.light1Brightness = 0
@@ -13,11 +14,51 @@ class Brightness:
         self.light1Brightness_3 = 0
         self.light1Brightness_4 = 0
         self.allLightBarInitialSetup(ot_ui)
+        self.update_flag = False
+        self.initSwitchControl()
+        self.update_flag = True
+
+    def initSwitchControl(self):
+
+        self.database.querySwitchControlData(self.datamodel)
+        light1 = int(self.datamodel.get_light_brightness())
+        light2 = int(self.datamodel.get_light1Brightness_2())
+        light3 = int(self.datamodel.get_light1Brightness_3())
+        light4 = int(self.datamodel.get_light1Brightness_4())
+
+        while light1 > 0:
+            light1 = light1 - 100
+            self.light1Brightness = light1
+            self.otLightBrightIncrementControl()
+            # self.otLightBrightDecrementControl()
+        self.light1Brightness = int(self.datamodel.get_light_brightness_original())
+
+        while light2 > 0:
+            light2 = light2 - 100
+            self.light1Brightness_2 = light2
+            self.otLightBrightIncrementControl2()
+            # self.otLightBrightDecrementControl()
+        self.light1Brightness_2 = int(self.datamodel.get_light1Brightness_2_original())
+
+        while light3 > 0:
+            light3 = light3 - 100
+            self.light1Brightness_3 = light3
+            self.otLightBrightIncrementControl3()
+            # self.otLightBrightDecrementControl()
+        self.light1Brightness_3 = int(self.datamodel.get_light1Brightness_3_original())
+
+        while light4 > 0:
+            light4 = light4 - 100
+            self.light1Brightness_4 = light4
+            self.otLightBrightIncrementControl4()
+            # self.otLightBrightDecrementControl()
+        self.light1Brightness_4 = int(self.datamodel.get_light1Brightness_4_original())
 
     def otLightBrightIncrementControl(self):
+        print("Light Brightness: " + str(self.light1Brightness))
         if 0 <= self.light1Brightness < 1000:
             self.light1Brightness = self.light1Brightness + 100
-        print(str(self.light1Brightness))
+            print(str(self.light1Brightness))
 
         if self.light1Brightness == 100:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -25,6 +66,12 @@ class Brightness:
             self.ot_ui.light1_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
             '''self.ot_ui.light1_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;min-height: 20px;max-height: "
                                               "20px;background-color:#000000;border-color:#000000")
@@ -58,11 +105,25 @@ class Brightness:
             self.ot_ui.light1_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 300:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
 
         if self.light1Brightness == 400:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -70,11 +131,25 @@ class Brightness:
             self.ot_ui.light1_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 500:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
 
         if self.light1Brightness == 600:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -82,11 +157,25 @@ class Brightness:
             self.ot_ui.light1_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 700:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
 
         if self.light1Brightness == 800:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -94,11 +183,25 @@ class Brightness:
             self.ot_ui.light1_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 900:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
 
         if self.light1Brightness == 1000:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -106,7 +209,15 @@ class Brightness:
             self.ot_ui.light1_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            # self.datamodel.set_light_brightness_original(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         configVariables.light1Brightness = self.light1Brightness
+
     ''' self.count = self.light1Brightness
      print(str(self.count))
      while self.count > 0:
@@ -132,11 +243,23 @@ class Brightness:
             self.ot_ui.light1_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 100:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
 
         if self.light1Brightness == 200:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -144,11 +267,23 @@ class Brightness:
             self.ot_ui.light1_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 300:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
 
         if self.light1Brightness == 400:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -156,11 +291,23 @@ class Brightness:
             self.ot_ui.light1_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 500:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
 
         if self.light1Brightness == 600:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -168,11 +315,23 @@ class Brightness:
             self.ot_ui.light1_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 700:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
 
         if self.light1Brightness == 800:
             configVariables.intensity_hex_1 = self.light1Brightness
@@ -180,11 +339,24 @@ class Brightness:
             self.ot_ui.light1_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         if self.light1Brightness == 900:
             configVariables.intensity_hex_1 = self.light1Brightness
             self.lightintensitythread.lightIntensityThread1()
             self.ot_ui.light1_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light_brightness(self.light1Brightness)
+            if self.update_flag:
+                self.database.updateLight1BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight1Brightness(self.datamodel)
+
         configVariables.light1Brightness = self.light1Brightness
 
     def otLightBrightIncrementControl2(self):
@@ -198,11 +370,23 @@ class Brightness:
             self.ot_ui.light2_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 200:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         if self.light1Brightness_2 == 300:
             configVariables.intensity_hex_2 = self.light1Brightness_2
@@ -210,11 +394,23 @@ class Brightness:
             self.ot_ui.light2_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 400:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         if self.light1Brightness_2 == 500:
             configVariables.intensity_hex_2 = self.light1Brightness_2
@@ -222,11 +418,23 @@ class Brightness:
             self.ot_ui.light2_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 600:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         if self.light1Brightness_2 == 700:
             configVariables.intensity_hex_2 = self.light1Brightness_2
@@ -234,11 +442,23 @@ class Brightness:
             self.ot_ui.light2_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 800:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         if self.light1Brightness_2 == 900:
             configVariables.intensity_hex_2 = self.light1Brightness_2
@@ -246,13 +466,26 @@ class Brightness:
             self.ot_ui.light2_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 1000:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         configVariables.light1Brightness_2 = self.light1Brightness_2
+
     ''' self.count = self.light1Brightness
      print(str(self.count))
      while self.count > 0:
@@ -278,9 +511,21 @@ class Brightness:
             self.ot_ui.light2_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 100:
             self.ot_ui.light2_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         if self.light1Brightness_2 == 200:
             configVariables.intensity_hex_2 = self.light1Brightness_2
@@ -288,11 +533,23 @@ class Brightness:
             self.ot_ui.light2_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 300:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         if self.light1Brightness_2 == 400:
             configVariables.intensity_hex_2 = self.light1Brightness_2
@@ -300,11 +557,23 @@ class Brightness:
             self.ot_ui.light2_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 500:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         if self.light1Brightness_2 == 600:
             configVariables.intensity_hex_2 = self.light1Brightness_2
@@ -312,11 +581,23 @@ class Brightness:
             self.ot_ui.light2_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 700:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         if self.light1Brightness_2 == 800:
             configVariables.intensity_hex_2 = self.light1Brightness_2
@@ -324,11 +605,23 @@ class Brightness:
             self.ot_ui.light2_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
+
         if self.light1Brightness_2 == 900:
             configVariables.intensity_hex_2 = self.light1Brightness_2
             self.lightintensitythread.lightIntensityThread2()
             self.ot_ui.light2_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+            if self.update_flag:
+                self.database.updateLight_two_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_two_Brightness(self.datamodel)
 
         configVariables.light1Brightness_2 = self.light1Brightness_2
 
@@ -342,11 +635,23 @@ class Brightness:
             self.ot_ui.light3_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 200:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         if self.light1Brightness_3 == 300:
             configVariables.intensity_hex_3 = self.light1Brightness_3
@@ -354,11 +659,23 @@ class Brightness:
             self.ot_ui.light3_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 400:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         if self.light1Brightness_3 == 500:
             configVariables.intensity_hex_3 = self.light1Brightness_3
@@ -366,11 +683,23 @@ class Brightness:
             self.ot_ui.light3_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 600:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         if self.light1Brightness_3 == 700:
             configVariables.intensity_hex_3 = self.light1Brightness_3
@@ -378,11 +707,23 @@ class Brightness:
             self.ot_ui.light3_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 800:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         if self.light1Brightness_3 == 900:
             configVariables.intensity_hex_3 = self.light1Brightness_3
@@ -390,11 +731,23 @@ class Brightness:
             self.ot_ui.light3_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 1000:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         configVariables.light1Brightness_3 = self.light1Brightness_3
 
@@ -422,11 +775,24 @@ class Brightness:
             self.ot_ui.light3_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 100:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         if self.light1Brightness_3 == 200:
             configVariables.intensity_hex_3 = self.light1Brightness_3
@@ -434,11 +800,25 @@ class Brightness:
             self.ot_ui.light3_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 300:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         if self.light1Brightness_3 == 400:
             configVariables.intensity_hex_3 = self.light1Brightness_3
@@ -446,11 +826,23 @@ class Brightness:
             self.ot_ui.light3_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 500:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         if self.light1Brightness_3 == 600:
             configVariables.intensity_hex_3 = self.light1Brightness_3
@@ -458,21 +850,45 @@ class Brightness:
             self.ot_ui.light3_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 700:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
+
         if self.light1Brightness_3 == 800:
             self.ot_ui.light3_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         if self.light1Brightness_3 == 900:
             configVariables.intensity_hex_3 = self.light1Brightness_3
             self.lightintensitythread.lightIntensityThread3()
             self.ot_ui.light3_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+            if self.update_flag:
+                self.database.updateLight_three_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_three_Brightness(self.datamodel)
 
         configVariables.light1Brightness_3 = self.light1Brightness_3
 
@@ -486,11 +902,23 @@ class Brightness:
             self.ot_ui.light4_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 200:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         if self.light1Brightness_4 == 300:
             configVariables.intensity_hex_4 = self.light1Brightness_4
@@ -498,11 +926,23 @@ class Brightness:
             self.ot_ui.light4_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 400:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         if self.light1Brightness_4 == 500:
             configVariables.intensity_hex_4 = self.light1Brightness_4
@@ -510,11 +950,23 @@ class Brightness:
             self.ot_ui.light4_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 600:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         if self.light1Brightness_4 == 700:
             configVariables.intensity_hex_4 = self.light1Brightness_4
@@ -522,11 +974,23 @@ class Brightness:
             self.ot_ui.light4_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 800:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         if self.light1Brightness_4 == 900:
             configVariables.intensity_hex_4 = self.light1Brightness_4
@@ -534,12 +998,23 @@ class Brightness:
             self.ot_ui.light4_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 1000:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + self.datamodel.get_icon_col() + ";border-color:" + self.datamodel.get_icon_col() + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
         configVariables.light1Brightness_4 = self.light1Brightness_4
 
     ''' self.count = self.light1Brightness
@@ -568,11 +1043,23 @@ class Brightness:
             self.ot_ui.light4_1.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 100:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_2.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         if self.light1Brightness_4 == 200:
             configVariables.intensity_hex_4 = self.light1Brightness_4
@@ -580,11 +1067,23 @@ class Brightness:
             self.ot_ui.light4_3.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 300:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_4.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         if self.light1Brightness_4 == 400:
             configVariables.intensity_hex_4 = self.light1Brightness_4
@@ -592,11 +1091,23 @@ class Brightness:
             self.ot_ui.light4_5.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 500:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_6.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         if self.light1Brightness_4 == 600:
             configVariables.intensity_hex_4 = self.light1Brightness_4
@@ -604,11 +1115,23 @@ class Brightness:
             self.ot_ui.light4_7.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 700:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_8.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         if self.light1Brightness_4 == 800:
             configVariables.intensity_hex_4 = self.light1Brightness_4
@@ -616,11 +1139,23 @@ class Brightness:
             self.ot_ui.light4_9.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                               "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
 
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
+
         if self.light1Brightness_4 == 900:
             configVariables.intensity_hex_4 = self.light1Brightness_4
             self.lightintensitythread.lightIntensityThread4()
             self.ot_ui.light4_10.setStyleSheet("border-style: outset; padding:2px;border-radius:4px;"
                                                "border-width: 2px;background-color:" + configVariables.changed_low_color + ";border-color:" + configVariables.changed_low_color + "")
+
+            self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+            if self.update_flag:
+                self.database.updateLight_four_BrightnessControl(self.datamodel)
+            else:
+                self.database.updateLight_four_Brightness(self.datamodel)
 
         configVariables.light1Brightness_4 = self.light1Brightness_4
 

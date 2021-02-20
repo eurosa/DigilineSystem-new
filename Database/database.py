@@ -34,6 +34,7 @@ class DataBaseManagement:
             self.table.setItem(index, 2, QTableWidgetItem(apellido))
 
             index += 1'''
+
     def close(self):
         print("sery")
 
@@ -56,12 +57,13 @@ class DataBaseManagement:
 
         self.table.removeRow(selected.row())
         self.table.setCurrentIndex(QModelIndex())'''
+
     def updateIconColorSettings(self, model):
         # ids = int(model.get_light_name_1())
         border_color = model.get_border_col()
         background_color = model.get_background_col()
         text_color = model.get_text_col()
-        print(""+border_color+""+background_color+""+text_color)
+        print("" + border_color + "" + background_color + "" + text_color)
         icon_color = model.get_icon_col()
         query = QSqlQuery()
         query.exec_("UPDATE iconColorControl SET border_color ='"
@@ -95,7 +97,8 @@ class DataBaseManagement:
         query.exec_("SELECT * FROM themeColorSettings where 1")
         dict = {'Select': 'Select'}
         while query.next():
-            dict[query.value('theme_color_hex')+";#@;"+query.value('theme_color_preview')] = query.value('theme_color_name')
+            dict[query.value('theme_color_hex') + ";#@;" + query.value('theme_color_preview')] = query.value(
+                'theme_color_name')
         return dict
 
     def insertPixMapByteArray(self, datamodel):
@@ -293,7 +296,7 @@ class DataBaseManagement:
         query.exec_("UPDATE AppearanceSettings SET theme_color ='" + _theme_color
                     + "',theme_color_preview_image_path ='" + _theme_preview_image_path
                     + "',appearance_color_name ='" + _theme_color_name
-                    + "', theme_color_index='"+str(_theme_color_index)+"' WHERE id= 1")
+                    + "', theme_color_index='" + str(_theme_color_index) + "' WHERE id= 1")
 
     def queryofhistorydata(self):
         query = "SELECT * FROM historyDetails where 1"
@@ -310,6 +313,85 @@ class DataBaseManagement:
                                  "Click Cancel to exit.", QMessageBox.Cancel)
             return False
         return True
+
+    def querySwitchControlData(self, model):
+        query = QSqlQuery()
+        query.exec_("SELECT * FROM switchControl where 1")
+        while query.next():
+            model.set_light_brightness(query.value('lightBrightness'))
+            model.set_light_brightness_original(query.value('lightBrightness_original'))
+            model.set_light1Brightness_2(query.value('light1Brightness_2'))
+            model.set_light1Brightness_2_original(query.value('light1Brightness_2_original'))
+            model.set_light1Brightness_3(query.value('light1Brightness_3'))
+            model.set_light1Brightness_3_original(query.value('light1Brightness_3_original'))
+            model.set_light1Brightness_4(query.value('light1Brightness_4'))
+            model.set_light1Brightness_4_original(query.value('light1Brightness_4_original'))
+
+    def updateLight1BrightnessControl(self, model):
+        # ids = int(model.get_light_name_1())
+        _light_brightness = model.get_light_brightness()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET lightBrightness ='" + str(_light_brightness) + "'"
+                    ", lightBrightness_original ='" + str(_light_brightness)+ "' WHERE id= 1")
+
+    def updateLight1Brightness(self, model):
+        # ids = int(model.get_light_name_1())
+        _light_brightness = model.get_light_brightness()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET lightBrightness ='" + str(_light_brightness)
+                    + "' WHERE id= 1")
+
+    # ++++++++++++++++++++++++++++Light Brightness control update switch two++++++++++++++++++++++++++++++++++++++++++++
+    def updateLight_two_BrightnessControl(self, model):
+        # ids = int(model.get_light_name_1())
+        _light_brightness_2 = model.get_light1Brightness_2()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET light1Brightness_2 ='" + str(_light_brightness_2) + "'"
+                                                                                                  ", light1Brightness_2_original ='" + str(
+            _light_brightness_2) + "' WHERE id= 1")
+
+    def updateLight_two_Brightness(self, model):
+        # ids = int(model.get_light_name_1())
+        _light1Brightness_2 = model.get_light1Brightness_2()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET light1Brightness_2 ='" + str(_light1Brightness_2)
+                    + "' WHERE id= 1")
+
+    # ++++++++++++++++++++++++++++Light Brightness control update switch three++++++++++++++++++++++++++++++++++++++
+
+    def updateLight_three_BrightnessControl(self, model):
+        # ids = int(model.get_light_name_1())
+        _light1Brightness_3 = model.get_light1Brightness_3()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET light1Brightness_3 ='" + str(_light1Brightness_3) + "'"
+                                                                                                  ", light1Brightness_3_original ='" + str(
+            _light1Brightness_3) + "' WHERE id= 1")
+
+    def updateLight_three_Brightness(self, model):
+        # ids = int(model.get_light_name_1())
+        _light1Brightness_3 = model.get_light1Brightness_3()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET light1Brightness_3 ='" + str(_light1Brightness_3)
+                    + "' WHERE id= 1")
+
+    # ++++++++++++++++++++++++++++Light Brightness control update switch four++++++++++++++++++++++++++++++++++++++
+
+    def updateLight_four_BrightnessControl(self, model):
+        # ids = int(model.get_light_name_1())
+        _light1Brightness_4 = model.get_light1Brightness_4()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET light1Brightness_4 ='" + str(_light1Brightness_4) + "'"
+                                                                                                  ", light1Brightness_4_original ='" + str(
+            _light1Brightness_4) + "' WHERE id= 1")
+
+    def updateLight_four_Brightness(self, model):
+        # ids = int(model.get_light_name_1())
+        _light1Brightness_4 = model.get_light1Brightness_4()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET light1Brightness_4 ='" + str(_light1Brightness_4)
+                    + "' WHERE id= 1")
+
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     def db_create(self):
         query = QSqlQuery()
@@ -388,6 +470,18 @@ class DataBaseManagement:
 
         query.exec_("create table userTable(id INTEGER PRIMARY KEY , "
                     "user_name varchar(200), user_password varchar(100))")
+
+        query.exec_("create table switchControl(id INTEGER PRIMARY KEY , "
+                    "lightBrightness varchar(100), lightBrightness_original varchar(100),"
+                    "light1Brightness_2 varchar(100), light1Brightness_2_original varchar(100),"
+                    "light1Brightness_3 varchar(100), light1Brightness_3_original varchar(100),"
+                    "light1Brightness_4 varchar(100), light1Brightness_4_original varchar(100))")
+
+        query.exec_("insert into switchControl(lightBrightness, lightBrightness_original, "
+                    "light1Brightness_2, light1Brightness_2_original,"
+                    "light1Brightness_3, light1Brightness_3_original,"
+                    "light1Brightness_4, light1Brightness_4_original) values("
+                    " 0, 0, 0, 0, 0, 0, 0, 0)")
 
         query.exec_("insert into userTable(user_name, user_password) values('admin','pass')")
 

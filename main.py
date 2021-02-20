@@ -672,13 +672,16 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
                                     configVariables.my_temp_list[key])'''
         # self.tempForm.axes.set_xticks(list(configVariables.my_id_list.values()))
         self.tempForm.axes.plot(list(configVariables.my_time_list.values()),
-                                list(configVariables.my_temp_list.values()))
+                                list(configVariables.my_temp_list.values()), color='green', marker='o', markersize=10,
+                                linestyle='--', linewidth=1)
         # self.tempForm.axes.get_xaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
         # self.tempForm.axes.get_yaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
         #  self.tempForm.axes.xaxis.zoom(3)
         #   self.tempForm.axes.axis(xmin=0, xmax=10)
         self.tempForm.axes.set_xlim(xmin=0, xmax=10)
         self.tempForm.axes.set_ylim(ymin=0, ymax=10)
+        # self.tempForm.axes.set_xbound(lower=40)
+
         # self.tempForm.axes.grid(b=True, which='major', color='w', linewidth=1.5)
         # self.tempForm.axes.grid(b=True, which='minor', color='w', linewidth=0.75)
 
@@ -1275,7 +1278,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # ========================Start light Dimming===============================================================
         self.lightIntensityControl = LightIntensityControlThread(self.serialWrapper)
-        self.lightBrightnessObject = lightBrightness.Brightness(self.ot_ui, self.dataModel, self.lightIntensityControl)
+        self.lightBrightnessObject = lightBrightness.Brightness(self.ot_ui, self.dataModel, self.lightIntensityControl,
+                                                                self.database_manage)
         self.ot_ui.light1Increment.clicked.connect(self.lightBrightnessObject.otLightBrightIncrementControl)
         self.ot_ui.light1Decrement.clicked.connect(self.lightBrightnessObject.otLightBrightDecrementControl)
         self.ot_ui.light2Increment.clicked.connect(self.lightBrightnessObject.otLightBrightIncrementControl2)
@@ -1285,12 +1289,14 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ot_ui.light4Increment.clicked.connect(self.lightBrightnessObject.otLightBrightIncrementControl4)
         self.ot_ui.light4Decrement.clicked.connect(self.lightBrightnessObject.otLightBrightDecrementControl4)
 
+
+
         # ========================END Light Dimming=====================================================================
 
         self.mousePressSignal = pyqtSignal()
 
-        # ==============================End Pop Up Keyboard======================================================
-        # ===================================== Start of Login with keyboard =========================================================
+        # ===================================== End Pop Up Keyboard======================================================
+        # ===================================== Start of Login with keyboard ============================================
 
         # self.loginDataModel = DataModel()
         self.userNameLineEdit = login_virtual_keyboard.cQLineEdit(self.login_ui.user_name, '', self.dataModel,
@@ -1307,6 +1313,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # ++++++++++++++++++++++++ Insert Temp and Humidity Value +++++++++++++++++++++++++++++++++++++++++
         # self.graphValueInsertinDb()
+
+
 
     def setClockOk(self):
         subprocess.call(

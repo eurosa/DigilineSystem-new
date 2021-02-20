@@ -74,7 +74,69 @@ class DataModel:
         self._changed_play = bytearray
         self._changed_pause = bytearray
 
-    # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
+        # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
+        #  Light Brightness control during initial value
+        self._lightBrightness = str()
+        self._lightBrightness_original = str()
+        self._light1Brightness_2 = str()
+        self._light1Brightness_2_original = str()
+        self._light1Brightness_3 = str()
+        self._light1Brightness_3_original = str()
+        self._light1Brightness_4 = str()
+        self._light1Brightness_4_original = str()
+
+    def set_light_brightness(self, _lightBrightness):
+        self._lightBrightness = _lightBrightness
+
+    def get_light_brightness(self):
+        return self._lightBrightness
+
+    def set_light_brightness_original(self, _lightBrightness_original):
+        self._lightBrightness_original = _lightBrightness_original
+
+    def get_light_brightness_original(self):
+        return self._lightBrightness_original
+
+    # +++++++++++++ Light Brightness 2 +++++++++++++++++++++++++++++++
+    def set_light1Brightness_2(self, _light1Brightness_2):
+        self._light1Brightness_2 = _light1Brightness_2
+
+    def get_light1Brightness_2(self):
+        return self._light1Brightness_2
+
+    def set_light1Brightness_2_original(self, _light1Brightness_2_original):
+        self._light1Brightness_2_original = _light1Brightness_2_original
+
+    def get_light1Brightness_2_original(self):
+        return self._light1Brightness_2_original
+
+        # +++++++++++++ Light Brightness 3 +++++++++++++++++++++++++++++++
+
+    def set_light1Brightness_3(self, _light1Brightness_3):
+        self._light1Brightness_3 = _light1Brightness_3
+
+    def get_light1Brightness_3(self):
+        return self._light1Brightness_3
+
+    def set_light1Brightness_3_original(self, _light1Brightness_3_original):
+        self._light1Brightness_3_original = _light1Brightness_3_original
+
+    def get_light1Brightness_3_original(self):
+        return self._light1Brightness_3_original
+
+    # +++++++++++++ Light Brightness 4 +++++++++++++++++++++++++++++++
+
+    def set_light1Brightness_4(self, _light1Brightness_4):
+        self._light1Brightness_4 = _light1Brightness_4
+
+    def get_light1Brightness_4(self):
+        return self._light1Brightness_4
+
+    def set_light1Brightness_4_original(self, _light1Brightness_4_original):
+        self._light1Brightness_4_original = _light1Brightness_4_original
+
+    def get_light1Brightness_4_original(self):
+        return self._light1Brightness_4_original
 
     # ================================Icon Color Settings Method =====================================================
     def set_border_col(self, name):
