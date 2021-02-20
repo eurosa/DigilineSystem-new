@@ -1289,8 +1289,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ot_ui.light4Increment.clicked.connect(self.lightBrightnessObject.otLightBrightIncrementControl4)
         self.ot_ui.light4Decrement.clicked.connect(self.lightBrightnessObject.otLightBrightDecrementControl4)
 
-
-
         # ========================END Light Dimming=====================================================================
 
         self.mousePressSignal = pyqtSignal()
@@ -1313,8 +1311,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # ++++++++++++++++++++++++ Insert Temp and Humidity Value +++++++++++++++++++++++++++++++++++++++++
         # self.graphValueInsertinDb()
-
-
 
     def setClockOk(self):
         subprocess.call(
