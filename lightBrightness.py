@@ -32,6 +32,8 @@ class Brightness:
             self.otLightBrightIncrementControl()
             # self.otLightBrightDecrementControl()
         self.light1Brightness = int(self.datamodel.get_light_brightness_original())
+        self.datamodel.set_light_brightness(self.light1Brightness)
+        self.database.updateLight1Brightness(self.datamodel)
 
         while light2 > 0:
             light2 = light2 - 100
@@ -39,6 +41,8 @@ class Brightness:
             self.otLightBrightIncrementControl2()
             # self.otLightBrightDecrementControl()
         self.light1Brightness_2 = int(self.datamodel.get_light1Brightness_2_original())
+        self.datamodel.set_light1Brightness_2(self.light1Brightness_2)
+        self.database.updateLight_two_Brightness(self.datamodel)
 
         while light3 > 0:
             light3 = light3 - 100
@@ -46,6 +50,8 @@ class Brightness:
             self.otLightBrightIncrementControl3()
             # self.otLightBrightDecrementControl()
         self.light1Brightness_3 = int(self.datamodel.get_light1Brightness_3_original())
+        self.datamodel.set_light1Brightness_3(self.light1Brightness_3)
+        self.database.updateLight_three_Brightness(self.datamodel)
 
         while light4 > 0:
             light4 = light4 - 100
@@ -53,6 +59,8 @@ class Brightness:
             self.otLightBrightIncrementControl4()
             # self.otLightBrightDecrementControl()
         self.light1Brightness_4 = int(self.datamodel.get_light1Brightness_4_original())
+        self.datamodel.set_light1Brightness_4(self.light1Brightness_4)
+        self.database.updateLight_four_Brightness(self.datamodel)
 
     def otLightBrightIncrementControl(self):
         print("Light Brightness: " + str(self.light1Brightness))

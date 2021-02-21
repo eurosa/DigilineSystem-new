@@ -1335,6 +1335,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.toggleSwitch.animateClick()
         if int(self.dataModel.get_toggle_switch_6()) > 0:
             self.toggleSwitchOT2.animateClick()
+        self.t_i_d_count = self.dataModel.get_switch_temp_ctrl()
+        self.h_i_d_count = self.dataModel.get_switch_hum_ctrl()
+        self.tempDisplayLabel()
+        self.humidityDisplayLabel()
 
     def setClockOk(self):
         subprocess.call(
@@ -2554,8 +2558,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.tempDisplayLabel()
         # while self.ui.downTemperatureButton.isDown():
         self.startThreadSwitch7()
+        self.dataModel.set_switch_temp_ctrl(self.t_i_d_count)
+        configVariables.light_database.updateTempSwitchData(self.dataModel)
         #  i = i + 1
-        # print(str(i))
+        #  print(str(i))
 
     def incrementTemperature(self):
         if self.t_i_d_count < 100:
@@ -2564,6 +2570,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         print(str(self.t_i_d_count))
         self.tempDisplayLabel()
         self.startThreadSwitch7()
+        self.dataModel.set_switch_temp_ctrl(self.t_i_d_count)
+        configVariables.light_database.updateTempSwitchData(self.dataModel)
 
     def decrementHumidity(self):
         if self.h_i_d_count > 0:
@@ -2572,6 +2580,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         print(str(self.h_i_d_count))
         self.humidityDisplayLabel()
         self.startThreadSwitch8()
+        self.dataModel.set_switch_hum_ctrl(self.h_i_d_count)
+        configVariables.light_database.updateHumSwitchData(self.dataModel)
         # while self.ui.downTemperatureButton.isDown():
         #  i = i + 1
         # print(str(i))
@@ -2583,6 +2593,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         print(str(self.h_i_d_count))
         self.humidityDisplayLabel()
         self.startThreadSwitch8()
+        self.dataModel.set_switch_hum_ctrl(self.h_i_d_count)
+        configVariables.light_database.updateHumSwitchData(self.dataModel)
 
     def tempDisplayLabel(self):
         # self.ui.tempSetShow.setStyleSheet("QLabel { color: yellow ;}")

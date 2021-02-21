@@ -193,7 +193,7 @@ class LightSwitchDataBase:
     def queryToggleSwitchStatus(self, model):
         query = QSqlQuery(configVariables.db_history)
         query.exec_("SELECT toggle_switch_1, toggle_switch_2, toggle_switch_3, toggle_switch_4,"
-                    " toggle_switch_5, toggle_switch_6 FROM switchControl where 1")
+                    " toggle_switch_5, toggle_switch_6, set_hum, set_temp FROM switchControl where 1")
         while query.next():
             # print(query.value('theme_color_preview'))
             model.set_toggle_switch_1(query.value('toggle_switch_1'))
@@ -202,6 +202,8 @@ class LightSwitchDataBase:
             model.set_toggle_switch_4(query.value('toggle_switch_4'))
             model.set_toggle_switch_5(query.value('toggle_switch_5'))
             model.set_toggle_switch_6(query.value('toggle_switch_6'))
+            model.set_switch_hum_ctrl(query.value('set_hum'))
+            model.set_switch_temp_ctrl(query.value('set_temp'))
 
     def updateToggleSwitchOne(self, model):
         # ids = int(model.get_light_name_1())
@@ -238,7 +240,19 @@ class LightSwitchDataBase:
         _toggle_switch_6 = model.get_toggle_switch_6()
         query = QSqlQuery(configVariables.db_history)
         query.exec_("UPDATE switchControl SET toggle_switch_6 ='" + str(_toggle_switch_6) + "' WHERE id= 1")
-    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    def updateTempSwitchData(self, model):
+        # ids = int(model.get_light_name_1())
+        _switch_temp_ctrl = model.get_switch_temp_ctrl()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET set_temp ='" + str(_switch_temp_ctrl) + "' WHERE id= 1")
+
+    def updateHumSwitchData(self, model):
+        # ids = int(model.get_light_name_1())
+        _switch_hum_ctrl = model.get_switch_hum_ctrl()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET set_hum ='" + str(_switch_hum_ctrl) + "' WHERE id= 1")
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     def db_connect(self, filename, server, connection):
         configVariables.db = QSqlDatabase.addDatabase(server, connection)
@@ -281,12 +295,15 @@ class LightSwitchDataBase:
         query.exec_("create table switchControl(id INTEGER PRIMARY KEY ,"
                     "toggle_switch_1 varchar(10), toggle_switch_2 varchar(10),"
                     "toggle_switch_3 varchar(10), toggle_switch_4 varchar(10),"
-                    "toggle_switch_5 varchar(10), toggle_switch_6 varchar(10))")
+                    "toggle_switch_5 varchar(10), toggle_switch_6 varchar(10),"
+                    "count_down_timer_val varchar(100), set_hum INTEGER, "
+                    "set_temp INTEGER)")
 
         query.exec_("insert into switchControl(toggle_switch_1, toggle_switch_2, "
                     "toggle_switch_3, toggle_switch_4,"
-                    "toggle_switch_5, toggle_switch_6) values("
-                    " 0, 0, 0, 0, 0, 0)")
+                    "toggle_switch_5, toggle_switch_6, count_down_timer_val,"
+                    "set_hum, set_temp) values("
+                    " 0, 0, 0, 0, 0, 0, 0, 0, 0)")
 
         '''query.exec_("create table GeneralSettings(id INTEGER PRIMARY KEY , "
                     "light_name_1 varchar(20), light_name_2 varchar(20), light_name_3 varchar(20), light_name_4 "

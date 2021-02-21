@@ -92,8 +92,21 @@ class DataModel:
         self._toggle_switch_5 = str()
         self._toggle_switch_6 = str()
         self._count_down_timer_value = str()
+        self._switch_temp_ctrl = int()
+        self._switch_hum_ctrl = int()
 
-    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    def set_switch_temp_ctrl(self, _switch_temp_ctrl):
+        self._switch_temp_ctrl = _switch_temp_ctrl
+
+    def set_switch_hum_ctrl(self, _switch_hum_ctrl):
+        self._switch_hum_ctrl = _switch_hum_ctrl
+
+    def get_switch_hum_ctrl(self):
+        return self._switch_hum_ctrl
+
+    def get_switch_temp_ctrl(self):
+        return self._switch_temp_ctrl
 
     def set_toggle_switch_1(self, _toggle_switch_1):
         self._toggle_switch_1 = _toggle_switch_1
