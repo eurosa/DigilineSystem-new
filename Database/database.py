@@ -381,8 +381,7 @@ class DataBaseManagement:
         _light1Brightness_4 = model.get_light1Brightness_4()
         query = QSqlQuery()
         query.exec_("UPDATE switchControl SET light1Brightness_4 ='" + str(_light1Brightness_4) + "'"
-                                                                                                  ", light1Brightness_4_original ='" + str(
-            _light1Brightness_4) + "' WHERE id= 1")
+                    ", light1Brightness_4_original ='" + str(_light1Brightness_4) + "' WHERE id= 1")
 
     def updateLight_four_Brightness(self, model):
         # ids = int(model.get_light_name_1())
@@ -390,6 +389,63 @@ class DataBaseManagement:
         query = QSqlQuery()
         query.exec_("UPDATE switchControl SET light1Brightness_4 ='" + str(_light1Brightness_4)
                     + "' WHERE id= 1")
+
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # ++++++++++++++++++++++++++++++++++++++++++++++Toggle Switch Status++++++++++++++++++++++++++++++++++++++++++++++++
+    '''def queryToggleSwitchStatus(self, model):
+        query = QSqlQuery()
+        query.exec_("SELECT toggle_switch_1, toggle_switch_2, toggle_switch_3, toggle_switch_4,"
+                    " toggle_switch_5, toggle_switch_6 FROM switchControl where 1")
+        while query.next():
+            # print(query.value('theme_color_preview'))
+            model.set_toggle_switch_1(query.value('toggle_switch_1'))
+            model.set_toggle_switch_2(query.value('toggle_switch_2'))
+            model.set_toggle_switch_3(query.value('toggle_switch_3'))
+            model.set_toggle_switch_4(query.value('toggle_switch_4'))
+            model.set_toggle_switch_5(query.value('toggle_switch_5'))
+            model.set_toggle_switch_6(query.value('toggle_switch_6'))
+
+    def updateToggleSwitchOne(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_1 = model.get_toggle_switch_1()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET toggle_switch_1 ='" + str(_toggle_switch_1) + "' WHERE id= 1")
+
+    def updateToggleSwitchTwo(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_2 = model.get_toggle_switch_2()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET toggle_switch_2 ='" + str(_toggle_switch_2) + "' WHERE id= 1")
+
+    def updateToggleSwitchThree(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_3 = model.get_toggle_switch_3()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET toggle_switch_3 ='" + str(_toggle_switch_3) + "' WHERE id= 1")
+
+    def updateToggleSwitchFour(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_4 = model.get_toggle_switch_4()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET toggle_switch_4 ='" + str(_toggle_switch_4) + "' WHERE id= 1")
+
+    def updateToggleSwitchFive(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_5 = model.get_toggle_switch_5()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET toggle_switch_5 ='" + str(_toggle_switch_5) + "' WHERE id= 1")
+
+    def updateToggleSwitchSix(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_6 = model.get_toggle_switch_6()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET toggle_switch_6 ='" + str(_toggle_switch_6) + "' WHERE id= 1")'''
+
+    def updateCountDownTimer(self, model):
+        # ids = int(model.get_light_name_1())
+        _count_down_timer_value = model.get_count_down_timer_value()
+        query = QSqlQuery()
+        query.exec_("UPDATE switchControl SET count_down_timer_value ='" + str(_count_down_timer_value) + "' WHERE id= 1")
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -475,13 +531,15 @@ class DataBaseManagement:
                     "lightBrightness varchar(100), lightBrightness_original varchar(100),"
                     "light1Brightness_2 varchar(100), light1Brightness_2_original varchar(100),"
                     "light1Brightness_3 varchar(100), light1Brightness_3_original varchar(100),"
-                    "light1Brightness_4 varchar(100), light1Brightness_4_original varchar(100))")
+                    "light1Brightness_4 varchar(100), light1Brightness_4_original varchar(100)," 
+                    "count_down_timer_value varchar(100))")
 
         query.exec_("insert into switchControl(lightBrightness, lightBrightness_original, "
                     "light1Brightness_2, light1Brightness_2_original,"
                     "light1Brightness_3, light1Brightness_3_original,"
-                    "light1Brightness_4, light1Brightness_4_original) values("
-                    " 0, 0, 0, 0, 0, 0, 0, 0)")
+                    "light1Brightness_4, light1Brightness_4_original,"
+                    "count_down_timer_value) values("
+                    " 0, 0, 0, 0, 0, 0, 0, 0, 0)")
 
         query.exec_("insert into userTable(user_name, user_password) values('admin','pass')")
 

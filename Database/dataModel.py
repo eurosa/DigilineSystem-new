@@ -84,6 +84,60 @@ class DataModel:
         self._light1Brightness_3_original = str()
         self._light1Brightness_4 = str()
         self._light1Brightness_4_original = str()
+        # ++++++++++++++++++++++++++++++++++++++++Switch Control +++++++++++++++++++++++++++++++++++++++++
+        self._toggle_switch_1 = str()
+        self._toggle_switch_2 = str()
+        self._toggle_switch_3 = str()
+        self._toggle_switch_4 = str()
+        self._toggle_switch_5 = str()
+        self._toggle_switch_6 = str()
+        self._count_down_timer_value = str()
+
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    def set_toggle_switch_1(self, _toggle_switch_1):
+        self._toggle_switch_1 = _toggle_switch_1
+
+    def get_toggle_switch_1(self):
+        return self._toggle_switch_1
+
+    def set_toggle_switch_2(self, _toggle_switch_2):
+        self._toggle_switch_2 = _toggle_switch_2
+
+    def get_toggle_switch_2(self):
+        return self._toggle_switch_2
+
+    def set_toggle_switch_3(self, _toggle_switch_3):
+        self._toggle_switch_3 = _toggle_switch_3
+
+    def get_toggle_switch_3(self):
+        return self._toggle_switch_3
+
+    def set_toggle_switch_4(self, _toggle_switch_4):
+        self._toggle_switch_4 = _toggle_switch_4
+
+    def get_toggle_switch_4(self):
+        return self._toggle_switch_4
+
+    def set_toggle_switch_5(self, _toggle_switch_5):
+        self._toggle_switch_5 = _toggle_switch_5
+
+    def get_toggle_switch_5(self):
+        return self._toggle_switch_5
+
+    def set_toggle_switch_6(self, _toggle_switch_6):
+        self._toggle_switch_6 = _toggle_switch_6
+
+    def get_toggle_switch_6(self):
+        return self._toggle_switch_6
+
+    def set_count_down_timer_value(self, _count_down_timer_value):
+        self._count_down_timer_value = _count_down_timer_value
+
+    def get_count_down_timer_value(self):
+        return self._count_down_timer_value
+
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     def set_light_brightness(self, _lightBrightness):
         self._lightBrightness = _lightBrightness

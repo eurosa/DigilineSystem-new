@@ -1038,6 +1038,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.toggleSwitchOT2 = toggleButton.Switch(self.toggleButtonForm)
         self.toggleSwitchOT2.setStyleSheet("background-color : #4c4c4c")
         self.switchContainerOT2.addWidget(self.toggleSwitchOT2)
+
+
         self.toggleSwitchOT2.clicked.connect(self.startThreadSwitch6)
 
         # =========================End Toggle Switch ============================================
@@ -1245,6 +1247,13 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.applyLogoImage()
         self.makeBackTransparent()
         self.fontColorChangesName()
+        # ----------------------- Switch data Status Control -----------------------------------------------------------
+        self.update_flag_switch_1 = False
+        self.update_flag_switch_2 = False
+        self.update_flag_switch_3 = False
+        self.update_flag_switch_4 = False
+        self.update_flag_switch_5 = False
+        self.update_flag_switch_6 = False
         self.s1 = threading.Thread(target=self.toggleSwitchColor)
         self.s1.daemon = True
         self.s1.start()
@@ -1308,9 +1317,24 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # ===================================== End of Login ===========================================================
         # +++++++++++++++++++++++++++++++++++++HWCLOCK Date Time String ++++++++++++++++++++++++++++++++++++++++++++++++
-
+        self.initSwitchButtonState()
         # ++++++++++++++++++++++++ Insert Temp and Humidity Value +++++++++++++++++++++++++++++++++++++++++
         # self.graphValueInsertinDb()
+
+    def initSwitchButtonState(self):
+        configVariables.light_database.queryToggleSwitchStatus(self.dataModel)
+        if int(self.dataModel.get_toggle_switch_1()) > 0:
+            self.toggleSwitchGasL1.animateClick()
+        if int(self.dataModel.get_toggle_switch_2()) > 0:
+            self.toggleSwitchGasL2.animateClick()
+        if int(self.dataModel.get_toggle_switch_3()) > 0:
+            self.toggleSwitchOT1.animateClick()
+        if int(self.dataModel.get_toggle_switch_4()) > 0:
+            self.toggleSwitchLaminar.animateClick()
+        if int(self.dataModel.get_toggle_switch_5()) > 0:
+            self.toggleSwitch.animateClick()
+        if int(self.dataModel.get_toggle_switch_6()) > 0:
+            self.toggleSwitchOT2.animateClick()
 
     def setClockOk(self):
         subprocess.call(
@@ -2786,6 +2810,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.lightBulb3.setPixmap(configVariables.changed_light_bulb)
+            if self.update_flag_switch_5:
+                self.dataModel.set_toggle_switch_5(1)
+                configVariables.light_database.updateToggleSwitchFive(self.dataModel)
             self.rt.start()
             '''self.threadDataSwitchData = ThreadDataSwitchData(self)
             self.threadDataSwitchData.signal.return_signal.connect(self.threadDataSwitchData.function_thread)
@@ -2804,7 +2831,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.lightBulb3.setPixmap(configVariables.low_light_bulb)
+            if self.update_flag_switch_5:
+                self.dataModel.set_toggle_switch_5(0)
+                configVariables.light_database.updateToggleSwitchFive(self.dataModel)
             self.rt.start()
+        self.update_flag_switch_5 = True
 
     def toggleSwitchLaminarColor(self):
         # if button is checked
@@ -2821,6 +2852,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.lightBulb4.setPixmap(configVariables.changed_light_bulb)
+            if self.update_flag_switch_4:
+                self.dataModel.set_toggle_switch_4(1)
+                configVariables.light_database.updateToggleSwitchFour(self.dataModel)
             self.rt.start()
             # if it is unchecked
         else:
@@ -2834,7 +2868,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.lightBulb4.setPixmap(configVariables.low_light_bulb)
+            if self.update_flag_switch_4:
+                self.dataModel.set_toggle_switch_4(0)
+                configVariables.light_database.updateToggleSwitchFour(self.dataModel)
             self.rt.start()
+        self.update_flag_switch_4 = True
 
     def toggleSwitchGasL1Color(self):
         # if button is checked
@@ -2851,6 +2889,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.lightBulb1.setPixmap(configVariables.changed_light_bulb)
+            if self.update_flag_switch_1:
+                self.dataModel.set_toggle_switch_1(1)
+                configVariables.light_database.updateToggleSwitchOne(self.dataModel)
             self.rt.start()
             # if it is unchecked
         else:
@@ -2865,7 +2906,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.lightBulb1.setPixmap(configVariables.low_light_bulb)
+            if self.update_flag_switch_1:
+                self.dataModel.set_toggle_switch_1(0)
+                configVariables.light_database.updateToggleSwitchOne(self.dataModel)
             self.rt.start()
+        self.update_flag_switch_1 = True
 
     def toggleSwitchGasL2Color(self):
         # if button is checked
@@ -2881,6 +2926,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.lightBulb2.setPixmap(configVariables.changed_light_bulb)
+            if self.update_flag_switch_2:
+                self.dataModel.set_toggle_switch_2(1)
+                configVariables.light_database.updateToggleSwitchTwo(self.dataModel)
             # if it is unchecked
             self.rt.start()
         else:
@@ -2894,7 +2942,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.lightBulb2.setPixmap(configVariables.low_light_bulb)
+            if self.update_flag_switch_2:
+                self.dataModel.set_toggle_switch_2(0)
+                configVariables.light_database.updateToggleSwitchTwo(self.dataModel)
             self.rt.start()
+        self.update_flag_switch_2 = True
 
     def toggleSwitchOT1Color(self):
         # if button is checked
@@ -2910,6 +2962,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.otLightBulb1.setPixmap(configVariables.changed_ot_light)
+            if self.update_flag_switch_3:
+                self.dataModel.set_toggle_switch_3(1)
+                configVariables.light_database.updateToggleSwitchThree(self.dataModel)
             self.rt.start()
             # if it is unchecked
         else:
@@ -2923,7 +2978,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.otLightBulb1.setPixmap(configVariables.low_ot_light)
+            if self.update_flag_switch_3:
+                self.dataModel.set_toggle_switch_3(0)
+                configVariables.light_database.updateToggleSwitchThree(self.dataModel)
             self.rt.start()
+        self.update_flag_switch_3 = True
 
     def toggleSwitchOT2Color(self):
         # if button is checked
@@ -2939,6 +2998,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.otLightBulb2.setPixmap(configVariables.changed_ot_light)
+            if self.update_flag_switch_6:
+                self.dataModel.set_toggle_switch_6(1)
+                configVariables.light_database.updateToggleSwitchSix(self.dataModel)
             self.rt.start()
             # if it is unchecked
         else:
@@ -2952,7 +3014,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             except IndexError:
                 print("Color")
             self.ot_ui.otLightBulb2.setPixmap(configVariables.low_ot_light)
+            if self.update_flag_switch_6:
+                self.dataModel.set_toggle_switch_6(0)
+                configVariables.light_database.updateToggleSwitchSix(self.dataModel)
             self.rt.start()
+        self.update_flag_switch_6 = True
 
     # ================= Start Media Player ================================
     def dragEnterEvent(self, e):

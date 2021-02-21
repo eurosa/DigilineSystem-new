@@ -189,6 +189,57 @@ class LightSwitchDataBase:
             row_count = query.value(0)
         return row_count
 
+    # ++++++++++++++++++++++++++++++++++++++ Toggle Switch Status +++++++++++++++++++++++++++++++
+    def queryToggleSwitchStatus(self, model):
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("SELECT toggle_switch_1, toggle_switch_2, toggle_switch_3, toggle_switch_4,"
+                    " toggle_switch_5, toggle_switch_6 FROM switchControl where 1")
+        while query.next():
+            # print(query.value('theme_color_preview'))
+            model.set_toggle_switch_1(query.value('toggle_switch_1'))
+            model.set_toggle_switch_2(query.value('toggle_switch_2'))
+            model.set_toggle_switch_3(query.value('toggle_switch_3'))
+            model.set_toggle_switch_4(query.value('toggle_switch_4'))
+            model.set_toggle_switch_5(query.value('toggle_switch_5'))
+            model.set_toggle_switch_6(query.value('toggle_switch_6'))
+
+    def updateToggleSwitchOne(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_1 = model.get_toggle_switch_1()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET toggle_switch_1 ='" + str(_toggle_switch_1) + "' WHERE id= 1")
+
+    def updateToggleSwitchTwo(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_2 = model.get_toggle_switch_2()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET toggle_switch_2 ='" + str(_toggle_switch_2) + "' WHERE id= 1")
+
+    def updateToggleSwitchThree(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_3 = model.get_toggle_switch_3()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET toggle_switch_3 ='" + str(_toggle_switch_3) + "' WHERE id= 1")
+
+    def updateToggleSwitchFour(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_4 = model.get_toggle_switch_4()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET toggle_switch_4 ='" + str(_toggle_switch_4) + "' WHERE id= 1")
+
+    def updateToggleSwitchFive(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_5 = model.get_toggle_switch_5()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET toggle_switch_5 ='" + str(_toggle_switch_5) + "' WHERE id= 1")
+
+    def updateToggleSwitchSix(self, model):
+        # ids = int(model.get_light_name_1())
+        _toggle_switch_6 = model.get_toggle_switch_6()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET toggle_switch_6 ='" + str(_toggle_switch_6) + "' WHERE id= 1")
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     def db_connect(self, filename, server, connection):
         configVariables.db = QSqlDatabase.addDatabase(server, connection)
         configVariables.db.setDatabaseName(filename)
@@ -226,6 +277,16 @@ class LightSwitchDataBase:
                     "play_wh BLOB, pause_wh BLOB, changed_light_bulb BLOB,"
                     "changed_ot_light BLOB, low_light_bulb BLOB, low_ot_light BLOB,"
                     "changed_low_color varchar(80))")
+
+        query.exec_("create table switchControl(id INTEGER PRIMARY KEY ,"
+                    "toggle_switch_1 varchar(10), toggle_switch_2 varchar(10),"
+                    "toggle_switch_3 varchar(10), toggle_switch_4 varchar(10),"
+                    "toggle_switch_5 varchar(10), toggle_switch_6 varchar(10))")
+
+        query.exec_("insert into switchControl(toggle_switch_1, toggle_switch_2, "
+                    "toggle_switch_3, toggle_switch_4,"
+                    "toggle_switch_5, toggle_switch_6) values("
+                    " 0, 0, 0, 0, 0, 0)")
 
         '''query.exec_("create table GeneralSettings(id INTEGER PRIMARY KEY , "
                     "light_name_1 varchar(20), light_name_2 varchar(20), light_name_3 varchar(20), light_name_4 "
