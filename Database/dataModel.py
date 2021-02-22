@@ -91,9 +91,32 @@ class DataModel:
         self._toggle_switch_4 = str()
         self._toggle_switch_5 = str()
         self._toggle_switch_6 = str()
-        self._count_down_timer_value = str()
+        # ++++++++++++++++++++++++++++++++++++++++++
+        self._hours_cnt = int()
+        self._minutes_cnt = int()
+        self._seconds_cnt = int()
+        # ++++++++++++++++++++++++++++++++++++++++++
         self._switch_temp_ctrl = int()
         self._switch_hum_ctrl = int()
+
+    # ++++++++++++++++++++++++++++++++++++ Count Down Timer Counter value status ++++++++++++++++++++++++++
+    def set_hours_cnt(self, _hours_cnt):
+        self._hours_cnt = _hours_cnt
+
+    def set_minutes_cnt(self, _minutes_cnt):
+        self._minutes_cnt = _minutes_cnt
+
+    def set_seconds_cnt(self, _seconds_cnt):
+        self._seconds_cnt = _seconds_cnt
+
+    def get_hours_cnt(self):
+        return self._hours_cnt
+
+    def get_minutes_cnt(self):
+        return self._minutes_cnt
+
+    def get_seconds_cnt(self):
+        return self._seconds_cnt
 
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     def set_switch_temp_ctrl(self, _switch_temp_ctrl):
