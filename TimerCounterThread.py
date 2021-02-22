@@ -143,7 +143,11 @@ class TimerCounterThread(QThread):
             self.timer_set_ui.minuteSlider.setValue(self.timer_set_ui.spinMinuteBox.value())
         if self.timer_set_ui.spinSecondBox.value() >= 0:
             self.timer_set_ui.secondSlider.setValue(self.timer_set_ui.spinSecondBox.value())
-
+    # +++++++++++++++++ I have added this 20/02/2021++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        self.ok_hours = self.timer_set_ui.spinHourBox.value()
+        self.ok_minutes = self.timer_set_ui.spinMinuteBox.value()
+        self.ok_seconds = self.timer_set_ui.spinSecondBox.value()
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         self.my_timer_seconds = (
                 self.timer_set_ui.spinHourBox.value() * 3600 + self.timer_set_ui.spinMinuteBox.value() * 60
                 + self.timer_set_ui.spinSecondBox.value())
@@ -156,6 +160,12 @@ class TimerCounterThread(QThread):
         if self.timer_set_ui.secondSlider.value() >= 0:
             self.timer_set_ui.spinSecondBox.setValue(self.timer_set_ui.secondSlider.value())
 
+        # +++++++++++++++++ I have added this 20/02/2021++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        self.ok_hours = self.timer_set_ui.spinHourBox.value()
+        self.ok_minutes = self.timer_set_ui.spinMinuteBox.value()
+        self.ok_seconds = self.timer_set_ui.spinSecondBox.value()
+        # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         self.my_timer_seconds = (
                 self.timer_set_ui.spinHourBox.value() * 3600 + self.timer_set_ui.spinMinuteBox.value() * 60
                 + self.timer_set_ui.spinSecondBox.value())
@@ -163,11 +173,33 @@ class TimerCounterThread(QThread):
     def acceptOk(self):
         self._reset_event()
         self.int_count = True
+        print("Hours:"+str(self.ok_hours))
+        print("Minutes:" + str(self.ok_minutes))
+        print("Seconds:" + str(self.ok_seconds))
+        # ++++++++++++++++++++++++ Update Counter Value in Database ++++++++++++++
+        self.dataModel.set_hours_cnt(self.ok_hours)
+        self.dataModel.set_minutes_cnt(self.ok_minutes)
+        self.dataModel.set_seconds_cnt(self.ok_seconds)
+        configVariables.light_database.updateCntDwnTimer(self.dataModel)
 
     def rejectCancel(self):
         self.timer_set_ui.spinHourBox.setValue(self.ok_hours)
         self.timer_set_ui.spinMinuteBox.setValue(self.ok_minutes)
         self.timer_set_ui.spinSecondBox.setValue(self.ok_seconds)
+        # ++++++++++++++++++++++++++ Update Counter Value in Database ++++++++++++
+        self.dataModel.set_hours_cnt(self.ok_hours)
+        self.dataModel.set_minutes_cnt(self.ok_minutes)
+        self.dataModel.set_seconds_cnt(self.ok_seconds)
+        configVariables.light_database.updateCntDwnTimer(self.dataModel)
+
+    def initCounterValue(self):
+        configVariables.light_database.queryCountDownTimerData(self.dataModel)
+        self.ok_hours = self.dataModel.get_hours_cnt()
+        self.ok_minutes = self.dataModel.get_minutes_cnt()
+        self.ok_seconds = self.dataModel.get_seconds_cnt()
+
+        print("Hours: "+str(self.ok_hours)+" Minutes: "+str(self.ok_minutes)+" Seconds: "+str(self.ok_seconds))
+        print("Hours: " + str(self.ok_hours) + " Minutes: " + str(self.ok_minutes) + " Seconds: " + str(self.ok_seconds))
 
     # ==================End Countdown Timer ===============================
 
@@ -190,6 +222,7 @@ class TimerCounterThread(QThread):
         self.ok_hours = 0
         self.ok_minutes = 0
         self.ok_seconds = 0
+        self.initCounterValue()
         self.int_count = True
         self._status = TimerStatus.init
         self.appearance_color_name = str()
@@ -197,7 +230,9 @@ class TimerCounterThread(QThread):
         self.label_time = 0
         self.tickPart = 0
         self.current_time = 0
-
+        self.timer_set_ui.spinHourBox.setValue(self.ok_hours)
+        self.timer_set_ui.spinMinuteBox.setValue(self.ok_minutes)
+        self.timer_set_ui.spinSecondBox.setValue(self.ok_seconds)
         # ++++++++++Initialize time of countdown timer using QSpinBox initial
         # values++++++++++++++++++_left_seconds+++++++360060+++++++++++++++++++++++++++++++++++++++++++++++
         self._left_seconds = (
@@ -210,12 +245,13 @@ class TimerCounterThread(QThread):
         self.showTimerCounter()
         self.timer_set_ui.buttonBox.accepted.connect(self.acceptOk)
         self.timer_set_ui.buttonBox.rejected.connect(self.rejectCancel)
+
         # self.widget = TimerWidget(self)
         # self.setCentralWidget(self.widget)
         # self.setWindowFlags(Qt.WindowStaysOnTopHint)
         # self.resize(150, 90)
         # self.move(10, 10)
-        # ================End Count Down Timer Layout======================
+        # ================End Count Down Timer Layout===========================================
         # ------------------------------Data Capture Thread ------------------------------------
 
     def run(self):

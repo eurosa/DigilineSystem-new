@@ -183,7 +183,7 @@ class LightSwitchDataBase:
     def tableRowCount(self, table_name):
         row_count = 0
         query = QSqlQuery(configVariables.db_history)
-        query.exec("SELECT COUNT(*) FROM "+table_name+"")
+        query.exec("SELECT COUNT(*) FROM " + table_name + "")
 
         if query.first():
             row_count = query.value(0)
@@ -193,7 +193,8 @@ class LightSwitchDataBase:
     def queryToggleSwitchStatus(self, model):
         query = QSqlQuery(configVariables.db_history)
         query.exec_("SELECT toggle_switch_1, toggle_switch_2, toggle_switch_3, toggle_switch_4,"
-                    " toggle_switch_5, toggle_switch_6, set_hum, set_temp FROM switchControl where 1")
+                    " toggle_switch_5, toggle_switch_6, set_hum, set_temp"
+                    " FROM switchControl where 1")
         while query.next():
             # print(query.value('theme_color_preview'))
             model.set_toggle_switch_1(query.value('toggle_switch_1'))
@@ -204,6 +205,26 @@ class LightSwitchDataBase:
             model.set_toggle_switch_6(query.value('toggle_switch_6'))
             model.set_switch_hum_ctrl(query.value('set_hum'))
             model.set_switch_temp_ctrl(query.value('set_temp'))
+
+    def queryCountDownTimerData(self, model):
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("SELECT hours_cnt, minutes_cnt, seconds_cnt"
+                    " FROM switchControl where 1")
+        while query.next():
+            # print(query.value('theme_color_preview'))
+            model.set_hours_cnt(query.value('hours_cnt'))
+            model.set_minutes_cnt(query.value('minutes_cnt'))
+            model.set_seconds_cnt(query.value('seconds_cnt'))
+
+    def updateCntDwnTimer(self, model):
+        # ids = int(model.get_light_name_1())
+        _hours_cnt = model.get_hours_cnt()
+        _minutes_cnt = model.get_minutes_cnt()
+        _seconds_cnt = model.get_seconds_cnt()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET hours_cnt ='" + str(_hours_cnt) + "' "
+                    ",minutes_cnt ='" + str(_minutes_cnt) + "'"
+                    ",seconds_cnt ='" + str(_seconds_cnt) + "' WHERE id= 1")
 
     def updateToggleSwitchOne(self, model):
         # ids = int(model.get_light_name_1())
@@ -252,6 +273,7 @@ class LightSwitchDataBase:
         _switch_hum_ctrl = model.get_switch_hum_ctrl()
         query = QSqlQuery(configVariables.db_history)
         query.exec_("UPDATE switchControl SET set_hum ='" + str(_switch_hum_ctrl) + "' WHERE id= 1")
+
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     def db_connect(self, filename, server, connection):
@@ -296,14 +318,15 @@ class LightSwitchDataBase:
                     "toggle_switch_1 varchar(10), toggle_switch_2 varchar(10),"
                     "toggle_switch_3 varchar(10), toggle_switch_4 varchar(10),"
                     "toggle_switch_5 varchar(10), toggle_switch_6 varchar(10),"
-                    "count_down_timer_val varchar(100), set_hum INTEGER, "
+                    "hours_cnt INTEGER, minutes_cnt INTEGER, seconds_cnt INTEGER, set_hum INTEGER, "
                     "set_temp INTEGER)")
 
         query.exec_("insert into switchControl(toggle_switch_1, toggle_switch_2, "
                     "toggle_switch_3, toggle_switch_4,"
-                    "toggle_switch_5, toggle_switch_6, count_down_timer_val,"
+                    "toggle_switch_5, toggle_switch_6,"
+                    "hours_cnt, minutes_cnt, seconds_cnt,"
                     "set_hum, set_temp) values("
-                    " 0, 0, 0, 0, 0, 0, 0, 0, 0)")
+                    " 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
 
         '''query.exec_("create table GeneralSettings(id INTEGER PRIMARY KEY , "
                     "light_name_1 varchar(20), light_name_2 varchar(20), light_name_3 varchar(20), light_name_4 "
