@@ -233,6 +233,10 @@ class TimerCounterThread(QThread):
         self.timer_set_ui.spinHourBox.setValue(self.ok_hours)
         self.timer_set_ui.spinMinuteBox.setValue(self.ok_minutes)
         self.timer_set_ui.spinSecondBox.setValue(self.ok_seconds)
+
+        self.timer_set_ui.hourSlider.setValue(self.ok_hours)
+        self.timer_set_ui.minuteSlider.setValue(self.ok_minutes)
+        self.timer_set_ui.secondSlider.setValue(self.ok_seconds)
         # ++++++++++Initialize time of countdown timer using QSpinBox initial
         # values++++++++++++++++++_left_seconds+++++++360060+++++++++++++++++++++++++++++++++++++++++++++++
         self._left_seconds = (
