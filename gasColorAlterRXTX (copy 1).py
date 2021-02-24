@@ -41,8 +41,7 @@ class ThreadGasColorRXTX(QRunnable):
         # of range error if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 \ in
         # rasberry pi
         # Aborted in rasberry pi
-        if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 and \
-                configVariables.hex_string[2] == 0x43 and configVariables.hex_string[21] == 0x20:
+        if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 and configVariables.hex_string[2] == 0x43 and configVariables.hex_string[21] == 0x20:
             x7 = bin(0b10000000)
             x6 = bin(0b01000000)
             x5 = bin(0b00100000)
@@ -81,215 +80,6 @@ class ThreadGasColorRXTX(QRunnable):
                 configVariables.hex_string[2] == 0x43 and configVariables.hex_string[21] == 0x20:'''
 
             if bit1:
-                # Low
-                configVariables.buzzer_hex_gas_2 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
-                                                                    configVariables.red_color_hex)
-                # ---------Gas pad menu----------------------------------------------------------------------
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_low, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_1(), "Low")
-
-                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
-
-            elif bit0:
-                # High
-                configVariables.buzzer_hex_gas_2 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
-                                                                    configVariables.red_color_hex)
-                # ---------Gas pad menu---------------------------------------------------------
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_high, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_low, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_1(), "High")
-                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
-
-            elif not bit1 and not bit0:
-                configVariables.buzzer_hex_gas_2 = 0x00
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
-                                                                    configVariables.green_color_hex)
-                # ---------Gas pad menu---------------------------------------------------------
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_normal, "QLabel",
-                                                                    configVariables.green_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_low, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-            if bit3:
-                # Low
-                configVariables.buzzer_hex_gas_4 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
-                                                                    configVariables.red_color_hex)
-                # ---------Gas pad menu---------------------------------------------------------
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_low, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_2(), "Low")
-            elif bit2:
-                # High
-                configVariables.buzzer_hex_gas_4 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_high, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_low, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_2(), "High")
-                # +++++++++++++++++++ gas_name_1 is oxygen +++++++++++++++++++++++++++++++++++++++++++++++++
-
-            elif not bit3 and not bit2:
-                configVariables.buzzer_hex_gas_4 = 0x00
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
-                                                                    configVariables.green_color_hex)
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_normal, "QLabel",
-                                                                    configVariables.green_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_low, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-            if bit5:
-                # Low
-                configVariables.buzzer_hex_gas_5 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
-                                                                    configVariables.red_color_hex)
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_low, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_3(), "Low")
-
-            elif bit4:
-                # High
-                configVariables.buzzer_hex_gas_5 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_high, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_low, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_3(), "High")
-                # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-            elif not bit5 and not bit4:
-                configVariables.buzzer_hex_gas_5 = 0x00
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
-                                                                    configVariables.green_color_hex)
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_normal, "QLabel",
-                                                                    configVariables.green_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_low, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-            if bit7:
-                # Low
-                configVariables.buzzer_hex_gas_3 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
-                                                                    configVariables.red_color_hex)
-                # ---------Gas pad menu---------------------------------------------------------
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_low, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_4(), "Low")
-
-            elif bit6:
-                # High
-                configVariables.buzzer_hex_gas_3 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
-                                                                    configVariables.red_color_hex)
-                # ---------Gas pad menu---------------------------------------------------------
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_high, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_low, "QLabel",
-                                                                    configVariables.white_color_hex)
-
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_4(), "High")
-
-            elif not bit7 and not bit6:
-                configVariables.buzzer_hex_gas_3 = 0x00
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
-                                                                    configVariables.green_color_hex)
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_low, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_normal, "QLabel",
-                                                                    configVariables.green_color_hex)
-
-            if bit9:
-                # Low
-                configVariables.buzzer_hex_gas_1 = 0x01
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
-                                                                    configVariables.red_color_hex)
-                # ---------Gas pad menu---------------------------------------------------------
-
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_low, "QLabel",
-                                                                    configVariables.red_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_normal, "QLabel",
-                                                                    configVariables.white_color_hex)
-                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_high, "QLabel",
-                                                                    configVariables.white_color_hex)
-                # ++++++++++++++++++++++++ Low Alarm Data Save in History Table ++++++++++++++++++++++++++++
-                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
-                self.ui.dataModel.get_gas_name_5()
-                print("Gas Name 1 Low: " + self.ui.dataModel.get_gas_name_5() + " Date Time: " + self.ui.proc)
-                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
-                                                                 self.ui.dataModel.get_gas_name_5(), "Low")
-            elif bit8:
                 # High
                 configVariables.buzzer_hex_gas_1 = 0x01
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
@@ -307,9 +97,30 @@ class ThreadGasColorRXTX(QRunnable):
                 print("Gas Name 1 High: " + self.ui.dataModel.get_gas_name_5() + " Date Time: " + self.ui.proc)
                 configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
                                                                  self.ui.dataModel.get_gas_name_5(), "High")
-                # +++++++++++++++ Gas Five Carbondioxide +++++++++++++++++++++++++++++++++++++++++++++++++++
+                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
 
-            elif not bit8 and not bit9:
+            elif bit0:
+                # Low
+                configVariables.buzzer_hex_gas_1 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                # ---------Gas pad menu---------------------------------------------------------
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_low, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+                # ++++++++++++++++++++++++ Low Alarm Data Save in History Table +++++++++++++++++++++++++++
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                self.ui.dataModel.get_gas_name_5()
+                print("Gas Name 1 Low: " + self.ui.dataModel.get_gas_name_5() + " Date Time: " + self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_5(), "Low")
+                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
+
+            elif not bit1 and not bit0:
                 configVariables.buzzer_hex_gas_1 = 0x00
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
                                                                     configVariables.green_color_hex)
@@ -322,6 +133,189 @@ class ThreadGasColorRXTX(QRunnable):
 
                 self.ui.dataModel.set_alarm_date_time(self.ui.proc)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_5_low, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+            if bit3:
+                # High
+                configVariables.buzzer_hex_gas_2 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                # ---------Gas pad menu---------------------------------------------------------
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_high, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_low, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_1(), "High")
+            elif bit2:
+                # Low
+                configVariables.buzzer_hex_gas_2 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                # ---------Gas pad menu---------------------------------------------------------
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_low, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_1(), "Low")
+
+            elif not bit3 and not bit2:
+                configVariables.buzzer_hex_gas_2 = 0x00
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
+                                                                    configVariables.green_color_hex)
+                # ---------Gas pad menu---------------------------------------------------------
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_normal, "QLabel",
+                                                                    configVariables.green_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_low, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+            if bit5:
+                # High
+                configVariables.buzzer_hex_gas_3 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                # ---------Gas pad menu---------------------------------------------------------
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_high, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_low, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_4(), "High")
+
+            elif bit4:
+                # Low
+                configVariables.buzzer_hex_gas_3 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                # ---------Gas pad menu---------------------------------------------------------
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_low, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_4(), "Low")
+            elif not bit5 and not bit4:
+                configVariables.buzzer_hex_gas_3 = 0x00
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
+                                                                    configVariables.green_color_hex)
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_low, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_4_normal, "QLabel",
+                                                                    configVariables.green_color_hex)
+
+            if bit7:
+                # High
+                configVariables.buzzer_hex_gas_4 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_high, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_low, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_2(), "High")
+
+            elif bit6:
+                # Low
+                configVariables.buzzer_hex_gas_4 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                # ---------Gas pad menu---------------------------------------------------------
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_low, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_2(), "Low")
+
+            elif not bit7 and not bit6:
+                configVariables.buzzer_hex_gas_4 = 0x00
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
+                                                                    configVariables.green_color_hex)
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_normal, "QLabel",
+                                                                    configVariables.green_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_low, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+            if bit9:
+                # High
+                configVariables.buzzer_hex_gas_5 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_high, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_low, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_3(), "High")
+            elif bit8:
+                # Low
+                configVariables.buzzer_hex_gas_5 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
+                                                                    configVariables.red_color_hex)
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_low, "QLabel",
+                                                                    configVariables.red_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_normal, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_3(), "Low")
+
+            elif not bit8 and not bit9:
+                configVariables.buzzer_hex_gas_5 = 0x00
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
+                                                                    configVariables.green_color_hex)
+
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_normal, "QLabel",
+                                                                    configVariables.green_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_high, "QLabel",
+                                                                    configVariables.white_color_hex)
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_low, "QLabel",
                                                                     configVariables.white_color_hex)
 
             if bit11:
