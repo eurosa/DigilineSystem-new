@@ -4,18 +4,20 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 
 from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
 
 
 class MplCanvas(FigureCanvasQTAgg):
 
     def __init__(self, parent=None, width=5, height=4, dpi=100):
+        # self.fig = plt.figure()
         self.fig = Figure(figsize=(width, height), dpi=dpi)
         self.fig.set_size_inches(100, 100, forward=True)
         self.axes = self.fig.add_subplot(111)
-        #self.axes.set_xlabel("Time(H)")
-        #self.axes.set_ylabel("Temperature(°C)")
-        self.axes.xaxis.label.set_size(100)
-        self.axes.yaxis.label.set_size(100)
+        # self.axes.set_xlabel("Time(H)")
+        # self.axes.set_ylabel("Temperature(°C)")
+        self.axes.xaxis.label.set_size(6)
+        self.axes.yaxis.label.set_size(6)
         self.axes.grid(axis="x", color="green", alpha=.3, linewidth=2, linestyle=":")
         self.axes.grid(axis="y", color="black", alpha=.5, linewidth=.5)
         super(MplCanvas, self).__init__(self.fig)

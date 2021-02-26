@@ -226,12 +226,15 @@ class SerialWrapper:
                 hum_data_read = int(hex(hum_data_read_hex), 16) / 10
                 air_pressure_data_read = int(hex(air_pressure_data_read_hex), 16)
 
-                self.ui.ui.tempShow.setText(str(temp_data_read))
+                # ++++++++++++++++++++ Temp , Humidity, Pressure UI update +++++++++++++++++++
+                '''self.ui.ui.tempShow.setText(str(temp_data_read))
                 self.ui.ui.humidityShow.setText(str(hum_data_read))
-                self.ui.ui.differentialPressureShow.setText(str(air_pressure_data_read))
+                self.ui.ui.differentialPressureShow.setText(str(air_pressure_data_read))'''
 
                 configVariables.temp_read_value = temp_data_read
                 configVariables.hum_read_value = hum_data_read
+                configVariables.air_pressure_value = air_pressure_data_read
+                # ++++++++++++++++++++ Temp , Humidity, Pressure UI update +++++++++++++++++++
 
                 self.ui.startThreadSwitch7()
                 self.ui.startThreadSwitch8()
@@ -376,10 +379,13 @@ class SerialWrapper:
 
         self.ui.dataModel.set_hum_value(configVariables.hum_read_value)
         self.ui.dataModel.set_temp_value(configVariables.temp_read_value)
-        configVariables.light_database.insertGraphData(self.ui.dataModel.get_temp_value(),
-                                                       self.ui.dataModel.get_hum_value(), '', self.ui.proc)
+        print("Time and Date Inserting time in Database:"+str(self.ui.proc))
+        if self.ui.proc:
+            configVariables.light_database.insertGraphData(self.ui.dataModel.get_temp_value(),
+                                                           self.ui.dataModel.get_hum_value(), '', self.ui.proc)
 
         configVariables.light_database.graphDataSelect(self.ui.dataModel)
+        # self.ui.drawRealTimeData()
 
     def colorChned1(self, ui):
         if self.s:

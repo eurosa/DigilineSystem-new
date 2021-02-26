@@ -64,8 +64,12 @@ class LightSwitchDataBase:
                     "500)")
         '''query.exec_("DELETE FROM history_table WHERE  id NOT IN ( SELECT TOP ( 2 ) id FROM  "
                     "history_table ORDER BY date_time)")'''
-        query_select = "SELECT date_time, id, temp_value, hum_value FROM graph_table  ORDER BY " \
-                       "id  ASC "
+        if configVariables.query_select_flag: 
+            query_select = "SELECT date_time, id, temp_value, hum_value FROM graph_table  ORDER BY id DESC  LIMIT 1"
+        else:
+            query_select = "SELECT date_time, id, temp_value, hum_value FROM graph_table  ORDER BY id  ASC"
+        configVariables.query_select_flag = True
+
         query.exec_(query_select)
 
         while query.next():
@@ -223,8 +227,9 @@ class LightSwitchDataBase:
         _seconds_cnt = model.get_seconds_cnt()
         query = QSqlQuery(configVariables.db_history)
         query.exec_("UPDATE switchControl SET hours_cnt ='" + str(_hours_cnt) + "' "
-                    ",minutes_cnt ='" + str(_minutes_cnt) + "'"
-                    ",seconds_cnt ='" + str(_seconds_cnt) + "' WHERE id= 1")
+                                                                                ",minutes_cnt ='" + str(
+            _minutes_cnt) + "'"
+                            ",seconds_cnt ='" + str(_seconds_cnt) + "' WHERE id= 1")
 
     def updateToggleSwitchOne(self, model):
         # ids = int(model.get_light_name_1())

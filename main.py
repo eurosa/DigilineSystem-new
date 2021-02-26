@@ -19,6 +19,7 @@ import sys
 import dateutil
 import pytz
 import matplotlib
+from matplotlib import animation
 from matplotlib.ticker import FixedFormatter, FixedLocator
 import matplotlib.pyplot as plt
 import multithreading as mt
@@ -39,6 +40,7 @@ from lightintensitycontrol import LightIntensityControlThread
 from multiMediaPlayerThread import MultiMediaThread
 from player import Player
 from pushButtonColorControl import PushButtonColorControl
+from realtimeGraph import RealtimeGraph
 from repeatedThreadTimer import RepeatedTimerThread
 from repeatedTimer import RepeatedTimer
 from serialDataTXRX import SerialWrapper
@@ -670,16 +672,31 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             print(key, '->', configVariables.my_temp_list[key])
             self.tempForm.axes.plot(configVariables.my_time_list[key],
                                     configVariables.my_temp_list[key])'''
+
         # self.tempForm.axes.set_xticks(list(configVariables.my_id_list.values()))
+        # self.tempForm.axes.set_xticks(list(configVariables.my_time_list.values()), minor=True)
+        self.tempForm.axes.set_xlim(xmin=0, xmax=10)
+        self.tempForm.axes.set_ylim(ymin=0, ymax=10)
+        self.tempForm.axes.set_xlabel("Time(H)")
+        self.tempForm.axes.set_ylabel("Temperature(°C)")
+        # ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(list(configVariables.my_time_list.values()), list(configVariables.my_temp_list.values())),
+        # interval=1000)
+        a = np.array(list(configVariables.my_time_list.values()))
+        # self.tempForm.axes.set_xticks(np.arange(len(list(configVariables.my_time_list.values()))))
+        # self.tempForm.draw() # This need for Animation
+        '''fig2 = plt.figure()  # Nothing happens
+           fig2.show()'''
+        # ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(list(configVariables.my_time_list.values())[-20:], list(configVariables.my_temp_list.values())[-20:]), interval=1000)
+        # ani = animation.FuncAnimation(self.tempForm.fig, animate, fargs=(xs, ys), interval=1000)
+
         self.tempForm.axes.plot(list(configVariables.my_time_list.values()),
-                                list(configVariables.my_temp_list.values()), color='green', marker='o', markersize=10,
+                                list(configVariables.my_temp_list.values()), color='green', marker='o', markersize=3,
                                 linestyle='--', linewidth=1)
         # self.tempForm.axes.get_xaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
         # self.tempForm.axes.get_yaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
-        #  self.tempForm.axes.xaxis.zoom(3)
-        #   self.tempForm.axes.axis(xmin=0, xmax=10)
-        self.tempForm.axes.set_xlim(xmin=0, xmax=10)
-        self.tempForm.axes.set_ylim(ymin=0, ymax=10)
+        # self.tempForm.axes.xaxis.zoom(3)
+        # self.tempForm.axes.axis(xmin=0, xmax=10)
+
         # self.tempForm.axes.set_xbound(lower=40)
 
         # self.tempForm.axes.grid(b=True, which='major', color='w', linewidth=1.5)
@@ -687,7 +704,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # self.tempForm.axes.axis(xmin=0, xmax=10, ymin=0, ymax=10)
         # self.fig.tight_layout()
-
+        # self.drawRealTimeData()
         # self.tempForm.axes.plot()
         # https://programmersought.com/article/50984561968/
 
@@ -733,6 +750,19 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.mulForm.hide()
         self.hisForm.hide()
 
+    def drawRealTimeData(self):
+        '''
+        ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(
+            list(configVariables.my_time_list.values()), list(configVariables.my_temp_list.values())),
+                                      interval=1000)
+        '''
+        # self.realtimeGraph.animate('', list(configVariables.my_time_list.values()),
+        # list(configVariables.my_temp_list.values()))
+
+        # a = np.array(list(configVariables.my_time_list.values()))
+        # self.tempForm.axes.set_xticks(np.arange(len(list(configVariables.my_time_list.values()))))
+        self.tempForm.draw()  # This need for Animation
+
     def graphValueInsertinDb(self):
         pass
         threading.Timer(10.0, self.graphValueInsertinDb).start()
@@ -743,9 +773,103 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
     def showHumidityGraph(self):
         self.clear()
         self.ui.menuTitleName.setText("Humidity Graph")
-        self.hum_ui.setupUi(self.humidityForm)
-        self.layout.addWidget(self.humidityForm)
-        self.humidityForm.plot(self.hour, self.humidity)
+        self.hum_ui.setupUi(self.humForm)
+        # self.layout.addWidget(self.humidityForm)
+        # self.humidityForm.plot(self.hour, self.humidity)
+
+        # Create toolbar, passing canvas as first parament, parent (self, the MainWindow) as second.
+        navToolbar = NavigationToolbar(self.humForm, self)
+        # navToolbar.pan()
+        self.layout.addWidget(navToolbar)
+        self.layout.addWidget(self.humForm)
+        self.humForm.fig.autofmt_xdate()
+
+        '''x_formatter = FixedFormatter(list(configVariables.my_temp_list.values()))
+        y_formatter = FixedFormatter(list(configVariables.my_temp_list.values()))
+        x_locator = FixedLocator(list(configVariables.my_id_list.values()))
+        y_locator = FixedLocator(list(configVariables.my_id_list.values()))
+        self.tempForm.axes.xaxis.set_major_formatter(x_formatter)
+        self.tempForm.axes.yaxis.set_major_formatter(y_formatter)
+        self.tempForm.axes.xaxis.set_major_locator(x_locator)
+        self.tempForm.axes.yaxis.set_major_locator(y_locator)'''
+
+        '''for key in configVariables.my_time_list.keys():
+            print(key, '->', configVariables.my_time_list[key])
+            print(key, '->', configVariables.my_temp_list[key])
+            self.tempForm.axes.plot(configVariables.my_time_list[key],
+                                    configVariables.my_temp_list[key])'''
+        self.humForm.axes.set_xlabel("Time(H)")
+        self.humForm.axes.set_ylabel("Humidity(%)")
+        # self.tempForm.axes.set_xticks(list(configVariables.my_id_list.values()))
+        # self.tempForm.axes.set_xticks(list(configVariables.my_time_list.values()), minor=True)
+        self.humForm.axes.set_xlim(xmin=0, xmax=10)
+        self.humForm.axes.set_ylim(ymin=0, ymax=10)
+        # ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(list(configVariables.my_time_list.values()), list(configVariables.my_temp_list.values())),
+        # interval=1000)
+        a = np.array(list(configVariables.my_time_list.values()))
+        # self.tempForm.axes.set_xticks(np.arange(len(list(configVariables.my_time_list.values()))))
+        # self.tempForm.draw() # This need for Animation
+        '''fig2 = plt.figure()  # Nothing happens
+           fig2.show()'''
+        # ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(list(configVariables.my_time_list.values())[-20:], list(configVariables.my_temp_list.values())[-20:]), interval=1000)
+        # ani = animation.FuncAnimation(self.tempForm.fig, animate, fargs=(xs, ys), interval=1000)
+
+        self.humForm.axes.plot(list(configVariables.my_time_list.values()),
+                                list(configVariables.my_hum_list.values()), color='green', marker='o', markersize=3,
+                                linestyle='--', linewidth=1)
+        # self.tempForm.axes.get_xaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+        # self.tempForm.axes.get_yaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
+        # self.tempForm.axes.xaxis.zoom(3)
+        # self.tempForm.axes.axis(xmin=0, xmax=10)
+
+        # self.tempForm.axes.set_xbound(lower=40)
+
+        # self.tempForm.axes.grid(b=True, which='major', color='w', linewidth=1.5)
+        # self.tempForm.axes.grid(b=True, which='minor', color='w', linewidth=0.75)
+
+        # self.tempForm.axes.axis(xmin=0, xmax=10, ymin=0, ymax=10)
+        # self.fig.tight_layout()
+        # self.drawRealTimeData()
+        # self.tempForm.axes.plot()
+        # https://programmersought.com/article/50984561968/
+
+        # self.tempForm.setBackground('w')
+        '''styles = {"color": "#f00", "font-size": "20px"}
+        # self.tempForm.setLabel("right", "Humidity (%)", **styles)
+        self.tempForm.setLabel("left", "Temperature (°C)", **styles)
+        self.tempForm.setLabel("bottom", "Minutes (H)", **styles)'''
+        # Add legend
+        # self.tempForm.addLegend()
+        pen1 = pg.mkPen(color=(255, 0, 0), width=15, style=QtCore.Qt.DashLine)
+        pen2 = pg.mkPen(color=(0, 255, 0), width=15, style=QtCore.Qt.DashLine)
+
+        # ticks = [list(zip(range(len(configVariables.my_time_list)), configVariables.my_time_list))]
+        '''pw = pg.PlotWidget()
+        xax = self.tempForm).getAxis('bottom')
+        xax.setTicks(ticks)
+        x = configVariables.my_time_list
+        y = configVariables.my_temp_list.values()
+        xdict = dict(enumerate(x))'''
+        # self.stringaxis.setTicks(ticks)
+        # plot = win.addPlot(axisItems={'bottom': stringaxis})
+        # curve = plot.plot(list(xdict.keys()), y)
+
+        # self.tempForm.plot(x.values(), y, pen=pen1)
+
+        '''x = np.array([0, 1, 2, 3])
+        y = np.array([20, 21, 22, 23])
+        my_xticks = ['John', 'Arnold', 'Mavis', 'Matt']
+        self.tempForm.xticks(x, my_xticks)
+        self.tempForm.plot(x, y)'''
+
+        '''self.tempForm.plot(list(configVariables.my_time_list.values()),
+                           list(configVariables.my_temp_list.values()))'''
+        '''self.tempForm.plot(list(configVariables.my_time_list.values()),
+                           list(configVariables.my_hum_list.values()), pen=pen2)'''
+        # self.tempForm.plot(self.hour, self.humidity, pen=pen2, symbol='+', symbolSize=30, symbolBrush=('b'))
+        # self.plot(hour, temperature_1, "Sensor1", 'r')
+        # self.plot(hour, temperature_2, "Sensor2", 'b')
+
         self.gasForm.hide()
         self.otForm.hide()
         self.mulFormWindo.hide()
@@ -887,6 +1011,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.stringaxis = pg.AxisItem(orientation='bottom')
         # self.tempForm = pg.PlotWidget(axisItems={'bottom': self.stringaxis})
         self.tempForm = MplCanvas(self, width=200, height=200, dpi=100)
+        self.humForm = MplCanvas(self, width=200, height=200, dpi=100)
 
         self.humidityForm = pg.PlotWidget()
         self.mulFormWindo = QMainWindow()
@@ -1039,7 +1164,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.toggleSwitchOT2.setStyleSheet("background-color : #4c4c4c")
         self.switchContainerOT2.addWidget(self.toggleSwitchOT2)
 
-
         self.toggleSwitchOT2.clicked.connect(self.startThreadSwitch6)
 
         # =========================End Toggle Switch ============================================
@@ -1050,6 +1174,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ui.gasIndicator.clicked.connect(self.AddGasWidget)
         self.ui.temeratureGraph.clicked.connect(self.showTemperatureGraph)
         self.ui.humidityGraph.clicked.connect(self.showHumidityGraph)
+        self.realtimeGraph = RealtimeGraph(self)
 
         # ======================== Start Additional Chronos ========================================================
         self.additionChronos = QtWidgets.QWidget()
@@ -1181,7 +1306,16 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.changeTime = ''
         self.changeDate = ''
         self.int_count = False
-        self.startThread1()
+        # self.startThread1()
+        # +++  ++++ +++++++++++++++++++=
+        # ++++++++++++++++++++++++ RTC TIME READ AND SHOW ++++++++++++++++++++++++++++++++++++++++++++++++
+        self.rtcPool = QThreadPool()
+        self.rtc = RTCThread(self)
+        self.rtc.signal.return_signal.connect(self.rtc.function_thread)
+        self.rtcPool.start(self.rtc)
+
+
+        # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         self.setClockWidget.closeEvent = self.CloseEvent
         self.ui.setTimeSetting.clicked.connect(self.setClockDialog)
         self.clock_set_ui.timeEdit.timeChanged.connect(self.timeChange)
@@ -1341,6 +1475,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.humidityDisplayLabel()
 
     def setClockOk(self):
+        print("++++++++++++++++++ Changing Time and Date ++++++++++++++++++++++++++++++++++++++++")
         subprocess.call(
             "sudo hwclock --set --date '" + str(self.changeDate) + " " + str(self.changeTime) + "'",
             shell=True)

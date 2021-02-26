@@ -874,55 +874,6 @@ color:#FFFFFF;
        <item row="2" column="0">
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QLabel" name="gasLabel_6_normal">
-           <property name="minimumSize">
-            <size>
-             <width>86</width>
-             <height>42</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>42</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLabel { 
-    text-align: center;
-    border-style: outset;
-    border-width: 1px;
-    border-radius: 10px;
-    border-color: beige;
-    font: bold 14px;
-    min-width: 4em;
-    padding: 6px;
-    color:#FFFFFF;
-   background-color:#000000;
-}</string>
-           </property>
-           <property name="text">
-            <string>Normal</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer_14">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>6</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
           <widget class="QLabel" name="gasLabel_6_low">
            <property name="minimumSize">
             <size>
@@ -952,6 +903,55 @@ color:#FFFFFF;
            </property>
            <property name="text">
             <string>Low</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_14">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>6</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="gasLabel_6_normal">
+           <property name="minimumSize">
+            <size>
+             <width>86</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel { 
+    text-align: center;
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 4em;
+    padding: 6px;
+    color:#FFFFFF;
+   background-color:#000000;
+}</string>
+           </property>
+           <property name="text">
+            <string>Normal</string>
            </property>
           </widget>
          </item>

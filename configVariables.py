@@ -64,7 +64,7 @@ temp_read_value = 0
 hum_read_value = 0
 hum_send_data = 0
 temp_send_data = 0
-
+air_pressure_value = 0
 # --------------------------------- Buzzer Sound Start ---------------------------------------------------
 buzzer_hex_gas_1 = 0x0
 buzzer_hex_gas_2 = 0x0
@@ -85,6 +85,7 @@ my_time_list = {}
 my_temp_list = {}
 my_hum_list = {}
 my_id_list = {}
+query_select_flag = False
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 curve = 0
 ptr = 0

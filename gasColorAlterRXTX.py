@@ -36,6 +36,7 @@ class ThreadGasColorRXTX(QRunnable):
         # self.signal.return_signal.emit(result)
 
     def function_thread(self, signal):
+        # self.ui.drawRealTimeData()
         # QTimer.singleShot(2000, lambda: self.settings_dialog_set_ui.applyColor.setDisabled(False))
         # self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj) self.threadpool.destroyed() Index out
         # of range error if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 \ in
