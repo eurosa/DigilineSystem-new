@@ -72,6 +72,8 @@ buzzer_hex_gas_3 = 0x0
 buzzer_hex_gas_4 = 0x0
 buzzer_hex_gas_5 = 0x0
 buzzer_hex_gas_6 = 0x0
+buzzer_hex_gas_7 = 0x0
+buzzer_hex_gas_8 = 0x0
 # --------------------------------- Buzzer sound End -----------------------------------------------------
 # +++++++++++++++++++++++++++++++++ Alarm History Database +++++++++++++++++++++++++++++++++++++++++++++++
 db = ""

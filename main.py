@@ -26,6 +26,7 @@ import multithreading as mt
 from PyQt5.QtSql import QSqlQueryModel
 
 from DataCaptureThread import CounterThread
+from NavigationToolbar import NavigationToolbar2
 from navmatplob import MplCanvas
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
 from MovieSplashScreen import MovieSplashScreen
@@ -650,9 +651,16 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ui.menuTitleName.setText("Temperature Graph")
         self.temp_ui.setupUi(self.tempForm)
         # self.tempForm.axes.plot([0, 1, 2, 3, 4], [10, 1, 20, 3, 40])
-
         # Create toolbar, passing canvas as first parament, parent (self, the MainWindow) as second.
-        navToolbar = NavigationToolbar(self.tempForm, self)
+        # navToolbar = NavigationToolbar(self.tempForm, self)
+        navToolbar = NavigationToolbar2(self.tempForm, self)
+        # navToolbar.setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
+        # navToolbar.toolitems.index('Pan').setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
+        # tb = navToolbar.toolitems.setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
+
+        # Just some button
+        # navToolbar.setStyleSheet("QToolBar { background-color:"+self.dataModel.get_background_col()+"; }")
+        # navToolbar.toolitems
         # navToolbar.pan()
         self.layout.addWidget(navToolbar)
         self.layout.addWidget(self.tempForm)
@@ -778,7 +786,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.humidityForm.plot(self.hour, self.humidity)
 
         # Create toolbar, passing canvas as first parament, parent (self, the MainWindow) as second.
-        navToolbar = NavigationToolbar(self.humForm, self)
+        navToolbar = NavigationToolbar2(self.humForm, self)
         # navToolbar.pan()
         self.layout.addWidget(navToolbar)
         self.layout.addWidget(self.humForm)

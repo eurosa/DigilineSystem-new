@@ -1673,6 +1673,36 @@ color:#FFFFFF;
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QToolButton" name="hepa">
+    <property name="geometry">
+     <rect>
+      <x>1230</x>
+      <y>640</y>
+      <width>51</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#hepa{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#hepa:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Hepa</string>
+    </property>
+   </widget>
    <zorder>time_show</zorder>
    <zorder>elapsedTimeLabel</zorder>
    <zorder>setTimeSetting</zorder>
@@ -1718,6 +1748,7 @@ color:#FFFFFF;
    <zorder>menuTitleName</zorder>
    <zorder>leftMenuTitleLine</zorder>
    <zorder>rightMenuTitleLine</zorder>
+   <zorder>hepa</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

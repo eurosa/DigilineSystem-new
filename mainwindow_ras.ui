@@ -2558,6 +2558,48 @@ QToolButton#ips:pressed {
      <string/>
     </property>
    </widget>
+   <widget class="QToolButton" name="hepa">
+    <property name="geometry">
+     <rect>
+      <x>1700</x>
+      <y>810</y>
+      <width>148</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>42</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#hepa{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#hepa:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>Hepa</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

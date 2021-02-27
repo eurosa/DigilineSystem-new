@@ -56,6 +56,8 @@ class ThreadGasColorRXTX(QRunnable):
             x9 = bin(0b0010)
             x10 = bin(0b0100)
             x11 = bin(0b1000)
+            x12 = bin(0b00100000)# 100000
+            x13 = bin(0b00010000)  # 10000
 
             # bit8 = bool(x & 0b01000000)
             binary_value = "{0:b}".format(configVariables.hex_string[4])
@@ -74,6 +76,9 @@ class ThreadGasColorRXTX(QRunnable):
             bit9 = bool(int(binary_value1, 2) & int(x9, 2))
             bit10 = bool(int(binary_value1, 2) & int(x10, 2))
             bit11 = bool(int(binary_value1, 2) & int(x11, 2))
+            bit12 = bool(int(binary_value1, 2) & int(x12, 2))
+            bit13 = bool(int(binary_value1, 2) & int(x13, 2))
+            print("-----bit12--------"+str(bit12)+"-----------------bit13----------------"+str(bit13)+"-----------------")
 
             # bit8 = bool(binary_value >> 8)
             # print("Bit: " + str(bit7))
@@ -359,5 +364,44 @@ class ThreadGasColorRXTX(QRunnable):
                                                                     configVariables.green_color_hex)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_6_low, "QLabel",
                                                                     configVariables.white_color_hex)
+            '''if bit12:
+                configVariables.buzzer_hex_gas_6 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.ips, "QToolButton",
+                                                                    configVariables.red_color_hex)'''
+
+            if bit12:
+                configVariables.buzzer_hex_gas_7 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.ips, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                self.ui.dataModel.get_gas_name_7()
+                print("Gas Name 7 High: " + self.ui.dataModel.get_gas_name_7() + " Date Time: " + self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 self.ui.dataModel.get_gas_name_7(), "High")
+
+            elif not bit12:
+                configVariables.buzzer_hex_gas_7 = 0x00
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.ips, "QToolButton",
+                                                                    configVariables.green_color_hex)
+
+            if bit13:
+                configVariables.buzzer_hex_gas_8 = 0x01
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.hepa, "QToolButton",
+                                                                    configVariables.red_color_hex)
+                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
+                self.ui.dataModel.set_alarm_date_time(self.ui.proc)
+                # self.ui.dataModel.get_gas_name_8()
+                # print("Gas Name 7 High: " + self.ui.dataModel.get_gas_name_8() + " Date Time: " + self.ui.proc)
+                configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
+                                                                 "Hepa", "High")
+
+            elif not bit13:
+                configVariables.buzzer_hex_gas_8 = 0x00
+                self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.hepa, "QToolButton",
+                                                                    configVariables.green_color_hex)
+
+                # High
+
         # print(configVariables.hex_string)
         # print(signal)

@@ -126,7 +126,8 @@ class SerialWrapper:
         # ================================== Buzzer Control ========================================================
         buzzer_hex = (configVariables.buzzer_hex_gas_1 | configVariables.buzzer_hex_gas_2 |
                       configVariables.buzzer_hex_gas_3 | configVariables.buzzer_hex_gas_4 |
-                      configVariables.buzzer_hex_gas_5 | configVariables.buzzer_hex_gas_6)
+                      configVariables.buzzer_hex_gas_5 | configVariables.buzzer_hex_gas_6 |
+                      configVariables.buzzer_hex_gas_7 | configVariables.buzzer_hex_gas_8)
 
         print("Buzzer Hex: " + " " + str(configVariables.buzzer_hex_gas_1 | configVariables.buzzer_hex_gas_2 |
                                          configVariables.buzzer_hex_gas_3 | configVariables.buzzer_hex_gas_4 |

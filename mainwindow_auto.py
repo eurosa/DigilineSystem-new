@@ -945,6 +945,24 @@ class Ui_MainWindow(object):
         self.rightMenuTitleLine = QtWidgets.QLabel(self.centralWidget)
         self.rightMenuTitleLine.setGeometry(QtCore.QRect(600, 200, 67, 19))
         self.rightMenuTitleLine.setObjectName("rightMenuTitleLine")
+        self.hepa = QtWidgets.QToolButton(self.centralWidget)
+        self.hepa.setGeometry(QtCore.QRect(1230, 640, 51, 35))
+        self.hepa.setStyleSheet("QToolButton#hepa{\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+" \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#FFFFFF;\n"
+"}\n"
+"QToolButton#hepa:pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}")
+        self.hepa.setObjectName("hepa")
         self.time_show.raise_()
         self.elapsedTimeLabel.raise_()
         self.setTimeSetting.raise_()
@@ -990,6 +1008,7 @@ class Ui_MainWindow(object):
         self.menuTitleName.raise_()
         self.leftMenuTitleLine.raise_()
         self.rightMenuTitleLine.raise_()
+        self.hepa.raise_()
         MainWindow.setCentralWidget(self.centralWidget)
         self.statusBar = QtWidgets.QStatusBar(MainWindow)
         self.statusBar.setObjectName("statusBar")
@@ -1057,6 +1076,7 @@ class Ui_MainWindow(object):
         self.menuTitleName.setText(_translate("MainWindow", "TextLabel"))
         self.leftMenuTitleLine.setText(_translate("MainWindow", "TextLabel"))
         self.rightMenuTitleLine.setText(_translate("MainWindow", "TextLabel"))
+        self.hepa.setText(_translate("MainWindow", "Hepa"))
 
 
 if __name__ == "__main__":
