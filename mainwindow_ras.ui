@@ -799,7 +799,7 @@ color:#FFFFFF;
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>313</y>
+      <y>280</y>
       <width>199</width>
       <height>42</height>
      </rect>
@@ -864,7 +864,7 @@ QToolButton:pressed {
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>300</y>
+      <y>310</y>
       <width>1111</width>
       <height>500</height>
      </rect>
@@ -1041,7 +1041,7 @@ color:#FFFFFF;
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>369</y>
+      <y>336</y>
       <width>199</width>
       <height>42</height>
      </rect>
@@ -1106,7 +1106,7 @@ QToolButton:pressed {
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>425</y>
+      <y>392</y>
       <width>199</width>
       <height>42</height>
      </rect>
@@ -1301,7 +1301,7 @@ color:#FFFFFF;
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>481</y>
+      <y>448</y>
       <width>199</width>
       <height>42</height>
      </rect>
@@ -1578,7 +1578,7 @@ QToolButton#upHumidityButton:pressed {
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>537</y>
+      <y>504</y>
       <width>199</width>
       <height>42</height>
      </rect>
@@ -2508,7 +2508,7 @@ QToolButton#ips:pressed {
     <property name="geometry">
      <rect>
       <x>750</x>
-      <y>270</y>
+      <y>280</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -2524,7 +2524,7 @@ QToolButton#ips:pressed {
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>280</y>
+      <y>290</y>
       <width>503</width>
       <height>3</height>
      </rect>
@@ -2543,7 +2543,7 @@ QToolButton#ips:pressed {
     <property name="geometry">
      <rect>
       <x>900</x>
-      <y>280</y>
+      <y>290</y>
       <width>445</width>
       <height>3</height>
      </rect>
