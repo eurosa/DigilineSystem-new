@@ -228,9 +228,9 @@ class SerialWrapper:
                 air_pressure_data_read = int(hex(air_pressure_data_read_hex), 16)
 
                 # ++++++++++++++++++++ Temp , Humidity, Pressure UI update +++++++++++++++++++
-                '''self.ui.ui.tempShow.setText(str(temp_data_read))
+                self.ui.ui.tempShow.setText(str(temp_data_read))
                 self.ui.ui.humidityShow.setText(str(hum_data_read))
-                self.ui.ui.differentialPressureShow.setText(str(air_pressure_data_read))'''
+                self.ui.ui.differentialPressureShow.setText(str(air_pressure_data_read))
 
                 configVariables.temp_read_value = temp_data_read
                 configVariables.hum_read_value = hum_data_read

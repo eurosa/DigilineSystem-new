@@ -29,7 +29,7 @@ class RTCThread(QRunnable):
     def run(self):
         # time.sleep(5)
         self.result = "Some String"
-        while True:
+        '''while True:
             if self.ui.int_count:
                 print("+++++++++++++++Can not access hardware clock for multiple access ++++++++++++++++++++")
             else:
@@ -47,18 +47,18 @@ class RTCThread(QRunnable):
                     # date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
                     if date_time_str:
                         self.date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f%z')
-                        '''print('Date:', date_time_obj.date())
+                        print('Date:', date_time_obj.date())
                     print('Time:', date_time_obj.time())
-                    print('Date-time:', date_time_obj)'''
+                    print('Date-time:', date_time_obj)
                         self.ui.lastTime = self.date_time_obj.time()
                         self.ui.lastDate = self.date_time_obj.date()
-                        '''if self.ui.setTimeSetting.isChecked():
-                        self.clock_set_ui.timeEdit.setTime(date_time_obj.time())'''
+                        if self.ui.setTimeSetting.isChecked():
+                        self.clock_set_ui.timeEdit.setTime(date_time_obj.time())
                         self.time_split = re.split(':', str(self.date_time_obj.time()))
                         self.date_rtc = str(self.date_time_obj.date().strftime('%d/%m/%Y'))
                         self.second = self.time_split[2].split('.', 1)[0]
                         self.ui.lastTimeHwclock = self.time_split[0] + ":" + self.time_split[1] + ":" + self.second
-                        '''splitted_string = re.split('\s+', proc)
+                        splitted_string = re.split('\s+', proc)
                     time_split = re.split(':', splitted_string[1])
                     second = time_split[2].split('.', 1)[0]
                     self.ui.day_date_show.setText(splitted_string[0])
@@ -66,18 +66,18 @@ class RTCThread(QRunnable):
                     self.ui.time_show.setText(
                         time_split[0] + ":" + time_split[1] + "" + "<b><font font size=12pt font weight:40>" +
                         ":" + "</font>" + "<b>< font size=12pt font weight:40>" +
-                        second + "</font>")'''
+                        second + "</font>")
                 except IndexError:
                     self.second = 'Please Connect rtc.'
-                    print(self.second)
+                    print(self.second)'''
                 # self.int_count = False
                 # print(proc)
                 # time.sleep(1)
-                self.signal.return_signal.emit(self.date_rtc)
-                time.sleep(1)
+        self.signal.return_signal.emit(self.date_rtc)
+        time.sleep(1)
 
     def function_thread(self, signal):
-        self.ui.drawRealTimeData()
+        '''self.ui.drawRealTimeData()
         print("++++++++++++++++++++++Date++++++++++++++++++++++++++" + self.date_rtc)
         self.ui.ui.day_date_show.setText(self.date_rtc)
         self.ui.ui.time_show.setText(
@@ -86,7 +86,7 @@ class RTCThread(QRunnable):
             self.second + "</font>")
         # QTimer.singleShot(2000, lambda: self.settings_dialog_set_ui.applyColor.setDisabled(False))
         # self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj)
-        # self.threadpool.destroyed()
+        # self.threadpool.destroyed()'''
 
         # ++++++++++++++++++++ Temp , Humidity, Pressure UI update ++++++++++++++++++++++++++
         self.ui.ui.tempShow.setText(str(configVariables.temp_read_value))

@@ -25,7 +25,7 @@ class GraphThread(QRunnable):
         result = "RXTX"
         while True:
             self.signal.return_signal.emit(result)
-            self.ui.drawRealTimeData()
+            # self.ui.drawRealTimeData()
             time.sleep(1)
         # ------------------------------------------------------
         # self.ui.settings_dialog_set_ui.labelDisplayTheme.setPixmap(QtGui.QPixmap(self.ui.dataModel.get_theme_color_preview()))

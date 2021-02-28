@@ -300,8 +300,8 @@ class LightSwitchDataBase:
         print("DB_create:" + str(configVariables.db_history.open()))
         query = QSqlQuery(configVariables.db_history)
         query.exec_("create table history_table(id INTEGER PRIMARY KEY , "
-                    "date_time varchar(60), hwclock_date, hwclock_time, "
-                    "alarm_history varchar(20) , gas_name varchar(60))")
+                    "date_time varchar(60) NOT NULL UNIQUE, hwclock_date, hwclock_time varchar(60) NOT NULL UNIQUE, "
+                    "alarm_history varchar(20), gas_name varchar(60))")
 
         query.exec_("create table graph_table(id INTEGER PRIMARY KEY , "
                     "temp_value varchar(60), "

@@ -652,9 +652,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.temp_ui.setupUi(self.tempForm)
         # self.tempForm.axes.plot([0, 1, 2, 3, 4], [10, 1, 20, 3, 40])
         # Create toolbar, passing canvas as first parament, parent (self, the MainWindow) as second.
-        # navToolbar = NavigationToolbar(self.tempForm, self)
-        navToolbar = NavigationToolbar2(self.tempForm, self)
-        # navToolbar.setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
+        navToolbar = NavigationToolbar(self.tempForm, self)
+        # navToolbar = NavigationToolbar2(self.tempForm, self)
+        navToolbar.setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
         # navToolbar.toolitems.index('Pan').setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
         # tb = navToolbar.toolitems.setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
 
@@ -786,7 +786,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.humidityForm.plot(self.hour, self.humidity)
 
         # Create toolbar, passing canvas as first parament, parent (self, the MainWindow) as second.
-        navToolbar = NavigationToolbar2(self.humForm, self)
+        # navToolbar = NavigationToolbar2(self.humForm, self)
+        navToolbar = NavigationToolbar(self.humForm, self)
+        navToolbar.setStyleSheet("background-color:" + self.dataModel.get_background_col() + ";")
         # navToolbar.pan()
         self.layout.addWidget(navToolbar)
         self.layout.addWidget(self.humForm)
@@ -1177,7 +1179,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # =========================End Toggle Switch ============================================
 
         # ==========Hooks for all Menu Item=========================================================================
+        # self.ui.otLighteningDetails.animateClick()
         self.ui.otLighteningDetails.clicked.connect(self.AddOtLighteningWidget)
+
         self.ui.historyDetails.clicked.connect(self.AddHistoryWidget)
         self.ui.gasIndicator.clicked.connect(self.AddGasWidget)
         self.ui.temeratureGraph.clicked.connect(self.showTemperatureGraph)
@@ -1314,13 +1318,13 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.changeTime = ''
         self.changeDate = ''
         self.int_count = False
-        # self.startThread1()
+        self.startThread1()
         # +++  ++++ +++++++++++++++++++=
         # ++++++++++++++++++++++++ RTC TIME READ AND SHOW ++++++++++++++++++++++++++++++++++++++++++++++++
-        self.rtcPool = QThreadPool()
+        '''self.rtcPool = QThreadPool()
         self.rtc = RTCThread(self)
         self.rtc.signal.return_signal.connect(self.rtc.function_thread)
-        self.rtcPool.start(self.rtc)
+        self.rtcPool.start(self.rtc)'''
 
 
         # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
