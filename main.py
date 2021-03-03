@@ -512,6 +512,10 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.timer_set_ui.secondL,
                                                                      "QLabel")
 
+        self.ui.alldisplayColorChangeObj.qSliderClrThmChn(self.ui.timer_set_ui.hourSlider)
+        self.ui.alldisplayColorChangeObj.qSliderClrThmChn(self.ui.timer_set_ui.minuteSlider)
+        self.ui.alldisplayColorChangeObj.qSliderClrThmChn(self.ui.timer_set_ui.secondSlider)
+
         # ======================= Login UI ==========================================================================
         # self.ui.modifyGlobalVariablesObj.setChangedImage()
         self.ui.modifyGlobalVariablesObj.setChangedLightColor()

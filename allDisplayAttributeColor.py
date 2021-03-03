@@ -357,6 +357,23 @@ class AllDisplayAttributeColor:
 
     def qSliderClrThmChn(self, attribute_name):
         attribute_name.setStyleSheet("QSlider::groove:horizontal { "
+                                     "background-color: "+self.datamodel.get_background_col()+";"
+                                     "border: 1px solid "+self.datamodel.get_border_col()+";"
+                                     "height: 10px;"
+                                     "border-radius: 4px;""}"
+
+                                     "QSlider::handle:horizontal {"
+                                     "background-color: "+self.datamodel.get_icon_col()+";"
+                                     "border: 2px solid "+self.datamodel.get_border_col()+"; "
+                                     "width: 16px; "
+                                     "height: 20px; "
+                                     "line-height: 20px;"
+                                     "margin-top: -5px; "
+                                     "margin-bottom: -5px;"
+                                     "border-radius: 10px;""}")
+
+    '''def qSliderClrThmChn(self, attribute_name):
+        attribute_name.setStyleSheet("QSlider::groove:horizontal { "
                                      "background-color: black;"
                                      "border: 0px solid #424242;"
                                      "height: 10px;"
@@ -370,7 +387,7 @@ class AllDisplayAttributeColor:
                                      "line-height: 20px;"
                                      "margin-top: -5px; "
                                      "margin-bottom: -5px;"
-                                     "border-radius: 10px;""}")
+                                     "border-radius: 10px;""}")'''
 
     def qDateEdit(self, attribute_name):
         attribute_name.setStyleSheet(
