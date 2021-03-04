@@ -20,14 +20,6 @@ class Ui_setTimer(object):
 "}")
         setTimer.setSizeGripEnabled(False)
         setTimer.setModal(False)
-        self.buttonBox = QtWidgets.QDialogButtonBox(setTimer)
-        self.buttonBox.setGeometry(QtCore.QRect(270, 270, 211, 61))
-        self.buttonBox.setStyleSheet("QDialogButtonBox{\n"
-"color:#FFFFFF;\n"
-"}")
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName("buttonBox")
         self.hourSlider = QtWidgets.QSlider(setTimer)
         self.hourSlider.setGeometry(QtCore.QRect(120, 140, 371, 51))
         font = QtGui.QFont()
@@ -100,57 +92,93 @@ class Ui_setTimer(object):
         self.spinHourBox.setMaximum(99)
         self.spinHourBox.setProperty("value", 99)
         self.spinHourBox.setObjectName("spinHourBox")
-        self.label_3 = QtWidgets.QLabel(setTimer)
-        self.label_3.setGeometry(QtCore.QRect(50, 240, 59, 28))
-        self.label_3.setStyleSheet("QLabel{\n"
+        self.secondL = QtWidgets.QLabel(setTimer)
+        self.secondL.setGeometry(QtCore.QRect(50, 240, 59, 28))
+        self.secondL.setStyleSheet("QLabel{\n"
 "color:#FFFFFF;\n"
 "}")
-        self.label_3.setObjectName("label_3")
-        self.label_2 = QtWidgets.QLabel(setTimer)
-        self.label_2.setGeometry(QtCore.QRect(50, 190, 51, 45))
-        self.label_2.setStyleSheet("QLabel{\n"
+        self.secondL.setObjectName("secondL")
+        self.minuteL = QtWidgets.QLabel(setTimer)
+        self.minuteL.setGeometry(QtCore.QRect(50, 190, 51, 45))
+        self.minuteL.setStyleSheet("QLabel{\n"
 "color:#FFFFFF;\n"
 "}")
-        self.label_2.setObjectName("label_2")
-        self.label = QtWidgets.QLabel(setTimer)
-        self.label.setGeometry(QtCore.QRect(50, 150, 41, 31))
-        self.label.setStyleSheet("QLabel{\n"
+        self.minuteL.setObjectName("minuteL")
+        self.hourL = QtWidgets.QLabel(setTimer)
+        self.hourL.setGeometry(QtCore.QRect(50, 150, 41, 31))
+        self.hourL.setStyleSheet("QLabel{\n"
 "color:#FFFFFF;\n"
 "}")
-        self.label.setObjectName("label")
-        self.label_4 = QtWidgets.QLabel(setTimer)
-        self.label_4.setGeometry(QtCore.QRect(70, 0, 41, 31))
-        self.label_4.setStyleSheet("QLabel{\n"
+        self.hourL.setObjectName("hourL")
+        self.hourT = QtWidgets.QLabel(setTimer)
+        self.hourT.setGeometry(QtCore.QRect(70, 0, 41, 31))
+        self.hourT.setStyleSheet("QLabel{\n"
 "color:#FFFFFF;\n"
 "}")
-        self.label_4.setObjectName("label_4")
-        self.label_5 = QtWidgets.QLabel(setTimer)
-        self.label_5.setGeometry(QtCore.QRect(250, 0, 51, 21))
-        self.label_5.setStyleSheet("QLabel{\n"
+        self.hourT.setObjectName("hourT")
+        self.minuteT = QtWidgets.QLabel(setTimer)
+        self.minuteT.setGeometry(QtCore.QRect(250, 0, 51, 21))
+        self.minuteT.setStyleSheet("QLabel{\n"
 "color:#FFFFFF;\n"
 "}")
-        self.label_5.setObjectName("label_5")
-        self.label_6 = QtWidgets.QLabel(setTimer)
-        self.label_6.setGeometry(QtCore.QRect(400, 0, 59, 21))
-        self.label_6.setStyleSheet("QLabel{\n"
+        self.minuteT.setObjectName("minuteT")
+        self.secondT = QtWidgets.QLabel(setTimer)
+        self.secondT.setGeometry(QtCore.QRect(400, 0, 59, 21))
+        self.secondT.setStyleSheet("QLabel{\n"
 "color:#FFFFFF;\n"
 "}")
-        self.label_6.setObjectName("label_6")
+        self.secondT.setObjectName("secondT")
+        self.buttonOk = QtWidgets.QPushButton(setTimer)
+        self.buttonOk.setGeometry(QtCore.QRect(400, 290, 100, 31))
+        self.buttonOk.setStyleSheet("QPushButton{\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+" \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#FFFFFF;\n"
+"}\n"
+"QPushButton#pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}")
+        self.buttonOk.setObjectName("buttonOk")
+        self.buttonCancel = QtWidgets.QPushButton(setTimer)
+        self.buttonCancel.setGeometry(QtCore.QRect(296, 290, 100, 31))
+        self.buttonCancel.setStyleSheet("QPushButton{\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+" \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#FFFFFF;\n"
+"}\n"
+"QPushButton#pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}")
+        self.buttonCancel.setObjectName("buttonCancel")
 
         self.retranslateUi(setTimer)
-        self.buttonBox.accepted.connect(setTimer.accept)
-        self.buttonBox.rejected.connect(setTimer.reject)
         QtCore.QMetaObject.connectSlotsByName(setTimer)
 
     def retranslateUi(self, setTimer):
         _translate = QtCore.QCoreApplication.translate
         setTimer.setWindowTitle(_translate("setTimer", "Timer Setting"))
-        self.label_3.setText(_translate("setTimer", "Second"))
-        self.label_2.setText(_translate("setTimer", "Minute"))
-        self.label.setText(_translate("setTimer", "Hour"))
-        self.label_4.setText(_translate("setTimer", "Hour"))
-        self.label_5.setText(_translate("setTimer", "Minute"))
-        self.label_6.setText(_translate("setTimer", "Second"))
+        self.secondL.setText(_translate("setTimer", "Second"))
+        self.minuteL.setText(_translate("setTimer", "Minute"))
+        self.hourL.setText(_translate("setTimer", "Hour"))
+        self.hourT.setText(_translate("setTimer", "Hour"))
+        self.minuteT.setText(_translate("setTimer", "Minute"))
+        self.secondT.setText(_translate("setTimer", "Second"))
+        self.buttonOk.setText(_translate("setTimer", "Ok"))
+        self.buttonCancel.setText(_translate("setTimer", "Cancel"))
 
 
 if __name__ == "__main__":

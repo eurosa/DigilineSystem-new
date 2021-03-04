@@ -181,6 +181,7 @@ class TimerCounterThread(QThread):
         self.dataModel.set_minutes_cnt(self.ok_minutes)
         self.dataModel.set_seconds_cnt(self.ok_seconds)
         configVariables.light_database.updateCntDwnTimer(self.dataModel)
+        self.setTimerWidget.close()
 
     def rejectCancel(self):
         self.timer_set_ui.spinHourBox.setValue(self.ok_hours)
@@ -191,6 +192,7 @@ class TimerCounterThread(QThread):
         self.dataModel.set_minutes_cnt(self.ok_minutes)
         self.dataModel.set_seconds_cnt(self.ok_seconds)
         configVariables.light_database.updateCntDwnTimer(self.dataModel)
+        self.setTimerWidget.close()
 
     def initCounterValue(self):
         configVariables.light_database.queryCountDownTimerData(self.dataModel)
@@ -247,8 +249,8 @@ class TimerCounterThread(QThread):
         self.timer_count_down = QTimer()
         self.timer_count_down.timeout.connect(self._countdown_and_show)
         self.showTimerCounter()
-        self.timer_set_ui.buttonBox.accepted.connect(self.acceptOk)
-        self.timer_set_ui.buttonBox.rejected.connect(self.rejectCancel)
+        self.timer_set_ui.buttonOk.clicked.connect(self.acceptOk)
+        self.timer_set_ui.buttonCancel.clicked.connect(self.rejectCancel)
 
         # self.widget = TimerWidget(self)
         # self.setCentralWidget(self.widget)

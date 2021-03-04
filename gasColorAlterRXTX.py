@@ -18,7 +18,7 @@ class ThreadGasColorRXTX(QRunnable):
         self.signal = Signals()
         self.ui = ui
         # =========+Alarm History Details Database Manage+=============================================
-        configVariables.light_database = switchdatabase.LightSwitchDataBase()
+        configVariables.light_database = switchdatabase.LightSwitchDataBase(self.ui)
         configVariables.light_database.init('lighthistory', 'QSQLITE', 'history')
         # configVariables.light_database.init('lighthistory', 'QSQLITE', 'image_con')
 

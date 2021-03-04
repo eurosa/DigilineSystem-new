@@ -8,13 +8,14 @@ import configVariables
 
 
 class LightSwitchDataBase:
-    def __init__(self):
+    def __init__(self, ui):
         configVariables.db = ""
         configVariables.db_history = ""
         configVariables.db_light = ""
         configVariables.db_image = ""
         self.hwclock_time = ""
         self.hwclock_date = ""
+        self.ui = ui
 
     def init(self, filename, server, connection):
         import os
@@ -85,7 +86,7 @@ class LightSwitchDataBase:
                 configVariables.my_id_list[query.value('id')] = float(query.value('id'))
                 # [configVariables.my_time_list.append(graph_time) for graph_time in configVariables.my_time_list if
                 # graph_time not in configVariables.my_time_list]
-
+                
                 # configVariables.my_time_list.append(configVariables.my_time_list)
                 # configVariables.my_temp_list.append(query.value('temp_value'))
                 # configVariables.my_temp_list.append(query.value('hum_value'))

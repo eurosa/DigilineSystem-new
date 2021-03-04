@@ -18,25 +18,15 @@ class Ui_setClockTime(object):
         setClockTime.setStyleSheet("QDialog{\n"
 "background-color: #000000;\n"
 "}")
-        self.buttonClockBox = QtWidgets.QDialogButtonBox(setClockTime)
-        self.buttonClockBox.setGeometry(QtCore.QRect(120, 220, 211, 61))
-        self.buttonClockBox.setStyleSheet("QDialogButtonBox{\n"
-" color: #FFFFFF;\n"
-"}")
-        self.buttonClockBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonClockBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
-        self.buttonClockBox.setObjectName("buttonClockBox")
         self.timeEdit = QtWidgets.QTimeEdit(setClockTime)
-        self.timeEdit.setGeometry(QtCore.QRect(230, 110, 111, 31))
-        self.timeEdit.setStyleSheet("QTimeEdit{\n"
-" color: #FFFFFF;\n"
-"}")
+        self.timeEdit.setGeometry(QtCore.QRect(230, 110, 181, 42))
+        self.timeEdit.setStyleSheet("QTimeEdit::up-button { width: 48px; }\n"
+"QTimeEdit::down-button { width: 48px; }")
         self.timeEdit.setObjectName("timeEdit")
         self.dateEdit = QtWidgets.QDateEdit(setClockTime)
-        self.dateEdit.setGeometry(QtCore.QRect(230, 60, 110, 31))
-        self.dateEdit.setStyleSheet("QTimeEdit{\n"
-" color: #FFFFFF;\n"
-"}")
+        self.dateEdit.setGeometry(QtCore.QRect(230, 60, 181, 42))
+        self.dateEdit.setStyleSheet("QDateEdit::up-button { width: 48px; }\n"
+"QDateEdit::down-button { width: 48px; }")
         self.dateEdit.setObjectName("dateEdit")
         self.label = QtWidgets.QLabel(setClockTime)
         self.label.setGeometry(QtCore.QRect(160, 70, 41, 21))
@@ -50,10 +40,44 @@ class Ui_setClockTime(object):
 " color: #FFFFFF;\n"
 "}")
         self.label_2.setObjectName("label_2")
+        self.buttonClockOk = QtWidgets.QPushButton(setClockTime)
+        self.buttonClockOk.setGeometry(QtCore.QRect(310, 220, 100, 42))
+        self.buttonClockOk.setStyleSheet("QPushButton{\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+" \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#FFFFFF;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}")
+        self.buttonClockOk.setObjectName("buttonClockOk")
+        self.buttonClockCancel = QtWidgets.QPushButton(setClockTime)
+        self.buttonClockCancel.setGeometry(QtCore.QRect(200, 220, 100, 42))
+        self.buttonClockCancel.setStyleSheet("QPushButton{\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+" \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#FFFFFF;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}")
+        self.buttonClockCancel.setObjectName("buttonClockCancel")
 
         self.retranslateUi(setClockTime)
-        self.buttonClockBox.accepted.connect(setClockTime.accept)
-        self.buttonClockBox.rejected.connect(setClockTime.reject)
         QtCore.QMetaObject.connectSlotsByName(setClockTime)
 
     def retranslateUi(self, setClockTime):
@@ -61,6 +85,8 @@ class Ui_setClockTime(object):
         setClockTime.setWindowTitle(_translate("setClockTime", "Clock Settings"))
         self.label.setText(_translate("setClockTime", "Date:"))
         self.label_2.setText(_translate("setClockTime", "Time:"))
+        self.buttonClockOk.setText(_translate("setClockTime", "Ok"))
+        self.buttonClockCancel.setText(_translate("setClockTime", "Cancel"))
 
 
 if __name__ == "__main__":

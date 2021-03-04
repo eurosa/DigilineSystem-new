@@ -18,40 +18,18 @@
 background-color: #000000;
 }</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonClockBox">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>220</y>
-     <width>211</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QDialogButtonBox{
- color: #FFFFFF;
-}</string>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
   <widget class="QTimeEdit" name="timeEdit">
    <property name="geometry">
     <rect>
      <x>230</x>
      <y>110</y>
-     <width>111</width>
-     <height>31</height>
+     <width>181</width>
+     <height>42</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QTimeEdit{
- color: #FFFFFF;
-}</string>
+    <string notr="true">QTimeEdit::up-button { width: 48px; }
+QTimeEdit::down-button { width: 48px; }</string>
    </property>
   </widget>
   <widget class="QDateEdit" name="dateEdit">
@@ -59,14 +37,13 @@ background-color: #000000;
     <rect>
      <x>230</x>
      <y>60</y>
-     <width>110</width>
-     <height>31</height>
+     <width>181</width>
+     <height>42</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QTimeEdit{
- color: #FFFFFF;
-}</string>
+    <string notr="true">QDateEdit::up-button { width: 48px; }
+QDateEdit::down-button { width: 48px; }</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -105,40 +82,67 @@ background-color: #000000;
     <string>Time:</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="buttonClockOk">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>220</y>
+     <width>100</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonClockCancel">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>220</y>
+     <width>100</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonClockBox</sender>
-   <signal>accepted()</signal>
-   <receiver>setClockTime</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonClockBox</sender>
-   <signal>rejected()</signal>
-   <receiver>setClockTime</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -24,27 +24,6 @@ background-color:#000000;
   <property name="modal">
    <bool>false</bool>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>270</y>
-     <width>211</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QDialogButtonBox{
-color:#FFFFFF;
-}</string>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
   <widget class="QSlider" name="hourSlider">
    <property name="geometry">
     <rect>
@@ -219,7 +198,7 @@ QSpinBox::down-button { width: 48px; }
     <number>99</number>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="secondL">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -237,7 +216,7 @@ color:#FFFFFF;
     <string>Second</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="minuteL">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -255,7 +234,7 @@ color:#FFFFFF;
     <string>Minute</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="hourL">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -273,7 +252,7 @@ color:#FFFFFF;
     <string>Hour</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLabel" name="hourT">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -291,7 +270,7 @@ color:#FFFFFF;
     <string>Hour</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="minuteT">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -309,7 +288,7 @@ color:#FFFFFF;
     <string>Minute</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="secondT">
    <property name="geometry">
     <rect>
      <x>400</x>
@@ -327,40 +306,67 @@ color:#FFFFFF;
     <string>Second</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="buttonOk">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>290</y>
+     <width>100</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonCancel">
+   <property name="geometry">
+    <rect>
+     <x>296</x>
+     <y>290</y>
+     <width>100</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QPushButton#pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>setTimer</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>setTimer</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

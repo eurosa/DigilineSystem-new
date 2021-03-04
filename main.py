@@ -27,6 +27,7 @@ from PyQt5.QtSql import QSqlQueryModel
 
 from DataCaptureThread import CounterThread
 from NavigationToolbar import NavigationToolbar2
+from graphThread import GraphThread
 from navmatplob import MplCanvas
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
 from MovieSplashScreen import MovieSplashScreen
@@ -353,7 +354,7 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.buttonApplyTheme,
                                                               "QPushButton")
 
-        # ---------------------------------------------------------
+        # ------------------------------------------------------------------------------------------------------------------
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.chooseLogo,
                                                               "QPushButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.settings_dialog_set_ui.choosePowerOnScreenImage,
@@ -473,6 +474,42 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelLightTitle,
                                                                      "QLabel")
         self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.settings_dialog_set_ui.labelGasAlarmTitle,
+                                                                     "QLabel")
+
+        # +++++++++++++++++++++++++++ Clock Dialog Setting Color Changes +++++++++++++++++++++++++++++++++++++++++
+
+        self.ui.alldisplayColorChangeObj.changeQDateEditAttributeColor(self.ui.clock_set_ui.dateEdit, "QDateEdit")
+        self.ui.alldisplayColorChangeObj.changeQTimeEditAttributeColor(self.ui.clock_set_ui.timeEdit,
+                                                                       "QTimeEdit")
+        self.ui.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.ui.setClockWidget)
+
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.clock_set_ui.label,
+                                                                     "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.clock_set_ui.label_2,
+                                                                     "QLabel")
+
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.clock_set_ui.buttonClockOk,
+                                                              "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.clock_set_ui.buttonClockCancel,
+                                                              "QPushButton")
+
+        # ++++++++++++++++++++++++++ Timer Setting Dialog +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.timer_set_ui.buttonOk,
+                                                              "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.timer_set_ui.buttonCancel,
+                                                              "QPushButton")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.timer_set_ui.hourT,
+                                                                     "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.timer_set_ui.minuteT,
+                                                                     "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.timer_set_ui.secondT,
+                                                                     "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.timer_set_ui.hourL,
+                                                                     "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.timer_set_ui.minuteL,
+                                                                     "QLabel")
+        self.ui.alldisplayColorChangeObj.changeDisplayLabelTextColor(self.ui.timer_set_ui.secondL,
                                                                      "QLabel")
 
         # ======================= Login UI ==========================================================================
@@ -645,8 +682,19 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.mulForm.hide()
         self.hisForm.hide()
 
+    def btnState(self):
+        if self.ui.temeratureGraph.isChecked():
+            print("Button Pressed")
+        else:
+            print("Button Released")
+
     def showTemperatureGraph(self):
         self.clear()
+        if self.ui.temeratureGraph.isChecked():
+            print("Button Pressed")
+        else:
+            print("Button Released")
+
         # self.expl = ExampleWidget()
         self.ui.menuTitleName.setText("Temperature Graph")
         self.temp_ui.setupUi(self.tempForm)
@@ -654,7 +702,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # Create toolbar, passing canvas as first parament, parent (self, the MainWindow) as second.
         navToolbar = NavigationToolbar(self.tempForm, self)
         # navToolbar = NavigationToolbar2(self.tempForm, self)
-        navToolbar.setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
+        navToolbar.setStyleSheet("background-color:" + self.dataModel.get_background_col() + ";")
         # navToolbar.toolitems.index('Pan').setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
         # tb = navToolbar.toolitems.setStyleSheet("background-color:"+self.dataModel.get_background_col()+";")
 
@@ -752,6 +800,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.tempForm.plot(self.hour, self.humidity, pen=pen2, symbol='+', symbolSize=30, symbolBrush=('b'))
         # self.plot(hour, temperature_1, "Sensor1", 'r')
         # self.plot(hour, temperature_2, "Sensor2", 'b')
+        if self.graph_flag:
+            self.graphPool = QThreadPool()
+            self.graphThread = GraphThread(self)
+            self.graphThread.signal.return_signal.connect(self.graphThread.function_thread)
+            self.graphPool.start(self.graphThread)
+        self.graph_flag = False
         self.gasForm.hide()
         self.otForm.hide()
         self.mulFormWindo.hide()
@@ -759,11 +813,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.hisForm.hide()
 
     def drawRealTimeData(self):
-        '''
         ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(
             list(configVariables.my_time_list.values()), list(configVariables.my_temp_list.values())),
                                       interval=1000)
-        '''
+
         # self.realtimeGraph.animate('', list(configVariables.my_time_list.values()),
         # list(configVariables.my_temp_list.values()))
 
@@ -825,8 +878,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # ani = animation.FuncAnimation(self.tempForm.fig, animate, fargs=(xs, ys), interval=1000)
 
         self.humForm.axes.plot(list(configVariables.my_time_list.values()),
-                                list(configVariables.my_hum_list.values()), color='green', marker='o', markersize=3,
-                                linestyle='--', linewidth=1)
+                               list(configVariables.my_hum_list.values()), color='green', marker='o', markersize=3,
+                               linestyle='--', linewidth=1)
         # self.tempForm.axes.get_xaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
         # self.tempForm.axes.get_yaxis().set_minor_locator(matplotlib.ticker.AutoMinorLocator())
         # self.tempForm.axes.xaxis.zoom(3)
@@ -1187,16 +1240,25 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ui.temeratureGraph.clicked.connect(self.showTemperatureGraph)
         self.ui.humidityGraph.clicked.connect(self.showHumidityGraph)
         self.realtimeGraph = RealtimeGraph(self)
-
-        # ======================== Start Additional Chronos ========================================================
+        self.graph_flag = True
+        # +++++++++++++++++++++ Toggle Effect of QPushButton +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        # self.ui.temeratureGraph.clicked.connect(self.btnstate)
+        # self.liveGraph = RepeatedTimer(10, self.drawRealTimeData)
+        # self.graphThread()
+        # self.drawRealTimeData()
+        '''self.graphPool = QThreadPool()
+        self.graphThread = GraphThread(self)
+        self.graphThread.signal.return_signal.connect(self.graphThread.function_thread)
+        self.graphPool.start(self.graphThread)'''
+        # ======================== Start Additional Chronos ============================================================
         self.additionChronos = QtWidgets.QWidget()
         self.additionChronos_ui = AdditionalChronos_Ui()
         self.additionChronos_ui.setupUi(self.additionChronos)
         self.ui.addAdditonalChronosButton.clicked.connect(self.additionalChronosWidget)
 
-        # ======================== End Additional Chronos ==========================================================
+        # ======================== End Additional Chronos ==============================================================
 
-        # ============================== Start of History details of data =============================================
+        # ============================== Start of History details of data ==============================================
         self.hisForm = QtWidgets.QWidget()
         self.history_ui = historydetailsofdata_ui()
         self.history_ui.setupUi(self.hisForm)
@@ -1326,14 +1388,13 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.rtc.signal.return_signal.connect(self.rtc.function_thread)
         self.rtcPool.start(self.rtc)'''
 
-
         # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         self.setClockWidget.closeEvent = self.CloseEvent
         self.ui.setTimeSetting.clicked.connect(self.setClockDialog)
         self.clock_set_ui.timeEdit.timeChanged.connect(self.timeChange)
         self.clock_set_ui.dateEdit.dateChanged.connect(self.dateChange)
-        self.clock_set_ui.buttonClockBox.accepted.connect(self.setClockOk)
-        self.clock_set_ui.buttonClockBox.rejected.connect(self.rejectClock)
+        self.clock_set_ui.buttonClockOk.clicked.connect(self.setClockOk)
+        self.clock_set_ui.buttonClockCancel.clicked.connect(self.rejectClock)
         #  print(pytz.all_timezones_set)
         # ------------------------------Start Stop Watch ------------------------------------
         self.dataCaptureThread = CounterThread(self.ui, self.alldisplayColorChangeObj)
@@ -1491,9 +1552,11 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         subprocess.call(
             "sudo hwclock --set --date '" + str(self.changeDate) + " " + str(self.changeTime) + "'",
             shell=True)
+        self.setClockWidget.close()
         self.int_count = False
 
     def rejectClock(self):
+        self.setClockWidget.close()
         self.int_count = False
 
     def timeChange(self):
@@ -1521,6 +1584,16 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         else:
             self.setClockWidget.hide()
         self.setClockWidget.exec_()
+
+    def graphThread(self):
+        self.t11 = threading.Thread(target=self.showLiveTempGraph)
+        self.t11.daemon = True
+        self.t11.start()
+
+    def showLiveTempGraph(self):
+        while True:
+            self.drawRealTimeData()
+            time.sleep(10)
 
     def startThread1(self):
         self.t1 = threading.Thread(target=self.loop1)
@@ -1871,11 +1944,14 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabTheme)
         self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabColor)
         self.alldisplayColorChangeObj.changeTimerDialogAttributeColor(self.settings_dialog_set_ui.tabGeneral)
-        # =============================== Login UI ==============================================================================================
+        # ++++++++++++++++++++++++++++++++++++++ Login UI ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_name,
                                                                    "QLineEdit")
         self.alldisplayColorChangeObj.changeEditTextAttributeColor(self.login_ui.user_pass,
                                                                    "QLineEdit")
+
+        '''self.alldisplayColorChangeObj.changeAttributeColor(self.clock_set_ui.buttonClockBox,
+                                                           "QDialogButtonBox")'''
 
         '''self.modifyGlobalVariablesObj.setChangedImage()
         self.modifyGlobalVariablesObj.setChangedLightColor()

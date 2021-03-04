@@ -147,8 +147,6 @@ class AllDisplayAttributeColor:
                                                                                                                                                                                                      "}\n"
                                                                                                                                                                                                      "")
 
-
-
     '''def changeSettingsDialogTabColor(self, attribute_name):
         attribute_name.setStyleSheet("QTabBar::tabWidget:selected {background: " + self.datamodel.get_theme_color() + ";}"
         " QTabWidget>QWidget>QWidget{background: " + self.datamodel.get_theme_color() + ";""}")'''
@@ -356,3 +354,61 @@ class AllDisplayAttributeColor:
                              int(hx[i:i + 2], 16) for i in (1, 3, 5))
         else:
             raise ValueError(f'"{hx}" is not a valid HEX code.')
+
+    def qSliderClrThmChn(self, attribute_name):
+        attribute_name.setStyleSheet("QSlider::groove:horizontal { "
+                                     "background-color: black;"
+                                     "border: 0px solid #424242;"
+                                     "height: 10px;"
+                                     "border-radius: 4px;""}"
+
+                                     "QSlider::handle:horizontal {"
+                                     "background-color: red;"
+                                     "border: 2px solid red; "
+                                     "width: 16px; "
+                                     "height: 20px; "
+                                     "line-height: 20px;"
+                                     "margin-top: -5px; "
+                                     "margin-bottom: -5px;"
+                                     "border-radius: 10px;""}")
+
+    def qDateEdit(self, attribute_name):
+        attribute_name.setStyleSheet(
+            "QDateEdit::drop-down {"
+            "subcontrol-origin: padding;"
+            "subcontrol-position: top right;"
+            "width: 25px;"
+            "border-left-width: 1px;"
+            "border-left-color: " + self.datamodel.get_icon_col() + ";"
+                                                                    "border-left-style: solid;"
+                                                                    "border-top-right-radius: 3px;"
+                                                                    "border-bottom-right-radius: 3px;"
+                                                                    "}")
+
+    def changeQDateEditAttributeColor(self, attribute_name, Attribute):
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-style: outset;\n"
+                                                      "    border-width: 1px;\n"
+                                                      "    border-radius: 10px;\n"
+                                                      "    border-color: " + self.datamodel.get_border_col() + ";\n"
+                                                                                                               "    font: bold 24px;\n"
+                                                                                                               "    background-color: " + self.datamodel.get_background_col() + ";\n"
+                                                                                                                                                                                "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                                                                                                                                               "}\n"
+                                                                                                                                                                                                                               "QDateEdit::up-button { width: 48px; }\n"
+                                                                                                                                                                                                                               "QDateEdit::down-button { width: 48px; }"
+                                                                                                                                                                                                                               "")
+
+    def changeQTimeEditAttributeColor(self, attribute_name, Attribute):
+        attribute_name.setStyleSheet("" + Attribute + " {\n"
+                                                      "    border-style: outset;\n"
+                                                      "    border-width: 1px;\n"
+                                                      "    border-radius: 10px;\n"
+                                                      "    border-color: " + self.datamodel.get_border_col() + ";\n"
+                                                                                                               "    font: bold 24px;\n"
+                                                                                                               "    background-color: " + self.datamodel.get_background_col() + ";\n"
+                                                                                                                                                                                "    color:" + self.datamodel.get_text_col() + ";\n"
+                                                                                                                                                                                                                               "}\n"
+                                                                                                                                                                                                                               "QTimeEdit::up-button { width: 48px; }\n"
+                                                                                                                                                                                                                               "QTimeEdit::down-button { width: 48px; }"
+                                                                                                                                                                                                                               "")
