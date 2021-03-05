@@ -3,6 +3,7 @@ from PyQt5.QtCore import Qt, pyqtSlot, QTimer
 import modifyGlobalVariables
 import configVariables
 
+
 class Chronos3:
     def __init__(self, ui, changed_play_image, changed_pause_image):
         self.start = ui.startChrono3

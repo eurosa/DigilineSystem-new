@@ -114,15 +114,17 @@ class LightSwitchDataBase:
         changed_low_color = datamodel.get_changed_low_color()
         play_pixmap_byte = datamodel.get_changed_play()
         pause_pixmap_byte = datamodel.get_changed_pause()
+        on_speaker_byte = datamodel.get_changed_on_speaker()
+        off_speaker_byte = datamodel.get_changed_off_speaker()
         # print("Changed Light Bulb: "+str(changed_light_bulb))
         # print("Changed Low Light Color: " + str(changed_low_color))
         query = QSqlQuery(configVariables.db_history)
         # query.exec_(f"""insert into image_table( changed_light_bulb)
         #       values(  '{ckjk}')""")
         query.prepare("INSERT INTO image_table (changed_light_bulb, changed_ot_light, "
-                      "low_light_bulb, low_ot_light, changed_low_color, play_wh, pause_wh) "
+                      "low_light_bulb, low_ot_light, changed_low_color, play_wh, pause_wh, on_speaker, off_speaker) "
                       "VALUES ( :changed_light_bulb, :changed_ot_light, :low_light_bulb,"
-                      " :low_ot_light, :changed_low_color, :play_wh, :pause_wh)")
+                      " :low_ot_light, :changed_low_color, :play_wh, :pause_wh, :on_speaker, :off_speaker)")
         query.bindValue(":changed_light_bulb", changed_light_bulb)
         query.bindValue(":changed_ot_light", changed_ot_light)
         query.bindValue(":low_light_bulb", low_light_bulb)
@@ -130,6 +132,8 @@ class LightSwitchDataBase:
         query.bindValue(":changed_low_color", changed_low_color)
         query.bindValue(":play_wh", play_pixmap_byte)
         query.bindValue(":pause_wh", pause_pixmap_byte)
+        query.bindValue(":on_speaker", on_speaker_byte)
+        query.bindValue(":off_speaker", off_speaker_byte)
         if not query.exec():
             qDebug() << "Error inserting image into table:\n" << query.lastError()
 
@@ -141,6 +145,8 @@ class LightSwitchDataBase:
         changed_low_color = datamodel.get_changed_low_color()
         play_pixmap_byte = datamodel.get_changed_play()
         pause_pixmap_byte = datamodel.get_changed_pause()
+        on_speaker_byte = datamodel.get_changed_on_speaker()
+        off_speaker_byte = datamodel.get_changed_off_speaker()
         # print("Changed Light Bulb: "+str(changed_light_bulb))
         # print("Changed Low Light Color: " + str(changed_low_color))
         query = QSqlQuery(configVariables.db_history)
@@ -150,7 +156,7 @@ class LightSwitchDataBase:
         query.prepare('UPDATE image_table SET changed_light_bulb=:changed_light_bulb,'
                       ' changed_ot_light=:changed_ot_light, low_light_bulb=:low_light_bulb,'
                       ' low_ot_light=:low_ot_light, changed_low_color=:changed_low_color, '
-                      'play_wh=:play_wh, pause_wh=:pause_wh'
+                      'play_wh=:play_wh, pause_wh=:pause_wh, on_speaker=:on_speaker, off_speaker=:off_speaker'
                       ' WHERE id=:var')
 
         query.bindValue(":changed_light_bulb", changed_light_bulb)
@@ -160,6 +166,8 @@ class LightSwitchDataBase:
         query.bindValue(":changed_low_color", changed_low_color)
         query.bindValue(":play_wh", play_pixmap_byte)
         query.bindValue(":pause_wh", pause_pixmap_byte)
+        query.bindValue(":on_speaker", on_speaker_byte)
+        query.bindValue(":off_speaker", off_speaker_byte)
         query.bindValue(':var', 1)
 
         if not query.exec():
@@ -184,6 +192,8 @@ class LightSwitchDataBase:
             model.set_changed_low_color(query.value('changed_low_color'))
             model.set_changed_play(query.value('play_wh'))
             model.set_changed_pause(query.value('pause_wh'))
+            model.set_changed_on_speaker(query.value('on_speaker'))
+            model.set_changed_off_speaker(query.value('off_speaker'))
 
     def tableRowCount(self, table_name):
         row_count = 0
@@ -198,7 +208,7 @@ class LightSwitchDataBase:
     def queryToggleSwitchStatus(self, model):
         query = QSqlQuery(configVariables.db_history)
         query.exec_("SELECT toggle_switch_1, toggle_switch_2, toggle_switch_3, toggle_switch_4,"
-                    " toggle_switch_5, toggle_switch_6, set_hum, set_temp"
+                    " toggle_switch_5, toggle_switch_6, set_hum, set_temp, sound_on_off_flag"
                     " FROM switchControl where 1")
         while query.next():
             # print(query.value('theme_color_preview'))
@@ -210,6 +220,7 @@ class LightSwitchDataBase:
             model.set_toggle_switch_6(query.value('toggle_switch_6'))
             model.set_switch_hum_ctrl(query.value('set_hum'))
             model.set_switch_temp_ctrl(query.value('set_temp'))
+            model.set_sound_on_off_flag(query.value('sound_on_off_flag'))
 
     def queryCountDownTimerData(self, model):
         query = QSqlQuery(configVariables.db_history)
@@ -280,6 +291,12 @@ class LightSwitchDataBase:
         query = QSqlQuery(configVariables.db_history)
         query.exec_("UPDATE switchControl SET set_hum ='" + str(_switch_hum_ctrl) + "' WHERE id= 1")
 
+    def updateSpeakerOnOff(self, model):
+        # ids = int(model.get_light_name_1())
+        _sound_on_off_flag = model.get_sound_on_off_flag()
+        query = QSqlQuery(configVariables.db_history)
+        query.exec_("UPDATE switchControl SET sound_on_off_flag ='" + str(_sound_on_off_flag) + "' WHERE id= 1")
+
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     def db_connect(self, filename, server, connection):
@@ -318,6 +335,7 @@ class LightSwitchDataBase:
         query.exec_("create table image_table(id INTEGER PRIMARY KEY , "
                     "play_wh BLOB, pause_wh BLOB, changed_light_bulb BLOB,"
                     "changed_ot_light BLOB, low_light_bulb BLOB, low_ot_light BLOB,"
+                    "on_speaker BLOB, off_speaker BLOB,"
                     "changed_low_color varchar(80))")
 
         query.exec_("create table switchControl(id INTEGER PRIMARY KEY ,"
@@ -325,14 +343,14 @@ class LightSwitchDataBase:
                     "toggle_switch_3 varchar(10), toggle_switch_4 varchar(10),"
                     "toggle_switch_5 varchar(10), toggle_switch_6 varchar(10),"
                     "hours_cnt INTEGER, minutes_cnt INTEGER, seconds_cnt INTEGER, set_hum INTEGER, "
-                    "set_temp INTEGER)")
+                    "set_temp INTEGER, sound_on_off_flag INTEGER)")
 
         query.exec_("insert into switchControl(toggle_switch_1, toggle_switch_2, "
                     "toggle_switch_3, toggle_switch_4,"
                     "toggle_switch_5, toggle_switch_6,"
                     "hours_cnt, minutes_cnt, seconds_cnt,"
-                    "set_hum, set_temp) values("
-                    " 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
+                    "set_hum, set_temp, sound_on_off_flag) values("
+                    " 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)")
 
         '''query.exec_("create table GeneralSettings(id INTEGER PRIMARY KEY , "
                     "light_name_1 varchar(20), light_name_2 varchar(20), light_name_3 varchar(20), light_name_4 "

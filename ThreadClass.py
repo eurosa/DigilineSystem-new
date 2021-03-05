@@ -124,7 +124,9 @@ class ThreadParallel(QRunnable):
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.startButton)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.resetButton)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.setTimeSetting)
-
+        # +++++++++++++++++++++++++++++ Speaker Icon ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.speakerButton)
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.speakerButton, "QToolButton")
         # -----------------------Menu Tool Icon color changes----------------------------------------------
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.otLighteningDetails)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.ventiLationDetails)

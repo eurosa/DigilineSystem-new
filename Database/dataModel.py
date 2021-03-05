@@ -73,6 +73,9 @@ class DataModel:
         self._changed_low_color = str()
         self._changed_play = bytearray
         self._changed_pause = bytearray
+        self._changed_on_speaker = bytearray
+        self._changed_off_speaker = bytearray
+        self._sound_on_off_flag = 1
 
         # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
         #  Light Brightness control during initial value
@@ -624,3 +627,22 @@ class DataModel:
 
     def get_changed_pause(self):
         return self._changed_pause
+
+    def set_changed_on_speaker(self, _changed_on_speaker):
+        self._changed_on_speaker = _changed_on_speaker
+
+    def get_changed_on_speaker(self):
+        return self._changed_on_speaker
+
+    def set_changed_off_speaker(self, _changed_off_speaker):
+        self._changed_off_speaker = _changed_off_speaker
+
+    def get_changed_off_speaker(self):
+        return self._changed_off_speaker
+
+    def set_sound_on_off_flag(self, _set_sound_on_off_flag):
+        self._sound_on_off_flag = _set_sound_on_off_flag
+
+    def get_sound_on_off_flag(self):
+        return self._sound_on_off_flag
+

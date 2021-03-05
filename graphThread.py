@@ -26,7 +26,7 @@ class GraphThread(QRunnable):
         while True:
             # self.ui.drawRealTimeData()
             self.signal.return_signal.emit(result)
-            time.sleep(60)
+            time.sleep(20)
         # ----------------------------------------------------------------------------------------------
         # self.ui.settings_dialog_set_ui.labelDisplayTheme.setPixmap(QtGui.QPixmap(self.ui.dataModel.get_theme_color_preview()))
         # self.ui.alldisplayColorChangeObj.changeSettingsDialogAttributeColor(self.ui.SettingsQDialog)
@@ -34,6 +34,7 @@ class GraphThread(QRunnable):
 
     def function_thread(self, signal):
         self.ui.drawRealTimeData()
+        # self.ui.drawHumidityData()
         # QTimer.singleShot(2000, lambda: self.settings_dialog_set_ui.applyColor.setDisabled(False))
         # self.allChangeToolButtonAttributeColor(self.alldisplayColorChangeObj) self.threadpool.destroyed() Index out
         # of range error if configVariables.hex_string[0] == 0x2 and configVariables.hex_string[1] == 0x31 \ in

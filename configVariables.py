@@ -18,6 +18,10 @@ changed_lightBulb3 = ""
 changed_lightBulb4 = ""
 changed_otLightBulb2 = ""
 
+changed_on_speaker = ""
+changed_off_speaker = ""
+sound_on_off_flag = 1
+
 changed_light_bulb = ""
 changed_ot_light = ""
 low_light_bulb = ""

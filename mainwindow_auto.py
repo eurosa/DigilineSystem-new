@@ -963,6 +963,28 @@ class Ui_MainWindow(object):
 "    border-style: inset;\n"
 "}")
         self.hepa.setObjectName("hepa")
+        self.speakerButton = QtWidgets.QToolButton(self.centralWidget)
+        self.speakerButton.setGeometry(QtCore.QRect(229, 701, 42, 42))
+        self.speakerButton.setStyleSheet("QToolButton#speakerButton{\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+" \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#FFFFFF;\n"
+"}\n"
+"QToolButton#speakerButton:pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}")
+        icon13 = QtGui.QIcon()
+        icon13.addPixmap(QtGui.QPixmap("icon/speaker-on-white.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.speakerButton.setIcon(icon13)
+        self.speakerButton.setIconSize(QtCore.QSize(42, 42))
+        self.speakerButton.setObjectName("speakerButton")
         self.time_show.raise_()
         self.elapsedTimeLabel.raise_()
         self.setTimeSetting.raise_()
@@ -1009,6 +1031,7 @@ class Ui_MainWindow(object):
         self.leftMenuTitleLine.raise_()
         self.rightMenuTitleLine.raise_()
         self.hepa.raise_()
+        self.speakerButton.raise_()
         MainWindow.setCentralWidget(self.centralWidget)
         self.statusBar = QtWidgets.QStatusBar(MainWindow)
         self.statusBar.setObjectName("statusBar")
@@ -1077,6 +1100,7 @@ class Ui_MainWindow(object):
         self.leftMenuTitleLine.setText(_translate("MainWindow", "TextLabel"))
         self.rightMenuTitleLine.setText(_translate("MainWindow", "TextLabel"))
         self.hepa.setText(_translate("MainWindow", "Hepa"))
+        self.speakerButton.setText(_translate("MainWindow", "..."))
 
 
 if __name__ == "__main__":

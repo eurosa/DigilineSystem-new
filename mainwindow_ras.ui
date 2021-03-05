@@ -296,7 +296,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>33</x>
       <y>200</y>
-      <width>41</width>
+      <width>42</width>
       <height>42</height>
      </rect>
     </property>
@@ -2598,6 +2598,46 @@ QToolButton#hepa:pressed {
     </property>
     <property name="text">
      <string>Hepa</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="speakerButton">
+    <property name="geometry">
+     <rect>
+      <x>1454</x>
+      <y>988</y>
+      <width>42</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#speakerButton{
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+ 
+    padding: 6px;
+    background-color: #000000;
+    color:#FFFFFF;
+}
+QToolButton#speakerButton:pressed {
+    background-color: gray;
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icon/speaker-on-white.png</normaloff>icon/speaker-on-white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>42</width>
+      <height>42</height>
+     </size>
     </property>
    </widget>
   </widget>

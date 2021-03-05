@@ -324,6 +324,11 @@ class Thread(QRunnable):
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.player.controls.nextButton)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.player.controls.previousButton)
         self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.player.controls.muteButton)
+
+        # ++++++++++++++++++++++++++++++++++++ Speaker Icon Color Control +++++++++++++++++++++++++++++++++++
+        self.ui.alldisplayColorChangeObj.changeIconColor(self.ui.ui.speakerButton)
+        self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.ui.speakerButton, "QToolButton")
+
         '''# ----------------culprit below------------------------------------------------------------------------
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.player.controls.previousButton, "QToolButton")
         self.ui.alldisplayColorChangeObj.changeAttributeColor(self.ui.player.controls.muteButton, "QToolButton")
@@ -694,11 +699,6 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
     def showTemperatureGraph(self):
         self.clear()
-        if self.ui.temeratureGraph.isChecked():
-            print("Button Pressed")
-        else:
-            print("Button Released")
-
         # self.expl = ExampleWidget()
         self.ui.menuTitleName.setText("Temperature Graph")
         self.temp_ui.setupUi(self.tempForm)
@@ -716,6 +716,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # navToolbar.pan()
         self.layout.addWidget(navToolbar)
         self.layout.addWidget(self.tempForm)
+        self.tempForm.axes.clear()
         self.tempForm.fig.autofmt_xdate()
 
         '''x_formatter = FixedFormatter(list(configVariables.my_temp_list.values()))
@@ -735,6 +736,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # self.tempForm.axes.set_xticks(list(configVariables.my_id_list.values()))
         # self.tempForm.axes.set_xticks(list(configVariables.my_time_list.values()), minor=True)
+
         self.tempForm.axes.set_xlim(xmin=0, xmax=10)
         self.tempForm.axes.set_ylim(ymin=0, ymax=10)
         self.tempForm.axes.set_xlabel("Time(H)")
@@ -807,9 +809,16 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         if self.graph_flag:
             self.graphPool = QThreadPool()
             self.graphThread = GraphThread(self)
-            self.graphThread.signal.return_signal.connect(self.graphThread.function_thread)
             self.graphPool.start(self.graphThread)
         self.graph_flag = False
+
+        if self.ui.temeratureGraph.isChecked():
+            self.live_graph_flag = False
+            print("Button Pressed")
+        else:
+            print("Button Released")
+            self.live_graph_flag = True
+            self.graphThread.signal.return_signal.connect(self.graphThread.function_thread)
         self.gasForm.hide()
         self.otForm.hide()
         self.mulFormWindo.hide()
@@ -820,13 +829,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(
             list(configVariables.my_time_list.values()), list(configVariables.my_temp_list.values())),
                                       interval=1000)
-
+        self.tempForm.draw()  # This need for Animation
         # self.realtimeGraph.animate('', list(configVariables.my_time_list.values()),
         # list(configVariables.my_temp_list.values()))
 
         # a = np.array(list(configVariables.my_time_list.values()))
         # self.tempForm.axes.set_xticks(np.arange(len(list(configVariables.my_time_list.values()))))
-        self.tempForm.draw()  # This need for Animation
 
     def graphValueInsertinDb(self):
         pass
@@ -1236,15 +1244,17 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # =========================End Toggle Switch ============================================
 
         # ==========Hooks for all Menu Item=========================================================================
-        # self.ui.otLighteningDetails.animateClick()
+        self.ui.otLighteningDetails.animateClick()
         self.ui.otLighteningDetails.clicked.connect(self.AddOtLighteningWidget)
 
         self.ui.historyDetails.clicked.connect(self.AddHistoryWidget)
         self.ui.gasIndicator.clicked.connect(self.AddGasWidget)
+        self.ui.temeratureGraph.setCheckable(True)
         self.ui.temeratureGraph.clicked.connect(self.showTemperatureGraph)
         self.ui.humidityGraph.clicked.connect(self.showHumidityGraph)
         self.realtimeGraph = RealtimeGraph(self)
         self.graph_flag = True
+        self.live_graph_flag = True
         # +++++++++++++++++++++ Toggle Effect of QPushButton +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         # self.ui.temeratureGraph.clicked.connect(self.btnstate)
         # self.liveGraph = RepeatedTimer(10, self.drawRealTimeData)
@@ -1452,6 +1462,10 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
                                                 configVariables.pause_changed_image)
 
         # --------------------------------------------------------------------------------------------------------------
+        # ++++++++++++++++++++++++++++++++++++++ sound on off ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        self.ui.speakerButton.clicked.connect(self.on_speaker)
+        # ++++++++++++++++++++++++++++++++++++++ sound on off +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         self.settings_dialog_set_ui.comboBoxTheme.activated.connect(self.handleActivated)
         self.applyThemeColor()
         self.applyBackGroundImage()
@@ -1532,6 +1546,22 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # ++++++++++++++++++++++++ Insert Temp and Humidity Value +++++++++++++++++++++++++++++++++++++++++
         # self.graphValueInsertinDb()
 
+    def on_speaker(self):
+        self.ui.speakerButton.setIcon(configVariables.changed_off_speaker)
+        self.ui.speakerButton.clicked.disconnect()
+        self.ui.speakerButton.clicked.connect(self.off_speaker)
+        configVariables.sound_on_off_flag = 0
+        self.dataModel.set_sound_on_off_flag(configVariables.sound_on_off_flag)
+        configVariables.light_database.updateSpeakerOnOff(self.dataModel)
+
+    def off_speaker(self):
+        self.ui.speakerButton.setIcon(configVariables.changed_on_speaker)
+        self.ui.speakerButton.clicked.disconnect()
+        self.ui.speakerButton.clicked.connect(self.on_speaker)
+        configVariables.sound_on_off_flag = 1
+        self.dataModel.set_sound_on_off_flag(configVariables.sound_on_off_flag)
+        configVariables.light_database.updateSpeakerOnOff(self.dataModel)
+
     def initSwitchButtonState(self):
         configVariables.light_database.queryToggleSwitchStatus(self.dataModel)
         if int(self.dataModel.get_toggle_switch_1()) > 0:
@@ -1548,8 +1578,14 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             self.toggleSwitchOT2.animateClick()
         self.t_i_d_count = self.dataModel.get_switch_temp_ctrl()
         self.h_i_d_count = self.dataModel.get_switch_hum_ctrl()
+        configVariables.sound_on_off_flag = self.dataModel.get_sound_on_off_flag()
         self.tempDisplayLabel()
         self.humidityDisplayLabel()
+
+        if self.dataModel.get_sound_on_off_flag() > 0:
+            self.off_speaker()
+        else:
+            self.on_speaker()
 
     def setClockOk(self):
         print("++++++++++++++++++ Changing Time and Date ++++++++++++++++++++++++++++++++++++++++")
