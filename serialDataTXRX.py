@@ -385,7 +385,9 @@ class SerialWrapper:
             configVariables.light_database.insertGraphData(self.ui.dataModel.get_temp_value(),
                                                            self.ui.dataModel.get_hum_value(), '', self.ui.proc)
 
+        # if configVariables.graph_data_flag:
         configVariables.light_database.graphDataSelect(self.ui.dataModel)
+
         # self.ui.drawRealTimeData()
 
     def colorChned1(self, ui):

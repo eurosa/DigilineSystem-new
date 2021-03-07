@@ -698,6 +698,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
             print("Button Released")
 
     def showTemperatureGraph(self):
+        configVariables.graph_data_flag = True
         self.clear()
         # self.expl = ExampleWidget()
         self.ui.menuTitleName.setText("Temperature Graph")
@@ -716,7 +717,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # navToolbar.pan()
         self.layout.addWidget(navToolbar)
         self.layout.addWidget(self.tempForm)
-        self.tempForm.axes.clear()
+        # self.tempForm.axes.clear()
         self.tempForm.fig.autofmt_xdate()
 
         '''x_formatter = FixedFormatter(list(configVariables.my_temp_list.values()))
@@ -736,11 +737,12 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
 
         # self.tempForm.axes.set_xticks(list(configVariables.my_id_list.values()))
         # self.tempForm.axes.set_xticks(list(configVariables.my_time_list.values()), minor=True)
-
-        self.tempForm.axes.set_xlim(xmin=0, xmax=10)
+        print("+++++++++++++++++Length of List: "+str(len(list(configVariables.my_time_list.values())))+"++++++++++++++++++++++")
+        self.tempForm.axes.set_xlim(left=len(list(configVariables.my_time_list.values()))-9, right=len(list(configVariables.my_time_list.values())), emit=True, auto=False)
         self.tempForm.axes.set_ylim(ymin=0, ymax=10)
         self.tempForm.axes.set_xlabel("Time(H)")
         self.tempForm.axes.set_ylabel("Temperature(°C)")
+
         # ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(list(configVariables.my_time_list.values()), list(configVariables.my_temp_list.values())),
         # interval=1000)
         a = np.array(list(configVariables.my_time_list.values()))
@@ -806,19 +808,19 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         # self.tempForm.plot(self.hour, self.humidity, pen=pen2, symbol='+', symbolSize=30, symbolBrush=('b'))
         # self.plot(hour, temperature_1, "Sensor1", 'r')
         # self.plot(hour, temperature_2, "Sensor2", 'b')
-        if self.graph_flag:
+        '''if self.graph_flag:
             self.graphPool = QThreadPool()
             self.graphThread = GraphThread(self)
             self.graphPool.start(self.graphThread)
-        self.graph_flag = False
+            self.graph_flag = False'''
 
-        if self.ui.temeratureGraph.isChecked():
+        '''if self.ui.temeratureGraph.isChecked():
             self.live_graph_flag = False
             print("Button Pressed")
         else:
             print("Button Released")
             self.live_graph_flag = True
-            self.graphThread.signal.return_signal.connect(self.graphThread.function_thread)
+            self.graphThread.signal.return_signal.connect(self.graphThread.function_thread)'''
         self.gasForm.hide()
         self.otForm.hide()
         self.mulFormWindo.hide()
@@ -877,7 +879,7 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.humForm.axes.set_ylabel("Humidity(%)")
         # self.tempForm.axes.set_xticks(list(configVariables.my_id_list.values()))
         # self.tempForm.axes.set_xticks(list(configVariables.my_time_list.values()), minor=True)
-        self.humForm.axes.set_xlim(xmin=0, xmax=10)
+        self.humForm.axes.set_xlim(left=len(list(configVariables.my_time_list.values()))-9, right=len(list(configVariables.my_time_list.values())), emit=True, auto=False)
         self.humForm.axes.set_ylim(ymin=0, ymax=10)
         # ani = animation.FuncAnimation(self.tempForm.fig, self.realtimeGraph.animate, fargs=(list(configVariables.my_time_list.values()), list(configVariables.my_temp_list.values())),
         # interval=1000)

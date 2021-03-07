@@ -65,7 +65,7 @@ class LightSwitchDataBase:
                     "500)")
         '''query.exec_("DELETE FROM history_table WHERE  id NOT IN ( SELECT TOP ( 2 ) id FROM  "
                     "history_table ORDER BY date_time)")'''
-        if configVariables.query_select_flag: 
+        if configVariables.query_select_flag:
             query_select = "SELECT date_time, id, temp_value, hum_value FROM graph_table  ORDER BY id DESC  LIMIT 1"
         else:
             query_select = "SELECT date_time, id, temp_value, hum_value FROM graph_table  ORDER BY id  ASC"
@@ -75,18 +75,19 @@ class LightSwitchDataBase:
 
         while query.next():
             if query.value('date_time'):
-                date_time_obj = datetime.datetime.strptime(query.value('date_time'), '%Y-%m-%d %H:%M:%S.%f%z')
+                # date_time_obj = datetime.datetime.strptime(query.value('date_time'), '%Y-%m-%d %H:%M:%S.%f%z')# RTC
+                date_time_obj = datetime.datetime.strptime(query.value('date_time'), '%Y-%m-%d %H:%M:%S')
                 # configVariables.my_time_list.append(date_time_obj.time().strftime("%H:%M"))
-                hours, minutes = date_time_obj.time().strftime("%H:%M").split(':')
+                hours, minutes, seconds = date_time_obj.time().strftime("%H:%M:%S").split(':')
                 minutes_total = int(hours) * 60 + int(minutes)
                 configVariables.my_time_list[query.value('id')] = date_time_obj.time().strftime(
-                    "%H:%M") + "\n " + date_time_obj.date().strftime('%d/%m/%Y')
+                    "%H:%M:%S") + "\n " + date_time_obj.date().strftime('%d/%m/%Y')
                 configVariables.my_temp_list[query.value('id')] = (query.value('temp_value'))
                 configVariables.my_hum_list[query.value('id')] = float(query.value('hum_value'))
                 configVariables.my_id_list[query.value('id')] = float(query.value('id'))
                 # [configVariables.my_time_list.append(graph_time) for graph_time in configVariables.my_time_list if
                 # graph_time not in configVariables.my_time_list]
-                
+
                 # configVariables.my_time_list.append(configVariables.my_time_list)
                 # configVariables.my_temp_list.append(query.value('temp_value'))
                 # configVariables.my_temp_list.append(query.value('hum_value'))
@@ -94,14 +95,18 @@ class LightSwitchDataBase:
 
     def insertGraphData(self, temp_value, hum_value, running_pass_time, date_time):
         query = QSqlQuery(configVariables.db_history)
-        '''if date_time:
-                    date_time_obj = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z')
-                    date_time = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z').strftime('%d/%m/%Y '
-                                                                                                         '%H:%M:%S')
-                    self.hwclock_time = date_time_obj.time().strftime("%H:%M:%S")
-                    self.hwclock_date = date_time_obj.date().strftime('%d/%m/%Y')
+        if date_time:
+            # date_time_obj = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z')
+            date_time = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z').strftime('%Y-%m-%d '
+                                                                                                 '%H:%M:%S')
+            '''
+            date_time = datetime.datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S.%f%z').strftime('%d/%m/%Y '
+                                                                                                 '%H:%M:%S')
+            '''
+            # self.hwclock_time = date_time_obj.time().strftime("%H:%M:%S")
+            # self.hwclock_date = date_time_obj.date().strftime('%d/%m/%Y')
 
-        print("Hw Time: "+str(self.hwclock_time)+" Hw Date: "+str(self.hwclock_date))'''
+        print("Hw Time: " + str(self.hwclock_time) + " Hw Date: " + str(self.hwclock_date))
 
         query.exec_(f"""insert into graph_table(date_time, temp_value,
          hum_value, running_pass_time) values('{date_time}', '{temp_value}', '{hum_value}', '{running_pass_time}')""")

@@ -92,6 +92,7 @@ my_temp_list = {}
 my_hum_list = {}
 my_id_list = {}
 query_select_flag = False
+graph_data_flag = False
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 curve = 0
 ptr = 0
