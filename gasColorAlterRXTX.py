@@ -91,9 +91,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # Low
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_2 = 0x01
+                    configVariables.mute_flag_1 = False
                 else:
-                    configVariables.sound_on_off_flag == 1
                     configVariables.buzzer_hex_gas_2 = 0x0
+                    # configVariables.mute_flag_1 = False
+                if configVariables.mute_flag_1:
+                    configVariables.buzzer_hex_gas_2 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ------------------------------------- Gas pad --------------------------------------------------------
@@ -115,8 +120,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # High
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_2 = 0x01
+                    configVariables.mute_flag_1 = False
                 else:
                     configVariables.buzzer_hex_gas_2 = 0x0
+                    # configVariables.mute_flag_1 = False
+                if configVariables.mute_flag_1:
+                    configVariables.buzzer_hex_gas_2 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -133,6 +144,7 @@ class ThreadGasColorRXTX(QRunnable):
                 # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
 
             elif not bit1 and not bit0:
+                configVariables.mute_flag_1 = True
                 configVariables.buzzer_hex_gas_2 = 0x00
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
                                                                     configVariables.green_color_hex)
@@ -149,8 +161,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # Low
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_4 = 0x01
+                    configVariables.mute_flag_2 = False
                 else:
                     configVariables.buzzer_hex_gas_4 = 0x0
+
+                if configVariables.mute_flag_2:
+                    configVariables.buzzer_hex_gas_4 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -169,8 +187,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # High
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_4 = 0x01
+                    configVariables.mute_flag_2 = False
                 else:
                     configVariables.buzzer_hex_gas_4 = 0x0
+
+                if configVariables.mute_flag_2:
+                    configVariables.buzzer_hex_gas_4 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
                                                                     configVariables.red_color_hex)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_2_high, "QLabel",
@@ -187,6 +211,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif not bit3 and not bit2:
                 configVariables.buzzer_hex_gas_4 = 0x00
+                configVariables.mute_flag_2 = True
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air, "QToolButton",
                                                                     configVariables.green_color_hex)
 
@@ -201,8 +226,13 @@ class ThreadGasColorRXTX(QRunnable):
                 # Low
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_5 = 0x01
+                    configVariables.mute_flag_3 = False
                 else:
                     configVariables.buzzer_hex_gas_5 = 0x0
+                if configVariables.mute_flag_3:
+                    configVariables.buzzer_hex_gas_5 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
                                                                     configVariables.red_color_hex)
 
@@ -221,8 +251,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # High
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_5 = 0x01
+                    configVariables.mute_flag_3 = False
                 else:
                     configVariables.buzzer_hex_gas_5 = 0x0
+
+                if configVariables.mute_flag_3:
+                    configVariables.buzzer_hex_gas_5 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
                                                                     configVariables.red_color_hex)
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_3_high, "QLabel",
@@ -239,6 +275,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif not bit5 and not bit4:
                 configVariables.buzzer_hex_gas_5 = 0x00
+                configVariables.mute_flag_3 = True
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.air7, "QToolButton",
                                                                     configVariables.green_color_hex)
 
@@ -253,8 +290,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # Low
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_3 = 0x01
+                    configVariables.mute_flag_4 = False
                 else:
                     configVariables.buzzer_hex_gas_3 = 0x0
+
+                if configVariables.mute_flag_4:
+                    configVariables.buzzer_hex_gas_3 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -274,8 +317,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # High
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_3 = 0x01
+                    configVariables.mute_flag_4 = False
                 else:
                     configVariables.buzzer_hex_gas_3 = 0x0
+
+                if configVariables.mute_flag_4:
+                    configVariables.buzzer_hex_gas_3 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -292,6 +341,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif not bit7 and not bit6:
                 configVariables.buzzer_hex_gas_3 = 0x00
+                configVariables.mute_flag_4 = True
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.cabonDiOxide, "QToolButton",
                                                                     configVariables.green_color_hex)
 
@@ -306,8 +356,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # Low
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_1 = 0x01
+                    configVariables.mute_flag_5 = False
                 else:
                     configVariables.buzzer_hex_gas_1 = 0x0
+
+                if configVariables.mute_flag_5:
+                    configVariables.buzzer_hex_gas_1 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -328,8 +384,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # High
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_1 = 0x01
+                    configVariables.mute_flag_5 = False
                 else:
                     configVariables.buzzer_hex_gas_1 = 0x0
+
+                if configVariables.mute_flag_5:
+                    configVariables.buzzer_hex_gas_1 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ----------------------------------Gas pad menu--------------------------------------------
@@ -349,6 +411,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif not bit8 and not bit9:
                 configVariables.buzzer_hex_gas_1 = 0x00
+                configVariables.mute_flag_5 = True
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.oxygen, "QToolButton",
                                                                     configVariables.green_color_hex)
                 # ---------Gas pad menu---------------------------------------------------------
@@ -366,8 +429,12 @@ class ThreadGasColorRXTX(QRunnable):
                 #
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_6 = 0x01
+                    configVariables.mute_flag_6 = False
                 else:
                     configVariables.buzzer_hex_gas_6 = 0x0
+                if configVariables.mute_flag_6:
+                    configVariables.buzzer_hex_gas_6 = 0x01
+                    self.ui.off_speaker()
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_6_high, "QLabel",
@@ -380,8 +447,14 @@ class ThreadGasColorRXTX(QRunnable):
                 # Low
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_6 = 0x01
+                    configVariables.mute_flag_6 = False
                 else:
                     configVariables.buzzer_hex_gas_6 = 0x0
+
+                if configVariables.mute_flag_6:
+                    configVariables.buzzer_hex_gas_6 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
                                                                     configVariables.red_color_hex)
 
@@ -395,6 +468,7 @@ class ThreadGasColorRXTX(QRunnable):
                                                                  self.ui.dataModel.get_gas_name_6(), "Low")
             elif not bit11 and not bit10:
                 configVariables.buzzer_hex_gas_6 = 0x00
+                configVariables.mute_flag_6 = True
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.vacuum, "QToolButton",
                                                                     configVariables.green_color_hex)
 
@@ -410,8 +484,14 @@ class ThreadGasColorRXTX(QRunnable):
             if bit12:
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_7 = 0x01
+                    configVariables.mute_flag_7 = False
                 else:
                     configVariables.buzzer_hex_gas_7 = 0x00
+
+                if configVariables.mute_flag_7:
+                    configVariables.buzzer_hex_gas_7 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.ips, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
@@ -423,14 +503,21 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif not bit12:
                 configVariables.buzzer_hex_gas_7 = 0x00
+                configVariables.mute_flag_7 = True
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.ips, "QToolButton",
                                                                     configVariables.green_color_hex)
 
             if bit13:
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_8 = 0x01
+                    configVariables.mute_flag_8 = False
                 else:
                     configVariables.buzzer_hex_gas_8 = 0x00
+
+                if configVariables.mute_flag_8:
+                    configVariables.buzzer_hex_gas_8 = 0x01
+                    self.ui.off_speaker()
+
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.hepa, "QToolButton",
                                                                     configVariables.red_color_hex)
                 # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
@@ -442,6 +529,7 @@ class ThreadGasColorRXTX(QRunnable):
 
             elif not bit13:
                 configVariables.buzzer_hex_gas_8 = 0x00
+                configVariables.mute_flag_8 = True
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.hepa, "QToolButton",
                                                                     configVariables.green_color_hex)
 
