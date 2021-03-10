@@ -92,10 +92,11 @@ class ThreadGasColorRXTX(QRunnable):
                 if configVariables.sound_on_off_flag == 1:
                     configVariables.buzzer_hex_gas_2 = 0x01
                 else:
+                    configVariables.sound_on_off_flag == 1
                     configVariables.buzzer_hex_gas_2 = 0x0
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.ui.nitrousOxide, "QToolButton",
                                                                     configVariables.red_color_hex)
-                # ---------Gas pad menu----------------------------------------------------------------------
+                # ------------------------------------- Gas pad --------------------------------------------------------
 
                 self.ui.alldisplayColorChangeObj.changeGasColorRXTX(self.ui.gas_ui.gasLabel_1_low, "QLabel",
                                                                     configVariables.red_color_hex)
@@ -108,7 +109,7 @@ class ThreadGasColorRXTX(QRunnable):
                 configVariables.light_database.insertHistoryData(self.ui.dataModel.get_alarm_date_time(),
                                                                  self.ui.dataModel.get_gas_name_1(), "Low")
 
-                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++
+                # ++++++++++++++++++++++++ High Alarm Data Save in History Table +++++++++++++++++++++++++++++++++++++++
 
             elif bit0:
                 # High

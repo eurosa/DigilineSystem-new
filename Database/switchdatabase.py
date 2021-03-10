@@ -328,7 +328,7 @@ class LightSwitchDataBase:
 
         query.exec_("create table graph_table(id INTEGER PRIMARY KEY , "
                     "temp_value varchar(60), "
-                    "date_time varchar(60) ,running_pass_time varchar(20) , hum_value varchar(60))")
+                    "date_time varchar(60) NOT NULL UNIQUE, running_pass_time varchar(20) , hum_value varchar(60))")
 
         '''query = QSqlQuery(configVariables.db_light)
         query.exec_("create table light_table(id INTEGER PRIMARY KEY , "

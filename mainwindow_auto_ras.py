@@ -134,7 +134,7 @@ class Ui_MainWindow(object):
         self.displayArea.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.displayArea.setObjectName("displayArea")
         self.setTimeSetting = QtWidgets.QToolButton(self.centralWidget)
-        self.setTimeSetting.setGeometry(QtCore.QRect(33, 200, 41, 42))
+        self.setTimeSetting.setGeometry(QtCore.QRect(33, 200, 42, 42))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -352,7 +352,7 @@ class Ui_MainWindow(object):
         self.resetButton.setIconSize(QtCore.QSize(21, 21))
         self.resetButton.setObjectName("resetButton")
         self.tempLabelName = QtWidgets.QLabel(self.centralWidget)
-        self.tempLabelName.setGeometry(QtCore.QRect(1470, 290, 91, 20))
+        self.tempLabelName.setGeometry(QtCore.QRect(1470, 290, 111, 20))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -368,7 +368,7 @@ class Ui_MainWindow(object):
 "}")
         self.tempLabelName.setObjectName("tempLabelName")
         self.humidityLabelName = QtWidgets.QLabel(self.centralWidget)
-        self.humidityLabelName.setGeometry(QtCore.QRect(1721, 290, 67, 19))
+        self.humidityLabelName.setGeometry(QtCore.QRect(1721, 290, 111, 19))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -589,7 +589,7 @@ class Ui_MainWindow(object):
 "}")
         self.humiditySetLabel.setObjectName("humiditySetLabel")
         self.tempSetShow = QtWidgets.QLabel(self.centralWidget)
-        self.tempSetShow.setGeometry(QtCore.QRect(1473, 451, 41, 39))
+        self.tempSetShow.setGeometry(QtCore.QRect(1473, 451, 91, 39))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -603,7 +603,7 @@ class Ui_MainWindow(object):
         self.tempSetShow.setScaledContents(True)
         self.tempSetShow.setObjectName("tempSetShow")
         self.humiditySetShow = QtWidgets.QLabel(self.centralWidget)
-        self.humiditySetShow.setGeometry(QtCore.QRect(1748, 451, 41, 39))
+        self.humiditySetShow.setGeometry(QtCore.QRect(1748, 451, 101, 39))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1301,6 +1301,28 @@ class Ui_MainWindow(object):
 "    border-style: inset;\n"
 "}")
         self.hepa.setObjectName("hepa")
+        self.speakerButton = QtWidgets.QToolButton(self.centralWidget)
+        self.speakerButton.setGeometry(QtCore.QRect(1454, 988, 42, 42))
+        self.speakerButton.setStyleSheet("QToolButton#speakerButton{\n"
+"    border-style: outset;\n"
+"    border-width: 1px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+" \n"
+"    padding: 6px;\n"
+"    background-color: #000000;\n"
+"    color:#FFFFFF;\n"
+"}\n"
+"QToolButton#speakerButton:pressed {\n"
+"    background-color: gray;\n"
+"    border-style: inset;\n"
+"}")
+        icon17 = QtGui.QIcon()
+        icon17.addPixmap(QtGui.QPixmap("icon/speaker-on-white.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.speakerButton.setIcon(icon17)
+        self.speakerButton.setIconSize(QtCore.QSize(42, 42))
+        self.speakerButton.setObjectName("speakerButton")
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(MainWindow)
@@ -1366,6 +1388,7 @@ class Ui_MainWindow(object):
         self.ips.setText(_translate("MainWindow", "IPS"))
         self.menuTitleName.setText(_translate("MainWindow", "Title H"))
         self.hepa.setText(_translate("MainWindow", "Hepa"))
+        self.speakerButton.setText(_translate("MainWindow", "..."))
 
 
 if __name__ == "__main__":

@@ -21,6 +21,7 @@ changed_otLightBulb2 = ""
 changed_on_speaker = ""
 changed_off_speaker = ""
 sound_on_off_flag = 1
+mute_flag = 0
 
 changed_light_bulb = ""
 changed_ot_light = ""
