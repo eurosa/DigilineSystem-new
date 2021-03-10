@@ -76,6 +76,7 @@ class DataModel:
         self._changed_on_speaker = bytearray
         self._changed_off_speaker = bytearray
         self._sound_on_off_flag = 1
+        self._mute_flag = 1
 
         # ++++++++++++++++++++++++ End Alarm History Data Model ++++++++++++++++++++++++++++++++++++++
         #  Light Brightness control during initial value
@@ -646,3 +647,8 @@ class DataModel:
     def get_sound_on_off_flag(self):
         return self._sound_on_off_flag
 
+    def set_mute_flag(self, _mute_flag):
+        self._mute_flag = _mute_flag
+
+    def get_mute_flag(self):
+        return self._mute_flag

@@ -299,8 +299,10 @@ class LightSwitchDataBase:
     def updateSpeakerOnOff(self, model):
         # ids = int(model.get_light_name_1())
         _sound_on_off_flag = model.get_sound_on_off_flag()
+        _mute_flag = model.get_mute_flag()
         query = QSqlQuery(configVariables.db_history)
-        query.exec_("UPDATE switchControl SET sound_on_off_flag ='" + str(_sound_on_off_flag) + "' WHERE id= 1")
+        query.exec_("UPDATE switchControl SET sound_on_off_flag ='" + str(_sound_on_off_flag) + "', "
+                    "mute_flag ='" + str(_mute_flag) + "' WHERE id= 1")
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -348,14 +350,14 @@ class LightSwitchDataBase:
                     "toggle_switch_3 varchar(10), toggle_switch_4 varchar(10),"
                     "toggle_switch_5 varchar(10), toggle_switch_6 varchar(10),"
                     "hours_cnt INTEGER, minutes_cnt INTEGER, seconds_cnt INTEGER, set_hum INTEGER, "
-                    "set_temp INTEGER, sound_on_off_flag INTEGER)")
+                    "set_temp INTEGER, sound_on_off_flag INTEGER, mute_flag INTEGER)")
 
         query.exec_("insert into switchControl(toggle_switch_1, toggle_switch_2, "
                     "toggle_switch_3, toggle_switch_4,"
                     "toggle_switch_5, toggle_switch_6,"
                     "hours_cnt, minutes_cnt, seconds_cnt,"
-                    "set_hum, set_temp, sound_on_off_flag) values("
-                    " 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)")
+                    "set_hum, set_temp, sound_on_off_flag, mute_flag) values("
+                    " 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1)")
 
         '''query.exec_("create table GeneralSettings(id INTEGER PRIMARY KEY , "
                     "light_name_1 varchar(20), light_name_2 varchar(20), light_name_3 varchar(20), light_name_4 "

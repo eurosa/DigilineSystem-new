@@ -1553,7 +1553,9 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ui.speakerButton.clicked.disconnect()
         self.ui.speakerButton.clicked.connect(self.off_speaker)
         configVariables.sound_on_off_flag = 0
+        configVariables.mute_flag = 1
         self.dataModel.set_sound_on_off_flag(configVariables.sound_on_off_flag)
+        self.dataModel.set_mute_flag(configVariables.mute_flag)
         configVariables.light_database.updateSpeakerOnOff(self.dataModel)
 
     def off_speaker(self):
@@ -1561,6 +1563,8 @@ class MainWindow(QMainWindow, mainwindow_auto.Ui_MainWindow):
         self.ui.speakerButton.clicked.disconnect()
         self.ui.speakerButton.clicked.connect(self.on_speaker)
         configVariables.sound_on_off_flag = 1
+        configVariables.mute_flag = 0
+        self.dataModel.set_mute_flag(configVariables.mute_flag)
         self.dataModel.set_sound_on_off_flag(configVariables.sound_on_off_flag)
         configVariables.light_database.updateSpeakerOnOff(self.dataModel)
 
